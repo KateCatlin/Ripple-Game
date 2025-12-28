@@ -113,9 +113,12 @@ export const useGameState = (): UseGameStateReturn => {
       .map((_, index) => index)
       .filter(index => index !== currentEvent.correctIndex);
     
-    // Randomly select 2 wrong answers to eliminate
-    const shuffled = wrongIndices.sort(() => Math.random() - 0.5);
-    const toEliminate = shuffled.slice(0, 2);
+    // Fisher-Yates shuffle to randomly select 2 wrong answers to eliminate
+    for (let i = wrongIndices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [wrongIndices[i], wrongIndices[j]] = [wrongIndices[j], wrongIndices[i]];
+    }
+    const toEliminate = wrongIndices.slice(0, 2);
     
     setEliminatedOptions(toEliminate);
     setHintUsed(true);
