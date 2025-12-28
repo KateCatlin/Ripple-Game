@@ -114,8 +114,12 @@ export const useGameState = (): UseGameStateReturn => {
     const correctIndex = currentEvent.correctIndex;
     const wrongIndices = [0, 1, 2, 3].filter(i => i !== correctIndex);
     
-    // Randomly select 2 wrong answers to disable
-    const shuffled = wrongIndices.sort(() => Math.random() - 0.5);
+    // Fisher-Yates shuffle for proper randomization
+    const shuffled = [...wrongIndices];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
     const toDisable = shuffled.slice(0, 2);
     
     setHintUsed(true);
