@@ -10,7 +10,7 @@ import { HowToPlayModal } from "./HowToPlayModal";
 import { StatsModal } from "./StatsModal";
 import { hasSeenTutorial, markTutorialSeen } from "@/lib/storage";
 
-const OPTION_LABELS = ['A', 'B', 'C', 'D', 'E'];
+const OPTION_LABELS = ['A', 'B', 'C', 'D'];
 
 export const GameBoard = () => {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
