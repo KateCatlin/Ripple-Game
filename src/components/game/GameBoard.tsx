@@ -8,6 +8,7 @@ import { ExplanationCard } from "./ExplanationCard";
 import { ResultsCard } from "./ResultsCard";
 import { HowToPlayModal } from "./HowToPlayModal";
 import { StatsModal } from "./StatsModal";
+import { HintButton } from "./HintButton";
 import { hasSeenTutorial, markTutorialSeen } from "@/lib/storage";
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
@@ -26,8 +27,12 @@ export const GameBoard = () => {
     selectedAnswer,
     showExplanation,
     isComplete,
+    hintUsed,
+    hintUsedOnEvent,
+    disabledOptions,
     selectAnswer,
     nextEvent,
+    useHint,
     getShareText,
     getScore,
   } = useGameState();
@@ -77,6 +82,8 @@ export const GameBoard = () => {
             puzzleTitle={puzzle.title}
             shareText={getShareText()}
             onShowStats={() => setShowStats(true)}
+            hintUsed={hintUsed}
+            hintUsedOnEvent={hintUsedOnEvent}
           />
 
           <HowToPlayModal 
@@ -140,9 +147,18 @@ export const GameBoard = () => {
                 isCorrect={showExplanation ? index === currentEvent.correctIndex : null}
                 showResult={showExplanation}
                 index={index}
+                disabledByHint={disabledOptions.includes(index)}
               />
             ))}
           </div>
+
+          {!showExplanation && (
+            <HintButton
+              onUseHint={useHint}
+              disabled={showExplanation}
+              hintUsed={hintUsed}
+            />
+          )}
 
           {showExplanation && (
             <ExplanationCard

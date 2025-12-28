@@ -59,6 +59,10 @@ export default {
           DEFAULT: "hsl(var(--incorrect))",
           foreground: "hsl(var(--incorrect-foreground))",
         },
+        hint: {
+          DEFAULT: "hsl(var(--hint))",
+          foreground: "hsl(var(--hint-foreground))",
+        },
         ocean: {
           deep: "hsl(var(--ocean-deep))",
           light: "hsl(var(--ocean-light))",
