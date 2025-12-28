@@ -32,10 +32,7 @@ It's not about memorizing dates.  It's about understanding how decisions ripple 
 
 | Gameplay | Correct Answer | How to Play |
 |----------|----------------|-------------|
-|  <img width="600" height="803" alt="Screenshot 2025-12-28 at 1 01 54 PM" src="https://github.com/user-attachments/assets/c1a48571-bd86-4853-8f5c-4e6c3da6ca8a" />
-| <img width="660" height="1077" alt="Screenshot 2025-12-28 at 1 02 02 PM" src="https://github.com/user-attachments/assets/40441dcf-b9a2-4e53-ae1f-088a11901a53" />
- | <img width="790" height="968" alt="Screenshot 2025-12-28 at 1 01 46 PM" src="https://github.com/user-attachments/assets/58fb02d5-b293-4c31-a6b8-195cde6f0252" />
-|
+| <img width="250" alt="Gameplay" src="https://github.com/user-attachments/assets/c1a48571-bd86-4853-8f5c-4e6c3da6ca8a" /> | <img width="250" alt="Correct Answer" src="https://github.com/user-attachments/assets/40441dcf-b9a2-4e53-ae1f-088a11901a53" /> | <img width="250" alt="How to Play" src="https://github.com/user-attachments/assets/58fb02d5-b293-4c31-a6b8-195cde6f0252" /> |
 
 ---
 
