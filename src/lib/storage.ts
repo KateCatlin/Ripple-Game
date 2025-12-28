@@ -17,6 +17,9 @@ export interface GameState {
   answers: (boolean | null)[];
   isComplete: boolean;
   hasSeenTutorial: boolean;
+  hintUsed: boolean;
+  hintUsedOnEvent: number | null;
+  disabledOptions: number[];
 }
 
 const defaultStats: GameStats = {
@@ -35,6 +38,9 @@ const defaultGameState: GameState = {
   answers: [],
   isComplete: false,
   hasSeenTutorial: false,
+  hintUsed: false,
+  hintUsedOnEvent: null,
+  disabledOptions: [],
 };
 
 export const getStats = (): GameStats => {

@@ -10,6 +10,7 @@ interface OptionCardProps {
   isCorrect: boolean | null;
   showResult: boolean;
   index: number;
+  disabledByHint?: boolean;
 }
 
 export const OptionCard = ({
@@ -21,6 +22,7 @@ export const OptionCard = ({
   isCorrect,
   showResult,
   index,
+  disabledByHint = false,
 }: OptionCardProps) => {
   const isCorrectAnswer = showResult && isCorrect === true;
   const isWrongAnswer = showResult && isSelected && isCorrect === false;
@@ -29,18 +31,19 @@ export const OptionCard = ({
   return (
     <button
       onClick={onClick}
-      disabled={disabled}
+      disabled={disabled || disabledByHint}
       className={cn(
         "w-full text-left p-4 rounded-xl border-2 transition-all duration-300",
         "animate-float-up opacity-0",
         "focus:outline-none focus:ring-2 focus:ring-primary/50",
-        !showResult && !disabled && "hover:-translate-y-0.5 hover:shadow-lg hover:border-primary/30 active:scale-[0.99]",
-        !showResult && "bg-card border-border",
+        !showResult && !disabled && !disabledByHint && "hover:-translate-y-0.5 hover:shadow-lg hover:border-primary/30 active:scale-[0.99]",
+        !showResult && !disabledByHint && "bg-card border-border",
         isCorrectAnswer && "bg-correct/15 border-correct shadow-lg",
         isWrongAnswer && "bg-incorrect/15 border-incorrect",
         isRevealedCorrect && "bg-correct/10 border-correct/50",
         showResult && !isCorrectAnswer && !isWrongAnswer && !isRevealedCorrect && "opacity-50",
-        disabled && !showResult && "cursor-not-allowed opacity-60"
+        disabled && !showResult && !disabledByHint && "cursor-not-allowed opacity-60",
+        disabledByHint && "opacity-30 cursor-not-allowed bg-muted/50 border-muted"
       )}
       style={{ animationDelay: `${index * 0.08}s`, animationFillMode: 'forwards' }}
     >
@@ -48,10 +51,11 @@ export const OptionCard = ({
         <span 
           className={cn(
             "flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold",
-            !showResult && "bg-primary/10 text-primary",
+            !showResult && !disabledByHint && "bg-primary/10 text-primary",
             isCorrectAnswer && "bg-correct text-correct-foreground",
             isWrongAnswer && "bg-incorrect text-incorrect-foreground",
-            isRevealedCorrect && "bg-correct/30 text-correct"
+            isRevealedCorrect && "bg-correct/30 text-correct",
+            disabledByHint && "bg-muted text-muted-foreground"
           )}
         >
           {isCorrectAnswer || isRevealedCorrect ? (
@@ -64,7 +68,8 @@ export const OptionCard = ({
         </span>
         <span className={cn(
           "text-foreground leading-snug",
-          showResult && !isCorrectAnswer && !isWrongAnswer && !isRevealedCorrect && "text-muted-foreground"
+          showResult && !isCorrectAnswer && !isWrongAnswer && !isRevealedCorrect && "text-muted-foreground",
+          disabledByHint && "text-muted-foreground"
         )}>
           {text}
         </span>

@@ -11,8 +11,12 @@ export interface UseGameStateReturn {
   selectedAnswer: number | null;
   showExplanation: boolean;
   isComplete: boolean;
+  hintUsed: boolean;
+  hintUsedOnEvent: number | null;
+  disabledOptions: number[];
   selectAnswer: (index: number) => void;
   nextEvent: () => void;
+  useHint: () => void;
   getShareText: () => string;
   getScore: () => { correct: number; total: number };
 }
@@ -25,6 +29,9 @@ export const useGameState = (): UseGameStateReturn => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [hintUsed, setHintUsed] = useState(false);
+  const [hintUsedOnEvent, setHintUsedOnEvent] = useState<number | null>(null);
+  const [disabledOptions, setDisabledOptions] = useState<number[]>([]);
 
   // Load saved state on mount
   useEffect(() => {
@@ -34,6 +41,9 @@ export const useGameState = (): UseGameStateReturn => {
       setCurrentEventIndex(savedState.currentEventIndex);
       setAnswers(savedState.answers);
       setIsComplete(savedState.isComplete);
+      setHintUsed(savedState.hintUsed || false);
+      setHintUsedOnEvent(savedState.hintUsedOnEvent || null);
+      setDisabledOptions(savedState.disabledOptions || []);
       
       // If game was in progress, restore explanation state
       if (savedState.answers.length > savedState.currentEventIndex) {
@@ -47,6 +57,9 @@ export const useGameState = (): UseGameStateReturn => {
         answers: [],
         isComplete: false,
         hasSeenTutorial: savedState.hasSeenTutorial,
+        hintUsed: false,
+        hintUsedOnEvent: null,
+        disabledOptions: [],
       };
       saveGameState(initialState);
     }
@@ -60,9 +73,12 @@ export const useGameState = (): UseGameStateReturn => {
       answers,
       isComplete,
       hasSeenTutorial: getGameState().hasSeenTutorial,
+      hintUsed,
+      hintUsedOnEvent,
+      disabledOptions,
     };
     saveGameState(state);
-  }, [dayNumber, currentEventIndex, answers, isComplete]);
+  }, [dayNumber, currentEventIndex, answers, isComplete, hintUsed, hintUsedOnEvent, disabledOptions]);
 
   const currentEvent = puzzle.events[currentEventIndex] || null;
 
@@ -88,8 +104,24 @@ export const useGameState = (): UseGameStateReturn => {
       setCurrentEventIndex(prev => prev + 1);
       setSelectedAnswer(null);
       setShowExplanation(false);
+      setDisabledOptions([]);
     }
   }, [currentEventIndex, puzzle.events.length]);
+
+  const useHint = useCallback(() => {
+    if (hintUsed || !currentEvent || showExplanation) return;
+    
+    const correctIndex = currentEvent.correctIndex;
+    const wrongIndices = [0, 1, 2, 3].filter(i => i !== correctIndex);
+    
+    // Randomly select 2 wrong answers to disable
+    const shuffled = wrongIndices.sort(() => Math.random() - 0.5);
+    const toDisable = shuffled.slice(0, 2);
+    
+    setHintUsed(true);
+    setHintUsedOnEvent(currentEventIndex);
+    setDisabledOptions(toDisable);
+  }, [hintUsed, currentEvent, showExplanation, currentEventIndex]);
 
   const getScore = useCallback(() => {
     const validAnswers = answers.filter((a): a is boolean => a !== null);
@@ -103,11 +135,18 @@ export const useGameState = (): UseGameStateReturn => {
     const score = getScore();
     const emojis = answers
       .filter((a): a is boolean => a !== null)
-      .map((correct, i) => `Event ${i + 1}: ${correct ? '✅' : '❌'}`)
+      .map((correct, i) => {
+        const usedHintOnThisEvent = hintUsedOnEvent === i;
+        if (correct && usedHintOnThisEvent) {
+          return `Event ${i + 1}: 🟡`;
+        }
+        return `Event ${i + 1}: ${correct ? '✅' : '❌'}`;
+      })
       .join('\n');
     
-    return `Ripple #${dayNumber} 🌊\n${emojis}\nChain Score: ${score.correct}/${score.total}\n\nPlay at: ${window.location.origin}`;
-  }, [dayNumber, answers, getScore]);
+    const hintIndicator = hintUsed ? ' 💡' : '';
+    return `Ripple #${dayNumber} 🌊\n${emojis}\nChain Score: ${score.correct}/${score.total}${hintIndicator}\n\nPlay at: ${window.location.origin}`;
+  }, [dayNumber, answers, getScore, hintUsed, hintUsedOnEvent]);
 
   return {
     puzzle,
@@ -118,8 +157,12 @@ export const useGameState = (): UseGameStateReturn => {
     selectedAnswer,
     showExplanation,
     isComplete,
+    hintUsed,
+    hintUsedOnEvent,
+    disabledOptions,
     selectAnswer,
     nextEvent,
+    useHint,
     getShareText,
     getScore,
   };
