@@ -1,73 +1,147 @@
-# Welcome to your Lovable project
+# 🌊 Ripple
 
-## Project info
+**A daily cause-and-effect prediction game that tests how well you understand how the world works.**
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+[Play Now](https://ripplegame.lovable.app/) • [Report Bug](../../issues) • [Request Feature](../../issues)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## About
 
-**Use Lovable**
+Most trivia games test static knowledge—*"What year did X happen?"*
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Ripple is different. It tests **causal reasoning**. 
 
-Changes made via Lovable will be committed automatically to this repo.
+You're shown a real historical event and asked to predict what happened next. Get it right, and you follow the chain deeper—3 events total, each consequence leading to the next. 
 
-**Use your preferred IDE**
+```
+Ripple #728 🌊
+Event 1: ✅
+Event 2: ❌
+Event 3: ✅
+Chain Score: 2/3
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+It's not about memorizing dates.  It's about understanding how decisions ripple through history—how consumers react, how companies pivot, how one invention enables another.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**New puzzle every day.  Same puzzle for everyone.**
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Screenshots
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+| Gameplay | Correct Answer | How to Play |
+|----------|----------------|-------------|
+|  <img width="600" height="803" alt="Screenshot 2025-12-28 at 1 01 54 PM" src="https://github.com/user-attachments/assets/c1a48571-bd86-4853-8f5c-4e6c3da6ca8a" />
+| <img width="660" height="1077" alt="Screenshot 2025-12-28 at 1 02 02 PM" src="https://github.com/user-attachments/assets/40441dcf-b9a2-4e53-ae1f-088a11901a53" />
+ | <img width="790" height="968" alt="Screenshot 2025-12-28 at 1 01 46 PM" src="https://github.com/user-attachments/assets/58fb02d5-b293-4c31-a6b8-195cde6f0252" />
+|
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## Tech Stack
+
+- **Framework:** React + TypeScript
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS
+- **Components:** shadcn/ui
+- **Hosting:** Vercel
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/yourusername/ripple.git
+
+# Navigate to project directory
+cd ripple
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The app will be running at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build for Production
 
-**Use GitHub Codespaces**
+```bash
+npm run build
+npm run preview
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## Contributing
 
-This project is built with:
+Contributions are what make the open source community great.  Any contributions you make are **greatly appreciated**. 
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Ways to Contribute
 
-## How can I deploy this project?
+- 🧩 **Submit puzzle chains** — We always need quality content
+- 🐛 **Report bugs** — Found something broken? Let us know
+- ✨ **Suggest features** — Have an idea? Open an issue
+- 🔧 **Submit PRs** — Code improvements welcome
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### Submitting Puzzle Chains
 
-## Can I connect a custom domain to my Lovable project?
+We're especially looking for well-researched chains in these categories: 
+- Business case studies
+- Scientific discoveries  
+- Tech product launches
+- Political events
+- Cultural moments
 
-Yes, you can!
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the puzzle submission format.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Development Workflow
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## Puzzle Content Guidelines
+
+Good Ripple chains should: 
+
+- ✅ Be historically accurate and verifiable
+- ✅ Have surprising but logical cause-and-effect connections
+- ✅ Include plausible wrong answers (not obviously fake)
+- ✅ Teach something interesting even when you guess wrong
+- ✅ Span 3-4 events in the chain
+
+---
+
+## Roadmap
+
+- [x] Core gameplay loop
+- [x] Daily puzzle system
+- [x] Share results
+- [ ] Statistics tracking
+- [ ] Difficulty modes
+- [ ] Multiplayer/challenge friends
+- [ ] Puzzle archive for past days
+- [ ] User-submitted puzzle voting
+
+See the [open issues](../../issues) for a full list of proposed features.
+
+---
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
