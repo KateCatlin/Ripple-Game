@@ -2,95 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Ripple Ocean Theme */
+    --background: 46 67% 93%; /* Soft sand #FAF3E0 */
+    --foreground: 210 29% 24%; /* Charcoal #2C3E50 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 46 67% 96%;
+    --card-foreground: 210 29% 24%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 46 67% 96%;
+    --popover-foreground: 210 29% 24%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 204 77% 26%; /* Deep ocean blue #0F4C75 */
+    --primary-foreground: 46 67% 96%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 183 52% 50%; /* Aqua ripple #3FBAC2 */
+    --secondary-foreground: 210 29% 20%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 46 40% 88%;
+    --muted-foreground: 210 20% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 0 100% 71%; /* Warm coral #FF6B6B */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 71%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 46 30% 85%;
+    --input: 46 30% 85%;
+    --ring: 204 77% 26%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Custom Ripple tokens */
+    --correct: 183 52% 50%;
+    --correct-foreground: 210 29% 20%;
+    --incorrect: 0 100% 71%;
+    --incorrect-foreground: 0 0% 100%;
+    --ocean-deep: 204 77% 20%;
+    --ocean-light: 183 52% 70%;
+    --sand-dark: 46 50% 80%;
+
+    /* Gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(204 77% 26%) 0%, hsl(183 52% 50%) 100%);
+    --gradient-sand: linear-gradient(180deg, hsl(46 67% 93%) 0%, hsl(46 50% 88%) 100%);
+
+    /* Shadows */
+    --shadow-card: 0 4px 20px -4px hsl(204 77% 26% / 0.12);
+    --shadow-hover: 0 8px 30px -4px hsl(204 77% 26% / 0.18);
+    --shadow-correct: 0 4px 20px -4px hsl(183 52% 50% / 0.4);
+    --shadow-incorrect: 0 4px 20px -4px hsl(0 100% 71% / 0.4);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 210 29% 12%;
+    --foreground: 46 67% 93%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 210 29% 16%;
+    --card-foreground: 46 67% 93%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 210 29% 16%;
+    --popover-foreground: 46 67% 93%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 183 52% 50%;
+    --primary-foreground: 210 29% 12%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 204 77% 35%;
+    --secondary-foreground: 46 67% 93%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 210 25% 22%;
+    --muted-foreground: 46 40% 70%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 100% 71%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 210 25% 25%;
+    --input: 210 25% 25%;
+    --ring: 183 52% 50%;
+
+    --correct: 183 52% 50%;
+    --correct-foreground: 210 29% 12%;
+    --incorrect: 0 100% 65%;
+    --incorrect-foreground: 0 0% 100%;
+    --ocean-deep: 204 77% 35%;
+    --ocean-light: 183 52% 60%;
+    --sand-dark: 210 25% 28%;
+
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --shadow-hover: 0 8px 30px -4px hsl(0 0% 0% / 0.4);
   }
 }
 
@@ -100,6 +114,136 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body antialiased;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .ripple-card {
+    @apply bg-card rounded-xl border border-border p-5 transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+
+  .ripple-card:hover {
+    box-shadow: var(--shadow-hover);
+    @apply -translate-y-0.5;
+  }
+
+  .ripple-card-correct {
+    @apply bg-correct/10 border-correct;
+    box-shadow: var(--shadow-correct);
+  }
+
+  .ripple-card-incorrect {
+    @apply bg-accent/10 border-accent;
+    box-shadow: var(--shadow-incorrect);
+  }
+
+  .ocean-gradient {
+    background: var(--gradient-ocean);
+  }
+
+  .sand-gradient {
+    background: var(--gradient-sand);
+  }
+}
+
+@layer utilities {
+  /* Ripple animation */
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-3px) rotate(1deg);
+    }
+    75% {
+      transform: translateY(3px) rotate(-1deg);
+    }
+  }
+
+  @keyframes float-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes bounce-gentle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  .animate-ripple {
+    animation: ripple 0.6s ease-out forwards;
+  }
+
+  .animate-wave {
+    animation: wave 3s ease-in-out infinite;
+  }
+
+  .animate-float-up {
+    animation: float-up 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out forwards;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
 }
