@@ -28,7 +28,7 @@ Ripple is a **daily cause-and-effect prediction game**. Unlike traditional trivi
 Here's how it works:
 
 1. Players see a real historical event
-2. They predict what happened NEXT from 5 options (only 1 is correct)
+2. They predict what happened NEXT from 4 options (only 1 is correct)
 3. If they get it right, they continue the chain—3 events deep
 4. The goal is to follow the "ripple effect" of consequences
 
@@ -73,8 +73,8 @@ Puzzles are defined in `src/data/puzzles.ts`. Here's the TypeScript interface yo
 ```typescript
 interface PuzzleEvent {
   event: string;          // The event description players see
-  options: string[];      // Exactly 5 possible answers
-  correctIndex: number;   // Index of correct answer (0-4)
+  options: string[];      // Exactly 4 possible answers
+  correctIndex: number;   // Index of correct answer (0-3)
   explanation: string;    // Shown after answering - explains why this happened
 }
 
@@ -98,12 +98,11 @@ Copy this template when adding a new puzzle:
       event: "YEAR: First event - the starting point of the chain",
       options: [
         "Wrong answer 1 - plausible but didn't happen",
-        "Wrong answer 2 - plausible but didn't happen",
         "Correct answer - what actually happened next",
-        "Wrong answer 3 - plausible but didn't happen",
-        "Wrong answer 4 - plausible but didn't happen"
+        "Wrong answer 2 - plausible but didn't happen",
+        "Wrong answer 3 - plausible but didn't happen"
       ],
-      correctIndex: 2,  // Index of correct answer (0-4)
+      correctIndex: 1,  // Index of correct answer (0-3)
       explanation: "Explain why this happened and add interesting context."
     },
     {
@@ -112,8 +111,7 @@ Copy this template when adding a new puzzle:
         "Option A",
         "Option B",
         "Option C",
-        "Option D",
-        "Option E"
+        "Option D"
       ],
       correctIndex: 0,
       explanation: "Explain the connection and add fascinating details."
@@ -124,10 +122,9 @@ Copy this template when adding a new puzzle:
         "Option A",
         "Option B",
         "Option C",
-        "Option D",
-        "Option E"
+        "Option D"
       ],
-      correctIndex: 4,
+      correctIndex: 3,
       explanation: "Wrap up the chain with the final consequence and its significance."
     }
   ]
@@ -143,7 +140,7 @@ Every puzzle submission must meet these standards:
 - **Clear sources** — Be ready to cite where you found your information
 - **Cause-and-effect relationship** — Each event must directly cause or lead to the next
 - **Reasonable timeframe** — Consequences should happen within days to ~2 years
-- **Plausible wrong answers** — All 5 options should seem believable
+- **Plausible wrong answers** — All 4 options should seem believable
 - **Helpful explanations** — Each explanation should teach something interesting
 
 #### ⚠️ Avoid
@@ -217,8 +214,7 @@ Here's a complete, well-structured puzzle from our collection:
         "Blockbuster acquires Netflix",
         "Blockbuster CEO laughs them out of the room",
         "Netflix accepts lower counter-offer",
-        "Deal falls through due to regulations",
-        "Blockbuster offers $100 million instead"
+        "Deal falls through due to regulations"
       ],
       correctIndex: 1,
       explanation: "Blockbuster CEO John Antioco reportedly laughed at the offer, calling Netflix a 'very small niche business.' It's now worth over $150 billion."
@@ -229,8 +225,7 @@ Here's a complete, well-structured puzzle from our collection:
         "Netflix goes bankrupt within a year",
         "Blockbuster launches competing service",
         "Netflix pivots to streaming technology",
-        "Both companies merge years later",
-        "Blockbuster stock reaches all-time high"
+        "Both companies merge years later"
       ],
       correctIndex: 2,
       explanation: "Netflix invested heavily in streaming technology, launching its streaming service in 2007 — fundamentally changing how people consume entertainment."
@@ -241,8 +236,7 @@ Here's a complete, well-structured puzzle from our collection:
         "Blockbuster immediately copies the model",
         "Cable companies buy Blockbuster",
         "Streaming fails, DVD remains dominant",
-        "Blockbuster files for bankruptcy in 2010",
-        "Netflix and Blockbuster merge"
+        "Blockbuster files for bankruptcy in 2010"
       ],
       correctIndex: 3,
       explanation: "Blockbuster filed for bankruptcy in 2010. Today, only one Blockbuster store remains — in Bend, Oregon — while Netflix has 230+ million subscribers."
@@ -300,7 +294,7 @@ export const getPuzzleForDay = (date: Date = new Date()): Puzzle => {
 
 ### 4. Verify Your Puzzle
 
-- [ ] All 5 options display correctly
+- [ ] All 4 options display correctly
 - [ ] Correct answer is properly marked
 - [ ] Explanations appear after each answer
 - [ ] No typos or formatting issues
