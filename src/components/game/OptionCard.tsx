@@ -10,6 +10,7 @@ interface OptionCardProps {
   isCorrect: boolean | null;
   showResult: boolean;
   index: number;
+  isEliminated?: boolean;
 }
 
 export const OptionCard = ({
@@ -21,6 +22,7 @@ export const OptionCard = ({
   isCorrect,
   showResult,
   index,
+  isEliminated = false,
 }: OptionCardProps) => {
   const isCorrectAnswer = showResult && isCorrect === true;
   const isWrongAnswer = showResult && isSelected && isCorrect === false;
@@ -29,18 +31,19 @@ export const OptionCard = ({
   return (
     <button
       onClick={onClick}
-      disabled={disabled}
+      disabled={disabled || isEliminated}
       className={cn(
         "w-full text-left p-4 rounded-xl border-2 transition-all duration-300",
         "animate-float-up opacity-0",
         "focus:outline-none focus:ring-2 focus:ring-primary/50",
-        !showResult && !disabled && "hover:-translate-y-0.5 hover:shadow-lg hover:border-primary/30 active:scale-[0.99]",
-        !showResult && "bg-card border-border",
+        !showResult && !disabled && !isEliminated && "hover:-translate-y-0.5 hover:shadow-lg hover:border-primary/30 active:scale-[0.99]",
+        !showResult && !isEliminated && "bg-card border-border",
+        isEliminated && "bg-muted/30 border-border/50 opacity-40 cursor-not-allowed",
         isCorrectAnswer && "bg-correct/15 border-correct shadow-lg",
         isWrongAnswer && "bg-incorrect/15 border-incorrect",
         isRevealedCorrect && "bg-correct/10 border-correct/50",
         showResult && !isCorrectAnswer && !isWrongAnswer && !isRevealedCorrect && "opacity-50",
-        disabled && !showResult && "cursor-not-allowed opacity-60"
+        disabled && !showResult && !isEliminated && "cursor-not-allowed opacity-60"
       )}
       style={{ animationDelay: `${index * 0.08}s`, animationFillMode: 'forwards' }}
     >

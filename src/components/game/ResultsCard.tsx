@@ -10,6 +10,7 @@ interface ResultsCardProps {
   puzzleTitle: string;
   shareText: string;
   onShowStats: () => void;
+  hintUsedOnEvent: number | null;
 }
 
 export const ResultsCard = ({
@@ -18,6 +19,7 @@ export const ResultsCard = ({
   puzzleTitle,
   shareText,
   onShowStats,
+  hintUsedOnEvent,
 }: ResultsCardProps) => {
   const [copied, setCopied] = useState(false);
   const correctCount = answers.filter(Boolean).length;
@@ -77,19 +79,24 @@ export const ResultsCard = ({
 
         {/* Chain visualization */}
         <div className="flex justify-center gap-3">
-          {answers.map((correct, index) => (
-            <div
-              key={index}
-              className={cn(
-                "w-12 h-12 rounded-full flex items-center justify-center text-lg font-semibold transition-all",
-                correct 
-                  ? "bg-correct text-correct-foreground" 
-                  : "bg-incorrect text-incorrect-foreground"
-              )}
-            >
-              {correct ? "✓" : "✗"}
-            </div>
-          ))}
+          {answers.map((correct, index) => {
+            const usedHintOnThis = correct && hintUsedOnEvent === index;
+            return (
+              <div
+                key={index}
+                className={cn(
+                  "w-12 h-12 rounded-full flex items-center justify-center text-lg font-semibold transition-all",
+                  usedHintOnThis
+                    ? "bg-hint text-hint-foreground"
+                    : correct 
+                      ? "bg-correct text-correct-foreground" 
+                      : "bg-incorrect text-incorrect-foreground"
+                )}
+              >
+                {usedHintOnThis ? "💡" : correct ? "✓" : "✗"}
+              </div>
+            );
+          })}
         </div>
 
         {/* Share text preview */}

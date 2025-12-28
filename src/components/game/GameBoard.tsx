@@ -9,6 +9,8 @@ import { ResultsCard } from "./ResultsCard";
 import { HowToPlayModal } from "./HowToPlayModal";
 import { StatsModal } from "./StatsModal";
 import { hasSeenTutorial, markTutorialSeen } from "@/lib/storage";
+import { Button } from "@/components/ui/button";
+import { Lightbulb } from "lucide-react";
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
 
@@ -26,8 +28,12 @@ export const GameBoard = () => {
     selectedAnswer,
     showExplanation,
     isComplete,
+    hintUsed,
+    hintUsedOnEvent,
+    eliminatedOptions,
     selectAnswer,
     nextEvent,
+    useHint,
     getShareText,
     getScore,
   } = useGameState();
@@ -77,6 +83,7 @@ export const GameBoard = () => {
             puzzleTitle={puzzle.title}
             shareText={getShareText()}
             onShowStats={() => setShowStats(true)}
+            hintUsedOnEvent={hintUsedOnEvent}
           />
 
           <HowToPlayModal 
@@ -140,9 +147,25 @@ export const GameBoard = () => {
                 isCorrect={showExplanation ? index === currentEvent.correctIndex : null}
                 showResult={showExplanation}
                 index={index}
+                isEliminated={eliminatedOptions.includes(index)}
               />
             ))}
           </div>
+
+          {!showExplanation && (
+            <div className="mt-4 flex justify-center">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={useHint}
+                disabled={hintUsed}
+                className="gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <Lightbulb className="w-4 h-4" />
+                {hintUsed ? "50/50 Used" : "50/50"}
+              </Button>
+            </div>
+          )}
 
           {showExplanation && (
             <ExplanationCard

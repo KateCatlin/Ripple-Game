@@ -11,8 +11,12 @@ export interface UseGameStateReturn {
   selectedAnswer: number | null;
   showExplanation: boolean;
   isComplete: boolean;
+  hintUsed: boolean;
+  hintUsedOnEvent: number | null;
+  eliminatedOptions: number[];
   selectAnswer: (index: number) => void;
   nextEvent: () => void;
+  useHint: () => void;
   getShareText: () => string;
   getScore: () => { correct: number; total: number };
 }
@@ -25,6 +29,9 @@ export const useGameState = (): UseGameStateReturn => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [hintUsed, setHintUsed] = useState(false);
+  const [hintUsedOnEvent, setHintUsedOnEvent] = useState<number | null>(null);
+  const [eliminatedOptions, setEliminatedOptions] = useState<number[]>([]);
 
   // Load saved state on mount
   useEffect(() => {
@@ -34,6 +41,8 @@ export const useGameState = (): UseGameStateReturn => {
       setCurrentEventIndex(savedState.currentEventIndex);
       setAnswers(savedState.answers);
       setIsComplete(savedState.isComplete);
+      setHintUsed(savedState.hintUsed);
+      setHintUsedOnEvent(savedState.hintUsedOnEvent);
       
       // If game was in progress, restore explanation state
       if (savedState.answers.length > savedState.currentEventIndex) {
@@ -47,6 +56,8 @@ export const useGameState = (): UseGameStateReturn => {
         answers: [],
         isComplete: false,
         hasSeenTutorial: savedState.hasSeenTutorial,
+        hintUsed: false,
+        hintUsedOnEvent: null,
       };
       saveGameState(initialState);
     }
@@ -60,9 +71,11 @@ export const useGameState = (): UseGameStateReturn => {
       answers,
       isComplete,
       hasSeenTutorial: getGameState().hasSeenTutorial,
+      hintUsed,
+      hintUsedOnEvent,
     };
     saveGameState(state);
-  }, [dayNumber, currentEventIndex, answers, isComplete]);
+  }, [dayNumber, currentEventIndex, answers, isComplete, hintUsed, hintUsedOnEvent]);
 
   const currentEvent = puzzle.events[currentEventIndex] || null;
 
@@ -88,8 +101,26 @@ export const useGameState = (): UseGameStateReturn => {
       setCurrentEventIndex(prev => prev + 1);
       setSelectedAnswer(null);
       setShowExplanation(false);
+      setEliminatedOptions([]);
     }
   }, [currentEventIndex, puzzle.events.length]);
+
+  const useHint = useCallback(() => {
+    if (hintUsed || showExplanation || isComplete || !currentEvent) return;
+    
+    // Get indices of wrong answers (not the correct one)
+    const wrongIndices = currentEvent.options
+      .map((_, index) => index)
+      .filter(index => index !== currentEvent.correctIndex);
+    
+    // Randomly select 2 wrong answers to eliminate
+    const shuffled = wrongIndices.sort(() => Math.random() - 0.5);
+    const toEliminate = shuffled.slice(0, 2);
+    
+    setEliminatedOptions(toEliminate);
+    setHintUsed(true);
+    setHintUsedOnEvent(currentEventIndex);
+  }, [hintUsed, showExplanation, isComplete, currentEvent, currentEventIndex]);
 
   const getScore = useCallback(() => {
     const validAnswers = answers.filter((a): a is boolean => a !== null);
@@ -103,11 +134,17 @@ export const useGameState = (): UseGameStateReturn => {
     const score = getScore();
     const emojis = answers
       .filter((a): a is boolean => a !== null)
-      .map((correct, i) => `Event ${i + 1}: ${correct ? '✅' : '❌'}`)
+      .map((correct, i) => {
+        if (correct && hintUsedOnEvent === i) {
+          return `Event ${i + 1}: 🟡`;
+        }
+        return `Event ${i + 1}: ${correct ? '✅' : '❌'}`;
+      })
       .join('\n');
     
-    return `Ripple #${dayNumber} 🌊\n${emojis}\nChain Score: ${score.correct}/${score.total}\n\nPlay at: ${window.location.origin}`;
-  }, [dayNumber, answers, getScore]);
+    const hintIndicator = hintUsed ? ' 💡' : '';
+    return `Ripple #${dayNumber} 🌊\n${emojis}\nChain Score: ${score.correct}/${score.total}${hintIndicator}\n\nPlay at: ${window.location.origin}`;
+  }, [dayNumber, answers, getScore, hintUsed, hintUsedOnEvent]);
 
   return {
     puzzle,
@@ -118,8 +155,12 @@ export const useGameState = (): UseGameStateReturn => {
     selectedAnswer,
     showExplanation,
     isComplete,
+    hintUsed,
+    hintUsedOnEvent,
+    eliminatedOptions,
     selectAnswer,
     nextEvent,
+    useHint,
     getShareText,
     getScore,
   };
