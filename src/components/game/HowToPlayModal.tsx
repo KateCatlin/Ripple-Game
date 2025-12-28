@@ -50,7 +50,7 @@ export const HowToPlayModal = ({ open, onOpenChange, onStart }: HowToPlayModalPr
             <div>
               <h4 className="font-semibold mb-1">Predict the Consequence</h4>
               <p className="text-sm text-muted-foreground">
-                Choose what happened next from 5 options. Think cause and effect!
+                Choose what happened next from 4 options. Think cause and effect!
               </p>
             </div>
           </div>
