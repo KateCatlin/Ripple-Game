@@ -42,6 +42,8 @@
     --correct-foreground: 210 29% 20%;
     --incorrect: 0 100% 71%;
     --incorrect-foreground: 0 0% 100%;
+    --hint: 45 93% 58%;
+    --hint-foreground: 210 29% 20%;
     --ocean-deep: 204 77% 20%;
     --ocean-light: 183 52% 70%;
     --sand-dark: 46 50% 80%;
@@ -99,6 +101,8 @@
     --correct-foreground: 210 29% 12%;
     --incorrect: 0 100% 65%;
     --incorrect-foreground: 0 0% 100%;
+    --hint: 45 93% 50%;
+    --hint-foreground: 210 29% 12%;
     --ocean-deep: 204 77% 35%;
     --ocean-light: 183 52% 60%;
     --sand-dark: 210 25% 28%;
