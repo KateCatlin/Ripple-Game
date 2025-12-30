@@ -33,9 +33,11 @@ const dismissLoginPrompt = () => {
 
 interface LoginPromptCardProps {
   onDismiss?: () => void;
+  message?: string;
+  showDismiss?: boolean;
 }
 
-export const LoginPromptCard = ({ onDismiss }: LoginPromptCardProps) => {
+export const LoginPromptCard = ({ onDismiss, message, showDismiss = true }: LoginPromptCardProps) => {
   const { signInWithEmail, signUpWithEmail } = useAuth();
   const { toast } = useToast();
   const [email, setEmail] = useState('');
@@ -83,7 +85,7 @@ export const LoginPromptCard = ({ onDismiss }: LoginPromptCardProps) => {
         <div className="text-center">
           <div className="text-3xl mb-2">🔒</div>
           <h3 className="font-display text-lg font-semibold text-foreground">
-            Save your streak!
+            {message || "Save your streak!"}
           </h3>
           <p className="text-sm text-muted-foreground mt-1">
             {isSignUp ? "Create an account" : "Sign in"} to track your progress across devices.
@@ -124,13 +126,17 @@ export const LoginPromptCard = ({ onDismiss }: LoginPromptCardProps) => {
           >
             {isSignUp ? "Already have an account? Sign in" : "Need an account? Sign up"}
           </button>
-          <br />
-          <button
-            onClick={handleDismiss}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Maybe later
-          </button>
+          {showDismiss && (
+            <>
+              <br />
+              <button
+                onClick={handleDismiss}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Maybe later
+              </button>
+            </>
+          )}
         </div>
       </CardContent>
     </Card>
