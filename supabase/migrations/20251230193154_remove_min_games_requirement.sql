@@ -13,7 +13,7 @@ SELECT
   total_points,
   current_streak,
   max_streak,
-  CASE WHEN games_played >= 1 THEN ROUND((total_points::numeric / games_played), 0) ELSE 0 END as avg_points
+  ROUND((total_points::numeric / games_played), 0) as avg_points
 FROM user_stats
 WHERE games_played >= 1
 ORDER BY avg_points DESC;
