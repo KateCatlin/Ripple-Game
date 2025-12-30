@@ -173,45 +173,6 @@ export const puzzles: Puzzle[] = [
   ]
 },
 {
-  id: 11,
-  title: "Section 230 Changes the Internet",
-  events:  [
-    {
-      event: "1996: Congress passes Section 230, protecting websites from liability for user content",
-      options:  [
-        "Websites become fully liable for all user content",
-        "User-generated content platforms become legally viable",
-        "Internet growth slows due to regulations",
-        "Only government-approved content is allowed online"
-      ],
-      correctIndex: 1,
-      explanation: "Section 230 meant websites couldn't be sued for what users posted. Without this protection, platforms like YouTube or Facebook would be too legally risky to operate."
-    },
-    {
-      event: "Platforms protected from liability for user posts",
-      options:  [
-        "Platforms carefully moderate all content before posting",
-        "Social media and video sharing platforms explode in growth",
-        "Users post less due to fear of restrictions",
-        "Only professional content creators share online"
-      ],
-      correctIndex: 1,
-      explanation: "YouTube launched in 2005, Facebook opened publicly in 2006, Twitter grew rapidly — none would have been viable if liable for every user's post."
-    },
-    {
-      event: "Social media platforms scale to billions of users",
-      options: [
-        "Content remains high-quality and well-curated",
-        "Misinformation spreads with limited platform accountability",
-        "Platforms successfully self-regulate all content",
-        "Users demand even more liability protections for platforms"
-      ],
-      correctIndex: 1,
-      explanation: "The same protection that enabled social media also meant platforms had limited incentive to police misinformation, hate speech, and harmful content at scale."
-    }
-  ]
-},
-{
   id: 12,
   title: "The iPhone Overwhelms AT&T",
   events: [
@@ -524,45 +485,6 @@ export const puzzles: Puzzle[] = [
   ]
 },
 {
-  id:  20,
-  title: "China Joins the WTO",
-  events: [
-    {
-      event: "2001: China officially joins the World Trade Organization",
-      options: [
-        "Trade barriers with China remain high",
-        "American companies shift manufacturing to China",
-        "Chinese wages rise to US levels",
-        "US manufacturing increases"
-      ],
-      correctIndex: 1,
-      explanation:  "WTO membership gave China 'most favored nation' trade status.  With wages a fraction of US levels, companies rushed to manufacture in China."
-    },
-    {
-      event: "American companies move manufacturing to China",
-      options: [
-        "US factory workers easily find new jobs",
-        "US manufacturing employment drops by 30%",
-        "Wages in manufacturing increase",
-        "Unions successfully stop outsourcing"
-      ],
-      correctIndex: 1,
-      explanation: "The US lost 5 million manufacturing jobs between 2000-2015. The 'China Shock' devastated factory towns in the Midwest and South."
-    },
-    {
-      event:  "Rust Belt loses millions of manufacturing jobs",
-      options: [
-        "Affected regions quickly recover economically",
-        "Economic anxiety contributes to political realignment",
-        "Workers embrace free trade policies",
-        "Manufacturing returns within a decade"
-      ],
-      correctIndex:  1,
-      explanation: "Economic devastation in manufacturing regions contributed to the populist political movements of the 2010s.  Trade policy became a major campaign issue."
-    }
-  ]
-},
-{
   id: 21,
   title: "The Soviet Wheat Deal",
   events:  [
@@ -676,84 +598,6 @@ export const puzzles: Puzzle[] = [
       ],
       correctIndex: 1,
       explanation: "The crisis exposed supply chain fragility. Companies began 'reshoring' production, building larger inventories, and diversifying shipping routes — reversing decades of just-in-time orthodoxy."
-    }
-  ]
-},
-{
-  id: 24,
-  title: "Chile's Copper Nationalization",
-  events: [
-    {
-      event: "1971: Chile nationalizes its copper mines under President Allende",
-      options: [
-        "Copper production increases immediately",
-        "Global copper prices spike on supply fears",
-        "US companies accept the nationalization peacefully",
-        "Copper prices decrease"
-      ],
-      correctIndex: 1,
-      explanation:  "Chile was the world's largest copper producer.  Nationalization threatened US corporate interests and global copper supply — prices spiked on uncertainty."
-    },
-    {
-      event: "Copper prices spike, US corporate interests threatened",
-      options:  [
-        "US accepts Chile's sovereign decision",
-        "US supports coup that overthrows Allende",
-        "Diplomatic negotiations resolve the dispute",
-        "Other countries nationalize copper in solidarity"
-      ],
-      correctIndex: 1,
-      explanation: "The CIA supported the 1973 coup that installed Pinochet.  Declassified documents confirmed US involvement — resource control shaped Cold War interventions."
-    },
-    {
-      event: "US-backed coup installs Pinochet, mines are privatized",
-      options: [
-        "This remains an isolated incident",
-        "Pattern repeats in other resource-rich countries",
-        "Nationalization movements succeed globally",
-        "US stops intervening in foreign nations"
-      ],
-      correctIndex: 1,
-      explanation: "Chile became a template.  US intervention in Guatemala, Iran, and elsewhere followed similar patterns — protecting corporate resource access through regime change."
-    }
-  ]
-},
-{
-  id: 25,
-  title: "Russia Invades Ukraine, Energy Crisis Follows",
-  events:  [
-    {
-      event: "February 2022: Russia invades Ukraine; Europe sanctions Russian gas",
-      options:  [
-        "European energy prices remain stable",
-        "European energy costs triple as Russian gas is cut off",
-        "Alternative energy sources replace Russian gas easily",
-        "Sanctions are lifted within weeks"
-      ],
-      correctIndex: 1,
-      explanation: "Europe depended on Russia for 40% of its natural gas. When flows stopped, energy prices tripled — German electricity costs hit record highs."
-    },
-    {
-      event: "European energy prices triple, industry faces crisis",
-      options:  [
-        "All industries adapt to higher costs",
-        "Energy-intensive industry begins relocating from Europe",
-        "Europe quickly builds renewable alternatives",
-        "Consumers don't notice price increases"
-      ],
-      correctIndex:  1,
-      explanation: "Chemical plants, steel mills, and fertilizer producers couldn't afford European energy prices. Many began relocating to the US or Middle East with cheaper energy."
-    },
-    {
-      event: "European industry relocates to regions with cheaper energy",
-      options: [
-        "Only European markets are affected",
-        "Global fertilizer prices spike, affecting world food costs",
-        "Agriculture is unaffected by fertilizer costs",
-        "Food prices decrease globally"
-      ],
-      correctIndex: 1,
-      explanation: "Natural gas is the key ingredient in nitrogen fertilizer. European fertilizer plant closures spiked global fertilizer prices — raising food costs from Africa to Asia."
     }
   ]
 },
