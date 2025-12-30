@@ -1,15 +1,18 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { getPuzzleForDay, getDayNumber, Puzzle, PuzzleEvent } from '@/data/puzzles';
 import { getGameState, saveGameState, updateStatsAfterGame, GameState } from '@/lib/storage';
 import { useAuth } from '@/contexts/AuthContext';
 import { hasPlayedToday } from '@/lib/supabaseStats';
 import { supabase } from '@/integrations/supabase/client';
+import { shuffleWithMapping } from '@/lib/utils';
 
 export interface UseGameStateReturn {
   puzzle: Puzzle;
   dayNumber: number;
   currentEventIndex: number;
   currentEvent: PuzzleEvent | null;
+  shuffledOptions: string[];
+  shuffledCorrectIndex: number;
   answers: (boolean | null)[];
   selectedAnswer: number | null;
   showExplanation: boolean;
@@ -36,6 +39,24 @@ export const useGameState = (): UseGameStateReturn => {
   const [hintUsed, setHintUsed] = useState(false);
   const [hintUsedOnEvent, setHintUsedOnEvent] = useState<number | null>(null);
   const [eliminatedOptions, setEliminatedOptions] = useState<number[]>([]);
+  const [shuffleSeed, setShuffleSeed] = useState(0); // Used to trigger re-shuffle on next event
+
+  const currentEvent = puzzle.events[currentEventIndex] || null;
+
+  // Shuffle options for the current event
+  const { shuffledOptions, shuffledCorrectIndex, indexMap } = useMemo(() => {
+    if (!currentEvent) {
+      return { shuffledOptions: [], shuffledCorrectIndex: -1, indexMap: [] };
+    }
+    const { shuffled, indexMap } = shuffleWithMapping(currentEvent.options);
+    // Find which shuffled index contains the correct answer
+    const correctShuffledIndex = indexMap.findIndex(origIndex => origIndex === currentEvent.correctIndex);
+    return {
+      shuffledOptions: shuffled,
+      shuffledCorrectIndex: correctShuffledIndex,
+      indexMap,
+    };
+  }, [currentEvent, shuffleSeed]); // shuffleSeed dependency ensures re-shuffle on event change
 
   // Load saved state on mount and check Supabase for logged-in users
   useEffect(() => {
@@ -110,12 +131,11 @@ export const useGameState = (): UseGameStateReturn => {
     saveGameState(state);
   }, [dayNumber, currentEventIndex, answers, isComplete, hintUsed, hintUsedOnEvent]);
 
-  const currentEvent = puzzle.events[currentEventIndex] || null;
-
   const selectAnswer = useCallback((index: number) => {
     if (showExplanation || isComplete) return;
     
-    const isCorrect = index === currentEvent?.correctIndex;
+    // Check against shuffled correct index, not original
+    const isCorrect = index === shuffledCorrectIndex;
     setSelectedAnswer(index);
     setShowExplanation(true);
     
@@ -127,7 +147,7 @@ export const useGameState = (): UseGameStateReturn => {
       setIsComplete(true);
       updateStatsAfterGame(newAnswers.filter((a): a is boolean => a !== null));
     }
-  }, [showExplanation, isComplete, currentEvent, answers, currentEventIndex, puzzle.events.length]);
+  }, [showExplanation, isComplete, shuffledCorrectIndex, answers, currentEventIndex, puzzle.events.length]);
 
   const nextEvent = useCallback(() => {
     if (currentEventIndex < puzzle.events.length - 1) {
@@ -135,16 +155,17 @@ export const useGameState = (): UseGameStateReturn => {
       setSelectedAnswer(null);
       setShowExplanation(false);
       setEliminatedOptions([]);
+      setShuffleSeed(prev => prev + 1); // Trigger new shuffle for next event
     }
   }, [currentEventIndex, puzzle.events.length]);
 
   const useHint = useCallback(() => {
     if (hintUsed || showExplanation || isComplete || !currentEvent) return;
     
-    // Get indices of wrong answers (not the correct one)
-    const wrongIndices = currentEvent.options
+    // Get shuffled indices of wrong answers (not the shuffled correct one)
+    const wrongIndices = shuffledOptions
       .map((_, index) => index)
-      .filter(index => index !== currentEvent.correctIndex);
+      .filter(index => index !== shuffledCorrectIndex);
     
     // Fisher-Yates shuffle to randomly select 2 wrong answers to eliminate
     for (let i = wrongIndices.length - 1; i > 0; i--) {
@@ -156,7 +177,7 @@ export const useGameState = (): UseGameStateReturn => {
     setEliminatedOptions(toEliminate);
     setHintUsed(true);
     setHintUsedOnEvent(currentEventIndex);
-  }, [hintUsed, showExplanation, isComplete, currentEvent, currentEventIndex]);
+  }, [hintUsed, showExplanation, isComplete, currentEvent, shuffledOptions, shuffledCorrectIndex, currentEventIndex]);
 
   const getScore = useCallback(() => {
     const validAnswers = answers.filter((a): a is boolean => a !== null);
@@ -196,6 +217,8 @@ export const useGameState = (): UseGameStateReturn => {
     dayNumber,
     currentEventIndex,
     currentEvent,
+    shuffledOptions,
+    shuffledCorrectIndex,
     answers,
     selectedAnswer,
     showExplanation,

@@ -25,6 +25,8 @@ export const GameBoard = () => {
     dayNumber,
     currentEventIndex,
     currentEvent,
+    shuffledOptions,
+    shuffledCorrectIndex,
     answers,
     selectedAnswer,
     showExplanation,
@@ -131,7 +133,7 @@ export const GameBoard = () => {
           </p>
 
           <div className="space-y-3">
-            {currentEvent.options.map((option, index) => (
+            {shuffledOptions.map((option, index) => (
               <OptionCard
                 key={index}
                 label={OPTION_LABELS[index]}
@@ -139,7 +141,7 @@ export const GameBoard = () => {
                 onClick={() => selectAnswer(index)}
                 disabled={showExplanation}
                 isSelected={selectedAnswer === index}
-                isCorrect={showExplanation ? index === currentEvent.correctIndex : null}
+                isCorrect={showExplanation ? index === shuffledCorrectIndex : null}
                 showResult={showExplanation}
                 index={index}
                 isEliminated={eliminatedOptions.includes(index)}
