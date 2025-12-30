@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import { LeaderboardTab } from "./LeaderboardTab";
 import { Target, TrendingUp, Flame, Trophy, LucideIcon } from "lucide-react";
 
+const MAX_POINTS_PER_GAME = 300;
+
 interface StatsModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -110,7 +112,7 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
                       : 0}
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    out of 300 points
+                    out of {MAX_POINTS_PER_GAME} points
                   </p>
                 </div>
 
