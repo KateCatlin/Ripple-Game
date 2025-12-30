@@ -54,7 +54,7 @@ export const ExplanationCard = ({
           onClick={isLastEvent ? onShowResults : onContinue}
           className="gap-2"
         >
-          {isLastEvent ? "See Results" : "Next Event"}
+          {isLastEvent ? "See Your Score" : "Next Event"}
           <ArrowRight className="w-4 h-4" />
         </Button>
       </div>
