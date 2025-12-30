@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { HelpCircle, BarChart3 } from "lucide-react";
+import { UserAvatar } from "./UserAvatar";
 
 interface HeaderProps {
   dayNumber: number;
@@ -39,6 +40,7 @@ export const Header = ({ dayNumber, onShowHelp, onShowStats }: HeaderProps) => {
         >
           <BarChart3 className="w-5 h-5" />
         </Button>
+        <UserAvatar />
       </div>
     </header>
   );

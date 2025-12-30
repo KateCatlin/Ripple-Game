@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getPuzzleForDay, getDayNumber, Puzzle, PuzzleEvent } from '@/data/puzzles';
 import { getGameState, saveGameState, updateStatsAfterGame, GameState } from '@/lib/storage';
+import { useAuth } from '@/contexts/AuthContext';
+import { hasPlayedToday } from '@/lib/supabaseStats';
+import { supabase } from '@/integrations/supabase/client';
 
 export interface UseGameStateReturn {
   puzzle: Puzzle;
@@ -22,6 +25,7 @@ export interface UseGameStateReturn {
 }
 
 export const useGameState = (): UseGameStateReturn => {
+  const { user } = useAuth();
   const [puzzle] = useState<Puzzle>(() => getPuzzleForDay());
   const [dayNumber] = useState<number>(() => getDayNumber());
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
@@ -33,35 +37,64 @@ export const useGameState = (): UseGameStateReturn => {
   const [hintUsedOnEvent, setHintUsedOnEvent] = useState<number | null>(null);
   const [eliminatedOptions, setEliminatedOptions] = useState<number[]>([]);
 
-  // Load saved state on mount
+  // Load saved state on mount and check Supabase for logged-in users
   useEffect(() => {
-    const savedState = getGameState();
-    
-    if (savedState.dayNumber === dayNumber) {
-      setCurrentEventIndex(savedState.currentEventIndex);
-      setAnswers(savedState.answers);
-      setIsComplete(savedState.isComplete);
-      setHintUsed(savedState.hintUsed);
-      setHintUsedOnEvent(savedState.hintUsedOnEvent);
+    const loadState = async () => {
+      const savedState = getGameState();
       
-      // If game was in progress, restore explanation state
-      if (savedState.answers.length > savedState.currentEventIndex) {
-        setShowExplanation(true);
+      // If user is logged in, check if they've already played today in Supabase
+      if (user) {
+        const playedInSupabase = await hasPlayedToday(user.id, dayNumber);
+        
+        if (playedInSupabase) {
+          // Load their previous result from Supabase
+          const { data } = await supabase
+            .from('game_results')
+            .select('*')
+            .eq('user_id', user.id)
+            .eq('day_number', dayNumber)
+            .maybeSingle();
+          
+          if (data) {
+            setAnswers(data.answers);
+            setCurrentEventIndex(data.answers.length - 1);
+            setIsComplete(true);
+            setHintUsed(data.hint_used);
+            setHintUsedOnEvent(data.hint_used_on_event);
+            return;
+          }
+        }
       }
-    } else {
-      // New day, reset state
-      const initialState: GameState = {
-        dayNumber,
-        currentEventIndex: 0,
-        answers: [],
-        isComplete: false,
-        hasSeenTutorial: savedState.hasSeenTutorial,
-        hintUsed: false,
-        hintUsedOnEvent: null,
-      };
-      saveGameState(initialState);
-    }
-  }, [dayNumber]);
+      
+      // Fallback to localStorage
+      if (savedState.dayNumber === dayNumber) {
+        setCurrentEventIndex(savedState.currentEventIndex);
+        setAnswers(savedState.answers);
+        setIsComplete(savedState.isComplete);
+        setHintUsed(savedState.hintUsed);
+        setHintUsedOnEvent(savedState.hintUsedOnEvent);
+        
+        // If game was in progress, restore explanation state
+        if (savedState.answers.length > savedState.currentEventIndex) {
+          setShowExplanation(true);
+        }
+      } else {
+        // New day, reset state
+        const initialState: GameState = {
+          dayNumber,
+          currentEventIndex: 0,
+          answers: [],
+          isComplete: false,
+          hasSeenTutorial: savedState.hasSeenTutorial,
+          hintUsed: false,
+          hintUsedOnEvent: null,
+        };
+        saveGameState(initialState);
+      }
+    };
+    
+    loadState();
+  }, [dayNumber, user]);
 
   // Save state whenever it changes
   useEffect(() => {
