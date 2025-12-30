@@ -8,6 +8,7 @@ import { LoginPromptCard, shouldShowLoginPrompt } from "./LoginPromptCard";
 import { ComparisonCard } from "./ComparisonCard";
 import { saveGameResult, migrateLocalStorageToSupabase, calculatePoints } from "@/lib/supabaseStats";
 import { useToast } from "@/hooks/use-toast";
+import { RippleCelebration } from "./RippleCelebration";
 
 interface ResultsCardProps {
   dayNumber: number;
@@ -37,6 +38,7 @@ export const ResultsCard = ({
   const correctCount = answers.filter(Boolean).length;
   const totalCount = answers.length;
   const points = calculatePoints(answers, hintUsedOnEvent);
+  const isPerfectScore = points === 300;
 
   // Handle data migration and saving for logged-in users
   useEffect(() => {
@@ -99,6 +101,7 @@ export const ResultsCard = ({
 
   return (
     <>
+      {isPerfectScore && <RippleCelebration />}
       <Card className="animate-float-up border-2">
         <CardHeader className="text-center pb-4">
           <div className="text-4xl mb-2">🌊</div>
