@@ -13,44 +13,41 @@ export interface Puzzle {
 
 export const puzzles: Puzzle[] = [
   {
-    id: 1,
+    id:  1,
     title: "The Oil Embargo Shock",
     events: [
       {
-        event: "1973: OPEC announces oil embargo against the United States",
+        event: "1973:  OPEC announces oil embargo against the United States",
         options: [
-          "US increases domestic drilling immediately",
+          "Oil prices remain stable due to domestic reserves",
           "Gas prices quadruple within months",
-          "Americans switch to electric cars",
-          "Oil companies are nationalized"
+          "Consumer demand for gasoline drops immediately",
+          "Alternative energy sources quickly replace oil"
         ],
-        correctIndex: 1,
-        explanation:
-          "The embargo caused gas prices to spike from $0.39 to $1.35 per gallon — a quadrupling that shocked American consumers and the economy."
+        correctIndex:  1,
+        explanation: "The embargo caused gas prices to spike from $0.39 to $1.35 per gallon — a quadrupling that shocked American consumers and the economy."
       },
       {
         event: "Gas prices quadruple, fuel becomes scarce",
         options: [
-          "Government rations gasoline by license plate",
-          "Speed limits reduced to 55 mph nationwide",
-          "Public transit systems shut down",
-          "Auto industry remains unchanged"
+          "Automakers accelerate production of large vehicles",
+          "Federal government mandates fuel conservation measures",
+          "Consumers continue driving habits unchanged",
+          "Public transportation ridership declines"
         ],
-        correctIndex: 1,
-        explanation:
-          "Congress passed the National Maximum Speed Law, reducing speed limits to 55 mph to conserve fuel — a law that remained until 1995."
+        correctIndex:  1,
+        explanation: "Congress passed the National Maximum Speed Law, reducing speed limits to 55 mph to conserve fuel — part of a wave of federal conservation mandates."
       },
       {
-        event: "Speed limits lowered to save fuel",
-        options: [
-          "Smaller, fuel-efficient foreign cars gain US market share",
-          "Gas prices return to normal immediately",
-          "Trucking industry collapses",
-          "Americans buy even larger vehicles"
+        event: "Government mandates fuel conservation, consumers seek efficiency",
+        options:  [
+          "Domestic automakers dominate with new efficient models",
+          "Fuel-efficient foreign cars capture massive US market share",
+          "Gasoline demand continues rising despite high prices",
+          "Auto industry sales collapse entirely"
         ],
-        correctIndex: 0,
-        explanation:
-          "Smaller, fuel-efficient Japanese cars gained massive US market share.  Detroit's big-car dominance ended, and fuel economy became a selling point."
+        correctIndex: 1,
+        explanation: "Smaller, fuel-efficient Japanese cars gained massive US market share.  Detroit's big-car dominance ended, and fuel economy became a major selling point."
       }
     ]
   },
@@ -101,35 +98,35 @@ export const puzzles: Puzzle[] = [
     {
       event: "1869: Suez Canal opens, connecting Mediterranean Sea to Red Sea",
       options: [
-        "Ship traffic between seas remains surprisingly low",
-        "Marine species can now migrate between the seas",
-        "The seas remain completely biologically separate",
-        "Only cargo ships use the new canal"
+        "Trade routes remain centered around Africa",
+        "Marine species begin migrating between the two seas",
+        "Ship traffic has minimal environmental impact",
+        "The seas maintain separate ecosystems indefinitely"
       ],
-      correctIndex: 1,
+      correctIndex:  1,
       explanation: "The canal created the first water connection between the Mediterranean and Red Sea in millions of years — allowing marine species to swim between them."
     },
     {
       event: "Marine species begin migrating between Mediterranean and Red Sea",
       options: [
-        "Both ecosystems remain balanced",
-        "Red Sea species invade and dominate the Mediterranean",
-        "Mediterranean species dominate the Red Sea",
-        "Migration stops after initial movement"
+        "Both ecosystems absorb new species without disruption",
+        "Species from the warmer sea outcompete native species in the cooler sea",
+        "Migration flows equally in both directions",
+        "Native species quickly adapt to new competitors"
       ],
       correctIndex: 1,
-      explanation: "Red Sea species, adapted to warmer and saltier water, proved more competitive.  Hundreds of species invaded the Mediterranean in 'Lessepsian migration. '"
+      explanation: "Red Sea species, adapted to warmer and saltier water, proved more competitive.  Hundreds of species invaded the Mediterranean in what scientists call 'Lessepsian migration.'"
     },
     {
-      event: "Invasive Red Sea species flood into Mediterranean",
-      options: [
-        "Mediterranean species adapt quickly to competition",
-        "Native Mediterranean species decline significantly",
-        "Fishing industry benefits from new species",
-        "Ecosystem reaches a new stable balance"
+      event:  "Invasive species flood into Mediterranean, outcompeting natives",
+      options:  [
+        "Fishing yields increase from new species diversity",
+        "Native Mediterranean species and fishing industries decline",
+        "Ecosystem reaches a new stable balance within years",
+        "Invasive species remain confined to areas near the canal"
       ],
       correctIndex: 1,
-      explanation: "Native Mediterranean species face severe competition.  Venomous lionfish, poisonous pufferfish, and aggressive species have disrupted fishing and ecosystems."
+      explanation: "Native Mediterranean species face severe competition.  Venomous lionfish, poisonous pufferfish, and aggressive species have disrupted fishing and ecosystems across the eastern Mediterranean."
     }
   ]
 },
@@ -173,80 +170,41 @@ export const puzzles: Puzzle[] = [
   ]
 },
 {
-  id: 11,
-  title: "Section 230 Changes the Internet",
-  events:  [
-    {
-      event: "1996: Congress passes Section 230, protecting websites from liability for user content",
-      options:  [
-        "Websites become fully liable for all user content",
-        "User-generated content platforms become legally viable",
-        "Internet growth slows due to regulations",
-        "Only government-approved content is allowed online"
-      ],
-      correctIndex: 1,
-      explanation: "Section 230 meant websites couldn't be sued for what users posted. Without this protection, platforms like YouTube or Facebook would be too legally risky to operate."
-    },
-    {
-      event: "Platforms protected from liability for user posts",
-      options:  [
-        "Platforms carefully moderate all content before posting",
-        "Social media and video sharing platforms explode in growth",
-        "Users post less due to fear of restrictions",
-        "Only professional content creators share online"
-      ],
-      correctIndex: 1,
-      explanation: "YouTube launched in 2005, Facebook opened publicly in 2006, Twitter grew rapidly — none would have been viable if liable for every user's post."
-    },
-    {
-      event: "Social media platforms scale to billions of users",
-      options: [
-        "Content remains high-quality and well-curated",
-        "Misinformation spreads with limited platform accountability",
-        "Platforms successfully self-regulate all content",
-        "Users demand even more liability protections for platforms"
-      ],
-      correctIndex: 1,
-      explanation: "The same protection that enabled social media also meant platforms had limited incentive to police misinformation, hate speech, and harmful content at scale."
-    }
-  ]
-},
-{
   id: 12,
-  title: "The iPhone Overwhelms AT&T",
+  title: "The Refrigerated Railroad Car",
   events: [
     {
-      event:  "2007: Apple launches iPhone exclusively with AT&T",
+      event: "1880s:  Refrigerated railroad cars allow meat to be shipped long distances without spoiling",
       options: [
-        "AT&T easily handles the new data traffic",
-        "AT&T's network becomes completely overwhelmed",
-        "Customers prefer other carriers and avoid iPhone",
-        "iPhone uses less data than expected"
+        "Local slaughterhouses remain dominant in every city",
+        "Meatpacking centralizes in a few major hubs",
+        "Meat consumption declines as prices rise",
+        "Railroads refuse to carry perishable goods"
       ],
       correctIndex: 1,
-      explanation: "iPhone users consumed vastly more data than any previous phone users — streaming, browsing, and apps crushed AT&T's network infrastructure."
+      explanation: "Before refrigeration, every city needed local slaughterhouses.  With refrigerated cars, meatpacking concentrated in Chicago and Kansas City where cattle arrived by rail — then shipped nationwide."
     },
     {
-      event: "AT&T's network overwhelmed by iPhone data usage",
-      options:  [
-        "AT&T cancels the iPhone exclusivity deal",
-        "AT&T invests billions in network infrastructure upgrades",
-        "Customers accept poor network quality indefinitely",
-        "Apple reduces iPhone data capabilities"
+      event:  "Meatpacking industry concentrates in Chicago and a few midwestern cities",
+      options: [
+        "Workers gain bargaining power due to specialized skills",
+        "A small number of companies dominate the entire meat supply",
+        "Competition increases as more firms enter the market",
+        "Meat prices rise due to transportation costs"
       ],
-      correctIndex: 1,
-      explanation: "AT&T was forced to invest billions in infrastructure upgrades — building out 3G and eventually 4G networks to handle smartphone data demands."
+      correctIndex:  1,
+      explanation:  "Centralization led to consolidation.  By 1900, four companies controlled most of America's meat supply — the original 'Big Four' meatpackers wielded enormous market power."
     },
     {
-      event: "AT&T massively upgrades network for smartphone era",
-      options:  [
-        "Other carriers ignore smartphones entirely",
-        "Verizon and others race to get their own flagship smartphones",
-        "Smartphones remain AT&T exclusive forever",
-        "Network upgrades prove unnecessary"
+      event: "A few giant meatpacking companies control the nation's meat supply",
+      options: [
+        "Food quality improves due to standardization",
+        "Public outcry leads to federal food safety regulation",
+        "Prices drop and no further issues emerge",
+        "Local farming becomes more profitable"
       ],
       correctIndex: 1,
-      explanation: "Competitors rushed to secure their own smartphones.  Verizon partnered with Google on Android, eventually getting the iPhone in 2011. The smartphone wars began."
+      explanation: "Concentrated, unsanitary conditions drew public outrage — Upton Sinclair's 'The Jungle' exposed the industry.  Congress passed the Meat Inspection Act and Pure Food and Drug Act in 1906."
     }
   ]
 },
@@ -291,79 +249,79 @@ export const puzzles: Puzzle[] = [
 },
 {
   id: 14,
-  title:  "Napster Changes Music Forever",
+  title: "Digital Music Disrupts the Record Industry",
   events: [
     {
-      event: "1999: Napster launches, enabling free peer-to-peer music sharing",
+      event: "Late 1990s:  Peer-to-peer file sharing allows free music downloading over the internet",
       options: [
-        "Users reject free music as low quality",
-        "Millions begin downloading music for free",
-        "Record labels embrace the technology",
-        "Only obscure artists are shared"
+        "Music consumption decreases as quality suffers",
+        "Millions download music for free, album sales plummet",
+        "Record labels capture new digital revenue streams",
+        "Artists earn more from direct fan access"
       ],
       correctIndex: 1,
-      explanation: "Napster reached 80 million users at its peak. For the first time, anyone could download almost any song for free — devastating music industry sales."
+      explanation: "File sharing reached tens of millions of users.  For the first time, anyone could download almost any song for free — devastating traditional music industry sales."
     },
     {
-      event: "Millions download music for free, album sales plummet",
+      event: "Free downloading becomes widespread, recorded music revenue collapses",
       options: [
-        "Record labels ignore the trend",
-        "Record labels sue Napster and individual users",
-        "Artists embrace free distribution",
-        "CD sales actually increase"
+        "Artists stop producing new music",
+        "Music industry pursues legal action and anti-piracy technology",
+        "Consumers voluntarily return to paying for music",
+        "Live concert revenue declines alongside recordings"
       ],
       correctIndex: 1,
-      explanation: "The RIAA sued Napster into bankruptcy and began suing individual downloaders — sometimes grandmothers and children — creating a massive PR backlash."
+      explanation: "The industry fought back with lawsuits and digital rights management (DRM). But legal battles couldn't stop the technology — piracy continued through new platforms."
     },
     {
-      event: "Record labels sue file sharers, but piracy continues",
+      event: "Legal action fails to stop piracy, industry seeks new models",
       options:  [
-        "Piracy is successfully eliminated",
-        "Apple launches iTunes as legal alternative",
-        "Physical album sales recover fully",
-        "Record labels give up on digital"
+        "Physical album sales recover as nostalgia grows",
+        "Subscription streaming emerges as the new revenue model",
+        "Music becomes completely free with no monetization",
+        "Radio becomes the dominant music distribution method"
       ],
-      correctIndex: 1,
-      explanation:  "Steve Jobs convinced labels that 99-cent songs could compete with free.  iTunes launched in 2003, eventually giving way to streaming — the industry's new model."
+      correctIndex:  1,
+      explanation: "The industry realized it had to compete with free.  Subscription streaming services emerged, offering convenience and legality — eventually becoming the industry's primary revenue source."
     }
   ]
 },
 {
-  id:  15,
-  title: "The Super Bowl Ad Revolution",
+  id: 15,
+  title: "The Green Revolution",
   events:  [
     {
-      event: "1984: Apple airs '1984' Super Bowl ad, then never runs it again",
+      event: "1960s: High-yield wheat and rice varieties are introduced to developing nations",
       options: [
-        "The ad is forgotten immediately",
-        "Scarcity creates massive buzz and free news coverage",
-        "Apple loses money on the failed ad",
-        "Other companies avoid Super Bowl advertising"
+        "Crop yields stay flat due to poor soil conditions",
+        "Food production doubles or triples in adopting countries",
+        "Farmers reject new seeds as too expensive",
+        "Only wealthy nations benefit from new varieties"
       ],
       correctIndex: 1,
-      explanation: "By only airing the ad once, Apple created scarcity.  News programs replayed it for free, analyzing it endlessly — generating millions in free publicity."
+      explanation: "New dwarf wheat and rice varieties produced 2-3x more grain per acre.  India went from famine conditions to food self-sufficiency within two decades."
     },
     {
-      event: "News coverage multiplies the ad's reach for free",
+      event: "Crop yields soar, preventing predicted mass famines",
       options: [
-        "Other companies ignore the lesson",
-        "Super Bowl ads become cultural events worth discussing",
-        "TV networks ban memorable ads",
-        "Apple never advertises again"
+        "Population growth slows as food security improves",
+        "Population growth accelerates as food becomes abundant",
+        "Agricultural land use decreases significantly",
+        "Farmers return to traditional seed varieties"
       ],
-      correctIndex: 1,
-      explanation: "Companies realized Super Bowl ads could generate buzz beyond the game.  Ads became entertainment — discussed, ranked, and anticipated as content themselves."
+      correctIndex:  1,
+      explanation: "More food meant fewer famines and lower infant mortality. World population grew from 3 billion in 1960 to 6 billion by 2000 — the food supply kept pace."
     },
     {
-      event: "Super Bowl ads become anticipated cultural moments",
-      options:  [
-        "Ad prices decrease due to competition",
-        "30-second Super Bowl spots cost over $7 million by 2024",
-        "Companies shift away from Super Bowl ads",
-        "Ads become less creative to save money"
+      event: "Population booms in countries with new high-yield crops",
+      options: [
+        "Soil and water resources remain unaffected",
+        "Aquifers deplete and soil degrades from intensive farming",
+        "Farmers need fewer chemical inputs over time",
+        "Agricultural employment increases dramatically"
       ],
       correctIndex: 1,
-      explanation: "Super Bowl ad prices skyrocketed from $500K in 1984 to over $7 million for 30 seconds by 2024 — companies pay for cultural relevance, not just eyeballs."
+      explanation: "High-yield crops required heavy irrigation and fertilizers. Aquifers in India and China began depleting rapidly, and soil degradation became a long-term crisis."
     }
   ]
 },
@@ -524,45 +482,6 @@ export const puzzles: Puzzle[] = [
   ]
 },
 {
-  id:  20,
-  title: "China Joins the WTO",
-  events: [
-    {
-      event: "2001: China officially joins the World Trade Organization",
-      options: [
-        "Trade barriers with China remain high",
-        "American companies shift manufacturing to China",
-        "Chinese wages rise to US levels",
-        "US manufacturing increases"
-      ],
-      correctIndex: 1,
-      explanation:  "WTO membership gave China 'most favored nation' trade status.  With wages a fraction of US levels, companies rushed to manufacture in China."
-    },
-    {
-      event: "American companies move manufacturing to China",
-      options: [
-        "US factory workers easily find new jobs",
-        "US manufacturing employment drops by 30%",
-        "Wages in manufacturing increase",
-        "Unions successfully stop outsourcing"
-      ],
-      correctIndex: 1,
-      explanation: "The US lost 5 million manufacturing jobs between 2000-2015. The 'China Shock' devastated factory towns in the Midwest and South."
-    },
-    {
-      event:  "Rust Belt loses millions of manufacturing jobs",
-      options: [
-        "Affected regions quickly recover economically",
-        "Economic anxiety contributes to political realignment",
-        "Workers embrace free trade policies",
-        "Manufacturing returns within a decade"
-      ],
-      correctIndex:  1,
-      explanation: "Economic devastation in manufacturing regions contributed to the populist political movements of the 2010s.  Trade policy became a major campaign issue."
-    }
-  ]
-},
-{
   id: 21,
   title: "The Soviet Wheat Deal",
   events:  [
@@ -680,158 +599,80 @@ export const puzzles: Puzzle[] = [
   ]
 },
 {
-  id: 24,
-  title: "Chile's Copper Nationalization",
-  events: [
-    {
-      event: "1971: Chile nationalizes its copper mines under President Allende",
-      options: [
-        "Copper production increases immediately",
-        "Global copper prices spike on supply fears",
-        "US companies accept the nationalization peacefully",
-        "Copper prices decrease"
-      ],
-      correctIndex: 1,
-      explanation:  "Chile was the world's largest copper producer.  Nationalization threatened US corporate interests and global copper supply — prices spiked on uncertainty."
-    },
-    {
-      event: "Copper prices spike, US corporate interests threatened",
-      options:  [
-        "US accepts Chile's sovereign decision",
-        "US supports coup that overthrows Allende",
-        "Diplomatic negotiations resolve the dispute",
-        "Other countries nationalize copper in solidarity"
-      ],
-      correctIndex: 1,
-      explanation: "The CIA supported the 1973 coup that installed Pinochet.  Declassified documents confirmed US involvement — resource control shaped Cold War interventions."
-    },
-    {
-      event: "US-backed coup installs Pinochet, mines are privatized",
-      options: [
-        "This remains an isolated incident",
-        "Pattern repeats in other resource-rich countries",
-        "Nationalization movements succeed globally",
-        "US stops intervening in foreign nations"
-      ],
-      correctIndex: 1,
-      explanation: "Chile became a template.  US intervention in Guatemala, Iran, and elsewhere followed similar patterns — protecting corporate resource access through regime change."
-    }
-  ]
-},
-{
-  id: 25,
-  title: "Russia Invades Ukraine, Energy Crisis Follows",
-  events:  [
-    {
-      event: "February 2022: Russia invades Ukraine; Europe sanctions Russian gas",
-      options:  [
-        "European energy prices remain stable",
-        "European energy costs triple as Russian gas is cut off",
-        "Alternative energy sources replace Russian gas easily",
-        "Sanctions are lifted within weeks"
-      ],
-      correctIndex: 1,
-      explanation: "Europe depended on Russia for 40% of its natural gas. When flows stopped, energy prices tripled — German electricity costs hit record highs."
-    },
-    {
-      event: "European energy prices triple, industry faces crisis",
-      options:  [
-        "All industries adapt to higher costs",
-        "Energy-intensive industry begins relocating from Europe",
-        "Europe quickly builds renewable alternatives",
-        "Consumers don't notice price increases"
-      ],
-      correctIndex:  1,
-      explanation: "Chemical plants, steel mills, and fertilizer producers couldn't afford European energy prices. Many began relocating to the US or Middle East with cheaper energy."
-    },
-    {
-      event: "European industry relocates to regions with cheaper energy",
-      options: [
-        "Only European markets are affected",
-        "Global fertilizer prices spike, affecting world food costs",
-        "Agriculture is unaffected by fertilizer costs",
-        "Food prices decrease globally"
-      ],
-      correctIndex: 1,
-      explanation: "Natural gas is the key ingredient in nitrogen fertilizer. European fertilizer plant closures spiked global fertilizer prices — raising food costs from Africa to Asia."
-    }
-  ]
-},
-{
   id: 26,
-  title: "The First Credit Card",
+  title: "The Credit Card Revolution",
   events: [
     {
-      event: "1950:  Diners Club issues first credit card for restaurant payments",
-      options:  [
-        "Restaurants refuse to accept the new cards",
-        "Consumers can now pay without carrying cash",
-        "Credit cards remain limited to wealthy elites",
-        "Cash payments increase in popularity"
+      event:  "1950s:  Credit cards emerge, allowing consumers to pay without carrying cash",
+      options: [
+        "Consumer spending patterns remain unchanged",
+        "Consumers begin spending more freely without immediate payment",
+        "Savings rates increase as people track spending better",
+        "Cash transactions become more popular for security"
       ],
       correctIndex: 1,
-      explanation: "Diners Club solved a simple problem — businessmen didn't want to carry cash. The concept spread rapidly as consumers loved the convenience."
+      explanation: "Credit cards psychologically separated buying from paying. Purchases felt less 'real' without handing over cash — consumer spending patterns shifted dramatically."
     },
     {
-      event:  "Credit cards spread, enabling cashless purchases",
-      options:  [
-        "Consumers only buy what they can afford",
-        "'Buy now, pay later' becomes normalized",
-        "Savings rates increase dramatically",
-        "Debt remains stigmatized"
+      event:  "'Buy now, pay later' becomes normalized consumer behavior",
+      options: [
+        "Consumers maintain low debt levels through discipline",
+        "Household debt levels rise dramatically over decades",
+        "Interest rates drop as lending risk decreases",
+        "Credit becomes harder to obtain over time"
       ],
-      correctIndex: 1,
-      explanation: "Credit cards psychologically separated buying from paying. Purchases felt less 'real' without handing over cash — consumer debt began its long climb."
+      correctIndex:  1,
+      explanation: "Average US household debt rose from near zero in 1950 to over $100,000 by 2020. Easy credit fundamentally changed how Americans finance their lifestyles."
     },
     {
-      event: "Consumer debt becomes normal and accepted",
-      options:  [
-        "Household debt levels remain stable",
-        "Average household debt rises dramatically over decades",
-        "Consumers pay off balances monthly",
-        "Credit card companies struggle to profit"
+      event: "Consumer debt becomes a normal part of household finances",
+      options: [
+        "Economic downturns have less impact on households",
+        "Consumer spending becomes more vulnerable to economic shocks",
+        "Bankruptcy rates decline as credit access improves",
+        "Household savings rates increase to offset debt"
       ],
-      correctIndex: 1,
-      explanation: "Average US household debt rose from near zero in 1950 to over $100,000 by 2020. A simple restaurant card invented the consumer debt economy."
+      correctIndex:  1,
+      explanation: "High debt loads meant households had less cushion.  When recessions hit, indebted consumers cut spending sharply — amplifying economic downturns like 2008."
     }
   ]
 },
 {
-  id:  27,
+  id: 27,
   title: "The TV Dinner Changes Family Life",
-  events:  [
+  events: [
     {
-      event: "1954:  Swanson introduces the first 'TV Dinner' — a complete frozen meal",
+      event:  "1950s:  Frozen TV dinners offer complete meals requiring no cooking",
+      options:  [
+        "Home cooking skills become more valued and taught",
+        "Time spent on meal preparation drops dramatically",
+        "Families eat more meals together due to convenience",
+        "Processed food remains a small niche market"
+      ],
+      correctIndex: 1,
+      explanation: "Swanson sold 10 million TV dinners in the first year.  Working families embraced the convenience — dinner could be ready in 25 minutes with no preparation."
+    },
+    {
+      event:  "Convenience meals reduce time families spend preparing food together",
+      options:  [
+        "Families gather at dining tables with more free time",
+        "Eating shifts from dining tables to living rooms",
+        "Family conversation increases during shorter meals",
+        "Meal times become more structured and formal"
+      ],
+      correctIndex: 1,
+      explanation: "The 'TV Dinner' was named because it came in a tray designed for eating while watching TV.   Family dinners at the table began declining."
+    },
+    {
+      event:  "Families eat in front of televisions instead of dining tables",
       options: [
-        "Consumers reject processed food",
-        "Meals no longer require cooking from scratch",
-        "Families continue eating home-cooked dinners",
-        "Frozen food technology fails"
+        "Television viewing hours remain limited",
+        "Television becomes the center of home life and leisure",
+        "Families seek more interactive entertainment together",
+        "Meal portions decrease due to distracted eating"
       ],
       correctIndex: 1,
-      explanation: "Swanson sold 10 million TV dinners in the first year. Working families embraced the convenience — dinner could be ready in 25 minutes with no preparation."
-    },
-    {
-      event:  "Frozen convenience meals become popular",
-      options:  [
-        "Families continue gathering at dinner tables",
-        "Families begin eating in front of the television",
-        "Cooking skills become more valued",
-        "Meal times become longer"
-      ],
-      correctIndex: 1,
-      explanation: "The 'TV Dinner' was named because it came in a tray designed for eating while watching TV. Family dinners at the table began declining."
-    },
-    {
-      event:  "Families eat in front of TV instead of dining tables",
-      options:  [
-        "Family conversation increases",
-        "Television becomes the center of home life",
-        "Advertising has less influence on families",
-        "Children watch less television"
-      ],
-      correctIndex:  1,
-      explanation: "The living room replaced the dining room as the family gathering place.  Advertisers gained direct access to families during their most attentive hours."
+      explanation: "The living room replaced the dining room as the family gathering place. Average TV viewing grew to over 4 hours per day — advertisers gained unprecedented access to family attention."
     }
   ]
 },
@@ -876,40 +717,40 @@ export const puzzles: Puzzle[] = [
 },
 {
   id: 29,
-  title: "CNN Invents 24-Hour News",
+  title: "The Rise of 24-Hour News",
   events: [
     {
-      event: "1980: Ted Turner launches CNN, the first 24-hour news network",
-      options: [
-        "Viewers prefer nightly news broadcasts",
-        "News must now fill 24 hours, not 30 minutes",
-        "Other networks ignore 24-hour format",
-        "CNN fails within its first year"
-      ],
-      correctIndex: 1,
-      explanation: "Suddenly news had 24 hours to fill, not just the evening 30-minute slot.  This fundamental shift changed what counted as 'news' and how it was presented."
-    },
-    {
-      event: "Networks must fill 24 hours with news content",
+      event: "1980: First 24-hour television news network launches",
       options:  [
-        "Coverage becomes more in-depth and analytical",
-        "News becomes entertainment to attract viewers",
-        "Networks show test patterns overnight",
-        "Viewership decreases significantly"
+        "Audiences prefer scheduled evening news programs",
+        "News must now fill 24 hours instead of 30-minute broadcasts",
+        "News quality improves with more time for reporting",
+        "Viewership remains concentrated in prime time slots"
       ],
       correctIndex: 1,
-      explanation: "To fill airtime and attract viewers, news became more sensational and entertainment-focused. Opinion hosts, debates, and speculation filled the hours."
+      explanation: "Suddenly news had 24 hours to fill, not just the evening 30-minute slot. This fundamental shift changed what counted as 'news' and how it was presented."
     },
     {
-      event: "News blends with entertainment to fill airtime",
+      event: "Networks must fill 24 hours with content to retain viewers",
       options: [
-        "The news cycle remains daily",
-        "'Breaking news' becomes constant to maintain urgency",
-        "Viewers become better informed",
-        "Coverage becomes more objective"
+        "In-depth investigative journalism expands",
+        "News becomes more entertainment-focused to attract viewers",
+        "Audiences become better informed on complex issues",
+        "Viewership spreads evenly across all hours"
       ],
       correctIndex: 1,
-      explanation: "To keep viewers watching, everything became 'breaking.' The news cycle accelerated from daily to hourly to minute-by-minute — creating perpetual urgency."
+      explanation: "To fill airtime and attract viewers, news became more sensational and entertainment-focused. Opinion segments, debates, and speculation filled the hours between breaking stories."
+    },
+    {
+      event: "News blends with entertainment, opinion fills airtime",
+      options: [
+        "News cycles slow down as stories are covered thoroughly",
+        "News cycles accelerate to minute-by-minute coverage",
+        "Audiences seek out slower, more deliberate news sources",
+        "Advertising revenue declines due to fragmented attention"
+      ],
+      correctIndex: 1,
+      explanation: "To keep viewers watching, everything became urgent. The news cycle accelerated from daily to hourly to minute-by-minute — creating a sense of perpetual breaking news."
     }
   ]
 },
@@ -949,6 +790,162 @@ export const puzzles: Puzzle[] = [
       ],
       correctIndex:  1,
       explanation: "By 2020, dating apps surpassed friends, work, and school as the most common way couples meet. A 1995 website fundamentally rewired human romance."
+    }
+  ]
+},
+{
+  id: 31,
+  title:  "The Box That Changed Trade",
+  events: [
+    {
+      event: "1956: Standardized shipping containers are introduced, replacing manual cargo loading",
+      options:  [
+        "Shipping costs rise due to new equipment investment",
+        "Shipping costs collapse as loading time drops from days to hours",
+        "Labor unions gain power as shipping volumes increase",
+        "Smaller ships become more economical than large vessels"
+      ],
+      correctIndex: 1,
+      explanation: "Before containers, loading a ship took days of manual labor.  Standardized boxes could be loaded in hours — slashing costs by up to 90%."
+    },
+    {
+      event: "Shipping costs collapse, moving goods across oceans becomes trivially cheap",
+      options:  [
+        "Manufacturing clusters near consumers to reduce delivery time",
+        "Factories relocate to wherever labor is cheapest worldwide",
+        "Domestic production becomes more competitive",
+        "Trade volumes decrease as fewer shipments are needed"
+      ],
+      correctIndex: 1,
+      explanation: "When shipping costs became trivial, geography mattered less. Factories moved to wherever labor was cheapest — enabling the globalized manufacturing we know today."
+    },
+    {
+      event: "Manufacturing moves to lowest-cost countries across the globe",
+      options: [
+        "Ports shrink as fewer but larger shipments arrive",
+        "Mega-ports emerge in strategic coastal cities",
+        "Inland cities become new centers of trade",
+        "Air freight replaces ocean shipping for most goods"
+      ],
+      correctIndex:  1,
+      explanation: "Containerization required massive cranes and deep harbors. Cities like Singapore, Rotterdam, and Long Beach became mega-ports, while older ports that couldn't adapt declined."
+    }
+  ]
+},
+{
+  id: 32,
+  title: "The Wolves That Moved Rivers",
+  events: [
+    {
+      event:  "1995: Wolves are reintroduced to Yellowstone after 70-year absence",
+      options: [
+        "Elk populations immediately collapse from predation",
+        "Elk change their grazing behavior to avoid predators",
+        "Vegetation declines as wolves drive elk into new areas",
+        "Prey species migrate out of the park entirely"
+      ],
+      correctIndex: 1,
+      explanation: "Elk had grazed freely for decades without predators. With wolves back, elk became vigilant and stopped lingering in open valleys — they had to keep moving."
+    },
+    {
+      event:  "Elk stop overgrazing riverbanks and open valleys",
+      options:  [
+        "Soil erosion accelerates without elk trampling",
+        "Trees and shrubs regenerate along rivers",
+        "Grasslands expand into former forest areas",
+        "Riverbank ecosystems remain unchanged"
+      ],
+      correctIndex: 1,
+      explanation: "Without elk constantly eating young shoots, willows and aspens grew back along riverbanks for the first time in decades.  Vegetation that had been suppressed for 70 years returned."
+    },
+    {
+      event: "Trees and shrubs return to riverbanks after decades",
+      options: [
+        "Rivers widen and become shallower",
+        "Rivers narrow and deepen as roots stabilize banks",
+        "Flooding increases as vegetation blocks water flow",
+        "Water temperature rises due to less shade"
+      ],
+      correctIndex: 1,
+      explanation: "Root systems stabilized riverbanks, reducing erosion. Rivers that had been wide and braided became narrower and deeper — wolves had literally changed the physical geography."
+    }
+  ]
+},
+{
+  id: 33,
+  title: "Air Conditioning Reshapes America",
+  events: [
+    {
+      event: "1950s:  Affordable home air conditioning becomes widely available",
+      options: [
+        "Housing prices rise in northern cities with mild summers",
+        "Migration to hot Sun Belt states accelerates dramatically",
+        "Population concentrates in temperate coastal regions",
+        "Suburban sprawl slows as people stay in dense urban cores"
+      ],
+      correctIndex: 1,
+      explanation: "Before AC, the South and Southwest were considered too hot for comfortable living. Once homes could be cooled affordably, millions moved to Arizona, Florida, and Texas."
+    },
+    {
+      event:  "Population booms in Sun Belt states like Texas, Florida, and Arizona",
+      options: [
+        "Political power remains concentrated in northeastern states",
+        "Political power shifts to the South and West",
+        "Federal spending decreases in fast-growing states",
+        "Northern states increase investment to retain residents"
+      ],
+      correctIndex:  1,
+      explanation: "Congressional seats follow population. As millions moved south and west, states like Texas and Florida gained seats while New York and Ohio lost them — reshaping national elections."
+    },
+    {
+      event:  "Sun Belt gains population and political power",
+      options: [
+        "Energy demand stays consistent year-round",
+        "Summer becomes peak electricity season, straining power grids",
+        "Renewable energy adoption slows in hot climates",
+        "Water consumption decreases as outdoor activity drops"
+      ],
+      correctIndex:  1,
+      explanation: "Air conditioning now consumes 6% of all US electricity. Summer became peak demand season, causing strain, blackouts, and massive infrastructure investment in Sun Belt states."
+    }
+  ]
+},
+{
+  id: 34,
+  title: "The Dust Bowl",
+  events: [
+    {
+      event: "1920s: Farmers plow up millions of acres of Great Plains grassland to plant wheat",
+      options:  [
+        "Soil fertility increases from crop rotation",
+        "Deep-rooted prairie grasses that anchored soil are destroyed",
+        "Wheat yields decline due to unsuitable climate",
+        "Groundwater levels rise from increased irrigation"
+      ],
+      correctIndex:  1,
+      explanation: "Native grasses had roots reaching 5+ feet deep, anchoring the soil for thousands of years.  Wheat roots reached only inches deep, leaving topsoil vulnerable."
+    },
+    {
+      event:  "1930s drought arrives with no deep roots holding soil in place",
+      options: [
+        "Farmers pivot to drought-resistant crops",
+        "Massive dust storms bury farms and darken skies across the country",
+        "Soil compacts and retains moisture better",
+        "Drought affects only irrigated areas"
+      ],
+      correctIndex: 1,
+      explanation: "Without roots to anchor it, topsoil simply blew away. 'Black blizzards' carried 300 million tons of soil — dust reached New York City and Washington DC, darkening skies."
+    },
+    {
+      event:  "Dust storms devastate the Great Plains, displacing millions of people",
+      options: [
+        "Farming practices return to normal after rains return",
+        "Federal government mandates soil conservation practices",
+        "Great Plains are permanently converted to grazing land",
+        "Private industry develops new farming techniques independently"
+      ],
+      correctIndex: 1,
+      explanation: "The disaster led to federal intervention in farming practices.  Soil conservation, windbreaks, and crop rotation became standard — the government paid farmers to protect land, not just produce."
     }
   ]
 }
