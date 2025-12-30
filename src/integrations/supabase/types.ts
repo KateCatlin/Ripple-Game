@@ -14,7 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      game_results: {
+        Row: {
+          answers: boolean[]
+          completed_at: string
+          day_number: number
+          hint_used: boolean
+          hint_used_on_event: number | null
+          id: string
+          score: number
+          user_id: string
+        }
+        Insert: {
+          answers: boolean[]
+          completed_at?: string
+          day_number: number
+          hint_used?: boolean
+          hint_used_on_event?: number | null
+          id?: string
+          score: number
+          user_id: string
+        }
+        Update: {
+          answers?: boolean[]
+          completed_at?: string
+          day_number?: number
+          hint_used?: boolean
+          hint_used_on_event?: number | null
+          id?: string
+          score?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_stats: {
+        Row: {
+          current_streak: number
+          games_played: number
+          last_played_date: string | null
+          max_streak: number
+          total_correct: number
+          total_events: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          current_streak?: number
+          games_played?: number
+          last_played_date?: string | null
+          max_streak?: number
+          total_correct?: number
+          total_events?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          current_streak?: number
+          games_played?: number
+          last_played_date?: string | null
+          max_streak?: number
+          total_correct?: number
+          total_events?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
