@@ -22,6 +22,7 @@ export type Database = {
           hint_used: boolean
           hint_used_on_event: number | null
           id: string
+          points: number
           score: number
           user_id: string
         }
@@ -32,6 +33,7 @@ export type Database = {
           hint_used?: boolean
           hint_used_on_event?: number | null
           id?: string
+          points?: number
           score: number
           user_id: string
         }
@@ -42,6 +44,7 @@ export type Database = {
           hint_used?: boolean
           hint_used_on_event?: number | null
           id?: string
+          points?: number
           score?: number
           user_id?: string
         }
@@ -50,31 +53,37 @@ export type Database = {
       user_stats: {
         Row: {
           current_streak: number
+          display_name: string | null
           games_played: number
           last_played_date: string | null
           max_streak: number
           total_correct: number
           total_events: number
+          total_points: number
           updated_at: string
           user_id: string
         }
         Insert: {
           current_streak?: number
+          display_name?: string | null
           games_played?: number
           last_played_date?: string | null
           max_streak?: number
           total_correct?: number
           total_events?: number
+          total_points?: number
           updated_at?: string
           user_id: string
         }
         Update: {
           current_streak?: number
+          display_name?: string | null
           games_played?: number
           last_played_date?: string | null
           max_streak?: number
           total_correct?: number
           total_events?: number
+          total_points?: number
           updated_at?: string
           user_id?: string
         }
@@ -82,7 +91,45 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      daily_stats_view: {
+        Row: {
+          avg_points: number | null
+          day_number: number | null
+          perfect_count: number | null
+          player_count: number | null
+        }
+        Relationships: []
+      }
+      leaderboard_view: {
+        Row: {
+          avg_points: number | null
+          current_streak: number | null
+          display_name: string | null
+          games_played: number | null
+          max_streak: number | null
+          total_points: number | null
+          user_id: string | null
+        }
+        Insert: {
+          avg_points?: never
+          current_streak?: number | null
+          display_name?: never
+          games_played?: number | null
+          max_streak?: number | null
+          total_points?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          avg_points?: never
+          current_streak?: number | null
+          display_name?: never
+          games_played?: number | null
+          max_streak?: number | null
+          total_points?: number | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
