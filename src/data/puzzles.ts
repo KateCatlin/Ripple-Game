@@ -377,26 +377,26 @@ export const puzzles: Puzzle[] = [
       event: "Post–WWII: Dishwashers, washing machines, and other labor-saving appliances spread rapidly",
       options: [
         "Household labor hours fall sharply as chores become automated",
-        "Household labor becomes faster, but total time spent changes less than expected",
+        "Standards for cleanliness and frequency rise (more laundry, cleaner dishes)",
         "Domestic work disappears as families rely on services instead",
         "Appliances are rarely adopted outside wealthy households"
       ],
       correctIndex: 1,
-      explanation: "Appliances dramatically reduced the *time per task*, but that didn't automatically translate into less total labor. The expected collapse in housework hours never fully materialized."
+      explanation: "By making chores faster and easier, appliances raised expectations. Clothes were washed more often, dishes were used more freely, and standards of cleanliness increased."
     },
     {
-      event: "Chores become quicker and less physically demanding",
+      event: "Standards for cleanliness and frequency rise (more laundry, cleaner dishes)",
       options: [
         "People do fewer chores overall since the work is easier",
-        "Standards for cleanliness and frequency rise (more laundry, cleaner dishes)",
+        "Higher standards offset much of the time saved per task",
         "Households shift responsibility entirely to children",
         "Meals become simpler to reduce remaining work"
       ],
       correctIndex: 1,
-      explanation: "When washing clothes takes minutes instead of hours, expectations change. Clothes are washed more often, dishes are used more freely, and cleanliness standards rise — increasing total task volume."
+      explanation: "As expectations rose, households did more total tasks. Efficiency gains were reinvested into higher standards rather than into leisure."
     },
     {
-      event: "Higher standards offset time saved per task",
+      event: "Higher standards offset much of the time saved per task",
       options: [
         "Total household labor hours drop dramatically over the century",
         "Total household labor hours remain surprisingly flat over decades",
@@ -404,7 +404,7 @@ export const puzzles: Puzzle[] = [
         "Housework shifts entirely to paid domestic workers"
       ],
       correctIndex: 1,
-      explanation: "Time-use studies show this clearly. Between the 1920s and the 1960s, average weekly housework hours for women stayed around ~50 hours despite major appliance adoption. Even by the 2000s, total household labor (when including men's increased participation) declined far less than technology alone would predict."
+      explanation: "Time-use studies show this clearly. Despite major appliance adoption, average weekly housework hours stayed near ~50 hours for women through the mid-20th century, and declined far less than technology alone would predict."
     }
   ]
 },
