@@ -53,6 +53,245 @@ export const puzzles: Puzzle[] = [
   },
 
 {
+  id:  2,
+  title: "Online Dating Transforms Romance",
+  events: [
+    {
+      event:  "2000s: Online dating goes mainstream, giving people access to thousands of potential partners",
+      options: [
+        "People marry faster with more options available",
+        "Average marriage age rises as people spend longer searching",
+        "Dating pools remain limited to local communities",
+        "People settle down with fewer total relationships"
+      ],
+      correctIndex: 1,
+      explanation: "With access to seemingly endless options, people spent longer searching for the 'perfect' match. Average marriage age rose from 23 to 30 over two decades."
+    },
+    {
+      event: "People delay marriage, spending years dating across wider networks",
+      options: [
+        "Couples continue meeting within their own social class",
+        "Relationships increasingly cross social and geographic boundaries",
+        "Workplaces become the dominant place to meet partners",
+        "People date fewer total partners before marrying"
+      ],
+      correctIndex:  1,
+      explanation: "Dating apps connected people who would never have crossed paths — different neighborhoods, social circles, education levels. Relationships became less predictable by background."
+    },
+    {
+      event: "Dating crosses traditional social and geographic boundaries",
+      options: [
+        "Friend groups remain the center of social life",
+        "Strangers replace friends as the core of adult social networks",
+        "Community institutions grow stronger",
+        "People maintain larger local friend networks"
+      ],
+      correctIndex:  1,
+      explanation: "When couples meet through apps instead of friends, they merge separate social worlds rather than overlapping ones. Adult friendships increasingly come through partners, not the reverse."
+    }
+  ]
+},
+{
+  id: 3,
+  title: "The Mortgage Interest Deduction",
+  events: [
+    {
+      event: "1913: U.S. tax code allows homeowners to deduct mortgage interest from taxable income",
+      options: [
+        "Renting remains as financially attractive as buying",
+        "Buying a home becomes financially advantageous over renting",
+        "Housing prices decrease due to tax changes",
+        "Homeownership rates remain flat"
+      ],
+      correctIndex: 1,
+      explanation: "The deduction meant the government was effectively subsidizing home purchases. A $1,000 mortgage payment might only 'cost' $700 after the tax break — renters got no such benefit."
+    },
+    {
+      event: "Tax policy makes homeownership financially advantageous",
+      options: [
+        "Americans buy modest homes to minimize debt",
+        "Americans buy the largest homes they can finance",
+        "Home sizes remain stable across decades",
+        "Multi-family housing becomes more popular"
+      ],
+      correctIndex: 1,
+      explanation: "Bigger mortgage = bigger deduction. The tax code incentivized maximizing your mortgage. Average new home size grew from 1,500 sq ft in 1970 to 2,500 sq ft by 2010."
+    },
+    {
+      event: "Americans buy increasingly large homes to maximize tax benefits",
+      options: [
+        "Neighborhoods become denser to meet demand",
+        "Suburban sprawl accelerates as large lots become standard",
+        "Urban apartments grow in popularity",
+        "Housing costs decrease with larger supply"
+      ],
+      correctIndex: 1,
+      explanation: "Big houses need big lots. Demand for space pushed development outward into suburbs and exurbs, reinforcing car-dependent sprawl and long commutes."
+    }
+  ]
+},
+
+{
+  id: 4,
+  title: "The Jet Engine Shrinks the World",
+  events: [
+    {
+      event: "1958: First commercial jet service crosses the Atlantic in 6 hours instead of 12",
+      options: [
+        "Ocean liners remain competitive for transatlantic travel",
+        "Air travel rapidly replaces ships for long-distance passenger trips",
+        "Ticket prices remain too high for most travelers",
+        "Airlines struggle to fill the faster planes"
+      ],
+      correctIndex: 1,
+      explanation: "Speed won. Ocean liner crossings dropped from 1 million passengers in 1957 to 250,000 by 1965. By 1970, passenger ships were essentially extinct outside cruises."
+    },
+    {
+      event: "Jet travel makes international trips fast and affordable",
+      options: [
+        "Business headquarters stay rooted in single cities",
+        "Multinational corporations expand as executives can oversee global operations",
+        "International trade decreases due to easier communication",
+        "Businesses concentrate in fewer locations"
+      ],
+      correctIndex: 1,
+      explanation: "When an executive could fly to Tokyo and back in a week, managing overseas factories became practical. Jet travel enabled the multinational corporation model."
+    },
+    {
+      event: "Corporations expand globally, managing operations across continents",
+      options: [
+        "Manufacturing stays close to headquarters",
+        "Manufacturing moves to wherever labor is cheapest",
+        "Shipping costs prevent global supply chains",
+        "Companies prefer domestic suppliers for reliability"
+      ],
+      correctIndex: 1,
+      explanation: "If you can fly managers anywhere, you can put factories anywhere. Manufacturing moved to low-wage countries, and global supply chains emerged — your iPhone has parts from 40+ countries."
+    }
+  ]
+},
+
+{
+  id: 5,
+  title: "The Seatbelt Paradox",
+  events: [
+    {
+      event: "1970s–1980s: Seatbelts become widespread, and many states adopt mandatory seatbelt laws",
+      options: [
+        "Overall traffic fatalities drop sharply because accidents become less common",
+        "Fatalities among car occupants fall, but total crashes change less than expected",
+        "Driving becomes dramatically slower as people feel more vulnerable to injury",
+        "Pedestrian and cyclist deaths fall in lockstep with occupant deaths"
+      ],
+      correctIndex: 1,
+      explanation: "Seatbelts clearly reduce the chance of dying in a crash for people inside the car. But the big surprise is that the *number of crashes* doesn't necessarily drop much — safer occupants can coincide with similar crash rates."
+    },
+    {
+      event: "Drivers feel more protected inside the car, and roads 'feel' safer",
+      options: [
+        "Drivers become consistently more cautious, leaving larger following distances",
+        "Drivers take more risks at the margin (speeding, tighter gaps), offsetting some safety gains",
+        "Drivers switch massively from cars to public transit because cars feel 'regulated'",
+        "Cities immediately redesign streets to prioritize pedestrians over cars"
+      ],
+      correctIndex: 1,
+      explanation: "This is the classic risk-compensation idea: when people feel safer, some will drive a bit more aggressively — not enough to erase seatbelt benefits for occupants, but enough to change the distribution of harm."
+    },
+    {
+      event: "Crashes still happen, but the people inside cars are better protected",
+      options: [
+        "The biggest gains accrue to pedestrians and cyclists, who become safer too",
+        "More of the remaining crash harm shifts toward people outside the vehicle (pedestrians/cyclists/motorcyclists)",
+        "Insurance costs collapse because crash severity falls across the board",
+        "Large vehicles rapidly disappear because they are no longer needed for safety"
+      ],
+      correctIndex: 1,
+      explanation: "If a collision is less deadly for the driver, the 'cost' of risky driving can shift outward. Some research argues that safety regulations reduce occupant deaths while increasing the share of fatalities borne by non-occupants (like pedestrians and cyclists) — a grim second-order effect."
+    }
+  ]
+},
+
+{
+  id: 6,
+  title: "Refrigeration Changes What We Eat",
+  events: [
+    {
+      event: "Early–mid 20th century: Refrigerators become common in American homes",
+      options: [
+        "Households continue shopping daily for fresh food from local markets",
+        "Food spoilage drops dramatically, allowing households to store food for weeks",
+        "Refrigeration mainly benefits restaurants, with little impact on home cooking",
+        "Cold storage remains a luxury limited to wealthy households"
+      ],
+      correctIndex: 1,
+      explanation: "Refrigerators sharply reduced spoilage and decoupled eating from daily shopping. Families could safely store meat, dairy, and leftovers for long periods — a fundamental shift in food logistics."
+    },
+    {
+      event: "Food can now be stored safely for much longer periods",
+      options: [
+        "People visit local markets more often to take advantage of fresh inventory",
+        "Shopping frequency drops as households shift to weekly or biweekly trips",
+        "Households rely entirely on preserved foods like salt-cured meats",
+        "Urban density increases as food access becomes more centralized"
+      ],
+      correctIndex: 1,
+      explanation: "When food lasts longer, there's less need for daily shopping. Trips consolidate into fewer, larger grocery runs — changing how cities, neighborhoods, and food retail evolve."
+    },
+    {
+      event: "Consumers shop less often but buy more food at once",
+      options: [
+        "Small local vendors thrive as demand for specialty goods increases",
+        "National food brands and supermarkets gain dominance over local producers",
+        "Home gardening expands as people store seasonal harvests",
+        "Regional cuisines become more distinct and insulated"
+      ],
+      correctIndex: 1,
+      explanation: "Large, infrequent shopping trips favor scale. Supermarkets, standardized products, and national brands outperform small local vendors — quietly reshaping diets, advertising, and food culture."
+    }
+  ]
+},
+
+{
+  id: 7,
+  title: "Standardized Testing Reshapes Education",
+  events: [
+    {
+      event: "1960s–2000s: Standardized testing expands and becomes central to school accountability",
+      options: [
+        "Schools treat test scores as one of many minor performance indicators",
+        "Test scores become the primary metric used to judge schools, teachers, and districts",
+        "Testing remains limited to college-bound students only",
+        "Curricula diversify as schools experiment with alternative assessments"
+      ],
+      correctIndex: 1,
+      explanation: "As standardized tests became tied to funding, evaluations, and public rankings, they shifted from diagnostic tools into the primary metric by which schools were judged."
+    },
+    {
+      event: "School funding, evaluations, and public rankings hinge on test performance",
+      options: [
+        "Schools invest equally across all subjects to raise overall educational quality",
+        "Instructional time shifts toward tested subjects like math and reading",
+        "Arts and electives expand as schools seek to differentiate themselves",
+        "Class sizes shrink uniformly across all subjects"
+      ],
+      correctIndex: 1,
+      explanation: "When scores determine consequences, schools optimize for them. Time, staffing, and resources increasingly flow toward tested subjects, especially math and reading."
+    },
+    {
+      event: "Instructional time concentrates on tested subjects",
+      options: [
+        "Art and music participation rises as enrichment becomes a priority",
+        "Art and music offerings decline measurably across U.S. public schools",
+        "Creative subjects remain stable due to federal protections",
+        "Extracurricular arts replace in-school instruction without overall loss"
+      ],
+      correctIndex: 1,
+      explanation: "The decline is measurable. Between 2000 and 2010, the share of U.S. elementary schools offering music instruction fell by roughly 20%, and visual arts offerings dropped by about 16%. Schools serving low-income students experienced the largest cuts, as resources were redirected toward tested subjects."
+    }
+  ]
+},
+
+{
   id:  8,
   title: "Draining the Everglades",
   events: [
@@ -132,40 +371,79 @@ export const puzzles: Puzzle[] = [
 },
 {
   id: 10,
-  title: "The Kudzu Invasion",
+  title: "The Dishwasher Liberation",
   events: [
     {
-      event: "1930s: US government promotes kudzu vine across the South to prevent soil erosion",
+      event: "Post–WWII: Dishwashers, washing machines, and other labor-saving appliances spread rapidly",
       options: [
-        "Kudzu fails to grow in American soil",
-        "Farmers plant millions of kudzu seedlings",
-        "Southern states immediately ban the vine",
-        "Kudzu remains confined to test plots"
+        "Household labor hours fall sharply as chores become automated",
+        "Household labor becomes faster, but total time spent changes less than expected",
+        "Domestic work disappears as families rely on services instead",
+        "Appliances are rarely adopted outside wealthy households"
       ],
       correctIndex: 1,
-      explanation: "The Civilian Conservation Corps planted kudzu widely, and farmers were paid $8/acre to plant it.  The fast-growing vine seemed like a miracle solution."
+      explanation: "Appliances dramatically reduced the *time per task*, but that didn't automatically translate into less total labor. The expected collapse in housework hours never fully materialized."
     },
     {
-      event: "Millions of kudzu seedlings planted across the American South",
+      event: "Chores become quicker and less physically demanding",
       options: [
-        "Erosion is successfully controlled forever",
-        "Kudzu grows up to 1 foot per day, smothering everything",
-        "Kudzu dies back each winter and stays controlled",
-        "Native plants easily outcompete kudzu"
+        "People do fewer chores overall since the work is easier",
+        "Standards for cleanliness and frequency rise (more laundry, cleaner dishes)",
+        "Households shift responsibility entirely to children",
+        "Meals become simpler to reduce remaining work"
       ],
       correctIndex: 1,
-      explanation:  "Kudzu can grow 60 feet per season and a foot per day in summer.  It grows over trees, houses, and power lines — smothering and killing native vegetation."
+      explanation: "When washing clothes takes minutes instead of hours, expectations change. Clothes are washed more often, dishes are used more freely, and cleanliness standards rise — increasing total task volume."
     },
     {
-      event: "Kudzu spreads uncontrollably, smothering forests and structures",
-      options:  [
-        "Easy control methods are quickly found",
-        "Kudzu now covers over 7 million acres",
-        "Southern states successfully eradicate it",
-        "Kudzu becomes a valuable commercial crop"
+      event: "Higher standards offset time saved per task",
+      options: [
+        "Total household labor hours drop dramatically over the century",
+        "Total household labor hours remain surprisingly flat over decades",
+        "Domestic labor disappears from time-use surveys",
+        "Housework shifts entirely to paid domestic workers"
       ],
-      correctIndex:  1,
-      explanation: "Called 'the vine that ate the South,' kudzu now covers over 7 million acres and spreads 150,000 acres annually. It remains nearly impossible to eradicate."
+      correctIndex: 1,
+      explanation: "Time-use studies show this clearly. Between the 1920s and the 1960s, average weekly housework hours for women stayed around ~50 hours despite major appliance adoption. Even by the 2000s, total household labor (when including men's increased participation) declined far less than technology alone would predict."
+    }
+  ]
+},
+{
+  id: 11,
+  title: "The Highway Boom Backfires",
+  events: [
+    {
+      event: "1950s–1970s: Massive investment in urban highways to reduce traffic congestion",
+      options: [
+        "Congestion falls permanently as road capacity increases",
+        "Traffic initially eases but congestion soon returns",
+        "Car usage declines as driving becomes less stressful",
+        "Public transit replaces driving as cities expand"
+      ],
+      correctIndex: 1,
+      explanation: "New highways often provide short-term relief, but congestion tends to return within a few years as driving becomes more attractive."
+    },
+    {
+      event: "Easier driving reduces travel time and inconvenience",
+      options: [
+        "People maintain the same driving habits and routes",
+        "More people choose to drive, and existing drivers travel farther",
+        "Drivers shift permanently to off-peak travel times",
+        "Households abandon cars due to improved road efficiency"
+      ],
+      correctIndex: 1,
+      explanation: "When roads feel faster, people respond: they drive more often, live farther from work, and make trips that were previously too inconvenient."
+    },
+    {
+      event: "Driving volume rises in response to new capacity",
+      options: [
+        "Congestion remains lower due to expanded infrastructure",
+        "Congestion returns to near previous levels despite wider roads",
+        "Traffic volume stabilizes while commute times shrink",
+        "Urban density increases as highways attract development"
+      ],
+      correctIndex: 1,
+      explanation: "Empirical studies show that vehicle miles traveled increase nearly one-for-one with highway capacity. Over time, congestion returns — a phenomenon known as induced demand."
     }
   ]
 },
@@ -366,79 +644,79 @@ export const puzzles: Puzzle[] = [
 },
 {
   id: 17,
-  title: "Glass-Steagall Protects Banks",
+  title: "Barcodes Create Modern Retail",
   events: [
     {
-      event:  "1933: Glass-Steagall Act separates commercial banking from investment banking",
+      event: "1970s–1980s: Barcodes and scanners are adopted across U.S. retail",
       options: [
-        "Banks immediately find loopholes",
-        "Banks become smaller and more boring but stable",
-        "The financial industry opposes and ignores it",
-        "Another financial crisis happens immediately"
+        "Barcodes mainly speed up checkout with little impact beyond convenience",
+        "Retailers gain precise, real-time data on prices, inventory, and sales",
+        "Scanning technology remains too expensive for widespread use",
+        "Small shops benefit more than large chains from automation"
       ],
       correctIndex: 1,
-      explanation: "Banks could no longer gamble with depositors' money. Commercial banks became boring, stable institutions — exactly what regulators intended."
+      explanation: "Barcodes didn't just speed up checkout — they turned every transaction into data. For the first time, retailers could see exactly what was selling, when, and where."
     },
     {
-      event: "Commercial banks become stable, boring, and separated from Wall Street risk",
-      options:  [
-        "Financial crises continue regularly",
-        "No major banking crises occur for 50+ years",
-        "Banks become unprofitable and fail",
-        "Regulation is repealed within a decade"
+      event: "Retailers gain precise, real-time data on prices, inventory, and sales",
+      options: [
+        "Stores maintain similar sizes but operate more efficiently",
+        "Inventory costs fall as stores optimize stocking and reduce overordering",
+        "Retailers rely more heavily on supplier intuition than data",
+        "Product variety shrinks as stores simplify offerings"
       ],
       correctIndex: 1,
-      explanation: "From 1933 to the 1980s, there were no major banking crises in the US — the longest such period in American history.  Boring banks were safe banks."
+      explanation: "With accurate, item-level data, retailers dramatically reduced stockouts and excess inventory. Inventory accuracy rose from roughly 65% to over 95%, cutting carrying costs."
     },
     {
-      event: "50 years of banking stability under Glass-Steagall",
+      event: "Inventory costs fall as stores optimize stocking and reduce overordering",
       options: [
-        "The law is strengthened further",
-        "Law repealed in 1999; complex financial instruments emerge",
-        "Banks voluntarily maintain separation",
-        "Other countries adopt similar laws"
+        "Small neighborhood stores gain a lasting competitive edge",
+        "Large-format stores and national chains gain scale advantages",
+        "Retail decentralizes into smaller, specialized shops",
+        "Retail employment collapses across all roles"
       ],
       correctIndex: 1,
-      explanation: "Glass-Steagall was repealed in 1999.  Banks merged commercial and investment operations.  Complex derivatives emerged.  Nine years later:  the 2008 financial crisis."
+      explanation: "Lower inventory and labor costs reward scale. Large chains and big-box stores could offer lower prices and wider selection, driving consolidation — average supermarket size more than doubled after barcode adoption."
     }
   ]
 },
 {
   id: 18,
-  title: "The 1965 Immigration Act Transforms America",
+  title: "ATMs Increase Bank Branches",
   events: [
     {
-      event:  "1965: Immigration Act eliminates national-origin quotas favoring Europeans",
-      options:  [
-        "Immigration patterns remain unchanged",
-        "Asian and Latin American immigration increases dramatically",
-        "Total immigration decreases",
-        "European immigration increases further"
+      event: "1970s–1980s: Automated Teller Machines (ATMs) spread across the banking system",
+      options: [
+        "Bank branches become obsolete as customers switch entirely to self-service",
+        "Banks dramatically reduce staffing needs for routine transactions",
+        "Customers abandon banks in favor of cash-only alternatives",
+        "ATMs remain niche due to low consumer trust"
       ],
       correctIndex: 1,
-      explanation: "The old quota system heavily favored Northern Europeans. The new law opened doors to immigrants from Asia, Latin America, and Africa for the first time."
+      explanation: "ATMs automated routine tasks like cash withdrawals and balance checks, sharply reducing the labor required to operate a bank branch."
     },
     {
-      event: "Immigration from Asia and Latin America increases significantly",
-      options:  [
-        "Immigrants struggle to find skilled work",
-        "Wave of engineers and doctors immigrate to US",
-        "Tech industry rejects immigrant workers",
-        "Immigration is quickly restricted again"
+      event: "Banks dramatically reduce staffing needs for routine transactions",
+      options: [
+        "Banks consolidate into fewer, larger flagship branches",
+        "Routine banking becomes cheaper to provide per location",
+        "Banks maintain the same number of branches but cut hours",
+        "Banks shift entirely to phone-based banking"
       ],
       correctIndex: 1,
-      explanation: "The law prioritized skilled workers and family reunification. Waves of engineers, doctors, and scientists immigrated — particularly from India, China, and Taiwan."
+      explanation: "With fewer tellers required per branch, the cost of running each location dropped substantially, changing the economics of physical banking."
     },
     {
-      event: "Skilled immigrants reshape American tech and medicine",
-      options:  [
-        "Immigrant entrepreneurs remain rare",
-        "Over half of billion-dollar startups have immigrant founder",
-        "Silicon Valley remains homogeneous",
-        "Immigrants leave after gaining skills"
+      event: "Routine banking becomes cheaper to provide per location",
+      options: [
+        "The total number of bank branches declines steadily",
+        "The total number of bank branches increases significantly",
+        "Branch counts remain flat despite population growth",
+        "Banking becomes almost entirely online"
       ],
       correctIndex: 1,
-      explanation: "By 2020, 55% of US billion-dollar startups had at least one immigrant founder.  Google, Tesla, eBay, Yahoo — American tech was built by immigrants the 1965 law admitted."
+      explanation: "Lower costs made smaller branches economically viable. Instead of closing branches, banks expanded into more neighborhoods — U.S. branch counts rose by roughly 40% between the mid-1970s and early 2000s."
     }
   ]
 },
@@ -482,41 +760,80 @@ export const puzzles: Puzzle[] = [
   ]
 },
 {
+  id: 20,
+  title: "The Gold Rush Gender Imbalance",
+  events: [
+    {
+      event: "1849: California Gold Rush draws hundreds of thousands of men, but few women migrate",
+      options: [
+        "Gender balance quickly normalizes as families follow",
+        "Extreme gender imbalance emerges in western territories",
+        "Women migrate at equal rates seeking opportunity",
+        "Men return east after failing to find gold"
+      ],
+      correctIndex: 1,
+      explanation: "By 1850, California's population was over 90% male. Mining towns, lumber camps, and frontier territories had extreme shortages of women for decades."
+    },
+    {
+      event: "Western territories have dramatic shortages of women",
+      options: [
+        "Women remain in traditional domestic roles",
+        "Women gain economic and political power in scarcity",
+        "Gender roles become more rigid to attract women",
+        "Marriage rates decline as men give up searching"
+      ],
+      correctIndex: 1,
+      explanation: "Scarcity meant bargaining power. Women in the West could demand more from suitors. Wyoming granted women voting rights in 1869 — partly to attract female settlers."
+    },
+    {
+      event: "Women's scarcity gives them unusual leverage in western territories",
+      options: [
+        "Domestic tasks remain exclusively women's work",
+        "Commercial laundries and restaurants boom to fill domestic gaps",
+        "Men import goods from eastern states instead",
+        "Household labor becomes less valuable"
+      ],
+      correctIndex: 1,
+      explanation: "With few wives to cook and clean, entrepreneurs filled the gap. Commercial laundries, restaurants, and boarding houses became massive industries — work that was unpaid in the East became paid labor in the West."
+    }
+  ]
+},
+{
   id: 21,
-  title: "The Soviet Wheat Deal",
-  events:  [
+  title:  "The Elevator Makes Skyscrapers Possible",
+  events: [
     {
-      event: "1972: Soviet Union secretly buys massive amounts of US wheat after crop failure",
+      event: "1850s: Elisha Otis invents the safety elevator, preventing deadly falls",
       options: [
-        "US wheat supplies remain adequate",
-        "Global wheat prices triple as supplies vanish",
-        "American farmers refuse to sell",
-        "Soviet purchase is announced immediately"
+        "Buildings remain limited to 5-6 stories",
+        "Upper floors become desirable real estate for the first time",
+        "Ground floors become more valuable",
+        "Stairs remain preferred for their reliability"
       ],
       correctIndex: 1,
-      explanation: "The Soviets bought 30% of the US wheat crop before anyone realized what was happening. When news broke, wheat prices spiked from $1.70 to $5. 00 per bushel."
+      explanation: "Before safe elevators, nobody wanted to climb above the fifth floor. Suddenly penthouses became premium real estate — height meant status, not inconvenience."
     },
     {
-      event: "Wheat prices triple, bread and food costs spike in US",
+      event:   "Upper floors become premium real estate, developers build upward",
       options:  [
-        "American consumers are unaffected",
-        "Inflation surges, eroding purchasing power",
-        "Farmers are blamed for high prices",
-        "Prices return to normal within weeks"
+        "Cities spread outward to accommodate growth",
+        "Land values in city centers skyrocket as density increases",
+        "Building heights stay modest due to construction costs",
+        "Residents prefer low-rise neighborhoods"
       ],
-      correctIndex: 1,
-      explanation: "The wheat shock contributed to the broader 1970s inflation crisis. Food prices rose 20% in one year.  Consumers felt the pain at every grocery store visit."
+      correctIndex:  1,
+      explanation: "If you can build 50 stories instead of 5, the same plot of land becomes 10x more valuable. Downtown real estate prices soared as skyscrapers rose."
     },
     {
-      event: "Food inflation contributes to broader economic crisis",
-      options: [
-        "Government ignores commodities trading",
-        "Commodity futures trading is reformed for transparency",
-        "Secret commodity purchases continue",
-        "Farmers stop exporting grain"
+      event:  "City centers become dense clusters of skyscrapers",
+      options:   [
+        "Population spreads evenly across metro areas",
+        "Commuting patterns emerge as workers travel into dense cores",
+        "Walking remains the primary way to get to work",
+        "Businesses relocate away from expensive downtown areas"
       ],
-      correctIndex: 1,
-      explanation: "The scandal led to reforms requiring disclosure of large commodity purchases. The 'Great Grain Robbery' showed how secret trading could destabilize markets."
+      correctIndex:  1,
+      explanation: "Dense downtowns meant millions of jobs concentrated in small areas.  Subways, commuter rails, and highways emerged to move workers in and out each day."
     }
   ]
 },
@@ -595,6 +912,95 @@ export const puzzles: Puzzle[] = [
       ],
       correctIndex: 1,
       explanation: "The crisis exposed supply chain fragility. Companies began 'reshoring' production, building larger inventories, and diversifying shipping routes — reversing decades of just-in-time orthodoxy."
+    }
+  ]
+},
+{
+  id: 24,
+  title: "The 401(k) Shifts Retirement Risk",
+  events: [
+    {
+      event: "1980s–1990s: Employers shift from pensions to 401(k)-style retirement plans",
+      options: [
+        "Retirement benefits remain predictable regardless of market performance",
+        "Investment responsibility shifts from employers to individual workers",
+        "Most workers opt out of retirement saving entirely",
+        "Government replaces private retirement plans with public programs"
+      ],
+      correctIndex: 1,
+      explanation: "Traditional pensions promised fixed benefits paid by employers. 401(k)s flipped this model, making workers responsible for contribution rates, asset allocation, and market risk."
+    },
+    {
+      event: "Workers become responsible for saving and investing their retirement funds",
+      options: [
+        "Most workers invest optimally and achieve similar retirement outcomes",
+        "Retirement outcomes become more unequal across income and education levels",
+        "Average retirement wealth rises uniformly across the population",
+        "Market participation declines as workers avoid financial risk"
+      ],
+      correctIndex: 1,
+      explanation: "Participation rates, contribution levels, and investment choices vary widely. Higher-income and more financially literate workers benefit disproportionately, increasing inequality in retirement outcomes."
+    },
+    {
+      event: "Retirement security depends heavily on individual behavior and market timing",
+      options: [
+        "Economic shocks have little effect on retirement readiness",
+        "Market downturns directly impact when and whether people can retire",
+        "Employers resume offering pensions to stabilize outcomes",
+        "Retirement age becomes fixed and predictable"
+      ],
+      correctIndex: 1,
+      explanation: "Because retirement wealth is tied to market performance, recessions and crashes can delay retirement for millions. Events like the 2000 dot-com crash and 2008 financial crisis had lasting effects on retirement timing."
+    }
+  ]
+},
+{
+  id: 25,
+  title: "New Zealand Caps Fishing, Fish Farming Explodes",
+  events: [
+    {
+      event: "1986: New Zealand introduces strict catch limits through an Individual Transferable Quota (ITQ) system",
+      options: [
+        "Wild fish stocks continue declining despite the new limits",
+        "Commercial fishing pressure on wild stocks drops significantly",
+        "Fishing activity shifts immediately to illegal and unreported catch",
+        "Seafood exports collapse due to lower allowable harvests"
+      ],
+      correctIndex: 1,
+      explanation: "New Zealand's ITQ system set enforceable caps on total allowable catch. Evidence suggests it reduced overfishing pressure and helped stabilize or rebuild several targeted fisheries."
+    },
+    {
+      event: "Commercial fishing pressure on wild stocks drops significantly",
+      options: [
+        "Global seafood demand collapses because fish becomes scarce",
+        "Wild-caught fish supply becomes tightly constrained by catch limits",
+        "Prices fall because consumers switch away from seafood",
+        "Governments everywhere copy the policy within a year"
+      ],
+      correctIndex: 1,
+      explanation: "When you cap harvest, you cap supply. Even if stocks recover, the quota system limits how much wild fish can be taken each year — constraining wild-catch growth."
+    },
+    {
+      event: "Wild-caught fish supply becomes tightly constrained by catch limits",
+      options: [
+        "The world permanently eats less seafood overall",
+        "Producers look for alternative ways to meet growing seafood demand",
+        "Wild fisheries expand rapidly to meet demand anyway",
+        "Seafood becomes a luxury product and disappears from diets"
+      ],
+      correctIndex: 1,
+      explanation: "Global demand for seafood kept rising. With wild supply capped, producers and investors had a strong incentive to find scalable substitutes rather than accept a permanent shortage."
+    },
+    {
+      event: "Producers look for alternative ways to meet growing seafood demand",
+      options: [
+        "Wild fisheries expand sustainably fast enough to keep up",
+        "Aquaculture (fish farming) expands rapidly worldwide",
+        "Synthetic seafood replaces fish within a decade",
+        "International seafood trade collapses"
+      ],
+      correctIndex: 1,
+      explanation: "Aquaculture scaled to fill the gap. Over the past few decades, farmed fish output has surged and now supplies roughly half (or more) of seafood consumed globally — a structural shift driven by rising demand colliding with capped wild catch."
     }
   ]
 },
@@ -834,7 +1240,7 @@ export const puzzles: Puzzle[] = [
 },
 {
   id: 32,
-  title: "The Wolves That Moved Rivers",
+  title: "The Wolves",
   events: [
     {
       event:  "1995: Wolves are reintroduced to Yellowstone after 70-year absence",
@@ -946,6 +1352,84 @@ export const puzzles: Puzzle[] = [
       ],
       correctIndex: 1,
       explanation: "The disaster led to federal intervention in farming practices.  Soil conservation, windbreaks, and crop rotation became standard — the government paid farmers to protect land, not just produce."
+    }
+  ]
+},
+{
+  id: 35,
+  title:  "The Bicycle Craze",
+  events: [
+    {
+      event: "1890s: 'Safety bicycles' with equal-sized wheels become affordable for the masses",
+      options: [
+        "Bicycles remain toys for wealthy hobbyists",
+        "Millions of people gain personal transportation for the first time",
+        "Horse sales increase to compete with bicycles",
+        "Walking remains preferred for short trips"
+      ],
+      correctIndex:  1,
+      explanation: "Before bicycles, if you couldn't afford a horse, you walked.  Suddenly factory workers, women, and young people could travel miles on their own — freedom of movement for the masses."
+    },
+    {
+      event: "Millions of people experience personal mobility for the first time",
+      options: [
+        "Cyclists use existing dirt roads without issue",
+        "Cyclists demand paved roads, launching the 'Good Roads' movement",
+        "Cities ban bicycles as dangerous nuisances",
+        "Rural areas reject bicycle infrastructure"
+      ],
+      correctIndex: 1,
+      explanation: "Cyclists hated muddy, rutted roads. They organized politically and demanded smooth pavement — creating the road infrastructure that automobiles would later inherit."
+    },
+    {
+      event: "Paved roads spread across America to accommodate cyclists",
+      options:  [
+        "Bicycles remain the dominant personal vehicle",
+        "Road infrastructure enables the automobile revolution",
+        "Paved roads are limited to urban areas only",
+        "Horse-drawn vehicles benefit most from new roads"
+      ],
+      correctIndex: 1,
+      explanation: "When cars arrived, paved roads already existed thanks to cyclists. The bicycle craze built the infrastructure that made automobile adoption possible."
+    }
+  ]
+},
+{
+  id: 36,
+  title: "The Interstate Highway System",
+  events: [
+    {
+      event: "1956: U.S. begins building 41,000 miles of interstate highways",
+      options: [
+        "Rail travel becomes more competitive for short trips",
+        "Long-distance trucking becomes cheaper than rail freight",
+        "City centers become more accessible and valuable",
+        "Americans continue relying on trains for travel"
+      ],
+      correctIndex: 1,
+      explanation: "Highways gave trucks a massive advantage.  Freight that once required rail scheduling could now go door-to-door by truck. Rail's share of freight dropped from 75% to under 40%."
+    },
+    {
+      event: "Trucking dominates freight, highways enable door-to-door delivery",
+      options:  [
+        "Factories stay in city centers near rail depots",
+        "Factories relocate to cheap land near highway exits",
+        "Urban manufacturing employment grows",
+        "Warehouses cluster around train stations"
+      ],
+      correctIndex:  1,
+      explanation: "Factories no longer needed to be near rail lines or ports. They moved to suburbs and exurbs where land was cheap, as long as there was a highway exit nearby."
+    },
+    {
+      event:  "Manufacturing and warehouses scatter to suburban highway corridors",
+      options: [
+        "Workers continue living near downtown factories",
+        "Suburban sprawl accelerates as jobs follow highways",
+        "Public transit ridership increases",
+        "Downtown employment remains dominant"
+      ],
+      correctIndex: 1,
+      explanation: "Jobs followed highways, and workers followed jobs. Suburbs exploded outward along highway corridors, creating car-dependent sprawl and hollowing out many city centers."
     }
   ]
 }
