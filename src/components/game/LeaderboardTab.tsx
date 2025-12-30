@@ -112,7 +112,7 @@ export const LeaderboardTab = () => {
     );
   }
 
-  const gamesNeeded = Math.max(0, 3 - userGamesPlayed);
+  const gamesNeeded = Math.max(0, 1 - userGamesPlayed);
   const userPercentile = totalPlayers > 0 && userRank > 0 
     ? Math.round(((totalPlayers - userRank + 1) / totalPlayers) * 100)
     : 0;

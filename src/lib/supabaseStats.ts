@@ -188,11 +188,11 @@ export const fetchLeaderboard = async (userId: string): Promise<{
   userEntry: LeaderboardEntry | null;
   totalPlayers: number;
 }> => {
-  // Get all qualified players (3+ games)
+  // Get all qualified players (1+ games)
   const { data: allStats, error } = await supabase
     .from('user_stats')
     .select('user_id, games_played, total_points, current_streak, max_streak, display_name')
-    .gte('games_played', 3)
+    .gte('games_played', 1)
     .order('total_points', { ascending: false });
 
   if (error || !allStats) {
@@ -250,7 +250,7 @@ export const fetchTopStreaks = async (): Promise<LeaderboardEntry[]> => {
     total_points: s.total_points,
     current_streak: s.current_streak,
     max_streak: s.max_streak,
-    avg_points: s.games_played >= 3 ? Math.round(s.total_points / s.games_played) : 0,
+    avg_points: s.games_played >= 1 ? Math.round(s.total_points / s.games_played) : 0,
   }));
 };
 
