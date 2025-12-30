@@ -1,5 +1,5 @@
 import { useGameState } from "@/hooks/useGameState";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Header } from "./Header";
 import { ProgressIndicator } from "./ProgressIndicator";
 import { EventCard } from "./EventCard";
@@ -18,6 +18,7 @@ export const GameBoard = () => {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [showStats, setShowStats] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const isInitialMount = useRef(true);
 
   const {
     puzzle,
@@ -49,21 +50,14 @@ export const GameBoard = () => {
     markTutorialSeen();
   };
 
-  // Show results when game completes
+  // Show results only on initial mount if game was already complete (restored from storage)
+  // Don't auto-show results when isComplete changes during gameplay - let user click the button
   useEffect(() => {
-    if (isComplete) {
-      // Small delay for better UX after seeing explanation
-      const timer = setTimeout(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      if (isComplete) {
         setShowResults(true);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [isComplete]);
-
-  // Reset results view when game is complete and user navigates back
-  useEffect(() => {
-    if (isComplete) {
-      setShowResults(true);
+      }
     }
   }, [isComplete]);
 
