@@ -78,6 +78,7 @@ export const GameBoard = () => {
             shareText={getShareText()}
             onShowStats={() => setShowStats(true)}
             hintUsedOnEvent={hintUsedOnEvent}
+            hintUsed={hintUsed}
           />
 
           <HowToPlayModal 
