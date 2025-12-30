@@ -172,14 +172,23 @@ export const useGameState = (): UseGameStateReturn => {
       .filter((a): a is boolean => a !== null)
       .map((correct, i) => {
         if (correct && hintUsedOnEvent === i) {
-          return `Event ${i + 1}: 🟡`;
+          return `Event ${i + 1}: 🟡 (hint)`;
         }
         return `Event ${i + 1}: ${correct ? '✅' : '❌'}`;
       })
       .join('\n');
     
+    // Calculate points
+    const points = answers
+      .filter((a): a is boolean => a !== null)
+      .reduce((total, correct, index) => {
+        if (!correct) return total;
+        const usedHintOnThisEvent = hintUsedOnEvent === index;
+        return total + (usedHintOnThisEvent ? 50 : 100);
+      }, 0);
+    
     const hintIndicator = hintUsed ? ' 💡' : '';
-    return `Ripple #${dayNumber} 🌊\n${emojis}\nChain Score: ${score.correct}/${score.total}${hintIndicator}\n\nPlay at: ${window.location.origin}`;
+    return `Ripple #${dayNumber} 🌊\n${emojis}\nScore: ${points} points${hintIndicator}\n\nPlay at: ${window.location.origin}`;
   }, [dayNumber, answers, getScore, hintUsed, hintUsedOnEvent]);
 
   return {

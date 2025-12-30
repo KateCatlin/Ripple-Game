@@ -1,0 +1,314 @@
+import { useEffect, useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { 
+  fetchLeaderboard, 
+  fetchTopStreaks, 
+  fetchUserStats,
+  updateDisplayName,
+  LeaderboardEntry 
+} from "@/lib/supabaseStats";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Pencil, Check, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import { LoginPromptCard } from "./LoginPromptCard";
+
+export const LeaderboardTab = () => {
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(true);
+  const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
+  const [topStreaks, setTopStreaks] = useState<LeaderboardEntry[]>([]);
+  const [userRank, setUserRank] = useState(0);
+  const [userEntry, setUserEntry] = useState<LeaderboardEntry | null>(null);
+  const [totalPlayers, setTotalPlayers] = useState(0);
+  const [userGamesPlayed, setUserGamesPlayed] = useState(0);
+  const [userCurrentStreak, setUserCurrentStreak] = useState(0);
+  
+  // Edit display name state
+  const [isEditing, setIsEditing] = useState(false);
+  const [editName, setEditName] = useState("");
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    const loadData = async () => {
+      if (!user) {
+        setLoading(false);
+        return;
+      }
+
+      setLoading(true);
+      
+      const [leaderboardData, streaksData, userStats] = await Promise.all([
+        fetchLeaderboard(user.id),
+        fetchTopStreaks(),
+        fetchUserStats(user.id),
+      ]);
+
+      setEntries(leaderboardData.entries);
+      setUserRank(leaderboardData.userRank);
+      setUserEntry(leaderboardData.userEntry);
+      setTotalPlayers(leaderboardData.totalPlayers);
+      setTopStreaks(streaksData);
+      
+      if (userStats) {
+        setUserGamesPlayed(userStats.games_played);
+        setUserCurrentStreak(userStats.current_streak);
+        if (leaderboardData.userEntry) {
+          setEditName(leaderboardData.userEntry.display_name);
+        }
+      }
+      
+      setLoading(false);
+    };
+
+    loadData();
+  }, [user]);
+
+  const handleSaveName = async () => {
+    if (!user || !editName.trim()) return;
+    
+    setSaving(true);
+    const success = await updateDisplayName(user.id, editName);
+    setSaving(false);
+    
+    if (success) {
+      setIsEditing(false);
+      // Update local state
+      if (userEntry) {
+        setUserEntry({ ...userEntry, display_name: editName.trim() });
+      }
+      toast({
+        title: "Name updated!",
+        description: "Your display name has been saved.",
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: "Failed to update display name. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  if (!user) {
+    return (
+      <div className="py-4">
+        <LoginPromptCard 
+          onDismiss={() => {}} 
+          message="Sign in to see how you rank against other players"
+          showDismiss={false}
+        />
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="py-8 text-center text-muted-foreground">
+        Loading leaderboard...
+      </div>
+    );
+  }
+
+  const gamesNeeded = Math.max(0, 3 - userGamesPlayed);
+  const userPercentile = totalPlayers > 0 && userRank > 0 
+    ? Math.round(((totalPlayers - userRank + 1) / totalPlayers) * 100)
+    : 0;
+  
+  // Calculate user's streak percentile
+  const streakRank = topStreaks.findIndex(s => s.user_id === user.id) + 1;
+  const streakPercentile = topStreaks.length > 0 && streakRank > 0
+    ? Math.round(((topStreaks.length - streakRank + 1) / topStreaks.length) * 100)
+    : 0;
+
+  // Get display entries: top 5 + user if not in top 5
+  const displayEntries = entries.slice(0, 5);
+  const showUserSeparately = userRank > 5 && userEntry;
+
+  return (
+    <div className="space-y-6 py-4">
+      {/* User's rank section */}
+      <div className="text-center p-4 bg-primary/5 rounded-xl border border-primary/20">
+        <p className="text-sm text-muted-foreground mb-1">Your All-Time Rank</p>
+        {gamesNeeded > 0 ? (
+          <>
+            <p className="text-xl font-display font-bold text-muted-foreground">
+              Not ranked yet
+            </p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Play {gamesNeeded} more game{gamesNeeded !== 1 ? 's' : ''} to appear on the leaderboard!
+            </p>
+          </>
+        ) : userRank > 0 ? (
+          <>
+            <p className="text-3xl font-display font-bold text-primary">
+              #{userRank} <span className="text-lg font-normal text-muted-foreground">of {totalPlayers} players</span>
+            </p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Top {100 - userPercentile}% overall
+            </p>
+            {userEntry && (
+              <p className="text-lg font-medium mt-2">
+                Total: {userEntry.total_points.toLocaleString()} points
+              </p>
+            )}
+          </>
+        ) : (
+          <p className="text-muted-foreground">No ranking data available</p>
+        )}
+      </div>
+
+      {/* Top Players section */}
+      <div>
+        <h4 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
+          🏆 Top Players <span className="text-xs">(by average points)</span>
+        </h4>
+        <div className="space-y-2">
+          {displayEntries.map((entry, index) => {
+            const rank = index + 1;
+            const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
+            const isCurrentUser = entry.user_id === user.id;
+            
+            return (
+              <div
+                key={entry.user_id}
+                className={cn(
+                  "flex items-center justify-between p-2 rounded-lg text-sm",
+                  isCurrentUser && "bg-secondary/10 border border-secondary/30"
+                )}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="w-6">{medal}</span>
+                  <span className={cn("font-medium", isCurrentUser && "text-secondary")}>
+                    {entry.display_name}
+                    {isCurrentUser && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-5 w-5 p-0 ml-1"
+                        onClick={() => {
+                          setEditName(entry.display_name);
+                          setIsEditing(true);
+                        }}
+                      >
+                        <Pencil className="h-3 w-3" />
+                      </Button>
+                    )}
+                  </span>
+                </div>
+                <span className="text-muted-foreground">
+                  {entry.avg_points} avg · {entry.games_played} games
+                </span>
+              </div>
+            );
+          })}
+          
+          {showUserSeparately && (
+            <>
+              <div className="text-center text-muted-foreground text-xs py-1">...</div>
+              <div className="flex items-center justify-between p-2 rounded-lg text-sm bg-secondary/10 border border-secondary/30">
+                <div className="flex items-center gap-2">
+                  <span className="w-6">{userRank}.</span>
+                  <span className="font-medium text-secondary">
+                    {userEntry.display_name}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-5 w-5 p-0 ml-1"
+                      onClick={() => {
+                        setEditName(userEntry.display_name);
+                        setIsEditing(true);
+                      }}
+                    >
+                      <Pencil className="h-3 w-3" />
+                    </Button>
+                    <span className="text-xs text-muted-foreground ml-1">← You</span>
+                  </span>
+                </div>
+                <span className="text-muted-foreground">
+                  {userEntry.avg_points} avg · {userEntry.games_played} games
+                </span>
+              </div>
+            </>
+          )}
+          
+          {entries.length === 0 && (
+            <p className="text-center text-muted-foreground text-sm py-4">
+              No players on the leaderboard yet. Be the first!
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Top Streaks section */}
+      <div>
+        <h4 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
+          🔥 Longest Streaks
+        </h4>
+        <div className="space-y-1">
+          {topStreaks.slice(0, 5).map((entry, index) => {
+            const rank = index + 1;
+            const isCurrentUser = entry.user_id === user.id;
+            
+            return (
+              <div
+                key={entry.user_id}
+                className={cn(
+                  "flex items-center justify-between py-1.5 text-sm",
+                  isCurrentUser && "font-medium text-secondary"
+                )}
+              >
+                <span>{rank}. {entry.display_name}</span>
+                <span>{entry.max_streak} days</span>
+              </div>
+            );
+          })}
+        </div>
+        
+        {userCurrentStreak > 0 && (
+          <p className="text-sm text-muted-foreground mt-3 text-center">
+            Your streak: {userCurrentStreak} day{userCurrentStreak !== 1 ? 's' : ''}
+            {streakPercentile > 0 && ` (top ${100 - streakPercentile}%)`}
+          </p>
+        )}
+      </div>
+
+      {/* Edit name dialog */}
+      {isEditing && (
+        <div className="fixed inset-0 bg-background/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-card border rounded-lg p-4 w-full max-w-sm space-y-4">
+            <h3 className="font-display text-lg font-medium">Edit Display Name</h3>
+            <Input
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+              placeholder="Enter your display name"
+              maxLength={50}
+              autoFocus
+            />
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => setIsEditing(false)}
+                disabled={saving}
+              >
+                <X className="h-4 w-4 mr-1" />
+                Cancel
+              </Button>
+              <Button
+                className="flex-1"
+                onClick={handleSaveName}
+                disabled={saving || !editName.trim()}
+              >
+                <Check className="h-4 w-4 mr-1" />
+                {saving ? 'Saving...' : 'Save'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};

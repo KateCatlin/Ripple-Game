@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { LoginPromptCard, shouldShowLoginPrompt } from "./LoginPromptCard";
-import { saveGameResult, migrateLocalStorageToSupabase } from "@/lib/supabaseStats";
+import { ComparisonCard } from "./ComparisonCard";
+import { saveGameResult, migrateLocalStorageToSupabase, calculatePoints } from "@/lib/supabaseStats";
 import { useToast } from "@/hooks/use-toast";
 
 interface ResultsCardProps {
@@ -35,7 +36,7 @@ export const ResultsCard = ({
   
   const correctCount = answers.filter(Boolean).length;
   const totalCount = answers.length;
-  const percentage = Math.round((correctCount / totalCount) * 100);
+  const points = calculatePoints(answers, hintUsedOnEvent);
 
   // Handle data migration and saving for logged-in users
   useEffect(() => {
@@ -90,9 +91,9 @@ export const ResultsCard = ({
   };
 
   const getMessage = () => {
-    if (percentage === 100) return "Perfect chain! 🌊";
-    if (percentage >= 66) return "Great ripple effect!";
-    if (percentage >= 33) return "History is tricky!";
+    if (points === 300) return "Perfect chain! 🌊";
+    if (points >= 200) return "Great ripple effect!";
+    if (points >= 100) return "History is tricky!";
     return "Keep exploring!";
   };
 
@@ -108,15 +109,23 @@ export const ResultsCard = ({
         </CardHeader>
         
         <CardContent className="space-y-6">
-          {/* Score display */}
+          {/* Score display with points */}
           <div className="text-center">
-            <div className="inline-flex items-baseline gap-1 mb-2">
+            <div className="inline-flex items-baseline gap-1 mb-1">
               <span className="text-5xl font-display font-bold text-primary">
                 {correctCount}
               </span>
               <span className="text-2xl text-muted-foreground">/{totalCount}</span>
             </div>
-            <p className="text-lg font-medium">{getMessage()}</p>
+            <p className="text-lg font-semibold text-secondary">
+              {points} points
+            </p>
+            {hintUsed && hintUsedOnEvent !== null && (
+              <p className="text-sm text-muted-foreground mt-1">
+                💡 50/50 used on Event {hintUsedOnEvent + 1}
+              </p>
+            )}
+            <p className="text-base font-medium mt-2">{getMessage()}</p>
           </div>
 
           {/* Chain visualization */}
@@ -143,7 +152,7 @@ export const ResultsCard = ({
 
           {/* Share text preview */}
           <div className="bg-muted/50 rounded-lg p-4 font-mono text-sm whitespace-pre-line text-muted-foreground">
-            {shareText.split('\n').slice(0, 5).join('\n')}
+            {shareText.split('\n').slice(0, 6).join('\n')}
           </div>
 
           {/* Actions */}
@@ -181,6 +190,11 @@ export const ResultsCard = ({
           <CountdownToMidnight />
         </CardContent>
       </Card>
+
+      {/* How You Compared Today - only for logged-in users */}
+      {user && hasSaved && (
+        <ComparisonCard dayNumber={dayNumber} hintUsed={hintUsed} />
+      )}
 
       {/* Login prompt for non-authenticated users */}
       {showLoginPrompt && !user && (
