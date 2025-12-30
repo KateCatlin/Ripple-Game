@@ -951,6 +951,45 @@ export const puzzles: Puzzle[] = [
       explanation: "By 2020, dating apps surpassed friends, work, and school as the most common way couples meet. A 1995 website fundamentally rewired human romance."
     }
   ]
+},
+{
+  id: 31,
+  title: "The Great Office Exodus",
+  events: [
+    {
+      event: "2020-2022: Remote work becomes permanent for millions, office occupancy drops 50%+ in major cities",
+      options: [
+        "Office rents increase due to reduced supply",
+        "Commercial real estate values plummet",
+        "Companies rush to sign longer leases",
+        "Vacancy rates remain unchanged"
+      ],
+      correctIndex: 1,
+      explanation: "With companies needing far less space, office vacancy rates hit historic highs — over 30% in San Francisco, 20%+ in Manhattan. Building values dropped 40-60% in some markets as tenants didn't renew leases."
+    },
+    {
+      event: "Commercial office buildings lose 40-60% of their value",
+      options: [
+        "Banks easily absorb the losses",
+        "Property owners default on commercial mortgages",
+        "Investors rush to buy cheap office buildings",
+        "Governments bail out building owners"
+      ],
+      correctIndex: 1,
+      explanation: "Building owners had borrowed billions against their properties' pre-pandemic values. As rents collapsed and buildings sat empty, many couldn't cover mortgage payments — triggering a wave of defaults and distressed sales."
+    },
+    {
+      event: "Commercial mortgage defaults spike, property owners hand keys back to banks",
+      options: [
+        "Banks sell buildings for profit",
+        "Regional banks face solvency crisis from real estate losses",
+        "Real estate market quickly recovers",
+        "Residential housing prices drop in response"
+      ],
+      correctIndex: 1,
+      explanation: "Regional and mid-size banks held disproportionate commercial real estate exposure. As property values collapsed, some banks faced existential threat — contributing to the 2023 regional banking crisis that saw Silicon Valley Bank and others fail."
+    }
+  ]
 }
 ];
 
