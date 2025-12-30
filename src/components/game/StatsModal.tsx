@@ -10,6 +10,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { fetchUserStats, convertToGameStats } from "@/lib/supabaseStats";
 import { useEffect, useState } from "react";
 import { LeaderboardTab } from "./LeaderboardTab";
+import { Target, TrendingUp, Flame, Trophy, LucideIcon } from "lucide-react";
 
 interface StatsModalProps {
   open: boolean;
@@ -73,61 +74,45 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
                 Loading stats...
               </div>
             ) : (
-              <div className="space-y-6 py-4">
-                {/* Main stats grid */}
-                <div className="grid grid-cols-4 gap-4 text-center">
-                  <StatItem value={stats.gamesPlayed} label="Played" />
-                  <StatItem value={`${successRate}%`} label="Success" />
-                  <StatItem value={stats.currentStreak} label="Streak" />
-                  <StatItem value={stats.maxStreak} label="Max" />
+              <div className="space-y-4 py-4">
+                {/* 2x2 Stats grid */}
+                <div className="grid grid-cols-2 gap-3">
+                  <StatCard 
+                    icon={Target} 
+                    value={stats.gamesPlayed} 
+                    label="Games Played" 
+                  />
+                  <StatCard 
+                    icon={TrendingUp} 
+                    value={`${successRate}%`} 
+                    label="Success Rate" 
+                  />
+                  <StatCard 
+                    icon={Flame} 
+                    value={stats.currentStreak} 
+                    label="Current Streak" 
+                  />
+                  <StatCard 
+                    icon={Trophy} 
+                    value={stats.maxStreak} 
+                    label="Max Streak" 
+                  />
                 </div>
 
-                {/* Total points for logged-in users */}
-                {user && totalPoints > 0 && (
-                  <div className="text-center p-3 bg-primary/5 rounded-lg border border-primary/20">
-                    <p className="text-sm text-muted-foreground">Total Points</p>
-                    <p className="text-2xl font-display font-bold text-primary">
-                      {totalPoints.toLocaleString()}
-                    </p>
-                  </div>
-                )}
-
-                {/* Event success breakdown */}
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground mb-3 text-center">
-                    Success by Event Position
-                  </h4>
-                  <div className="space-y-2">
-                    {stats.eventSuccessRate.slice(0, 3).map((rate, index) => (
-                      <div key={index} className="flex items-center gap-3">
-                        <span className="text-sm text-muted-foreground w-16">
-                          Event {index + 1}
-                        </span>
-                        <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-correct transition-all duration-500"
-                            style={{ width: `${rate}%` }}
-                          />
-                        </div>
-                        <span className="text-sm font-medium w-12 text-right">
-                          {rate}%
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                {/* Average Score card (full-width) */}
+                <div className="bg-sand-dark/30 rounded-xl p-4 text-center border border-border/50">
+                  <p className="text-sm text-muted-foreground mb-1">
+                    Average Score
+                  </p>
+                  <p className="text-4xl font-display font-bold text-primary">
+                    {stats.gamesPlayed > 0 
+                      ? Math.round(totalPoints / stats.gamesPlayed) 
+                      : 0}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    out of 300 points
+                  </p>
                 </div>
-
-                {/* Streak info */}
-                {stats.currentStreak > 0 && (
-                  <div className="text-center p-4 bg-correct/10 rounded-xl">
-                    <p className="text-sm text-muted-foreground mb-1">
-                      Current Streak
-                    </p>
-                    <p className="text-3xl font-display font-bold text-correct">
-                      {stats.currentStreak} {stats.currentStreak === 1 ? 'day' : 'days'} 🔥
-                    </p>
-                  </div>
-                )}
 
                 {/* Cloud sync indicator for logged-in users */}
                 {user && (
@@ -148,11 +133,18 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
   );
 };
 
-const StatItem = ({ value, label }: { value: string | number; label: string }) => (
-  <div>
-    <div className="text-2xl font-display font-bold text-foreground">
+interface StatCardProps {
+  icon: LucideIcon;
+  value: string | number;
+  label: string;
+}
+
+const StatCard = ({ icon: Icon, value, label }: StatCardProps) => (
+  <div className="bg-sand-dark/40 rounded-xl p-4 text-center">
+    <Icon className="w-6 h-6 mx-auto mb-2 text-secondary" strokeWidth={2} />
+    <div className="text-3xl font-display font-bold text-foreground">
       {value}
     </div>
-    <div className="text-xs text-muted-foreground">{label}</div>
+    <div className="text-sm text-muted-foreground mt-1">{label}</div>
   </div>
 );
