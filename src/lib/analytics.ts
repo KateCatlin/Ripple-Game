@@ -12,6 +12,7 @@ const getSessionId = (): string => {
 
 export type AnalyticsEvent = 
   | 'game_completed'
+  | 'question_answered'
   | 'leaderboard_viewed'
   | 'signup_completed'
   | 'login_completed';

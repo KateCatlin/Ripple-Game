@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { hasPlayedToday } from '@/lib/supabaseStats';
 import { supabase } from '@/integrations/supabase/client';
 import { shuffleWithMapping } from '@/lib/utils';
+import { trackEvent } from '@/lib/analytics';
 
 export interface UseGameStateReturn {
   puzzle: Puzzle;
@@ -142,12 +143,23 @@ export const useGameState = (): UseGameStateReturn => {
     const newAnswers = [...answers, isCorrect];
     setAnswers(newAnswers);
     
+    // Track question answered for funnel analysis
+    const questionNumber = currentEventIndex + 1;
+    trackEvent('question_answered', {
+      userId: user?.id,
+      metadata: { 
+        question_number: questionNumber, 
+        is_correct: isCorrect,
+        day_number: dayNumber 
+      }
+    });
+    
     // Check if this was the last event
     if (currentEventIndex >= puzzle.events.length - 1) {
       setIsComplete(true);
       updateStatsAfterGame(newAnswers.filter((a): a is boolean => a !== null));
     }
-  }, [showExplanation, isComplete, shuffledCorrectIndex, answers, currentEventIndex, puzzle.events.length]);
+  }, [showExplanation, isComplete, shuffledCorrectIndex, answers, currentEventIndex, puzzle.events.length, user?.id, dayNumber]);
 
   const nextEvent = useCallback(() => {
     if (currentEventIndex < puzzle.events.length - 1) {
