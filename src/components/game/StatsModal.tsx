@@ -8,9 +8,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getStats, GameStats } from "@/lib/storage";
 import { useAuth } from "@/contexts/AuthContext";
 import { fetchUserStats, convertToGameStats } from "@/lib/supabaseStats";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { LeaderboardTab } from "./LeaderboardTab";
 import { Target, TrendingUp, Flame, Trophy, LucideIcon } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const MAX_POINTS_PER_GAME = 300;
 
@@ -24,6 +25,8 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
   const [stats, setStats] = useState<GameStats | null>(null);
   const [totalPoints, setTotalPoints] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("stats");
+  const hasTrackedLeaderboard = useRef(false);
 
   useEffect(() => {
     if (open) {
@@ -55,6 +58,14 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
     ? Math.round((stats.totalCorrect / stats.totalEvents) * 100) 
     : 0;
 
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    if (value === 'leaderboard' && !hasTrackedLeaderboard.current) {
+      hasTrackedLeaderboard.current = true;
+      trackEvent('leaderboard_viewed', { userId: user?.id });
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
@@ -64,7 +75,7 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
           </DialogTitle>
         </DialogHeader>
 
-        <Tabs defaultValue="stats" className="w-full">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="stats">Your Stats</TabsTrigger>
             <TabsTrigger value="leaderboard">🌊 Leaderboard</TabsTrigger>

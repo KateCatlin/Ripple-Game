@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode, useRef } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
+import { trackEvent } from '@/lib/analytics';
 
 interface AuthContextType {
   user: User | null;
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const trackedEvents = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     // Set up auth state listener FIRST
@@ -25,6 +27,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
+        
+        // Track signup and login events (deferred to avoid deadlock)
+        if (session?.user && !trackedEvents.current.has(event)) {
+          trackedEvents.current.add(event);
+          setTimeout(() => {
+            // User just signed up
+            if (event === 'INITIAL_SESSION' && session.user.created_at) {
+              const createdAt = new Date(session.user.created_at);
+              const now = new Date();
+              // If created within last 60 seconds, it's a signup
+              if (now.getTime() - createdAt.getTime() < 60000) {
+                trackEvent('signup_completed', { userId: session.user.id });
+                return;
+              }
+            }
+            if (event === 'SIGNED_IN') {
+              trackEvent('login_completed', { userId: session.user.id });
+            }
+          }, 0);
+        }
       }
     );
 
