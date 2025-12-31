@@ -8,6 +8,7 @@ import { ExplanationCard } from "./ExplanationCard";
 import { ResultsCard } from "./ResultsCard";
 import { HowToPlayModal } from "./HowToPlayModal";
 import { StatsModal } from "./StatsModal";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { hasSeenTutorial, markTutorialSeen } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Lightbulb } from "lucide-react";
@@ -151,16 +152,26 @@ export const GameBoard = () => {
 
           {!showExplanation && (
             <div className="mt-4 flex justify-center">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={useHint}
-                disabled={hintUsed}
-                className="gap-2 text-muted-foreground hover:text-foreground"
-              >
-                <Lightbulb className="w-4 h-4" />
-                {hintUsed ? "50/50 Used" : "50/50"}
-              </Button>
+                {/* Tooltip clarifies what the 50/50 hint does and its scoring tradeoff */}
+                <TooltipProvider delayDuration={150}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={useHint}
+                        disabled={hintUsed}
+                        className="gap-2 text-muted-foreground hover:text-foreground"
+                      >
+                        <Lightbulb className="w-4 h-4" />
+                        {hintUsed ? "50/50 Hint Used" : "50/50 Hint"}
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center" className="max-w-xs text-center">
+                      Use this once per game to remove two incorrect answers. You’ll earn half the usual points (50 instead of 100) for this question if you get it right.
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
             </div>
           )}
 
