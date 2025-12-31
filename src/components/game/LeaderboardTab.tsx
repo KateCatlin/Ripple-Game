@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { 
   fetchLeaderboard, 
@@ -23,13 +23,17 @@ export const LeaderboardTab = () => {
   const [userRank, setUserRank] = useState(0);
   const [userEntry, setUserEntry] = useState<LeaderboardEntry | null>(null);
   const [totalPlayers, setTotalPlayers] = useState(0);
-  const [userGamesPlayed, setUserGamesPlayed] = useState(0);
   const [userCurrentStreak, setUserCurrentStreak] = useState(0);
   
   // Edit display name state
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState("");
   const [saving, setSaving] = useState(false);
+  
+  // Retry mechanism for race condition with database writes
+  const retryCountRef = useRef(0);
+  const maxRetries = 3;
+  const retryDelayMs = 1000;
 
   useEffect(() => {
     const loadData = async () => {
@@ -39,28 +43,43 @@ export const LeaderboardTab = () => {
       }
 
       setLoading(true);
+      retryCountRef.current = 0;
       
-      const [leaderboardData, streaksData, userStats] = await Promise.all([
-        fetchLeaderboard(user.id),
-        fetchTopStreaks(),
-        fetchUserStats(user.id),
-      ]);
+      const attemptLoad = async (): Promise<void> => {
+        const [leaderboardData, streaksData, userStats] = await Promise.all([
+          fetchLeaderboard(user.id),
+          fetchTopStreaks(),
+          fetchUserStats(user.id),
+        ]);
 
-      setEntries(leaderboardData.entries);
-      setUserRank(leaderboardData.userRank);
-      setUserEntry(leaderboardData.userEntry);
-      setTotalPlayers(leaderboardData.totalPlayers);
-      setTopStreaks(streaksData);
-      
-      if (userStats) {
-        setUserGamesPlayed(userStats.games_played);
-        setUserCurrentStreak(userStats.current_streak);
-        if (leaderboardData.userEntry) {
-          setEditName(leaderboardData.userEntry.display_name);
+        // Check if user has played games but isn't in leaderboard yet (race condition)
+        const userHasPlayed = userStats && userStats.games_played > 0;
+        const userInLeaderboard = leaderboardData.userRank > 0;
+        
+        if (userHasPlayed && !userInLeaderboard && retryCountRef.current < maxRetries) {
+          // User should be in leaderboard but isn't - retry after delay
+          retryCountRef.current++;
+          await new Promise(resolve => setTimeout(resolve, retryDelayMs));
+          return attemptLoad();
         }
-      }
+
+        setEntries(leaderboardData.entries);
+        setUserRank(leaderboardData.userRank);
+        setUserEntry(leaderboardData.userEntry);
+        setTotalPlayers(leaderboardData.totalPlayers);
+        setTopStreaks(streaksData);
+        
+        if (userStats) {
+          setUserCurrentStreak(userStats.current_streak);
+          if (leaderboardData.userEntry) {
+            setEditName(leaderboardData.userEntry.display_name);
+          }
+        }
+        
+        setLoading(false);
+      };
       
-      setLoading(false);
+      await attemptLoad();
     };
 
     loadData();
@@ -112,11 +131,6 @@ export const LeaderboardTab = () => {
     );
   }
 
-  const gamesNeeded = Math.max(0, 1 - userGamesPlayed);
-  const userPercentile = totalPlayers > 0 && userRank > 0 
-    ? Math.round(((totalPlayers - userRank + 1) / totalPlayers) * 100)
-    : 0;
-  
   // Calculate user's streak percentile
   const streakRank = topStreaks.findIndex(s => s.user_id === user.id) + 1;
   const streakPercentile = topStreaks.length > 0 && streakRank > 0
@@ -127,21 +141,19 @@ export const LeaderboardTab = () => {
   const displayEntries = entries.slice(0, 5);
   const showUserSeparately = userRank > 5 && userEntry;
 
+  // User is ranked if they appear in the leaderboard data
+  const isRanked = userRank > 0 && userEntry !== null;
+  
+  const userPercentile = totalPlayers > 0 && userRank > 0 
+    ? Math.round(((totalPlayers - userRank + 1) / totalPlayers) * 100)
+    : 0;
+
   return (
     <div className="space-y-6 py-4">
       {/* User's rank section */}
       <div className="text-center p-4 bg-primary/5 rounded-xl border border-primary/20">
         <p className="text-sm text-muted-foreground mb-1">Your All-Time Rank</p>
-        {gamesNeeded > 0 ? (
-          <>
-            <p className="text-xl font-display font-bold text-muted-foreground">
-              Not ranked yet
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Play {gamesNeeded} more game{gamesNeeded !== 1 ? 's' : ''} to appear on the leaderboard!
-            </p>
-          </>
-        ) : userRank > 0 ? (
+        {isRanked ? (
           <>
             <p className="text-3xl font-display font-bold text-primary">
               #{userRank} <span className="text-lg font-normal text-muted-foreground">of {totalPlayers} players</span>
@@ -156,7 +168,14 @@ export const LeaderboardTab = () => {
             )}
           </>
         ) : (
-          <p className="text-muted-foreground">No ranking data available</p>
+          <>
+            <p className="text-xl font-display font-bold text-muted-foreground">
+              Not ranked yet
+            </p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Complete a game to appear on the leaderboard!
+            </p>
+          </>
         )}
       </div>
 
