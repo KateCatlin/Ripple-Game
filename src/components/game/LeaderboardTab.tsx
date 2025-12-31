@@ -32,8 +32,8 @@ export const LeaderboardTab = () => {
   
   // Retry mechanism for race condition with database writes
   const retryCountRef = useRef(0);
-  const maxRetries = 3;
-  const retryDelayMs = 1000;
+  const maxRetries = 5;
+  const retryDelayMs = 800;
 
   useEffect(() => {
     const loadData = async () => {
@@ -52,12 +52,21 @@ export const LeaderboardTab = () => {
           fetchUserStats(user.id),
         ]);
 
-        // Check if user has played games but isn't in leaderboard yet (race condition)
+        // Check for race conditions where data hasn't synced yet
         const userHasPlayed = userStats && userStats.games_played > 0;
         const userInLeaderboard = leaderboardData.userRank > 0;
+        const leaderboardIsEmpty = leaderboardData.entries.length === 0;
+        const userStatsNotLoaded = !userStats;
         
-        if (userHasPlayed && !userInLeaderboard && retryCountRef.current < maxRetries) {
-          // User should be in leaderboard but isn't - retry after delay
+        // Retry if:
+        // 1. User stats haven't loaded yet (null), OR
+        // 2. User has stats showing games played but isn't in leaderboard yet, OR
+        // 3. User has stats showing games played but leaderboard is empty
+        const shouldRetry = retryCountRef.current < maxRetries && 
+          (userStatsNotLoaded || (userHasPlayed && (!userInLeaderboard || leaderboardIsEmpty)));
+        
+        if (shouldRetry) {
+          console.log(`Leaderboard retry ${retryCountRef.current + 1}/${maxRetries}: userStats=${userStats ? 'loaded' : 'null'}, games=${userStats?.games_played ?? 0}, leaderboard entries=${leaderboardData.entries.length}`);
           retryCountRef.current++;
           await new Promise(resolve => setTimeout(resolve, retryDelayMs));
           return attemptLoad();
