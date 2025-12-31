@@ -94,7 +94,12 @@ export const HowToPlayModal = ({ open, onOpenChange, onStart }: HowToPlayModalPr
             </div>
           </div>
 
-          <Button onClick={handleStart} className="w-full" size="lg">
+          {/* Coral CTA using the existing progress-chip color for consistency */}
+          <Button
+            onClick={handleStart}
+            className="w-full bg-accent text-accent-foreground hover:bg-accent/90 focus-visible:ring-accent"
+            size="lg"
+          >
             Let's Play!
           </Button>
         </div>
