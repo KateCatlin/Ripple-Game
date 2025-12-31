@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Share2, Copy, Check, BarChart3 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { LoginPromptCard, shouldShowLoginPrompt } from "./LoginPromptCard";
@@ -9,6 +9,7 @@ import { ComparisonCard } from "./ComparisonCard";
 import { saveGameResult, migrateLocalStorageToSupabase, calculatePoints } from "@/lib/supabaseStats";
 import { useToast } from "@/hooks/use-toast";
 import { RippleCelebration } from "./RippleCelebration";
+import { trackEvent } from "@/lib/analytics";
 
 interface ResultsCardProps {
   dayNumber: number;
@@ -32,6 +33,7 @@ export const ResultsCard = ({
   const [copied, setCopied] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [hasSaved, setHasSaved] = useState(false);
+  const hasTrackedCompletion = useRef(false);
   const { user } = useAuth();
   const { toast } = useToast();
   
@@ -39,6 +41,17 @@ export const ResultsCard = ({
   const totalCount = answers.length;
   const points = calculatePoints(answers, hintUsedOnEvent);
   const isPerfectScore = points === 300;
+
+  // Track game completion event
+  useEffect(() => {
+    if (!hasTrackedCompletion.current) {
+      hasTrackedCompletion.current = true;
+      trackEvent('game_completed', {
+        userId: user?.id,
+        metadata: { dayNumber, points, correctCount, hintUsed }
+      });
+    }
+  }, []);
 
   // Handle data migration and saving for logged-in users
   useEffect(() => {
