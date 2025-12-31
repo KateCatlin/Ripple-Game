@@ -28,23 +28,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(session?.user ?? null);
         setLoading(false);
         
-        // Track signup and login events (deferred to avoid deadlock)
-        if (session?.user && !trackedEvents.current.has(event)) {
-          trackedEvents.current.add(event);
+        // Track login events (deferred to avoid deadlock) - signups tracked in signUpWithEmail
+        if (session?.user && event === 'SIGNED_IN' && !trackedEvents.current.has(`login_${session.user.id}`)) {
+          trackedEvents.current.add(`login_${session.user.id}`);
           setTimeout(() => {
-            // User just signed up
-            if (event === 'INITIAL_SESSION' && session.user.created_at) {
-              const createdAt = new Date(session.user.created_at);
-              const now = new Date();
-              // If created within last 60 seconds, it's a signup
-              if (now.getTime() - createdAt.getTime() < 60000) {
-                trackEvent('signup_completed', { userId: session.user.id });
-                return;
-              }
-            }
-            if (event === 'SIGNED_IN') {
-              trackEvent('login_completed', { userId: session.user.id });
-            }
+            trackEvent('login_completed', { userId: session.user.id });
           }, 0);
         }
       }
@@ -70,13 +58,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signUpWithEmail = async (email: string, password: string) => {
     const redirectUrl = `${window.location.origin}/`;
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: redirectUrl,
       },
     });
+    
+    // Track signup directly when successful
+    if (!error && data.user) {
+      trackEvent('signup_completed', { userId: data.user.id });
+    }
+    
     return { error: error ? new Error(error.message) : null };
   };
 
