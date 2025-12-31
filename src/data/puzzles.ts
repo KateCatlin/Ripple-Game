@@ -446,7 +446,7 @@ export const puzzles: Puzzle[] = [
       explanation: "Over time, added road capacity tends to be ‘filled’ by additional driving. In many places, vehicle miles traveled rise roughly in proportion to lane-miles added—so congestion often rebounds (a pattern known as induced demand)."
     }
   ]
-}
+},
 
 {
   id: 12,
