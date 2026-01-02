@@ -122,53 +122,26 @@ export const hasPlayedToday = async (userId: string, dayNumber: number): Promise
 
 // Get daily comparison stats for a user
 export const fetchDailyComparison = async (userId: string, dayNumber: number): Promise<DailyComparison | null> => {
-  // Get user's result for today
-  const { data: userResult, error: userError } = await supabase
-    .from('game_results')
-    .select('points')
-    .eq('user_id', userId)
-    .eq('day_number', dayNumber)
-    .maybeSingle();
+  console.log(`[fetchDailyComparison] Querying for userId=${userId}, dayNumber=${dayNumber}`);
+  
+  // Use the new get_daily_percentile function which bypasses RLS
+  const { data, error } = await supabase
+    .rpc('get_daily_percentile', { p_user_id: userId, p_day_number: dayNumber })
+    .single();
 
-  if (userError || !userResult) {
-    console.error('Error fetching user result:', userError);
+  if (error || !data) {
+    console.error('Error fetching daily percentile:', error);
     return null;
   }
 
-  const userPoints = userResult.points;
+  console.log(`[fetchDailyComparison] Result from get_daily_percentile:`, data);
 
-  // Get all results for today to calculate percentile
-  const { data: allResults, error: allError } = await supabase
-    .from('game_results')
-    .select('points')
-    .eq('day_number', dayNumber);
-
-  if (allError || !allResults) {
-    console.error('Error fetching daily results:', allError);
-    return null;
-  }
-
-  const playerCount = allResults.length;
-  
-  if (playerCount === 1) {
-    return {
-      playerCount: 1,
-      percentile: 100,
-      avgPoints: userPoints,
-      perfectCount: userPoints === 300 ? 1 : 0,
-      perfectPercentage: userPoints === 300 ? 100 : 0,
-      userPoints,
-      isFirst: true,
-    };
-  }
-
-  // Calculate percentile: percentage of players with lower points
-  const playersWithLowerPoints = allResults.filter(r => r.points < userPoints).length;
-  const percentile = Math.round((playersWithLowerPoints / playerCount) * 100);
-  
-  const avgPoints = Math.round(allResults.reduce((sum, r) => sum + r.points, 0) / playerCount);
-  const perfectCount = allResults.filter(r => r.points === 300).length;
-  const perfectPercentage = Math.round((perfectCount / playerCount) * 100);
+  const playerCount = data.player_count;
+  const percentile = data.percentile;
+  const avgPoints = data.avg_points;
+  const perfectCount = data.perfect_count;
+  const userPoints = data.user_points;
+  const perfectPercentage = playerCount > 0 ? Math.round((perfectCount / playerCount) * 100) : 0;
 
   return {
     playerCount,
@@ -177,7 +150,7 @@ export const fetchDailyComparison = async (userId: string, dayNumber: number): P
     perfectCount,
     perfectPercentage,
     userPoints,
-    isFirst: false,
+    isFirst: playerCount === 1,
   };
 };
 
