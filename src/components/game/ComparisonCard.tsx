@@ -36,14 +36,6 @@ export const ComparisonCard = (props: ComparisonCardProps) => {
 
       const attemptLoad = async (): Promise<void> => {
         const data = await fetchDailyComparison(user.id, dayNumber);
-        
-        console.log(`[ComparisonCard] Attempt ${retryCountRef.current + 1}/${maxRetries + 1}:`, {
-          dayNumber,
-          data,
-          playerCount: data?.playerCount,
-          percentile: data?.percentile,
-          isFirst: data?.isFirst,
-        });
 
         if (cancelled) return;
 

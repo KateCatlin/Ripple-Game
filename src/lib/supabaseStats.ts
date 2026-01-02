@@ -122,8 +122,6 @@ export const hasPlayedToday = async (userId: string, dayNumber: number): Promise
 
 // Get daily comparison stats for a user
 export const fetchDailyComparison = async (userId: string, dayNumber: number): Promise<DailyComparison | null> => {
-  console.log(`[fetchDailyComparison] Querying for userId=${userId}, dayNumber=${dayNumber}`);
-  
   // Use the new get_daily_percentile function which bypasses RLS
   const { data, error } = await supabase
     .rpc('get_daily_percentile', { p_user_id: userId, p_day_number: dayNumber })
@@ -133,8 +131,6 @@ export const fetchDailyComparison = async (userId: string, dayNumber: number): P
     console.error('Error fetching daily percentile:', error);
     return null;
   }
-
-  console.log(`[fetchDailyComparison] Result from get_daily_percentile:`, data);
 
   const playerCount = data.player_count;
   const percentile = data.percentile;
