@@ -169,7 +169,16 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      get_daily_percentile: {
+        Args: { p_day_number: number; p_user_id: string }
+        Returns: {
+          avg_points: number
+          percentile: number
+          perfect_count: number
+          player_count: number
+          user_points: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
