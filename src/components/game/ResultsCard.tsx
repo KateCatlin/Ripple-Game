@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Share2, Copy, Check, BarChart3 } from "lucide-react";
+import { Share2, Copy, Check, BarChart3, ArrowLeft } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { LoginPromptCard, shouldShowLoginPrompt } from "./LoginPromptCard";
 import { ComparisonCard } from "./ComparisonCard";
-import { saveGameResult, migrateLocalStorageToSupabase, calculatePoints } from "@/lib/supabaseStats";
+import { saveGameResult, migrateLocalStorageToSupabase, calculatePoints, saveArchiveGameResult } from "@/lib/supabaseStats";
 import { useToast } from "@/hooks/use-toast";
 import { RippleCelebration } from "./RippleCelebration";
 import { trackEvent } from "@/lib/analytics";
@@ -19,6 +20,7 @@ interface ResultsCardProps {
   onShowStats: () => void;
   hintUsedOnEvent: number | null;
   hintUsed: boolean;
+  isArchive?: boolean; // Whether this is an archive puzzle
 }
 
 export const ResultsCard = ({
@@ -29,6 +31,7 @@ export const ResultsCard = ({
   onShowStats,
   hintUsedOnEvent,
   hintUsed,
+  isArchive = false,
 }: ResultsCardProps) => {
   const [copied, setCopied] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
@@ -36,6 +39,7 @@ export const ResultsCard = ({
   const hasTrackedCompletion = useRef(false);
   const { user } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const correctCount = answers.filter(Boolean).length;
   const totalCount = answers.length;
@@ -48,7 +52,7 @@ export const ResultsCard = ({
       hasTrackedCompletion.current = true;
       trackEvent('game_completed', {
         userId: user?.id,
-        metadata: { dayNumber, points, correctCount, hintUsed }
+        metadata: { dayNumber, points, correctCount, hintUsed, isArchive }
       });
     }
   }, []);
@@ -57,24 +61,33 @@ export const ResultsCard = ({
   useEffect(() => {
     const handleUserData = async () => {
       if (user && !hasSaved) {
-        // First, try to migrate localStorage data
-        const didMigrate = await migrateLocalStorageToSupabase(user.id);
-        
-        if (didMigrate) {
-          toast({
-            title: "Progress saved!",
-            description: "Your previous game data has been synced to your account.",
-          });
+        // First, try to migrate localStorage data (only for daily puzzles)
+        if (!isArchive) {
+          const didMigrate = await migrateLocalStorageToSupabase(user.id);
+          
+          if (didMigrate) {
+            toast({
+              title: "Progress saved!",
+              description: "Your previous game data has been synced to your account.",
+            });
+          }
         }
         
-        // Save current game result
-        await saveGameResult(user.id, dayNumber, answers, hintUsed, hintUsedOnEvent);
+        /**
+         * Save game result to Supabase.
+         * Archive plays are tracked for history but don't affect streaks.
+         */
+        if (isArchive) {
+          await saveArchiveGameResult(user.id, dayNumber, answers, hintUsed, hintUsedOnEvent);
+        } else {
+          await saveGameResult(user.id, dayNumber, answers, hintUsed, hintUsedOnEvent);
+        }
         setHasSaved(true);
       }
     };
     
     handleUserData();
-  }, [user, dayNumber, answers, hintUsed, hintUsedOnEvent, hasSaved, toast]);
+  }, [user, dayNumber, answers, hintUsed, hintUsedOnEvent, hasSaved, toast, isArchive]);
 
   // Determine if we should show login prompt
   useEffect(() => {
@@ -91,7 +104,6 @@ export const ResultsCard = ({
           text: shareText,
         });
       } catch (e) {
-        // User cancelled or share failed
         handleCopy();
       }
     } else {
@@ -191,6 +203,19 @@ export const ResultsCard = ({
               )}
             </Button>
             
+            {/* Back to Archive button - only for archive puzzles */}
+            {isArchive && (
+              <Button 
+                onClick={() => navigate('/archive')} 
+                variant="outline" 
+                size="lg" 
+                className="w-full gap-2"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                Back to Archive
+              </Button>
+            )}
+            
             <Button 
               onClick={onShowStats} 
               variant="outline" 
@@ -202,13 +227,25 @@ export const ResultsCard = ({
             </Button>
           </div>
 
-          {/* Next puzzle countdown */}
-          <CountdownToMidnight />
+          {/* Next puzzle countdown - only for today's puzzle */}
+          {!isArchive && <CountdownToMidnight />}
+          
+          {/* Info for archive puzzles */}
+          {isArchive && (
+            <div className="text-center pt-4 border-t border-border">
+              <p className="text-sm text-muted-foreground">
+                📚 From the Archive
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                This play doesn't affect your daily streak
+              </p>
+            </div>
+          )}
         </CardContent>
       </Card>
 
-      {/* How You Compared Today - only for logged-in users */}
-      {user && hasSaved && (
+      {/* How You Compared Today - only for logged-in users and daily puzzles */}
+      {user && hasSaved && !isArchive && (
         <ComparisonCard dayNumber={dayNumber} hintUsed={hintUsed} />
       )}
 

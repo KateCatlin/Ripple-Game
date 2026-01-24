@@ -8,6 +8,7 @@ export interface PuzzleEvent {
 export interface Puzzle {
   id: number;
   title: string;
+  date?: string; // YYYY-MM-DD format - assigned dynamically based on rotation
   events: PuzzleEvent[];
 }
 
@@ -1595,17 +1596,103 @@ export const puzzles: Puzzle[] = [
   }
 ];
 
-// Get puzzle for a specific day (uses date to determine which puzzle)
+/**
+ * Generate dates for puzzles based on a start date.
+ * - Past dates form the archive (playable anytime)
+ * - Today's date is the current daily puzzle
+ * - Future dates are upcoming puzzles in rotation
+ */
+const generatePuzzleDates = (): Map<number, string> => {
+  const dateMap = new Map<number, string>();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  // Start date: 20 days ago to create archive
+  const startDate = new Date(today);
+  startDate.setDate(startDate.getDate() - 20);
+  
+  puzzles.forEach((puzzle, index) => {
+    const puzzleDate = new Date(startDate);
+    puzzleDate.setDate(puzzleDate.getDate() + index);
+    const dateStr = puzzleDate.toISOString().split('T')[0];
+    dateMap.set(puzzle.id, dateStr);
+  });
+  
+  return dateMap;
+};
+
+// Generate dates once and cache
+const puzzleDateMap = generatePuzzleDates();
+
+// Add dates to puzzles
+puzzles.forEach(puzzle => {
+  (puzzle as Puzzle).date = puzzleDateMap.get(puzzle.id) || '';
+});
+
+/**
+ * Get the puzzle for today (or a specific date).
+ * Finds the puzzle assigned to the given date.
+ */
 export const getPuzzleForDay = (date: Date = new Date()): Puzzle => {
+  const dateStr = date.toISOString().split('T')[0];
+  const puzzle = puzzles.find(p => p.date === dateStr);
+  
+  if (puzzle) {
+    return puzzle;
+  }
+  
+  // Fallback: cycle through puzzles if no date match
   const startDate = new Date('2024-01-01');
   const diffTime = Math.abs(date.getTime() - startDate.getTime());
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   const puzzleIndex = diffDays % puzzles.length;
-  return { ...puzzles[puzzleIndex], id: diffDays + 1 };
+  return puzzles[puzzleIndex];
 };
 
+/**
+ * Get the day number for display (e.g., Ripple #731).
+ * Based on days since launch.
+ */
 export const getDayNumber = (date: Date = new Date()): number => {
   const startDate = new Date('2024-01-01');
   const diffTime = Math.abs(date.getTime() - startDate.getTime());
   return Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+};
+
+/**
+ * Get a puzzle by its assigned date string (YYYY-MM-DD).
+ */
+export const getPuzzleByDate = (dateStr: string): Puzzle | null => {
+  return puzzles.find(p => p.date === dateStr) || null;
+};
+
+/**
+ * Get all archived puzzles (puzzles with dates before today).
+ * Sorted most recent first.
+ */
+export const getArchivedPuzzles = (): Puzzle[] => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayStr = today.toISOString().split('T')[0];
+  
+  return puzzles
+    .filter(p => p.date && p.date < todayStr)
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+};
+
+/**
+ * Check if a date string represents today's puzzle.
+ */
+export const isToday = (dateStr: string): boolean => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return dateStr === today.toISOString().split('T')[0];
+};
+
+/**
+ * Get the day number for a specific date string.
+ */
+export const getDayNumberForDate = (dateStr: string): number => {
+  const date = new Date(dateStr + 'T00:00:00');
+  return getDayNumber(date);
 };

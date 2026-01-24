@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { getPuzzleForDay, getDayNumber, Puzzle, PuzzleEvent } from '@/data/puzzles';
-import { getGameState, saveGameState, updateStatsAfterGame, GameState } from '@/lib/storage';
+import { getPuzzleForDay, getDayNumber, getPuzzleByDate, getDayNumberForDate, isToday, Puzzle, PuzzleEvent } from '@/data/puzzles';
+import { getGameStateForDate, saveGameStateForDate, updateStatsAfterGame, GameState } from '@/lib/storage';
 import { useAuth } from '@/contexts/AuthContext';
-import { hasPlayedToday } from '@/lib/supabaseStats';
+import { hasPlayedPuzzle } from '@/lib/supabaseStats';
 import { supabase } from '@/integrations/supabase/client';
 import { shuffleWithMapping } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
@@ -10,6 +10,8 @@ import { trackEvent } from '@/lib/analytics';
 export interface UseGameStateReturn {
   puzzle: Puzzle;
   dayNumber: number;
+  puzzleDate: string;
+  isArchive: boolean;
   currentEventIndex: number;
   currentEvent: PuzzleEvent | null;
   shuffledOptions: string[];
@@ -28,10 +30,47 @@ export interface UseGameStateReturn {
   getScore: () => { correct: number; total: number };
 }
 
-export const useGameState = (): UseGameStateReturn => {
+interface UseGameStateOptions {
+  puzzleDate?: string; // Optional date to load specific puzzle (for archive)
+}
+
+/**
+ * Game state hook that manages puzzle gameplay.
+ * 
+ * Storage key structure for per-puzzle completion tracking:
+ * - Today's puzzle: `ripple-game-state` (backwards compatible)
+ * - Archive puzzles: `ripple-game-state-{YYYY-MM-DD}` (keyed by date)
+ * 
+ * This ensures each puzzle can only be played once per user.
+ */
+export const useGameState = (options: UseGameStateOptions = {}): UseGameStateReturn => {
   const { user } = useAuth();
-  const [puzzle] = useState<Puzzle>(() => getPuzzleForDay());
-  const [dayNumber] = useState<number>(() => getDayNumber());
+  
+  // Determine which puzzle to load
+  const { puzzle, dayNumber, puzzleDate, isArchive } = useMemo(() => {
+    if (options.puzzleDate) {
+      const archivePuzzle = getPuzzleByDate(options.puzzleDate);
+      if (archivePuzzle) {
+        return {
+          puzzle: archivePuzzle,
+          dayNumber: getDayNumberForDate(options.puzzleDate),
+          puzzleDate: options.puzzleDate,
+          isArchive: !isToday(options.puzzleDate),
+        };
+      }
+    }
+    // Default to today's puzzle
+    const todayPuzzle = getPuzzleForDay();
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+    return {
+      puzzle: todayPuzzle,
+      dayNumber: getDayNumber(),
+      puzzleDate: todayStr,
+      isArchive: false,
+    };
+  }, [options.puzzleDate]);
+
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [answers, setAnswers] = useState<(boolean | null)[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -40,7 +79,7 @@ export const useGameState = (): UseGameStateReturn => {
   const [hintUsed, setHintUsed] = useState(false);
   const [hintUsedOnEvent, setHintUsedOnEvent] = useState<number | null>(null);
   const [eliminatedOptions, setEliminatedOptions] = useState<number[]>([]);
-  const [shuffleSeed, setShuffleSeed] = useState(0); // Used to trigger re-shuffle on next event
+  const [shuffleSeed, setShuffleSeed] = useState(0);
 
   const currentEvent = puzzle.events[currentEventIndex] || null;
 
@@ -50,23 +89,23 @@ export const useGameState = (): UseGameStateReturn => {
       return { shuffledOptions: [], shuffledCorrectIndex: -1, indexMap: [] };
     }
     const { shuffled, indexMap } = shuffleWithMapping(currentEvent.options);
-    // Find which shuffled index contains the correct answer
     const correctShuffledIndex = indexMap.findIndex(origIndex => origIndex === currentEvent.correctIndex);
     return {
       shuffledOptions: shuffled,
       shuffledCorrectIndex: correctShuffledIndex,
       indexMap,
     };
-  }, [currentEvent, shuffleSeed]); // shuffleSeed dependency ensures re-shuffle on event change
+  }, [currentEvent, shuffleSeed]);
 
   // Load saved state on mount and check Supabase for logged-in users
   useEffect(() => {
     const loadState = async () => {
-      const savedState = getGameState();
+      // Get saved state for this specific puzzle date
+      const savedState = getGameStateForDate(puzzleDate);
       
-      // If user is logged in, check if they've already played today in Supabase
+      // If user is logged in, check if they've already played this puzzle in Supabase
       if (user) {
-        const playedInSupabase = await hasPlayedToday(user.id, dayNumber);
+        const playedInSupabase = await hasPlayedPuzzle(user.id, dayNumber);
         
         if (playedInSupabase) {
           // Load their previous result from Supabase
@@ -88,35 +127,30 @@ export const useGameState = (): UseGameStateReturn => {
         }
       }
       
-      // Fallback to localStorage
-      if (savedState.dayNumber === dayNumber) {
+      // Fallback to localStorage (keyed by puzzle date)
+      if (savedState && savedState.dayNumber === dayNumber) {
         setCurrentEventIndex(savedState.currentEventIndex);
         setAnswers(savedState.answers);
         setIsComplete(savedState.isComplete);
         setHintUsed(savedState.hintUsed);
         setHintUsedOnEvent(savedState.hintUsedOnEvent);
         
-        // If game was in progress, restore explanation state
         if (savedState.answers.length > savedState.currentEventIndex) {
           setShowExplanation(true);
         }
       } else {
-        // New day, reset state
-        const initialState: GameState = {
-          dayNumber,
-          currentEventIndex: 0,
-          answers: [],
-          isComplete: false,
-          hasSeenTutorial: savedState.hasSeenTutorial,
-          hintUsed: false,
-          hintUsedOnEvent: null,
-        };
-        saveGameState(initialState);
+        // New puzzle, reset state
+        setCurrentEventIndex(0);
+        setAnswers([]);
+        setIsComplete(false);
+        setHintUsed(false);
+        setHintUsedOnEvent(null);
+        setShowExplanation(false);
       }
     };
     
     loadState();
-  }, [dayNumber, user]);
+  }, [dayNumber, puzzleDate, user]);
 
   // Save state whenever it changes
   useEffect(() => {
@@ -125,17 +159,16 @@ export const useGameState = (): UseGameStateReturn => {
       currentEventIndex,
       answers,
       isComplete,
-      hasSeenTutorial: getGameState().hasSeenTutorial,
+      hasSeenTutorial: true, // Always true for archive puzzles
       hintUsed,
       hintUsedOnEvent,
     };
-    saveGameState(state);
-  }, [dayNumber, currentEventIndex, answers, isComplete, hintUsed, hintUsedOnEvent]);
+    saveGameStateForDate(puzzleDate, state);
+  }, [dayNumber, puzzleDate, currentEventIndex, answers, isComplete, hintUsed, hintUsedOnEvent]);
 
   const selectAnswer = useCallback((index: number) => {
     if (showExplanation || isComplete) return;
     
-    // Check against shuffled correct index, not original
     const isCorrect = index === shuffledCorrectIndex;
     setSelectedAnswer(index);
     setShowExplanation(true);
@@ -143,23 +176,30 @@ export const useGameState = (): UseGameStateReturn => {
     const newAnswers = [...answers, isCorrect];
     setAnswers(newAnswers);
     
-    // Track question answered for funnel analysis
     const questionNumber = currentEventIndex + 1;
     trackEvent('question_answered', {
       userId: user?.id,
       metadata: { 
         question_number: questionNumber, 
         is_correct: isCorrect,
-        day_number: dayNumber 
+        day_number: dayNumber,
+        is_archive: isArchive,
       }
     });
     
-    // Check if this was the last event
     if (currentEventIndex >= puzzle.events.length - 1) {
       setIsComplete(true);
-      updateStatsAfterGame(newAnswers.filter((a): a is boolean => a !== null));
+      
+      /**
+       * Archive plays DO NOT affect daily streaks.
+       * Streaks measure consecutive daily engagement with the daily puzzle.
+       * Archive completions are still tracked for history/completions list.
+       */
+      if (!isArchive) {
+        updateStatsAfterGame(newAnswers.filter((a): a is boolean => a !== null));
+      }
     }
-  }, [showExplanation, isComplete, shuffledCorrectIndex, answers, currentEventIndex, puzzle.events.length, user?.id, dayNumber]);
+  }, [showExplanation, isComplete, shuffledCorrectIndex, answers, currentEventIndex, puzzle.events.length, user?.id, dayNumber, isArchive]);
 
   const nextEvent = useCallback(() => {
     if (currentEventIndex < puzzle.events.length - 1) {
@@ -167,19 +207,17 @@ export const useGameState = (): UseGameStateReturn => {
       setSelectedAnswer(null);
       setShowExplanation(false);
       setEliminatedOptions([]);
-      setShuffleSeed(prev => prev + 1); // Trigger new shuffle for next event
+      setShuffleSeed(prev => prev + 1);
     }
   }, [currentEventIndex, puzzle.events.length]);
 
   const useHint = useCallback(() => {
     if (hintUsed || showExplanation || isComplete || !currentEvent) return;
     
-    // Get shuffled indices of wrong answers (not the shuffled correct one)
     const wrongIndices = shuffledOptions
       .map((_, index) => index)
       .filter(index => index !== shuffledCorrectIndex);
     
-    // Fisher-Yates shuffle to randomly select 2 wrong answers to eliminate
     for (let i = wrongIndices.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [wrongIndices[i], wrongIndices[j]] = [wrongIndices[j], wrongIndices[i]];
@@ -211,7 +249,6 @@ export const useGameState = (): UseGameStateReturn => {
       })
       .join('\n');
     
-    // Calculate points
     const points = answers
       .filter((a): a is boolean => a !== null)
       .reduce((total, correct, index) => {
@@ -221,12 +258,15 @@ export const useGameState = (): UseGameStateReturn => {
       }, 0);
     
     const hintIndicator = hintUsed ? ' 💡' : '';
-    return `Ripple #${dayNumber} 🌊\n${emojis}\nScore: ${points} points${hintIndicator}\n\nPlay at: ${window.location.origin}`;
-  }, [dayNumber, answers, getScore, hintUsed, hintUsedOnEvent]);
+    const archiveIndicator = isArchive ? ' (Archive)' : '';
+    return `Ripple #${dayNumber}${archiveIndicator} 🌊\n${emojis}\nScore: ${points} points${hintIndicator}\n\nPlay at: ${window.location.origin}`;
+  }, [dayNumber, answers, getScore, hintUsed, hintUsedOnEvent, isArchive]);
 
   return {
     puzzle,
     dayNumber,
+    puzzleDate,
+    isArchive,
     currentEventIndex,
     currentEvent,
     shuffledOptions,
