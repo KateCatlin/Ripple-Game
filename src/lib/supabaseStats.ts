@@ -103,8 +103,11 @@ export const fetchUserStats = async (userId: string): Promise<SupabaseUserStats 
   return data;
 };
 
-// Check if user has played today
-export const hasPlayedToday = async (userId: string, dayNumber: number): Promise<boolean> => {
+/**
+ * Check if user has played a specific puzzle (by day number).
+ * Used for both daily puzzles and archive puzzles to ensure single play.
+ */
+export const hasPlayedPuzzle = async (userId: string, dayNumber: number): Promise<boolean> => {
   const { data, error } = await supabase
     .from('game_results')
     .select('id')
@@ -113,12 +116,15 @@ export const hasPlayedToday = async (userId: string, dayNumber: number): Promise
     .maybeSingle();
   
   if (error) {
-    console.error('Error checking if played today:', error);
+    console.error('Error checking if played puzzle:', error);
     return false;
   }
   
   return !!data;
 };
+
+// Backwards compatible alias
+export const hasPlayedToday = hasPlayedPuzzle;
 
 // Get daily comparison stats for a user
 export const fetchDailyComparison = async (userId: string, dayNumber: number): Promise<DailyComparison | null> => {
@@ -237,7 +243,7 @@ export const updateDisplayName = async (userId: string, displayName: string): Pr
   return true;
 };
 
-// Save game result to Supabase
+// Save game result to Supabase (for daily puzzles - affects streaks)
 export const saveGameResult = async (
   userId: string,
   dayNumber: number,
@@ -267,8 +273,51 @@ export const saveGameResult = async (
     return false;
   }
   
-  // Update user stats
+  // Update user stats (affects streaks for daily puzzles)
   await updateUserStats(userId, answers, points);
+  
+  return true;
+};
+
+/**
+ * Save archive game result to Supabase.
+ * 
+ * IMPORTANT: Archive plays DO NOT affect daily streaks!
+ * Streaks measure consecutive daily engagement with the daily puzzle,
+ * not historical puzzle completions. Archive completions are still
+ * tracked for history/completions list.
+ */
+export const saveArchiveGameResult = async (
+  userId: string,
+  dayNumber: number,
+  answers: boolean[],
+  hintUsed: boolean,
+  hintUsedOnEvent: number | null
+): Promise<boolean> => {
+  const score = answers.filter(Boolean).length;
+  const points = calculatePoints(answers, hintUsedOnEvent);
+  
+  const { error } = await supabase
+    .from('game_results')
+    .upsert({
+      user_id: userId,
+      day_number: dayNumber,
+      answers,
+      hint_used: hintUsed,
+      hint_used_on_event: hintUsedOnEvent,
+      score,
+      points,
+    }, {
+      onConflict: 'user_id,day_number',
+    });
+  
+  if (error) {
+    console.error('Error saving archive game result:', error);
+    return false;
+  }
+  
+  // NOTE: We intentionally DO NOT call updateUserStats here
+  // because archive plays should not affect streaks or daily stats
   
   return true;
 };

@@ -61,6 +61,9 @@ export const saveStats = (stats: GameStats): void => {
   }
 };
 
+/**
+ * Get game state for today's puzzle (backwards compatible).
+ */
 export const getGameState = (): GameState => {
   try {
     const stored = localStorage.getItem(GAME_STATE_KEY);
@@ -73,6 +76,44 @@ export const getGameState = (): GameState => {
   return defaultGameState;
 };
 
+/**
+ * Get game state for a specific puzzle date.
+ * 
+ * Storage key structure for per-puzzle completion tracking:
+ * - Today's puzzle: Uses the base key for backwards compatibility
+ * - Archive puzzles: Uses `ripple-game-state-{YYYY-MM-DD}` keyed by date
+ * 
+ * This ensures each puzzle can only be played once per user.
+ */
+export const getGameStateForDate = (puzzleDate: string): GameState | null => {
+  const today = new Date().toISOString().split('T')[0];
+  const storageKey = puzzleDate === today ? GAME_STATE_KEY : `${GAME_STATE_KEY}-${puzzleDate}`;
+  
+  try {
+    const stored = localStorage.getItem(storageKey);
+    if (stored) {
+      return { ...defaultGameState, ...JSON.parse(stored) };
+    }
+  } catch (e) {
+    console.error('Error reading game state for date:', e);
+  }
+  return null;
+};
+
+/**
+ * Save game state for a specific puzzle date.
+ */
+export const saveGameStateForDate = (puzzleDate: string, state: GameState): void => {
+  const today = new Date().toISOString().split('T')[0];
+  const storageKey = puzzleDate === today ? GAME_STATE_KEY : `${GAME_STATE_KEY}-${puzzleDate}`;
+  
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(state));
+  } catch (e) {
+    console.error('Error saving game state for date:', e);
+  }
+};
+
 export const saveGameState = (state: GameState): void => {
   try {
     localStorage.setItem(GAME_STATE_KEY, JSON.stringify(state));
@@ -81,6 +122,14 @@ export const saveGameState = (state: GameState): void => {
   }
 };
 
+/**
+ * Update stats after completing the DAILY puzzle.
+ * 
+ * IMPORTANT: Archive plays DO NOT affect daily streaks!
+ * Streaks measure consecutive daily engagement with the daily puzzle,
+ * not historical puzzle completions. This function should only be called
+ * for today's puzzle completion, not archive plays.
+ */
 export const updateStatsAfterGame = (answers: boolean[]): void => {
   const stats = getStats();
   const today = new Date().toDateString();
@@ -97,7 +146,7 @@ export const updateStatsAfterGame = (answers: boolean[]): void => {
   stats.totalCorrect += correctCount;
   stats.totalEvents += answers.length;
   
-  // Update streak
+  // Update streak - ONLY for daily puzzles
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   
@@ -113,7 +162,6 @@ export const updateStatsAfterGame = (answers: boolean[]): void => {
   // Update per-event success rate (track totals for calculation)
   answers.forEach((correct, index) => {
     if (index < stats.eventSuccessRate.length) {
-      // Store as running total percentage
       const previousTotal = (stats.eventSuccessRate[index] * (stats.gamesPlayed - 1)) / 100;
       const newTotal = previousTotal + (correct ? 1 : 0);
       stats.eventSuccessRate[index] = Math.round((newTotal / stats.gamesPlayed) * 100);

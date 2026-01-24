@@ -1,5 +1,6 @@
 import { useGameState } from "@/hooks/useGameState";
 import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 import { Header } from "./Header";
 import { ProgressIndicator } from "./ProgressIndicator";
 import { EventCard } from "./EventCard";
@@ -16,6 +17,7 @@ import { Lightbulb } from "lucide-react";
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
 
 export const GameBoard = () => {
+  const { date: routeDate } = useParams<{ date?: string }>();
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [showStats, setShowStats] = useState(false);
   const [showResults, setShowResults] = useState(false);
@@ -24,6 +26,8 @@ export const GameBoard = () => {
   const {
     puzzle,
     dayNumber,
+    puzzleDate,
+    isArchive,
     currentEventIndex,
     currentEvent,
     shuffledOptions,
@@ -40,21 +44,20 @@ export const GameBoard = () => {
     useHint,
     getShareText,
     getScore,
-  } = useGameState();
+  } = useGameState({ puzzleDate: routeDate });
 
-  // Show tutorial on first visit
+  // Show tutorial on first visit (only for daily puzzle, not archive)
   useEffect(() => {
-    if (!hasSeenTutorial()) {
+    if (!hasSeenTutorial() && !isArchive) {
       setShowHowToPlay(true);
     }
-  }, []);
+  }, [isArchive]);
 
   const handleTutorialComplete = () => {
     markTutorialSeen();
   };
 
-  // Show results only on initial mount if game was already complete (restored from storage)
-  // Don't auto-show results when isComplete changes during gameplay - let user click the button
+  // Show results only on initial mount if game was already complete
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -71,7 +74,9 @@ export const GameBoard = () => {
           <Header 
             dayNumber={dayNumber} 
             onShowHelp={() => setShowHowToPlay(true)} 
-            onShowStats={() => setShowStats(true)} 
+            onShowStats={() => setShowStats(true)}
+            isArchive={isArchive}
+            puzzleDate={puzzleDate}
           />
           
           <ResultsCard
@@ -82,6 +87,7 @@ export const GameBoard = () => {
             onShowStats={() => setShowStats(true)}
             hintUsedOnEvent={hintUsedOnEvent}
             hintUsed={hintUsed}
+            isArchive={isArchive}
           />
 
           <HowToPlayModal 
@@ -114,7 +120,9 @@ export const GameBoard = () => {
         <Header 
           dayNumber={dayNumber} 
           onShowHelp={() => setShowHowToPlay(true)} 
-          onShowStats={() => setShowStats(true)} 
+          onShowStats={() => setShowStats(true)}
+          isArchive={isArchive}
+          puzzleDate={puzzleDate}
         />
 
         <ProgressIndicator
@@ -152,7 +160,6 @@ export const GameBoard = () => {
 
           {!showExplanation && (
             <div className="mt-4 flex justify-center">
-                {/* Tooltip clarifies what the 50/50 hint does and its scoring tradeoff */}
                 <TooltipProvider delayDuration={150}>
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -168,7 +175,7 @@ export const GameBoard = () => {
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent side="top" align="center" className="max-w-xs text-center">
-                      Use this once per game to remove two incorrect answers. You’ll earn half the usual points (50 instead of 100) for this question if you get it right.
+                      Use this once per game to remove two incorrect answers. You'll earn half the usual points (50 instead of 100) for this question if you get it right.
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
