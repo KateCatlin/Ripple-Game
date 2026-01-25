@@ -202,7 +202,7 @@ export const ResultsCard = ({
                 className="w-full gap-2"
               >
                 <Library className="w-5 h-5" />
-                Keep Playing — Explore 700+ Puzzles
+                Keep Playing — Explore Past Puzzles
               </Button>
             )}
             
