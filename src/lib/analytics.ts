@@ -23,7 +23,8 @@ export type AnalyticsEvent =
   | 'signup_completed'
   | 'login_completed'
   | 'archive_cta_clicked'
-  | 'archive_puzzle_clicked';
+  | 'archive_puzzle_clicked'
+  | 'archive_puzzle_completed';
 
 interface TrackEventOptions {
   userId?: string;

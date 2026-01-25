@@ -54,6 +54,14 @@ export const ResultsCard = ({
         userId: user?.id,
         metadata: { dayNumber, points, correctCount, hintUsed, isArchive }
       });
+      
+      // Also track archive-specific completion for funnel analysis
+      if (isArchive) {
+        trackEvent('archive_puzzle_completed', {
+          userId: user?.id,
+          metadata: { dayNumber, points, correctCount, hintUsed }
+        });
+      }
     }
   }, []);
 
