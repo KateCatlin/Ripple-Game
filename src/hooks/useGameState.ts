@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { getPuzzleForDay, getDayNumber, getPuzzleByDate, getDayNumberForDate, isToday, Puzzle, PuzzleEvent } from '@/data/puzzles';
+import { getPuzzleForDay, getDayNumber, getPuzzleByDate, getDayNumberForDate, getTodayInPST, isToday, Puzzle, PuzzleEvent } from '@/data/puzzles';
 import { getGameStateForDate, saveGameStateForDate, updateStatsAfterGame, GameState } from '@/lib/storage';
 import { useAuth } from '@/contexts/AuthContext';
 import { hasPlayedPuzzle } from '@/lib/supabaseStats';
@@ -80,6 +80,25 @@ export const useGameState = (options: UseGameStateOptions = {}): UseGameStateRet
   const [hintUsedOnEvent, setHintUsedOnEvent] = useState<number | null>(null);
   const [eliminatedOptions, setEliminatedOptions] = useState<number[]>([]);
   const [shuffleSeed, setShuffleSeed] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const now = new Date();
+    const todayStr = getTodayInPST();
+    let nextRefresh = new Date(`${todayStr}T00:00:10-10:00`);
+
+    if (now.getTime() >= nextRefresh.getTime()) {
+      nextRefresh = new Date(nextRefresh.getTime() + 24 * 60 * 60 * 1000);
+    }
+
+    const delayMs = nextRefresh.getTime() - now.getTime();
+    const timerId = window.setTimeout(() => {
+      window.location.reload();
+    }, delayMs);
+
+    return () => window.clearTimeout(timerId);
+  }, []);
 
   const currentEvent = puzzle.events[currentEventIndex] || null;
 
