@@ -18,6 +18,7 @@ export type AnalyticsEvent =
   | 'game_started'
   | 'game_completed'
   | 'question_answered'
+  | 'stats_viewed'
   | 'leaderboard_viewed'
   | 'signup_completed'
   | 'login_completed'
