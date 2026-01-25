@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Share2, Copy, Check, BarChart3, ArrowLeft } from "lucide-react";
+import { Share2, Check, BarChart3, ArrowLeft, Library } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -178,53 +178,53 @@ export const ResultsCard = ({
             })}
           </div>
 
-          {/* Share text preview */}
-          <div className="bg-muted/50 rounded-lg p-4 font-mono text-sm whitespace-pre-line text-muted-foreground">
-            {shareText.split('\n').slice(0, 6).join('\n')}
-          </div>
-
           {/* Actions */}
           <div className="flex flex-col gap-3">
-            <Button 
-              onClick={handleShare} 
-              size="lg" 
-              className="w-full gap-2"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-5 h-5" />
-                  Copied!
-                </>
-              ) : (
-                <>
-                  <Share2 className="w-5 h-5" />
-                  Share Results
-                </>
-              )}
-            </Button>
-            
-            {/* Back to Archive button - only for archive puzzles */}
-            {isArchive && (
+            {/* Primary CTA - Keep Playing (daily puzzles) or Back to Archive (archive puzzles) */}
+            {isArchive ? (
               <Button 
                 onClick={() => navigate('/archive')} 
-                variant="outline" 
                 size="lg" 
                 className="w-full gap-2"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Back to Archive
               </Button>
+            ) : (
+              <Button 
+                onClick={() => {
+                  trackEvent('archive_cta_clicked', {
+                    metadata: { from: 'results_page', day_number: dayNumber }
+                  });
+                  navigate('/archive');
+                }} 
+                size="lg" 
+                className="w-full gap-2"
+              >
+                <Library className="w-5 h-5" />
+                Keep Playing — Explore 700+ Puzzles
+              </Button>
             )}
             
-            <Button 
-              onClick={onShowStats} 
-              variant="outline" 
-              size="lg" 
-              className="w-full gap-2"
-            >
-              <BarChart3 className="w-5 h-5" />
-              View Statistics
-            </Button>
+            {/* Secondary Actions - Side by Side */}
+            <div className="flex gap-3">
+              <Button 
+                onClick={onShowStats} 
+                variant="outline" 
+                className="flex-1 gap-2"
+              >
+                <BarChart3 className="w-4 h-4" />
+                Stats
+              </Button>
+              <Button 
+                onClick={handleShare} 
+                variant="outline" 
+                className="flex-1 gap-2"
+              >
+                {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
+                {copied ? "Copied" : "Share"}
+              </Button>
+            </div>
           </div>
 
           {/* Next puzzle countdown - only for today's puzzle */}
