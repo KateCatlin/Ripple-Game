@@ -9,14 +9,12 @@ import {
 } from "@/lib/supabaseStats";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Pencil, Check, X, ChevronDown } from "lucide-react";
+import { Pencil, Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { LoginPromptCard } from "./LoginPromptCard";
 
 export const LeaderboardTab = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const { user } = useAuth();
   const { toast } = useToast();
   const [loading, setLoading] = useState(true);
@@ -96,29 +94,6 @@ export const LeaderboardTab = () => {
     loadData();
   }, [user]);
 
-  // Check if content is scrollable and show indicator
-  useEffect(() => {
-    const checkScrollable = () => {
-      const container = scrollContainerRef.current;
-      if (container) {
-        const isScrollable = container.scrollHeight > container.clientHeight;
-        const isAtBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
-        setShowScrollIndicator(isScrollable && !isAtBottom);
-      }
-    };
-
-    // Check after content loads
-    if (!loading) {
-      setTimeout(checkScrollable, 100);
-    }
-
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener('scroll', checkScrollable);
-      return () => container.removeEventListener('scroll', checkScrollable);
-    }
-  }, [loading]);
-
   const handleSaveName = async () => {
     if (!user || !editName.trim()) return;
     
@@ -183,193 +158,182 @@ export const LeaderboardTab = () => {
     : 0;
 
   return (
-    <div className="relative">
-      <div ref={scrollContainerRef} className="space-y-6 py-4">
-        {/* User's rank section */}
-        <div className="text-center p-4 bg-primary/5 rounded-xl border border-primary/20">
-          <p className="text-sm text-muted-foreground mb-1">Your All-Time Rank</p>
-          {isRanked ? (
-            <>
-              <p className="text-3xl font-display font-bold text-primary">
-                #{userRank} <span className="text-lg font-normal text-muted-foreground">of {totalPlayers} players</span>
-              </p>
-              <p className="text-sm text-muted-foreground mt-1">
-                Top {100 - userPercentile}% overall
-              </p>
-              {userEntry && (
-                <p className="text-lg font-medium mt-2">
-                  Total: {userEntry.total_points.toLocaleString()} points
-                </p>
-              )}
-            </>
-          ) : (
-            <>
-              <p className="text-xl font-display font-bold text-muted-foreground">
-                Not ranked yet
-              </p>
-              <p className="text-sm text-muted-foreground mt-1">
-                Complete a game to appear on the leaderboard!
-              </p>
-            </>
-          )}
-        </div>
-
-        {/* Top Streaks section - FIRST for emphasis on daily engagement */}
-        <div>
-          <h4 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
-            🔥 Longest Streaks
-          </h4>
-          <div className="space-y-1">
-            {topStreaks.slice(0, 5).map((entry, index) => {
-              const rank = index + 1;
-              const isCurrentUser = entry.user_id === user.id;
-              
-              return (
-                <div
-                  key={entry.user_id}
-                  className={cn(
-                    "flex items-center justify-between py-1.5 text-sm",
-                    isCurrentUser && "font-medium text-secondary"
-                  )}
-                >
-                  <span>{rank}. {entry.display_name}</span>
-                  <span>{entry.max_streak} days</span>
-                </div>
-              );
-            })}
-          </div>
-          
-          {userCurrentStreak > 0 && (
-            <p className="text-sm text-muted-foreground mt-3 text-center">
-              Your streak: {userCurrentStreak} day{userCurrentStreak !== 1 ? 's' : ''}
-              {streakPercentile > 0 && ` (top ${100 - streakPercentile}%)`}
+    <div className="space-y-6 py-4">
+      {/* User's rank section */}
+      <div className="text-center p-4 bg-primary/5 rounded-xl border border-primary/20">
+        <p className="text-sm text-muted-foreground mb-1">Your All-Time Rank</p>
+        {isRanked ? (
+          <>
+            <p className="text-3xl font-display font-bold text-primary">
+              #{userRank} <span className="text-lg font-normal text-muted-foreground">of {totalPlayers} players</span>
             </p>
-          )}
-        </div>
+            <p className="text-sm text-muted-foreground mt-1">
+              Top {100 - userPercentile}% overall
+            </p>
+            {userEntry && (
+              <p className="text-lg font-medium mt-2">
+                Total: {userEntry.total_points.toLocaleString()} points
+              </p>
+            )}
+          </>
+        ) : (
+          <>
+            <p className="text-xl font-display font-bold text-muted-foreground">
+              Not ranked yet
+            </p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Complete a game to appear on the leaderboard!
+            </p>
+          </>
+        )}
+      </div>
 
-        {/* Top Players section */}
-        <div>
-          <h4 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
-            🏆 Top Players <span className="text-xs">(by average points)</span>
-          </h4>
-          <div className="space-y-2">
-            {displayEntries.map((entry, index) => {
-              const rank = index + 1;
-              const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
-              const isCurrentUser = entry.user_id === user.id;
-              
-              return (
-                <div
-                  key={entry.user_id}
-                  className={cn(
-                    "flex items-center justify-between p-2 rounded-lg text-sm",
-                    isCurrentUser && "bg-secondary/10 border border-secondary/30"
-                  )}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="w-6">{medal}</span>
-                    <span className={cn("font-medium", isCurrentUser && "text-secondary")}>
-                      {entry.display_name}
-                      {isCurrentUser && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-5 w-5 p-0 ml-1"
-                          onClick={() => {
-                            setEditName(entry.display_name);
-                            setIsEditing(true);
-                          }}
-                        >
-                          <Pencil className="h-3 w-3" />
-                        </Button>
-                      )}
-                    </span>
-                  </div>
-                  <span className="text-muted-foreground">
-                    {entry.avg_points} avg · {entry.games_played} games
-                  </span>
-                </div>
-              );
-            })}
+      {/* Top Players section */}
+      <div>
+        <h4 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
+          🏆 Top Players <span className="text-xs">(by average points)</span>
+        </h4>
+        <div className="space-y-2">
+          {displayEntries.map((entry, index) => {
+            const rank = index + 1;
+            const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
+            const isCurrentUser = entry.user_id === user.id;
             
-            {showUserSeparately && (
-              <>
-                <div className="text-center text-muted-foreground text-xs py-1">...</div>
-                <div className="flex items-center justify-between p-2 rounded-lg text-sm bg-secondary/10 border border-secondary/30">
-                  <div className="flex items-center gap-2">
-                    <span className="w-6">{userRank}.</span>
-                    <span className="font-medium text-secondary">
-                      {userEntry.display_name}
+            return (
+              <div
+                key={entry.user_id}
+                className={cn(
+                  "flex items-center justify-between p-2 rounded-lg text-sm",
+                  isCurrentUser && "bg-secondary/10 border border-secondary/30"
+                )}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="w-6">{medal}</span>
+                  <span className={cn("font-medium", isCurrentUser && "text-secondary")}>
+                    {entry.display_name}
+                    {isCurrentUser && (
                       <Button
                         variant="ghost"
                         size="sm"
                         className="h-5 w-5 p-0 ml-1"
                         onClick={() => {
-                          setEditName(userEntry.display_name);
+                          setEditName(entry.display_name);
                           setIsEditing(true);
                         }}
                       >
                         <Pencil className="h-3 w-3" />
                       </Button>
-                      <span className="text-xs text-muted-foreground ml-1">← You</span>
-                    </span>
-                  </div>
-                  <span className="text-muted-foreground">
-                    {userEntry.avg_points} avg · {userEntry.games_played} games
+                    )}
                   </span>
                 </div>
-              </>
-            )}
-            
-            {entries.length === 0 && (
-              <p className="text-center text-muted-foreground text-sm py-4">
-                No players on the leaderboard yet. Be the first!
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Edit name dialog */}
-        {isEditing && (
-          <div className="fixed inset-0 bg-background/80 flex items-center justify-center z-50 p-4">
-            <div className="bg-card border rounded-lg p-4 w-full max-w-sm space-y-4">
-              <h3 className="font-display text-lg font-medium">Edit Display Name</h3>
-              <Input
-                value={editName}
-                onChange={(e) => setEditName(e.target.value)}
-                placeholder="Enter your display name"
-                maxLength={50}
-                autoFocus
-              />
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  className="flex-1"
-                  onClick={() => setIsEditing(false)}
-                  disabled={saving}
-                >
-                  <X className="h-4 w-4 mr-1" />
-                  Cancel
-                </Button>
-                <Button
-                  className="flex-1"
-                  onClick={handleSaveName}
-                  disabled={saving || !editName.trim()}
-                >
-                  <Check className="h-4 w-4 mr-1" />
-                  {saving ? 'Saving...' : 'Save'}
-                </Button>
+                <span className="text-muted-foreground">
+                  {entry.avg_points} avg · {entry.games_played} games
+                </span>
               </div>
-            </div>
-          </div>
+            );
+          })}
+          
+          {showUserSeparately && (
+            <>
+              <div className="text-center text-muted-foreground text-xs py-1">...</div>
+              <div className="flex items-center justify-between p-2 rounded-lg text-sm bg-secondary/10 border border-secondary/30">
+                <div className="flex items-center gap-2">
+                  <span className="w-6">{userRank}.</span>
+                  <span className="font-medium text-secondary">
+                    {userEntry.display_name}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-5 w-5 p-0 ml-1"
+                      onClick={() => {
+                        setEditName(userEntry.display_name);
+                        setIsEditing(true);
+                      }}
+                    >
+                      <Pencil className="h-3 w-3" />
+                    </Button>
+                    <span className="text-xs text-muted-foreground ml-1">← You</span>
+                  </span>
+                </div>
+                <span className="text-muted-foreground">
+                  {userEntry.avg_points} avg · {userEntry.games_played} games
+                </span>
+              </div>
+            </>
+          )}
+          
+          {entries.length === 0 && (
+            <p className="text-center text-muted-foreground text-sm py-4">
+              No players on the leaderboard yet. Be the first!
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Top Streaks section */}
+      <div>
+        <h4 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
+          🔥 Longest Streaks
+        </h4>
+        <div className="space-y-1">
+          {topStreaks.slice(0, 5).map((entry, index) => {
+            const rank = index + 1;
+            const isCurrentUser = entry.user_id === user.id;
+            
+            return (
+              <div
+                key={entry.user_id}
+                className={cn(
+                  "flex items-center justify-between py-1.5 text-sm",
+                  isCurrentUser && "font-medium text-secondary"
+                )}
+              >
+                <span>{rank}. {entry.display_name}</span>
+                <span>{entry.max_streak} days</span>
+              </div>
+            );
+          })}
+        </div>
+        
+        {userCurrentStreak > 0 && (
+          <p className="text-sm text-muted-foreground mt-3 text-center">
+            Your streak: {userCurrentStreak} day{userCurrentStreak !== 1 ? 's' : ''}
+            {streakPercentile > 0 && ` (top ${100 - streakPercentile}%)`}
+          </p>
         )}
       </div>
 
-      {/* Bouncing scroll indicator */}
-      {showScrollIndicator && (
-        <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-1 pointer-events-none">
-          <div className="bg-gradient-to-t from-background via-background to-transparent pt-6 pb-2 px-4">
-            <ChevronDown className="h-5 w-5 text-muted-foreground animate-bounce" />
+      {/* Edit name dialog */}
+      {isEditing && (
+        <div className="fixed inset-0 bg-background/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-card border rounded-lg p-4 w-full max-w-sm space-y-4">
+            <h3 className="font-display text-lg font-medium">Edit Display Name</h3>
+            <Input
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+              placeholder="Enter your display name"
+              maxLength={50}
+              autoFocus
+            />
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => setIsEditing(false)}
+                disabled={saving}
+              >
+                <X className="h-4 w-4 mr-1" />
+                Cancel
+              </Button>
+              <Button
+                className="flex-1"
+                onClick={handleSaveName}
+                disabled={saving || !editName.trim()}
+              >
+                <Check className="h-4 w-4 mr-1" />
+                {saving ? 'Saving...' : 'Save'}
+              </Button>
+            </div>
           </div>
         </div>
       )}
