@@ -27,10 +27,17 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
   const [totalPoints, setTotalPoints] = useState(0);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("stats");
+  const hasTrackedStats = useRef(false);
   const hasTrackedLeaderboard = useRef(false);
 
   useEffect(() => {
     if (open) {
+      // Track stats modal opened (once per session)
+      if (!hasTrackedStats.current) {
+        hasTrackedStats.current = true;
+        trackEvent('stats_viewed', { userId: user?.id });
+      }
+      
       const loadStats = async () => {
         if (user) {
           setLoading(true);
