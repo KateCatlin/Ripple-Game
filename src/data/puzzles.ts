@@ -1605,8 +1605,39 @@ export const puzzles: Puzzle[] = [
  * - ID 35 = Jan 24, ID 34 = Jan 23, etc.
  * - Today (Jan 25) = ID 36
  * - Puzzles that would fall before Dec 30, 2025 are moved to future dates
+ * 
+ * TIMEZONE: All date calculations use PST (America/Los_Angeles) as the reference.
+ * This ensures puzzle resets happen at midnight PST for consistency across users.
  */
 const LAUNCH_DATE = '2025-12-30'; // App launch date - archive starts here
+
+/**
+ * Get the current date in PST timezone as a YYYY-MM-DD string.
+ * This ensures all users see the same "today" based on PST midnight.
+ */
+export const getTodayInPST = (): string => {
+  const now = new Date();
+  // Format date in PST timezone
+  const pstDate = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Los_Angeles',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).format(now);
+  return pstDate; // Returns YYYY-MM-DD format
+};
+
+/**
+ * Convert a Date object to PST date string (YYYY-MM-DD).
+ */
+export const dateToPSTString = (date: Date): string => {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Los_Angeles',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).format(date);
+};
 
 const generatePuzzleDates = (): Map<number, string> => {
   const dateMap = new Map<number, string>();
@@ -1616,7 +1647,7 @@ const generatePuzzleDates = (): Map<number, string> => {
   // Archive runs from Dec 30, 2025 to yesterday
   // 
   // Puzzle order by date (most recent first):
-  // Jan 25 (today) = ID 36
+  // Jan 25 = ID 36
   // Jan 24 = ID 35 "The Bicycle Craze"
   // Jan 23 = ID 34 "The Dust Bowl"
   // Jan 22 = ID 33 "Air Conditioning Reshapes America"
@@ -1624,21 +1655,8 @@ const generatePuzzleDates = (): Map<number, string> => {
   // 
   // IDs 1-9 and 37+ are for future dates (after today)
   
-  const launchDate = new Date(LAUNCH_DATE + 'T00:00:00');
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  
-  // Calculate how many days since launch (Dec 30, 2025 to today)
-  const daysSinceLaunch = Math.floor((today.getTime() - launchDate.getTime()) / (1000 * 60 * 60 * 24));
-  
-  // Archive puzzles: IDs 10-35 cover Dec 30, 2025 to Jan 24, 2026 (26 days)
-  // Today (Jan 25) = ID 36
-  // The pattern: for each day since launch, we assign puzzle IDs starting from 10
-  // Day 0 (Dec 30) = ID 10
-  // Day 1 (Dec 31) = ID 11
-  // ...
-  // Day 25 (Jan 24) = ID 35
-  // Day 26 (Jan 25) = ID 36
+  // Use a fixed reference point for date generation (launch date at noon PST to avoid DST issues)
+  const launchDate = new Date('2025-12-30T12:00:00-08:00'); // Noon PST on launch day
   
   // Create ordered list: IDs 10-40, then 1-9 (for the cycle)
   const orderedIds = [
@@ -1652,7 +1670,8 @@ const generatePuzzleDates = (): Map<number, string> => {
   orderedIds.forEach((puzzleId, index) => {
     const puzzleDate = new Date(launchDate);
     puzzleDate.setDate(puzzleDate.getDate() + index);
-    const dateStr = puzzleDate.toISOString().split('T')[0];
+    // Convert to PST date string for consistency
+    const dateStr = dateToPSTString(puzzleDate);
     dateMap.set(puzzleId, dateStr);
   });
   
@@ -1669,10 +1688,11 @@ puzzles.forEach(puzzle => {
 
 /**
  * Get the puzzle for today (or a specific date).
- * Finds the puzzle assigned to the given date.
+ * Uses PST timezone to determine "today".
  */
 export const getPuzzleForDay = (date: Date = new Date()): Puzzle => {
-  const dateStr = date.toISOString().split('T')[0];
+  // Convert to PST date string
+  const dateStr = dateToPSTString(date);
   const puzzle = puzzles.find(p => p.date === dateStr);
   
   if (puzzle) {
@@ -1680,7 +1700,7 @@ export const getPuzzleForDay = (date: Date = new Date()): Puzzle => {
   }
   
   // Fallback: cycle through puzzles if no date match
-  const launchDate = new Date(LAUNCH_DATE + 'T00:00:00');
+  const launchDate = new Date('2025-12-30T12:00:00-08:00');
   const diffTime = Math.abs(date.getTime() - launchDate.getTime());
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   const puzzleIndex = diffDays % puzzles.length;
@@ -1689,11 +1709,16 @@ export const getPuzzleForDay = (date: Date = new Date()): Puzzle => {
 
 /**
  * Get the day number for display (e.g., Ripple #1, #2, etc.).
- * Based on days since launch (Dec 30, 2025).
+ * Based on days since launch (Dec 30, 2025) in PST.
  */
 export const getDayNumber = (date: Date = new Date()): number => {
-  const launchDate = new Date(LAUNCH_DATE + 'T00:00:00');
-  const diffTime = date.getTime() - launchDate.getTime();
+  const dateStr = dateToPSTString(date);
+  const launchDateStr = LAUNCH_DATE;
+  
+  // Calculate days between the two date strings
+  const currentDate = new Date(dateStr + 'T12:00:00');
+  const launchDate = new Date(launchDateStr + 'T12:00:00');
+  const diffTime = currentDate.getTime() - launchDate.getTime();
   return Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
 };
 
@@ -1705,14 +1730,12 @@ export const getPuzzleByDate = (dateStr: string): Puzzle | null => {
 };
 
 /**
- * Get all archived puzzles (puzzles with dates before today).
+ * Get all archived puzzles (puzzles with dates before today in PST).
  * Sorted most recent first.
  * Only includes puzzles from launch date (Dec 30, 2025) onwards.
  */
 export const getArchivedPuzzles = (): Puzzle[] => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const todayStr = today.toISOString().split('T')[0];
+  const todayStr = getTodayInPST();
   
   return puzzles
     .filter(p => p.date && p.date < todayStr && p.date >= LAUNCH_DATE)
@@ -1720,18 +1743,16 @@ export const getArchivedPuzzles = (): Puzzle[] => {
 };
 
 /**
- * Check if a date string represents today's puzzle.
+ * Check if a date string represents today's puzzle (in PST).
  */
 export const isToday = (dateStr: string): boolean => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return dateStr === today.toISOString().split('T')[0];
+  return dateStr === getTodayInPST();
 };
 
 /**
  * Get the day number for a specific date string.
  */
 export const getDayNumberForDate = (dateStr: string): number => {
-  const date = new Date(dateStr + 'T00:00:00');
+  const date = new Date(dateStr + 'T12:00:00');
   return getDayNumber(date);
 };
