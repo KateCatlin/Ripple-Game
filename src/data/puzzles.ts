@@ -1606,33 +1606,37 @@ export const puzzles: Puzzle[] = [
  * - Today (Jan 25) = ID 36
  * - Puzzles that would fall before Dec 30, 2025 are moved to future dates
  * 
- * TIMEZONE: All date calculations use PST (America/Los_Angeles) as the reference.
- * This ensures puzzle resets happen at midnight PST for consistency across users.
+ * TIMEZONE: All date calculations use HST (Pacific/Honolulu, UTC-10) as the reference.
+ * HST was chosen to give users worldwide maximum time before daily reset.
+ * Hawaii doesn't observe DST, so reset is always at midnight HST (10am UTC).
+ * This is especially helpful for Australian users who get extra hours before reset.
  */
 const LAUNCH_DATE = '2025-12-30'; // App launch date - archive starts here
 
 /**
- * Get the current date in PST timezone as a YYYY-MM-DD string.
- * This ensures all users see the same "today" based on PST midnight.
+ * Get the current date in HST (Hawaii) timezone as a YYYY-MM-DD string.
+ * This ensures all users see the same "today" based on HST midnight.
+ * HST = UTC-10, no daylight saving time.
  */
 export const getTodayInPST = (): string => {
   const now = new Date();
-  // Format date in PST timezone
-  const pstDate = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'America/Los_Angeles',
+  // Format date in HST timezone (using Pacific/Honolulu)
+  const hstDate = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Pacific/Honolulu',
     year: 'numeric',
     month: '2-digit',
     day: '2-digit'
   }).format(now);
-  return pstDate; // Returns YYYY-MM-DD format
+  return hstDate; // Returns YYYY-MM-DD format
 };
 
 /**
- * Convert a Date object to PST date string (YYYY-MM-DD).
+ * Convert a Date object to HST date string (YYYY-MM-DD).
+ * Note: Function name kept as dateToPSTString for backwards compatibility.
  */
 export const dateToPSTString = (date: Date): string => {
   return new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'America/Los_Angeles',
+    timeZone: 'Pacific/Honolulu',
     year: 'numeric',
     month: '2-digit',
     day: '2-digit'
@@ -1655,8 +1659,9 @@ const generatePuzzleDates = (): Map<number, string> => {
   // 
   // IDs 1-9 and 37+ are for future dates (after today)
   
-  // Use a fixed reference point for date generation (launch date at noon PST to avoid DST issues)
-  const launchDate = new Date('2025-12-30T12:00:00-08:00'); // Noon PST on launch day
+  // Use a fixed reference point for date generation
+  // Using HST offset (-10:00) at noon to avoid any edge cases
+  const launchDate = new Date('2025-12-30T12:00:00-10:00'); // Noon HST on launch day
   
   // Create ordered list: IDs 10-40, then 1-9 (for the cycle)
   const orderedIds = [
@@ -1670,7 +1675,7 @@ const generatePuzzleDates = (): Map<number, string> => {
   orderedIds.forEach((puzzleId, index) => {
     const puzzleDate = new Date(launchDate);
     puzzleDate.setDate(puzzleDate.getDate() + index);
-    // Convert to PST date string for consistency
+    // Convert to HST date string for consistency
     const dateStr = dateToPSTString(puzzleDate);
     dateMap.set(puzzleId, dateStr);
   });
