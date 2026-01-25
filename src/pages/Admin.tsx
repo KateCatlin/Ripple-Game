@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
-import { Lock, Users, Trophy, UserPlus, LogIn, HelpCircle } from "lucide-react";
+import { Lock, Users, Trophy, UserPlus, LogIn, HelpCircle, BarChart3 } from "lucide-react";
 
 const ADMIN_PASSWORD = "ripple2024"; // Simple password protection
 
@@ -106,6 +106,25 @@ export default function Admin() {
       signups: dayEvents.filter(e => e.event_name === 'signup_completed').length,
     });
   }
+
+  // Stats vs Leaderboard comparison data
+  const statsVsLeaderboardData = [];
+  for (let i = 6; i >= 0; i--) {
+    const date = new Date(today.getTime() - i * 24 * 60 * 60 * 1000);
+    const nextDate = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+    const dayEvents = events.filter(e => {
+      const eventDate = new Date(e.created_at);
+      return eventDate >= date && eventDate < nextDate;
+    });
+    statsVsLeaderboardData.push({
+      date: date.toLocaleDateString('en-US', { weekday: 'short' }),
+      stats: dayEvents.filter(e => e.event_name === 'stats_viewed').length,
+      leaderboard: dayEvents.filter(e => e.event_name === 'leaderboard_viewed').length,
+    });
+  }
+
+  const totalStatsViewed = getEventCount('stats_viewed');
+  const totalLeaderboardViewed = getEventCount('leaderboard_viewed');
 
   if (!isAuthenticated) {
     return (
@@ -236,6 +255,54 @@ export default function Admin() {
                       )}
                     </div>
                   ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Stats vs Leaderboard Engagement */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5" />
+                  Stats vs Leaderboard Tab Engagement
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="text-center p-4 bg-muted/50 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Stats Tab Views</p>
+                    <p className="text-2xl font-bold">{totalStatsViewed}</p>
+                    <p className="text-xs text-muted-foreground">Today: {getEventCount('stats_viewed', today)}</p>
+                  </div>
+                  <div className="text-center p-4 bg-muted/50 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Leaderboard Tab Views</p>
+                    <p className="text-2xl font-bold">{totalLeaderboardViewed}</p>
+                    <p className="text-xs text-muted-foreground">Today: {getEventCount('leaderboard_viewed', today)}</p>
+                  </div>
+                </div>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={statsVsLeaderboardData}>
+                      <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                      <XAxis dataKey="date" className="text-xs" />
+                      <YAxis className="text-xs" />
+                      <Tooltip 
+                        contentStyle={{ 
+                          backgroundColor: 'hsl(var(--card))', 
+                          border: '1px solid hsl(var(--border))' 
+                        }}
+                      />
+                      <Bar dataKey="stats" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} name="Stats Tab" />
+                      <Bar dataKey="leaderboard" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} name="Leaderboard Tab" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="mt-4 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    Preference Ratio: {totalStatsViewed + totalLeaderboardViewed > 0 
+                      ? `${Math.round((totalStatsViewed / (totalStatsViewed + totalLeaderboardViewed)) * 100)}% Stats / ${Math.round((totalLeaderboardViewed / (totalStatsViewed + totalLeaderboardViewed)) * 100)}% Leaderboard`
+                      : 'No data yet'}
+                  </p>
                 </div>
               </CardContent>
             </Card>
