@@ -1597,25 +1597,63 @@ export const puzzles: Puzzle[] = [
 ];
 
 /**
- * Generate dates for puzzles based on a start date.
- * - Past dates form the archive (playable anytime)
- * - Today's date is the current daily puzzle
- * - Future dates are upcoming puzzles in rotation
+ * Generate dates for puzzles based on launch date.
+ * 
+ * IMPORTANT: The app launched on Dec 30, 2025 on LinkedIn.
+ * - Archive starts from Dec 30, 2025 (first playable puzzle)
+ * - Puzzles are assigned dates counting backwards from today
+ * - ID 35 = Jan 24, ID 34 = Jan 23, etc.
+ * - Today (Jan 25) = ID 36
+ * - Puzzles that would fall before Dec 30, 2025 are moved to future dates
  */
+const LAUNCH_DATE = '2025-12-30'; // App launch date - archive starts here
+
 const generatePuzzleDates = (): Map<number, string> => {
   const dateMap = new Map<number, string>();
+  
+  // Calculate dates based on fixed assignments
+  // The ordering is: archive puzzles (past), today's puzzle, future puzzles
+  // Archive runs from Dec 30, 2025 to yesterday
+  // 
+  // Puzzle order by date (most recent first):
+  // Jan 25 (today) = ID 36
+  // Jan 24 = ID 35 "The Bicycle Craze"
+  // Jan 23 = ID 34 "The Dust Bowl"
+  // Jan 22 = ID 33 "Air Conditioning Reshapes America"
+  // ... counting backwards to Dec 30 = ID 10
+  // 
+  // IDs 1-9 and 37+ are for future dates (after today)
+  
+  const launchDate = new Date(LAUNCH_DATE + 'T00:00:00');
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   
-  // Start date: 20 days ago to create archive
-  const startDate = new Date(today);
-  startDate.setDate(startDate.getDate() - 20);
+  // Calculate how many days since launch (Dec 30, 2025 to today)
+  const daysSinceLaunch = Math.floor((today.getTime() - launchDate.getTime()) / (1000 * 60 * 60 * 24));
   
-  puzzles.forEach((puzzle, index) => {
-    const puzzleDate = new Date(startDate);
+  // Archive puzzles: IDs 10-35 cover Dec 30, 2025 to Jan 24, 2026 (26 days)
+  // Today (Jan 25) = ID 36
+  // The pattern: for each day since launch, we assign puzzle IDs starting from 10
+  // Day 0 (Dec 30) = ID 10
+  // Day 1 (Dec 31) = ID 11
+  // ...
+  // Day 25 (Jan 24) = ID 35
+  // Day 26 (Jan 25) = ID 36
+  
+  // Create ordered list: IDs 10-40, then 1-9 (for the cycle)
+  const orderedIds = [
+    10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+    30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+    1, 2, 3, 4, 5, 6, 7, 8, 9
+  ];
+  
+  // Assign dates starting from launch date
+  orderedIds.forEach((puzzleId, index) => {
+    const puzzleDate = new Date(launchDate);
     puzzleDate.setDate(puzzleDate.getDate() + index);
     const dateStr = puzzleDate.toISOString().split('T')[0];
-    dateMap.set(puzzle.id, dateStr);
+    dateMap.set(puzzleId, dateStr);
   });
   
   return dateMap;
@@ -1642,20 +1680,20 @@ export const getPuzzleForDay = (date: Date = new Date()): Puzzle => {
   }
   
   // Fallback: cycle through puzzles if no date match
-  const startDate = new Date('2024-01-01');
-  const diffTime = Math.abs(date.getTime() - startDate.getTime());
+  const launchDate = new Date(LAUNCH_DATE + 'T00:00:00');
+  const diffTime = Math.abs(date.getTime() - launchDate.getTime());
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   const puzzleIndex = diffDays % puzzles.length;
   return puzzles[puzzleIndex];
 };
 
 /**
- * Get the day number for display (e.g., Ripple #731).
- * Based on days since launch.
+ * Get the day number for display (e.g., Ripple #1, #2, etc.).
+ * Based on days since launch (Dec 30, 2025).
  */
 export const getDayNumber = (date: Date = new Date()): number => {
-  const startDate = new Date('2024-01-01');
-  const diffTime = Math.abs(date.getTime() - startDate.getTime());
+  const launchDate = new Date(LAUNCH_DATE + 'T00:00:00');
+  const diffTime = date.getTime() - launchDate.getTime();
   return Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
 };
 
@@ -1669,6 +1707,7 @@ export const getPuzzleByDate = (dateStr: string): Puzzle | null => {
 /**
  * Get all archived puzzles (puzzles with dates before today).
  * Sorted most recent first.
+ * Only includes puzzles from launch date (Dec 30, 2025) onwards.
  */
 export const getArchivedPuzzles = (): Puzzle[] => {
   const today = new Date();
@@ -1676,7 +1715,7 @@ export const getArchivedPuzzles = (): Puzzle[] => {
   const todayStr = today.toISOString().split('T')[0];
   
   return puzzles
-    .filter(p => p.date && p.date < todayStr)
+    .filter(p => p.date && p.date < todayStr && p.date >= LAUNCH_DATE)
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 };
 
