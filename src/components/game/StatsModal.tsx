@@ -12,6 +12,7 @@ import { useEffect, useState, useRef } from "react";
 import { LeaderboardTab } from "./LeaderboardTab";
 import { Target, TrendingUp, Flame, Trophy, LucideIcon } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { cn } from "@/lib/utils";
 
 const MAX_POINTS_PER_GAME = 300;
 
@@ -68,7 +69,14 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md max-h-[85vh] flex flex-col">
+      <DialogContent
+        className={cn(
+          "w-[calc(100vw-32px)] max-w-[calc(100vw-32px)] sm:w-full max-h-[85vh] flex flex-col",
+          activeTab === "leaderboard"
+            ? "sm:max-w-[620px] lg:max-w-[680px]"
+            : "sm:max-w-md"
+        )}
+      >
         <DialogHeader className="flex-shrink-0">
           <DialogTitle className="font-display text-2xl text-center">
             Statistics

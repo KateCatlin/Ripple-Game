@@ -9,10 +9,12 @@ import {
 } from "@/lib/supabaseStats";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Pencil, Check, X } from "lucide-react";
+import { Pencil, Check, X, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { LoginPromptCard } from "./LoginPromptCard";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const LeaderboardTab = () => {
   const { user } = useAuth();
@@ -157,6 +159,64 @@ export const LeaderboardTab = () => {
     ? Math.round(((totalPlayers - userRank + 1) / totalPlayers) * 100)
     : 0;
 
+  const formatSqrtGames = (gamesPlayed: number) => Math.sqrt(gamesPlayed).toFixed(1);
+  const formatStreakBonus = (currentStreak: number) => (1 + (Math.min(currentStreak, 30) * 0.02)).toFixed(2);
+
+  const InfoPopover = ({ label, className }: { label: string; className?: string }) => {
+    const [open, setOpen] = useState(false);
+
+    return (
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <button
+            type="button"
+            aria-label={label}
+            className={cn(
+              "inline-flex h-5 w-5 items-center justify-center rounded-full text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+              className
+            )}
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+            onFocus={() => setOpen(true)}
+            onBlur={() => setOpen(false)}
+            onClick={() => setOpen((prev) => !prev)}
+          >
+            <Info className="h-4 w-4" />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent
+          className="max-w-xs text-xs leading-relaxed"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+        >
+          <div className="space-y-2">
+            <div className="font-semibold text-sm">How Leaderboard Scoring Works</div>
+            <div className="border-t border-muted-foreground/20" />
+            <div className="text-[12px] text-muted-foreground">Formula: Avg Points × √Games × Streak Bonus</div>
+            <div className="text-[12px] text-muted-foreground">
+              Example:
+            </div>
+            <ul className="space-y-1 text-[12px] text-muted-foreground">
+              <li>• Average: 242 points per game</li>
+              <li>• Games: √16 = 4.00 multiplier</li>
+              <li>• Streak: 12 days = 1.24× bonus</li>
+              <li>• Final Score: 242 × 4.00 × 1.24 = 1,199</li>
+            </ul>
+            <div className="text-[12px] text-muted-foreground">
+              💡 Strategy Tips:
+            </div>
+            <ul className="space-y-1 text-[12px] text-muted-foreground">
+              <li>✓ Archive games count toward games played, but not your streak</li>
+              <li>✓ Maintain daily streaks for big bonuses</li>
+              <li>✓ Quality matters more than quantity</li>
+              <li className="pl-4">(√100 = 10×, but √400 = only 20×)</li>
+            </ul>
+          </div>
+        </PopoverContent>
+      </Popover>
+    );
+  };
+
   return (
     <div className="space-y-6 py-4">
       {/* User's rank section */}
@@ -172,7 +232,7 @@ export const LeaderboardTab = () => {
             </p>
             {userEntry && (
               <p className="text-lg font-medium mt-2">
-                Total: {userEntry.total_points.toLocaleString()} points
+                Score: {userEntry.leaderboard_score.toLocaleString()} pts
               </p>
             )}
           </>
@@ -190,109 +250,319 @@ export const LeaderboardTab = () => {
 
       {/* Top Players section */}
       <div>
-        <h4 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
-          🏆 Top Players <span className="text-xs">(by average points)</span>
+        <h4 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
+          🏆 Top Players <span className="text-xs">(by combined score)</span>
         </h4>
-        <div className="space-y-2">
+        <div className="mx-auto w-full max-w-[calc(100vw-32px)] md:max-w-[620px] lg:max-w-[680px]">
+          <div className="md:hidden space-y-2">
           {displayEntries.map((entry, index) => {
             const rank = index + 1;
             const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
             const isCurrentUser = entry.user_id === user.id;
-            
+            const sqrtGames = formatSqrtGames(entry.games_played);
+            const streakBonus = formatStreakBonus(entry.current_streak);
+            const cardBg = isCurrentUser
+              ? "bg-[#e6f4f9] border border-[#b8dce8]"
+              : rank === 1
+                ? "bg-[#f7f1d1] shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
+                : rank === 2
+                  ? "bg-[#f1f1f3] shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
+                  : rank === 3
+                    ? "bg-[#f4e7df] shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
+                    : index % 2 === 0 ? "bg-white" : "bg-[#fafaf8]";
+
             return (
               <div
                 key={entry.user_id}
-                className={cn(
-                  "flex items-center justify-between p-2 rounded-lg text-sm",
-                  isCurrentUser && "bg-secondary/10 border border-secondary/30"
-                )}
+                className={cn("rounded-lg px-4 py-3.5", cardBg)}
               >
-                <div className="flex items-center gap-2">
-                  <span className="w-6">{medal}</span>
-                  <span className={cn("font-medium", isCurrentUser && "text-secondary")}>
-                    {entry.display_name}
-                    {isCurrentUser && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-5 w-5 p-0 ml-1"
-                        onClick={() => {
-                          setEditName(entry.display_name);
-                          setIsEditing(true);
-                        }}
-                      >
-                        <Pencil className="h-3 w-3" />
-                      </Button>
-                    )}
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex min-w-0 items-center gap-2">
+                    <span className="text-base">{medal}</span>
+                    <span className="text-sm font-medium truncate" title={entry.display_name}>
+                      {entry.display_name}
+                      {isCurrentUser && <span className="text-xs text-muted-foreground ml-1">← You</span>}
+                    </span>
+                  </div>
+                  <span className="text-base font-semibold tabular-nums">
+                    Score: {entry.leaderboard_score.toLocaleString()}
                   </span>
                 </div>
-                <span className="text-muted-foreground">
-                  {entry.avg_points} avg · {entry.games_played} games
-                </span>
+                <div className="mt-1 text-[12px] text-[#666]">
+                  {entry.avg_points} avg × {sqrtGames} √games × {streakBonus} streak
+                </div>
               </div>
             );
           })}
-          
-          {showUserSeparately && (
-            <>
-              <div className="text-center text-muted-foreground text-xs py-1">...</div>
-              <div className="flex items-center justify-between p-2 rounded-lg text-sm bg-secondary/10 border border-secondary/30">
-                <div className="flex items-center gap-2">
-                  <span className="w-6">{userRank}.</span>
-                  <span className="font-medium text-secondary">
+
+          {showUserSeparately && userEntry && (
+            <div className="rounded-lg px-4 py-3.5 bg-[#e6f4f9] border border-[#b8dce8]">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex min-w-0 items-center gap-2">
+                  <span className="text-base">{userRank}.</span>
+                  <span className="text-sm font-medium truncate" title={userEntry.display_name}>
                     {userEntry.display_name}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-5 w-5 p-0 ml-1"
-                      onClick={() => {
-                        setEditName(userEntry.display_name);
-                        setIsEditing(true);
-                      }}
-                    >
-                      <Pencil className="h-3 w-3" />
-                    </Button>
                     <span className="text-xs text-muted-foreground ml-1">← You</span>
                   </span>
                 </div>
-                <span className="text-muted-foreground">
-                  {userEntry.avg_points} avg · {userEntry.games_played} games
+                <span className="text-base font-semibold tabular-nums">
+                  Score: {userEntry.leaderboard_score.toLocaleString()}
                 </span>
               </div>
-            </>
+              <div className="mt-1 text-[12px] text-[#666]">
+                {userEntry.avg_points} avg × {formatSqrtGames(userEntry.games_played)} √games × {formatStreakBonus(userEntry.current_streak)} streak
+              </div>
+            </div>
           )}
-          
+
           {entries.length === 0 && (
-            <p className="text-center text-muted-foreground text-sm py-4">
+            <div className="rounded-lg px-4 py-6 text-center text-muted-foreground text-sm bg-white">
               No players on the leaderboard yet. Be the first!
-            </p>
+            </div>
           )}
+          </div>
+
+          <div className="hidden md:block mt-4">
+            <TooltipProvider delayDuration={100}>
+              <table className="w-full table-fixed text-sm">
+              <colgroup>
+                <col className="w-[50px]" />
+                <col className="w-auto" />
+                <col className="w-[110px]" />
+                <col className="w-[70px]" />
+                <col className="w-[80px]" />
+                <col className="w-[80px]" />
+              </colgroup>
+              <thead>
+                <tr className="text-[11px] uppercase tracking-wide text-[#666] font-semibold">
+                  <th className="px-4 py-3 text-left">Rank</th>
+                  <th className="px-4 py-3 text-left min-w-[220px] max-w-[320px]">Player</th>
+                  <th className="px-4 py-3 text-right">
+                    <span className="inline-flex items-center gap-1">
+                      Score
+                      <InfoPopover label="Score formula details" className="h-4 w-4" />
+                    </span>
+                  </th>
+                  <th className="px-4 py-3 text-right">Avg</th>
+                  <th className="px-4 py-3 text-right">Games</th>
+                  <th className="px-4 py-3 text-right">Streak</th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayEntries.map((entry, index) => {
+                  const rank = index + 1;
+                  const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
+                  const isCurrentUser = entry.user_id === user.id;
+
+                  return (
+                    <tr
+                      key={entry.user_id}
+                      className={cn(
+                        "border-b border-[#e8e8e6]",
+                        isCurrentUser && "bg-[#e6f4f9] border border-[#b8dce8]"
+                      )}
+                    >
+                      <td className="px-4 py-3.5 text-left">{medal}</td>
+                      <td className="px-4 py-3.5 text-left min-w-[220px] max-w-[320px]">
+                        <div className="flex items-center gap-1 min-w-0">
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <span
+                                className={cn("font-medium truncate", isCurrentUser && "text-secondary")}
+                              >
+                                {entry.display_name}
+                              </span>
+                            </TooltipTrigger>
+                            <TooltipContent side="top">
+                              {entry.display_name}
+                            </TooltipContent>
+                          </Tooltip>
+                          {isCurrentUser && (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-5 w-5 p-0"
+                              onClick={() => {
+                                setEditName(entry.display_name);
+                                setIsEditing(true);
+                              }}
+                            >
+                              <Pencil className="h-3 w-3" />
+                            </Button>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-4 py-3.5 text-right text-base font-semibold tabular-nums">
+                        {entry.leaderboard_score.toLocaleString()}
+                      </td>
+                      <td className="px-4 py-3.5 text-right text-[14px] font-normal text-[#666] tabular-nums">
+                        {entry.avg_points}
+                      </td>
+                      <td className="px-4 py-3.5 text-right text-[14px] font-normal text-[#666] tabular-nums">
+                        {entry.games_played}
+                      </td>
+                      <td className="px-4 py-3.5 text-right text-[14px] font-normal text-[#666] tabular-nums">
+                        🔥{entry.current_streak}
+                      </td>
+                    </tr>
+                  );
+                })}
+
+                {showUserSeparately && userEntry && (
+                  <>
+                    <tr className="border-b border-[#e8e8e6]">
+                      <td className="px-4 py-2 text-center text-xs text-muted-foreground" colSpan={6}>...</td>
+                    </tr>
+                    <tr className="border-b border-[#e8e8e6] bg-[#e6f4f9] border border-[#b8dce8]">
+                      <td className="px-4 py-3.5 text-left">{userRank}.</td>
+                      <td className="px-4 py-3.5 text-left min-w-[220px] max-w-[320px]">
+                        <div className="flex items-center gap-1 min-w-0">
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <span className="font-medium text-secondary truncate">
+                                {userEntry.display_name}
+                              </span>
+                            </TooltipTrigger>
+                            <TooltipContent side="top">
+                              {userEntry.display_name}
+                            </TooltipContent>
+                          </Tooltip>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-5 w-5 p-0"
+                            onClick={() => {
+                              setEditName(userEntry.display_name);
+                              setIsEditing(true);
+                            }}
+                          >
+                            <Pencil className="h-3 w-3" />
+                          </Button>
+                          <span className="text-xs text-muted-foreground ml-1">← You</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3.5 text-right text-base font-semibold tabular-nums">
+                        {userEntry.leaderboard_score.toLocaleString()}
+                      </td>
+                      <td className="px-4 py-3.5 text-right text-[14px] font-normal text-[#666] tabular-nums">
+                        {userEntry.avg_points}
+                      </td>
+                      <td className="px-4 py-3.5 text-right text-[14px] font-normal text-[#666] tabular-nums">
+                        {userEntry.games_played}
+                      </td>
+                      <td className="px-4 py-3.5 text-right text-[14px] font-normal text-[#666] tabular-nums">
+                        🔥{userEntry.current_streak}
+                      </td>
+                    </tr>
+                  </>
+                )}
+
+                {entries.length === 0 && (
+                  <tr>
+                    <td className="px-4 py-6 text-center text-muted-foreground text-sm" colSpan={6}>
+                      No players on the leaderboard yet. Be the first!
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+              </table>
+            </TooltipProvider>
+          </div>
         </div>
       </div>
 
       {/* Top Streaks section */}
       <div>
-        <h4 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
+        <h4 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
           🔥 Longest Streaks
         </h4>
-        <div className="space-y-1">
-          {topStreaks.slice(0, 5).map((entry, index) => {
-            const rank = index + 1;
-            const isCurrentUser = entry.user_id === user.id;
-            
-            return (
-              <div
-                key={entry.user_id}
-                className={cn(
-                  "flex items-center justify-between py-1.5 text-sm",
-                  isCurrentUser && "font-medium text-secondary"
-                )}
-              >
-                <span>{rank}. {entry.display_name}</span>
-                <span>{entry.max_streak} days</span>
-              </div>
-            );
-          })}
+        <div className="mx-auto w-full max-w-[calc(100vw-32px)] md:max-w-[620px] lg:max-w-[680px]">
+          <div className="md:hidden space-y-2">
+            {topStreaks.slice(0, 5).map((entry, index) => {
+              const rank = index + 1;
+              const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
+              const isCurrentUser = entry.user_id === user.id;
+
+              return (
+                <div
+                  key={entry.user_id}
+                  className={cn(
+                    "rounded-lg px-4 py-3.5",
+                    isCurrentUser ? "bg-[#e6f4f9] border border-[#b8dce8]" : "bg-white"
+                  )}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex min-w-0 items-center gap-2">
+                      <span className="text-base">{medal}</span>
+                      <span className="text-sm font-medium truncate" title={entry.display_name}>
+                        {entry.display_name}
+                        {isCurrentUser && <span className="text-xs text-muted-foreground ml-1">← You</span>}
+                      </span>
+                    </div>
+                    <span className="text-base font-semibold tabular-nums">
+                      {entry.max_streak} days
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="hidden md:block">
+            <TooltipProvider delayDuration={100}>
+              <table className="w-full table-fixed text-sm">
+                <colgroup>
+                  <col className="w-[50px]" />
+                  <col className="w-auto" />
+                  <col className="w-[100px]" />
+                </colgroup>
+                <thead>
+                  <tr className="text-[11px] uppercase tracking-wide text-[#666] font-semibold">
+                    <th className="px-4 py-3 text-left">Rank</th>
+                    <th className="px-4 py-3 text-left min-w-[220px] max-w-[320px]">Player</th>
+                    <th className="px-4 py-3 text-right">Streak</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {topStreaks.slice(0, 5).map((entry, index) => {
+                    const rank = index + 1;
+                    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
+                    const isCurrentUser = entry.user_id === user.id;
+
+                    return (
+                      <tr
+                        key={entry.user_id}
+                        className={cn(
+                          "border-b border-[#e8e8e6]",
+                          isCurrentUser && "bg-[#e6f4f9] border border-[#b8dce8]"
+                        )}
+                      >
+                        <td className="px-4 py-3.5 text-left">{medal}</td>
+                        <td className="px-4 py-3.5 text-left min-w-[220px] max-w-[320px]">
+                          <div className="flex items-center gap-1 min-w-0">
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <span className={cn("font-medium truncate", isCurrentUser && "text-secondary")}>
+                                  {entry.display_name}
+                                </span>
+                              </TooltipTrigger>
+                              <TooltipContent side="top">
+                                {entry.display_name}
+                              </TooltipContent>
+                            </Tooltip>
+                            {isCurrentUser && <span className="text-xs text-muted-foreground ml-1">← You</span>}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3.5 text-right text-[14px] font-normal text-[#666] tabular-nums">
+                          {entry.max_streak}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </TooltipProvider>
+          </div>
         </div>
         
         {userCurrentStreak > 0 && (
