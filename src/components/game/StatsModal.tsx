@@ -68,20 +68,20 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-md max-h-[85vh] flex flex-col">
+        <DialogHeader className="flex-shrink-0">
           <DialogTitle className="font-display text-2xl text-center">
             Statistics
           </DialogTitle>
         </DialogHeader>
 
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full flex-1 flex flex-col min-h-0">
+          <TabsList className="grid w-full grid-cols-2 flex-shrink-0">
             <TabsTrigger value="stats">Your Stats</TabsTrigger>
             <TabsTrigger value="leaderboard">🌊 Leaderboard</TabsTrigger>
           </TabsList>
           
-          <TabsContent value="stats">
+          <TabsContent value="stats" className="flex-1 overflow-y-auto">
             {loading ? (
               <div className="py-8 text-center text-muted-foreground">
                 Loading stats...
@@ -137,7 +137,7 @@ export const StatsModal = ({ open, onOpenChange }: StatsModalProps) => {
             )}
           </TabsContent>
           
-          <TabsContent value="leaderboard">
+          <TabsContent value="leaderboard" className="flex-1 overflow-y-auto">
             <LeaderboardTab />
           </TabsContent>
         </Tabs>
