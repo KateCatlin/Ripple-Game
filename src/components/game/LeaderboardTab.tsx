@@ -172,7 +172,7 @@ export const LeaderboardTab = () => {
             </p>
             {userEntry && (
               <p className="text-lg font-medium mt-2">
-                Score: {userEntry.leaderboard_score.toLocaleString()} pts
+                Total: {userEntry.total_points.toLocaleString()} points
               </p>
             )}
           </>
@@ -191,7 +191,7 @@ export const LeaderboardTab = () => {
       {/* Top Players section */}
       <div>
         <h4 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
-          🏆 Top Players <span className="text-xs">(by combined score)</span>
+          🏆 Top Players <span className="text-xs">(by average points)</span>
         </h4>
         <div className="space-y-2">
           {displayEntries.map((entry, index) => {
@@ -226,8 +226,8 @@ export const LeaderboardTab = () => {
                     )}
                   </span>
                 </div>
-                <span className="text-muted-foreground text-xs">
-                  {entry.leaderboard_score.toLocaleString()} pts · {entry.avg_points} avg · {entry.current_streak > 0 ? `🔥${entry.current_streak}` : ''} · {entry.games_played} played
+                <span className="text-muted-foreground">
+                  {entry.avg_points} avg · {entry.games_played} games
                 </span>
               </div>
             );
@@ -255,8 +255,8 @@ export const LeaderboardTab = () => {
                     <span className="text-xs text-muted-foreground ml-1">← You</span>
                   </span>
                 </div>
-                <span className="text-muted-foreground text-xs">
-                  {userEntry.leaderboard_score.toLocaleString()} pts · {userEntry.avg_points} avg · {userEntry.current_streak > 0 ? `🔥${userEntry.current_streak}` : ''} · {userEntry.games_played} played
+                <span className="text-muted-foreground">
+                  {userEntry.avg_points} avg · {userEntry.games_played} games
                 </span>
               </div>
             </>

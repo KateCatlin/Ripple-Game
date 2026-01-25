@@ -34,7 +34,6 @@ export interface LeaderboardEntry {
   current_streak: number;
   max_streak: number;
   avg_points: number;
-  leaderboard_score: number;
 }
 
 export interface DailyStats {
@@ -176,29 +175,20 @@ export const fetchLeaderboard = async (userId: string): Promise<{
     return { entries: [], userRank: 0, userEntry: null, totalPlayers: 0 };
   }
 
-  // Calculate avg_points, leaderboard_score and sort
+  // Calculate avg_points and sort
   const entries: LeaderboardEntry[] = allStats
-    .map(s => {
-      const avgPoints = Math.round(s.total_points / s.games_played);
-      // streakBonus = 1 + (min(current_streak, 30) × 0.02) — caps at 30 days for max 1.6x
-      const streakBonus = 1 + (Math.min(s.current_streak, 30) * 0.02);
-      // leaderboardScore = avgPoints × √(gamesPlayed) × streakBonus
-      const leaderboardScore = Math.round(avgPoints * Math.sqrt(s.games_played) * streakBonus);
-      
-      return {
-        user_id: s.user_id,
-        display_name: s.display_name || `Player #${s.user_id.slice(-4)}`,
-        games_played: s.games_played,
-        total_points: s.total_points,
-        current_streak: s.current_streak,
-        max_streak: s.max_streak,
-        avg_points: avgPoints,
-        leaderboard_score: leaderboardScore,
-      };
-    })
+    .map(s => ({
+      user_id: s.user_id,
+      display_name: s.display_name || `Player #${s.user_id.slice(-4)}`,
+      games_played: s.games_played,
+      total_points: s.total_points,
+      current_streak: s.current_streak,
+      max_streak: s.max_streak,
+      avg_points: Math.round(s.total_points / s.games_played),
+    }))
     .sort((a, b) => {
-      // Primary: leaderboard_score descending
-      if (b.leaderboard_score !== a.leaderboard_score) return b.leaderboard_score - a.leaderboard_score;
+      // Primary: avg_points descending
+      if (b.avg_points !== a.avg_points) return b.avg_points - a.avg_points;
       // Secondary: games_played descending (rewards consistency)
       return b.games_played - a.games_played;
     });
@@ -228,22 +218,15 @@ export const fetchTopStreaks = async (): Promise<LeaderboardEntry[]> => {
     return [];
   }
 
-  return data.map(s => {
-    const avgPoints = s.games_played >= 1 ? Math.round(s.total_points / s.games_played) : 0;
-    const streakBonus = 1 + (Math.min(s.current_streak, 30) * 0.02);
-    const leaderboardScore = Math.round(avgPoints * Math.sqrt(s.games_played) * streakBonus);
-    
-    return {
-      user_id: s.user_id,
-      display_name: s.display_name || `Player #${s.user_id.slice(-4)}`,
-      games_played: s.games_played,
-      total_points: s.total_points,
-      current_streak: s.current_streak,
-      max_streak: s.max_streak,
-      avg_points: avgPoints,
-      leaderboard_score: leaderboardScore,
-    };
-  });
+  return data.map(s => ({
+    user_id: s.user_id,
+    display_name: s.display_name || `Player #${s.user_id.slice(-4)}`,
+    games_played: s.games_played,
+    total_points: s.total_points,
+    current_streak: s.current_streak,
+    max_streak: s.max_streak,
+    avg_points: s.games_played >= 1 ? Math.round(s.total_points / s.games_played) : 0,
+  }));
 };
 
 // Update display name
