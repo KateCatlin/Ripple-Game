@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
-import { Lock, Users, Trophy, UserPlus, LogIn, HelpCircle, BarChart3 } from "lucide-react";
+import { Lock, Users, Trophy, UserPlus, LogIn, HelpCircle, BarChart3, Archive } from "lucide-react";
 
 const ADMIN_PASSWORD = "ripple2024"; // Simple password protection
 
@@ -125,6 +125,17 @@ export default function Admin() {
 
   const totalStatsViewed = getEventCount('stats_viewed');
   const totalLeaderboardViewed = getEventCount('leaderboard_viewed');
+
+  // Archive funnel data
+  const archiveCtaClicks = getEventCount('archive_cta_clicked');
+  const archivePuzzleClicks = getEventCount('archive_puzzle_clicked');
+  const archivePuzzleCompletions = getEventCount('archive_puzzle_completed');
+
+  const archiveFunnelData = [
+    { step: 'CTA Clicked', count: archiveCtaClicks, rate: 100 },
+    { step: 'Puzzle Clicked', count: archivePuzzleClicks, rate: archiveCtaClicks > 0 ? Math.round((archivePuzzleClicks / archiveCtaClicks) * 100) : 0 },
+    { step: 'Completed', count: archivePuzzleCompletions, rate: archivePuzzleClicks > 0 ? Math.round((archivePuzzleCompletions / archivePuzzleClicks) * 100) : 0 },
+  ];
 
   if (!isAuthenticated) {
     return (
@@ -303,6 +314,56 @@ export default function Admin() {
                       ? `${Math.round((totalStatsViewed / (totalStatsViewed + totalLeaderboardViewed)) * 100)}% Stats / ${Math.round((totalLeaderboardViewed / (totalStatsViewed + totalLeaderboardViewed)) * 100)}% Leaderboard`
                       : 'No data yet'}
                   </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Archive Funnel */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Archive className="w-5 h-5" />
+                  Archive Engagement Funnel
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={archiveFunnelData} layout="vertical">
+                      <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                      <XAxis type="number" className="text-xs" />
+                      <YAxis dataKey="step" type="category" className="text-xs" width={100} />
+                      <Tooltip 
+                        contentStyle={{ 
+                          backgroundColor: 'hsl(var(--card))', 
+                          border: '1px solid hsl(var(--border))' 
+                        }}
+                        formatter={(value, name) => [value, name === 'count' ? 'Count' : 'Rate']}
+                      />
+                      <Bar dataKey="count" fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="mt-4 grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <p className="text-sm text-muted-foreground">CTA Clicks</p>
+                    <p className="font-bold">{archiveCtaClicks}</p>
+                    <p className="text-xs text-muted-foreground">Results page</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Puzzle Clicks</p>
+                    <p className="font-bold">{archivePuzzleClicks}</p>
+                    <p className="text-xs text-primary">
+                      {archiveCtaClicks > 0 ? `${Math.round((archivePuzzleClicks / archiveCtaClicks) * 100)}%` : '—'} of CTA
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Completions</p>
+                    <p className="font-bold">{archivePuzzleCompletions}</p>
+                    <p className="text-xs text-correct">
+                      {archivePuzzleClicks > 0 ? `${Math.round((archivePuzzleCompletions / archivePuzzleClicks) * 100)}%` : '—'} of clicks
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
