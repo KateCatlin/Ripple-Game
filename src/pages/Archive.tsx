@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { calculatePoints } from "@/lib/supabaseStats";
+import { trackEvent } from "@/lib/analytics";
 
 interface CompletedPuzzle {
   dayNumber: number;
@@ -151,7 +152,13 @@ export default function Archive() {
                     "active:scale-[0.99]",
                     isCompleted && "border-correct/30 bg-correct/5"
                   )}
-                  onClick={() => navigate(`/play/${puzzle.date}`)}
+                  onClick={() => {
+                    trackEvent('archive_puzzle_clicked', {
+                      userId: user?.id,
+                      metadata: { day_number: dayNumber, puzzle_date: puzzle.date, already_completed: isCompleted }
+                    });
+                    navigate(`/play/${puzzle.date}`);
+                  }}
                 >
                   <CardContent className="py-4 px-4">
                     <div className="flex items-center justify-between">
