@@ -1,22 +1,72 @@
 import { useNavigate, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { getArchivedPuzzles, getDayNumberForDate } from "@/data/puzzles";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, ChevronRight, Archive as ArchiveIcon } from "lucide-react";
+import { ArrowLeft, Calendar, ChevronRight, Archive as ArchiveIcon, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 /**
  * Archive page displays all previously-played puzzles.
  * Users can click on any past puzzle to play it.
- * 
- * Why Archive lives in the top-right navigation:
- * Archive is a first-class navigation option, grouped with other meta actions
- * (Help, Stats), making it immediately discoverable for users who want to
- * explore past puzzles.
+ * Shows completion checkmarks for puzzles the user has already played.
  */
 export default function Archive() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const archivedPuzzles = getArchivedPuzzles();
+  const [completedDays, setCompletedDays] = useState<Set<number>>(new Set());
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load completion status from localStorage and Supabase
+  useEffect(() => {
+    const loadCompletionStatus = async () => {
+      const completed = new Set<number>();
+      
+      // Check localStorage for each puzzle date
+      archivedPuzzles.forEach(puzzle => {
+        if (!puzzle.date) return;
+        const dayNumber = getDayNumberForDate(puzzle.date);
+        const storageKey = `ripple-game-state-${puzzle.date}`;
+        
+        try {
+          const stored = localStorage.getItem(storageKey);
+          if (stored) {
+            const state = JSON.parse(stored);
+            if (state.isComplete) {
+              completed.add(dayNumber);
+            }
+          }
+        } catch (e) {
+          // Ignore parse errors
+        }
+      });
+      
+      // If logged in, also check Supabase for completed puzzles
+      if (user) {
+        const dayNumbers = archivedPuzzles.map(p => getDayNumberForDate(p.date!));
+        
+        const { data, error } = await supabase
+          .from('game_results')
+          .select('day_number')
+          .eq('user_id', user.id)
+          .in('day_number', dayNumbers);
+        
+        if (!error && data) {
+          data.forEach(result => {
+            completed.add(result.day_number);
+          });
+        }
+      }
+      
+      setCompletedDays(completed);
+      setIsLoading(false);
+    };
+    
+    loadCompletionStatus();
+  }, [user, archivedPuzzles]);
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr + 'T00:00:00');
@@ -26,6 +76,8 @@ export default function Archive() {
       day: 'numeric',
     });
   };
+
+  const completedCount = completedDays.size;
 
   return (
     <div className="min-h-screen bg-background">
@@ -46,7 +98,10 @@ export default function Archive() {
                 Archive
               </h1>
               <p className="text-xs text-muted-foreground">
-                {archivedPuzzles.length} past puzzles
+                {completedCount > 0 
+                  ? `${completedCount}/${archivedPuzzles.length} completed`
+                  : `${archivedPuzzles.length} past puzzles`
+                }
               </p>
             </div>
           </div>
@@ -74,45 +129,72 @@ export default function Archive() {
           ) : (
             archivedPuzzles.map((puzzle) => {
               const dayNumber = getDayNumberForDate(puzzle.date!);
+              const isCompleted = completedDays.has(dayNumber);
               
               return (
                 <Card
                   key={puzzle.id}
                   className={cn(
                     "cursor-pointer transition-all hover:border-primary/50 hover:shadow-md",
-                    "active:scale-[0.99]"
+                    "active:scale-[0.99]",
+                    isCompleted && "border-correct/30 bg-correct/5"
                   )}
                   onClick={() => navigate(`/play/${puzzle.date}`)}
                 >
                   <CardContent className="py-4 px-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
-                        {/* Date badge */}
-                        <div className="flex flex-col items-center justify-center w-14 h-14 rounded-lg bg-muted">
-                          <Calendar className="w-4 h-4 text-muted-foreground mb-0.5" />
-                          <span className="text-xs font-medium text-muted-foreground">
-                            {formatDate(puzzle.date!).split(',')[0]}
-                          </span>
+                        {/* Date badge with completion indicator */}
+                        <div className={cn(
+                          "relative flex flex-col items-center justify-center w-14 h-14 rounded-lg",
+                          isCompleted ? "bg-correct/20" : "bg-muted"
+                        )}>
+                          {isCompleted ? (
+                            <Check className="w-6 h-6 text-correct" />
+                          ) : (
+                            <>
+                              <Calendar className="w-4 h-4 text-muted-foreground mb-0.5" />
+                              <span className="text-xs font-medium text-muted-foreground">
+                                {formatDate(puzzle.date!).split(',')[0]}
+                              </span>
+                            </>
+                          )}
                         </div>
                         
                         {/* Puzzle info */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-0.5">
-                            <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">
+                            <span className={cn(
+                              "text-xs font-medium px-2 py-0.5 rounded",
+                              isCompleted 
+                                ? "text-correct bg-correct/10" 
+                                : "text-primary bg-primary/10"
+                            )}>
                               #{dayNumber}
                             </span>
                             <span className="text-xs text-muted-foreground">
                               {formatDate(puzzle.date!)}
                             </span>
+                            {isCompleted && (
+                              <span className="text-xs text-correct font-medium">
+                                ✓ Played
+                              </span>
+                            )}
                           </div>
-                          <h3 className="font-medium text-foreground truncate">
+                          <h3 className={cn(
+                            "font-medium truncate",
+                            isCompleted ? "text-muted-foreground" : "text-foreground"
+                          )}>
                             {puzzle.title}
                           </h3>
                         </div>
                       </div>
                       
                       {/* Arrow */}
-                      <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                      <ChevronRight className={cn(
+                        "w-5 h-5 flex-shrink-0",
+                        isCompleted ? "text-correct" : "text-muted-foreground"
+                      )} />
                     </div>
                   </CardContent>
                 </Card>
