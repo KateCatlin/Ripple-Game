@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -5,6 +6,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 
 interface HowToPlayModalProps {
   open: boolean;
@@ -13,7 +15,31 @@ interface HowToPlayModalProps {
 }
 
 export const HowToPlayModal = ({ open, onOpenChange, onStart }: HowToPlayModalProps) => {
+  const hasTrackedShow = useRef(false);
+  const completedViaButton = useRef(false);
+
+  // Track when tutorial is shown (only once per session)
+  useEffect(() => {
+    if (open && !hasTrackedShow.current) {
+      hasTrackedShow.current = true;
+      trackEvent('tutorial_shown');
+    }
+  }, [open]);
+
+  // Track dismissal when modal closes without completing via button
+  useEffect(() => {
+    if (!open && hasTrackedShow.current && !completedViaButton.current) {
+      trackEvent('tutorial_dismissed');
+    }
+    // Reset completed flag when modal reopens
+    if (open) {
+      completedViaButton.current = false;
+    }
+  }, [open]);
+
   const handleStart = () => {
+    completedViaButton.current = true;
+    trackEvent('tutorial_completed');
     onOpenChange(false);
     onStart?.();
   };
