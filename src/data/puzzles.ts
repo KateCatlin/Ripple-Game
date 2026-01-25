@@ -1593,19 +1593,56 @@ export const puzzles: Puzzle[] = [
         explanation: "Once millions of people had hours of 'headphone time' built into their daily routines, they needed content to fill it. Podcasts exploded from niche hobby to mainstream medium; audiobook revenue tripled in a decade. The Walkman didn't just change how we listen to music — it created the audience for an entirely new content industry decades later."
       }
     ]
+  },
+  {
+    id: 41,
+    title: "The Volcano That Created a Monster",
+    events: [
+      {
+        event: "1815: Mount Tambora in Indonesia erupts — the most powerful volcanic explosion in recorded history",
+        options: [
+          "Tsunamis devastate coastal cities across the Indian Ocean",
+          "Massive ash clouds spread through the atmosphere, circling the globe",
+          "The Dutch colonial government evacuates all Europeans from the region",
+          "Volcanic gases poison water supplies, causing cholera outbreaks across Asia"
+        ],
+        correctIndex: 1,
+        explanation: "Tambora ejected 160 cubic kilometers of rock and ash into the stratosphere — so much debris that it spread worldwide, creating a veil of sulfur particles that would reflect sunlight away from Earth for over a year."
+      },
+      {
+        event: "Massive ash clouds spread through the atmosphere, circling the globe",
+        options: [
+          "Spectacular blood-red sunsets inspire a golden age of landscape painting",
+          "The following year, 1816, becomes the 'Year Without a Summer'",
+          "Global shipping routes shift to avoid the ash-darkened skies",
+          "Scientists race to study the phenomenon, founding modern volcanology"
+        ],
+        correctIndex: 1,
+        explanation: "The volcanic veil caused global temperatures to drop by up to 3°C. Europe and North America experienced killing frosts in June, failed harvests, and widespread famine. In Switzerland, the summer of 1816 brought endless cold rain and darkness."
+      },
+      {
+        event: "The following year, 1816, becomes the 'Year Without a Summer'",
+        options: [
+          "Mass migrations begin as thousands flee to warmer climates in Southern Europe",
+          "Trapped indoors by the gloomy weather, a teenage Mary Shelley writes 'Frankenstein'",
+          "Food riots topple the recently restored French monarchy",
+          "The Catholic Church declares the darkness a divine punishment, triggering religious revival"
+        ],
+        correctIndex: 1,
+        explanation: "At Villa Diodati in Switzerland, 18-year-old Mary Shelley joined Lord Byron and Percy Shelley for what should have been a summer holiday. Trapped inside by incessant storms, Byron challenged the group to write ghost stories. Mary's contribution became 'Frankenstein' — often considered the first science fiction novel. An Indonesian volcano inadvertently gave birth to an entire literary genre."
+      }
+    ]
   }
 ];
 
 /**
- * Generate dates for puzzles based on launch date.
- * 
+ * Generate dates for puzzles based on a stable schedule.
+ *
  * IMPORTANT: The app launched on Dec 30, 2025 on LinkedIn.
  * - Archive starts from Dec 30, 2025 (first playable puzzle)
- * - Puzzles are assigned dates counting backwards from today
- * - ID 35 = Jan 24, ID 34 = Jan 23, etc.
- * - Today (Jan 25) = ID 36
- * - Puzzles that would fall before Dec 30, 2025 are moved to future dates
- * 
+ * - A fixed date schedule is used for existing puzzles, so dates never shift
+ * - New puzzles added to the end are scheduled AFTER the fixed block
+ *
  * TIMEZONE: All date calculations use HST (Pacific/Honolulu, UTC-10) as the reference.
  * HST was chosen to give users worldwide maximum time before daily reset.
  * Hawaii doesn't observe DST, so reset is always at midnight HST (10am UTC).
@@ -1643,48 +1680,47 @@ export const dateToPSTString = (date: Date): string => {
   }).format(date);
 };
 
-const generatePuzzleDates = (): Map<number, string> => {
+const FIXED_ORDERED_IDS = [
+  10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+  20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+  30, 31, 32, 33, 34, 35, 36, 41, 38, 39, 40,
+  1, 2, 3, 4, 5, 6, 7, 8, 9,
+];
+
+const buildPuzzleDateMap = (): Map<number, string> => {
   const dateMap = new Map<number, string>();
-  
-  // Calculate dates based on fixed assignments
-  // The ordering is: archive puzzles (past), today's puzzle, future puzzles
-  // Archive runs from Dec 30, 2025 to yesterday
-  // 
-  // Puzzle order by date (most recent first):
-  // Jan 25 = ID 36
-  // Jan 24 = ID 35 "The Bicycle Craze"
-  // Jan 23 = ID 34 "The Dust Bowl"
-  // Jan 22 = ID 33 "Air Conditioning Reshapes America"
-  // ... counting backwards to Dec 30 = ID 10
-  // 
-  // IDs 1-9 and 37+ are for future dates (after today)
   
   // Use a fixed reference point for date generation
   // Using HST offset (-10:00) at noon to avoid any edge cases
   const launchDate = new Date('2025-12-30T12:00:00-10:00'); // Noon HST on launch day
   
-  // Create ordered list: IDs 10-40, then 1-9 (for the cycle)
-  const orderedIds = [
-    10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-    20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
-    30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    1, 2, 3, 4, 5, 6, 7, 8, 9
-  ];
-  
-  // Assign dates starting from launch date
-  orderedIds.forEach((puzzleId, index) => {
+  // Assign dates for the fixed schedule
+  FIXED_ORDERED_IDS.forEach((puzzleId, index) => {
     const puzzleDate = new Date(launchDate);
     puzzleDate.setDate(puzzleDate.getDate() + index);
-    // Convert to HST date string for consistency
     const dateStr = dateToPSTString(puzzleDate);
     dateMap.set(puzzleId, dateStr);
+  });
+
+  // Schedule any puzzles not in the fixed block after the last fixed date
+  const fixedIdSet = new Set(FIXED_ORDERED_IDS);
+  const unscheduled = puzzles.filter(p => !fixedIdSet.has(p.id));
+  const lastFixedIndex = FIXED_ORDERED_IDS.length - 1;
+  const startFutureDate = new Date(launchDate);
+  startFutureDate.setDate(startFutureDate.getDate() + lastFixedIndex + 1);
+
+  unscheduled.forEach((puzzle, index) => {
+    const puzzleDate = new Date(startFutureDate);
+    puzzleDate.setDate(puzzleDate.getDate() + index);
+    const dateStr = dateToPSTString(puzzleDate);
+    dateMap.set(puzzle.id, dateStr);
   });
   
   return dateMap;
 };
 
 // Generate dates once and cache
-const puzzleDateMap = generatePuzzleDates();
+const puzzleDateMap = buildPuzzleDateMap();
 
 // Add dates to puzzles
 puzzles.forEach(puzzle => {
@@ -1704,12 +1740,8 @@ export const getPuzzleForDay = (date: Date = new Date()): Puzzle => {
     return puzzle;
   }
   
-  // Fallback: cycle through puzzles if no date match
-  const launchDate = new Date('2025-12-30T12:00:00-08:00');
-  const diffTime = Math.abs(date.getTime() - launchDate.getTime());
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  const puzzleIndex = diffDays % puzzles.length;
-  return puzzles[puzzleIndex];
+  // Fallback: return the most recently scheduled puzzle if date is beyond range
+  return puzzles[puzzles.length - 1];
 };
 
 /**
