@@ -7,23 +7,29 @@ import { ArrowLeft, Calendar, ChevronRight, Archive as ArchiveIcon, Check } from
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
+import { calculatePoints } from "@/lib/supabaseStats";
+
+interface CompletedPuzzle {
+  dayNumber: number;
+  points: number;
+}
 
 /**
  * Archive page displays all previously-played puzzles.
  * Users can click on any past puzzle to play it.
- * Shows completion checkmarks for puzzles the user has already played.
+ * Shows completion checkmarks and scores for puzzles the user has already played.
  */
 export default function Archive() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const archivedPuzzles = getArchivedPuzzles();
-  const [completedDays, setCompletedDays] = useState<Set<number>>(new Set());
+  const [completedPuzzles, setCompletedPuzzles] = useState<Map<number, CompletedPuzzle>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load completion status from localStorage and Supabase
+  // Load completion status and scores from localStorage and Supabase
   useEffect(() => {
     const loadCompletionStatus = async () => {
-      const completed = new Set<number>();
+      const completed = new Map<number, CompletedPuzzle>();
       
       // Check localStorage for each puzzle date
       archivedPuzzles.forEach(puzzle => {
@@ -35,8 +41,10 @@ export default function Archive() {
           const stored = localStorage.getItem(storageKey);
           if (stored) {
             const state = JSON.parse(stored);
-            if (state.isComplete) {
-              completed.add(dayNumber);
+            if (state.isComplete && state.answers) {
+              const answers = state.answers.filter((a: boolean | null): a is boolean => a !== null);
+              const points = calculatePoints(answers, state.hintUsedOnEvent);
+              completed.set(dayNumber, { dayNumber, points });
             }
           }
         } catch (e) {
@@ -44,24 +52,27 @@ export default function Archive() {
         }
       });
       
-      // If logged in, also check Supabase for completed puzzles
+      // If logged in, also check Supabase for completed puzzles (overrides localStorage)
       if (user) {
         const dayNumbers = archivedPuzzles.map(p => getDayNumberForDate(p.date!));
         
         const { data, error } = await supabase
           .from('game_results')
-          .select('day_number')
+          .select('day_number, points')
           .eq('user_id', user.id)
           .in('day_number', dayNumbers);
         
         if (!error && data) {
           data.forEach(result => {
-            completed.add(result.day_number);
+            completed.set(result.day_number, { 
+              dayNumber: result.day_number, 
+              points: result.points 
+            });
           });
         }
       }
       
-      setCompletedDays(completed);
+      setCompletedPuzzles(completed);
       setIsLoading(false);
     };
     
@@ -77,7 +88,7 @@ export default function Archive() {
     });
   };
 
-  const completedCount = completedDays.size;
+  const completedCount = completedPuzzles.size;
 
   return (
     <div className="min-h-screen bg-background">
@@ -129,7 +140,8 @@ export default function Archive() {
           ) : (
             archivedPuzzles.map((puzzle) => {
               const dayNumber = getDayNumberForDate(puzzle.date!);
-              const isCompleted = completedDays.has(dayNumber);
+              const completedData = completedPuzzles.get(dayNumber);
+              const isCompleted = !!completedData;
               
               return (
                 <Card
@@ -175,11 +187,6 @@ export default function Archive() {
                             <span className="text-xs text-muted-foreground">
                               {formatDate(puzzle.date!)}
                             </span>
-                            {isCompleted && (
-                              <span className="text-xs text-correct font-medium">
-                                ✓ Played
-                              </span>
-                            )}
                           </div>
                           <h3 className={cn(
                             "font-medium truncate",
@@ -190,11 +197,28 @@ export default function Archive() {
                         </div>
                       </div>
                       
-                      {/* Arrow */}
-                      <ChevronRight className={cn(
-                        "w-5 h-5 flex-shrink-0",
-                        isCompleted ? "text-correct" : "text-muted-foreground"
-                      )} />
+                      {/* Score or arrow */}
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        {isCompleted && completedData && (
+                          <div className="text-right">
+                            <span className={cn(
+                              "text-sm font-semibold",
+                              completedData.points === 300 
+                                ? "text-correct" 
+                                : completedData.points >= 200 
+                                  ? "text-primary" 
+                                  : "text-muted-foreground"
+                            )}>
+                              {completedData.points}
+                            </span>
+                            <span className="text-xs text-muted-foreground ml-1">pts</span>
+                          </div>
+                        )}
+                        <ChevronRight className={cn(
+                          "w-5 h-5",
+                          isCompleted ? "text-correct" : "text-muted-foreground"
+                        )} />
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
