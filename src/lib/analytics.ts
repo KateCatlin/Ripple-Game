@@ -22,7 +22,8 @@ export type AnalyticsEvent =
   | 'leaderboard_viewed'
   | 'signup_completed'
   | 'login_completed'
-  | 'archive_cta_clicked';
+  | 'archive_cta_clicked'
+  | 'archive_puzzle_clicked';
 
 interface TrackEventOptions {
   userId?: string;
