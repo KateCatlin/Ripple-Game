@@ -258,11 +258,11 @@ export const ResultsCard = ({
 };
 
 const CountdownToMidnight = () => {
-  const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnight());
+  const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnightHST());
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeLeft(getTimeUntilMidnight());
+      setTimeLeft(getTimeUntilMidnightHST());
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -273,19 +273,48 @@ const CountdownToMidnight = () => {
       <p className="text-xl font-mono font-medium text-foreground">
         {timeLeft}
       </p>
+      <p className="text-xs text-muted-foreground mt-1">
+        Resets at midnight Hawaii time
+      </p>
     </div>
   );
 };
 
-function getTimeUntilMidnight(): string {
+/**
+ * Calculate time remaining until midnight HST (Hawaii Standard Time).
+ * HST is UTC-10, no daylight saving time.
+ */
+function getTimeUntilMidnightHST(): string {
   const now = new Date();
-  const midnight = new Date(now);
-  midnight.setHours(24, 0, 0, 0);
   
-  const diff = midnight.getTime() - now.getTime();
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  // Get the current time in HST
+  const hstFormatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Pacific/Honolulu',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  });
+  
+  const parts = hstFormatter.formatToParts(now);
+  const getPart = (type: string) => parts.find(p => p.type === type)?.value || '0';
+  
+  const hstHours = parseInt(getPart('hour'), 10);
+  const hstMinutes = parseInt(getPart('minute'), 10);
+  const hstSeconds = parseInt(getPart('second'), 10);
+  
+  // Calculate seconds until midnight HST
+  const secondsUntilMidnight = 
+    (24 - hstHours - 1) * 3600 + 
+    (60 - hstMinutes - 1) * 60 + 
+    (60 - hstSeconds);
+  
+  const hours = Math.floor(secondsUntilMidnight / 3600);
+  const minutes = Math.floor((secondsUntilMidnight % 3600) / 60);
+  const seconds = secondsUntilMidnight % 60;
   
   return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
