@@ -95,7 +95,7 @@ export const puzzles: Puzzle[] = [
 
   {
     id: 3,
-    title: "The Mortgage Interest Deduction",
+    title: "Mortgages Change Everything",
     events: [
       {
         event: "1913: U.S. tax code allows homeowners to deduct mortgage interest from taxable income",
@@ -1406,10 +1406,10 @@ export const puzzles: Puzzle[] = [
       {
         event: "1956: U.S. begins building 41,000 miles of interstate highways",
         options: [
-          "Rail travel becomes more competitive for short trips",
+          "Gasoline prices spike as demand for fuel surges nationwide",
           "Long-distance trucking becomes cheaper than rail freight",
-          "City centers become more accessible and valuable",
-          "Americans continue relying on trains for travel"
+          "Coastal cities lose influence as inland routes bypass them",
+          "Car sales decline as families wait for highways to be completed"
         ],
         correctIndex: 1,
         explanation: "Highways gave trucks a massive advantage.  Freight that once required rail scheduling could now go door-to-door by truck. Rail's share of freight dropped from 75% to under 40%."
@@ -1417,10 +1417,10 @@ export const puzzles: Puzzle[] = [
       {
         event: "Long-distance trucking becomes cheaper than rail freight",
         options: [
-          "Factories stay in city centers near rail depots",
+          "Congress nationalizes the struggling railroad industry",
           "Factories relocate to cheap land near highway exits",
-          "Urban manufacturing employment grows",
-          "Warehouses cluster around train stations"
+          "Trucking companies consolidate into a few regulated monopolies",
+          "Retail chains build massive downtown distribution centers"
         ],
         correctIndex: 1,
         explanation: "Factories no longer needed to be near rail lines or ports. They moved to suburbs and exurbs where land was cheap, as long as there was a highway exit nearby."
@@ -1428,10 +1428,10 @@ export const puzzles: Puzzle[] = [
       {
         event: "Factories relocate to cheap land near highway exits",
         options: [
-          "Workers continue living near downtown factories",
+          "Rural small towns become the new manufacturing centers",
           "Suburban sprawl accelerates as jobs follow highways",
-          "Public transit ridership increases",
-          "Downtown employment remains dominant"
+          "Inner-city unemployment drops as commuting becomes easier",
+          "Labor unions strengthen as factories cluster in new industrial parks"
         ],
         correctIndex: 1,
         explanation: "Jobs followed highways, and workers followed jobs. Suburbs exploded outward along highway corridors, creating car-dependent sprawl and hollowing out many city centers."
@@ -1482,7 +1482,7 @@ export const puzzles: Puzzle[] = [
     title: "GPS Goes Civilian",
     events: [
       {
-        event: "2000: President Clinton orders the military to stop degrading GPS signals for civilians, improving accuracy from ~100 meters to ~10 meters",
+        event: "2000: US President Clinton orders the military to stop degrading GPS signals for civilians, improving accuracy from ~100 meters to ~10 meters",
         options: [
           "Dedicated GPS navigation devices become a booming consumer electronics category",
           "Smartphones integrate GPS chips, making precise location a standard feature",
@@ -1632,6 +1632,357 @@ export const puzzles: Puzzle[] = [
         explanation: "At Villa Diodati in Switzerland, 18-year-old Mary Shelley joined Lord Byron and Percy Shelley for what should have been a summer holiday. Trapped inside by incessant storms, Byron challenged the group to write ghost stories. Mary's contribution became 'Frankenstein' — often considered the first science fiction novel. An Indonesian volcano inadvertently gave birth to an entire literary genre."
       }
     ]
+  },
+  {
+    id: 42,
+    title: "The Plague's Impact on Feudalism",
+    events: [
+      {
+        event: "1347: The Black Death arrives in Europe, eventually killing one-third of the population",
+        options: [
+          "The Church gains power as survivors turn to religion for answers",
+          "A massive labor shortage gives surviving workers newfound bargaining power",
+          "Nobles consolidate land from the dead, strengthening the feudal system",
+          "Trade collapses permanently as merchants fear spreading the plague"
+        ],
+        correctIndex: 1,
+        explanation: "With so many dead, there simply weren't enough peasants to work the fields. For the first time in centuries, common laborers could demand higher wages — and lords had no choice but to pay. England even passed the Statute of Labourers in 1351 trying to freeze wages, but it largely failed."
+      },
+      {
+        event: "A massive labor shortage gives surviving workers newfound bargaining power",
+        options: [
+          "Nobles raise private armies to force peasants back to the fields",
+          "Wages rise and peasants begin negotiating freedom from serfdom",
+          "The Pope declares rising wages sinful and demands a return to tradition",
+          "Workers squander their new wealth, and poverty returns within a decade"
+        ],
+        correctIndex: 1,
+        explanation: "Peasants leveraged their scarcity brilliantly. Many negotiated their way out of serfdom entirely, bought abandoned land cheaply, or simply moved to towns where labor was needed. Lords who refused to negotiate found their fields rotting unharvested."
+      },
+      {
+        event: "Wages rise and peasants begin negotiating freedom from serfdom",
+        options: [
+          "The aristocracy adapts and feudalism continues for another 500 years",
+          "The weakening of feudal bonds helps a new middle class emerge",
+          "Peasants overthrow the monarchy and establish democratic republics",
+          "The Church purchases abandoned estates and becomes Europe's largest landowner"
+        ],
+        correctIndex: 1,
+        explanation: "The rigid feudal hierarchy began to crack. Former peasants became tenant farmers, craftsmen, and merchants. This new economic mobility — unthinkable before the plague — laid the groundwork for the merchant class that would fuel the Renaissance and reshape European society."
+      }
+    ]
+  },
+  {
+    id: 43,
+    title: "The Goats That Changed The World",
+    events: [
+      {
+        event: "9th century: Legend tells of Kaldi, an Ethiopian goat herder who noticed his goats dancing energetically after eating red berries. Whether or not the tale is true, coffee cultivation takes hold in Ethiopia's highlands.",
+        options: [
+          "Ethiopian kings ban the stimulant, fearing it will make workers too restless",
+          "The beans spread to Yemen, where Sufi monks brew coffee to stay awake during prayers",
+          "Coffee remains unknown outside Ethiopia for the next thousand years",
+          "Ethiopian traders export the beans to India, where they become a medicinal remedy"
+        ],
+        correctIndex: 1,
+        explanation: "By the 1400s, coffee had crossed the Red Sea to Yemen. Sufi monks discovered that brewing the beans into a drink helped them stay alert during long nights of prayer. Yemen's port city of Mocha became the center of the early coffee trade — which is why 'mocha' became synonymous with coffee."
+      },
+      {
+        event: "The beans spread to Yemen, where Sufi monks brew coffee to stay awake during prayers",
+        options: [
+          "Religious authorities declare coffee sinful and destroy the Yemeni coffee crops",
+          "Coffeehouses emerge across the Ottoman Empire as social gathering places",
+          "Yemeni rulers begin exporting live coffee plants to spread cultivation worldwide",
+          "The stimulant proves too strong, and monks abandon coffee in favor of tea"
+        ],
+        correctIndex: 1,
+        explanation: "After the Ottomans conquered Yemen in 1538, coffee spread rapidly to Istanbul and beyond. By the 1550s, coffeehouses — called 'kahvehane' — were popping up across the empire. Interestingly, Yemeni authorities did the opposite of exporting plants — they banned the export of live coffee seeds and plants to protect their monopoly. Only roasted beans could leave the country."
+      },
+      {
+        event: "Coffeehouses emerge across the Ottoman Empire as social gathering places",
+        options: [
+          "Due to the popularity of tea in Europe, it takes 200 years for coffee to spread further north",
+          "Venetian merchants trading in Ottoman ports bring coffee back to Europe",
+          "Ottoman armies introduce coffee to Europe after conquering Vienna",
+          "Coffee becomes a royal luxury, with commoners forbidden from drinking it"
+        ],
+        correctIndex: 1,
+        explanation: "Venetian traders, who had deep commercial ties with the Ottoman Empire, began importing coffee beans in the late 1500s. Venice opened Europe's first coffeehouses, and the concept spread to London, Paris, and beyond. London's coffeehouses became hotbeds of Enlightenment thinking and commerce — one run by Edward Lloyd became the meeting spot for ship merchants and insurers, eventually becoming Lloyd's of London, birthplace of the modern insurance industry."
+      }
+    ]
+  },
+  {
+    id: 44,
+    title: "From Coffee Cups to New Industry",
+    events: [
+      {
+        event: "1652: Coffee arrives in London, and coffeehouses rapidly multiply.",
+        options: [
+          "The king initially bans coffeehouses, fearing they encourage dangerous political debate",
+          "Coffeehouses earn the nickname 'penny universities' for the learning exchanged inside",
+          "Locals divide on political affiliation between coffee and tea houses",
+          "Coffeehouses become exclusive gentlemen's clubs, charging steep membership fees"
+        ],
+        correctIndex: 1,
+        explanation: "London's coffeehouses became hubs of intellectual exchange — a place where, for the price of a cup of coffee, you could access newspapers, pamphlets, and spirited debate with doctors, poets, and businessmen alike. King Charles II actually did try to ban them in 1675, but public outcry forced him to back down within 11 days."
+      },
+      {
+        event: "Coffeehouses earn the nickname 'penny universities' for the learning exchanged inside",
+        options: [
+          "Enrollment at Oxford and Cambridge declines for the first time since the plague",
+          "Different coffeehouses begin specializing — one for writers, one for stockbrokers, one for ship merchants",
+          "The government standardizes coffeehouses, requiring them all to serve the same clientele",
+          "Intellectuals abandon coffeehouses once the working class begins frequenting them"
+        ],
+        correctIndex: 1,
+        explanation: "Each coffeehouse developed its own identity based on who gathered there. Writers debated at Will's Coffee House. Stockbrokers traded tips at Jonathan's Coffee House — which eventually became the London Stock Exchange. And near the Thames, a coffeehouse owner named Edward Lloyd attracted ship captains and maritime merchants by posting the latest shipping news on his walls."
+      },
+      {
+        event: "Different coffeehouses begin specializing — one for writers, one for stockbrokers, one for ship merchants",
+        options: [
+          "The maritime coffeehouse evolves into a private postal service for international merchants",
+          "Ship owners at Lloyd's Coffee House begin pooling risk on voyages, creating the modern insurance industry",
+          "Shipbuilders use the coffeehouse to recruit skilled labor, launching a trade union movement",
+          "Merchants at the coffeehouse form a joint venture, founding Britain's first commercial bank"
+        ],
+        correctIndex: 1,
+        explanation: "At Lloyd's Coffee House near the docks, those wanting to insure risky voyages met those willing to underwrite the risk. Each 'underwriter' literally wrote their name under the amount they'd cover on a slip of paper. This system of shared risk became the foundation of modern insurance. Lloyd's Coffee House evolved into Lloyd's of London — still one of the world's largest insurance markets today."
+      }
+    ]
+  },
+  {
+    id: 45,
+    title: "How a Fashion Trend Built a Nation",
+    events: [
+      {
+        event: "1600s: Beaver-felt hats become the height of fashion across Europe. The fur's unique barbed texture creates hats that are waterproof, hold their shape, and signal wealth and status.",
+        options: [
+          "European hatmakers begin breeding beavers in captivity to meet demand",
+          "European beavers are hunted to near-extinction, and traders look west to North America",
+          "The highest classes start wearing silk hats to differentiate themselves",
+          "European countries begin passing beaver conservation laws - the first of their kind"
+        ],
+        correctIndex: 1,
+        explanation: "Europeans hunted their native beaver populations nearly to extinction. But across the Atlantic, North America had an abundance of beavers — and Indigenous peoples willing to trade pelts. This demand sparked one of the largest commercial enterprises of the colonial era: the North American fur trade."
+      },
+      {
+        event: "European beavers are hunted to near-extinction, and traders look west to North America",
+        options: [
+          "North American colonies ban fur exports to protect their own hat industry",
+          "French and British traders establish competing fur trade networks, mapping vast territories",
+          "North American countries begin passing beaver conservation laws",
+          "Eastern Canada's population explodes as immigrants pour in to join the local industry"
+        ],
+        correctIndex: 1,
+        explanation: "The Hudson's Bay Company (British) and the North West Company (French-Canadian) built sprawling trade networks deep into the continent. Indigenous peoples became essential partners, trading beaver pelts for European goods. These networks mapped rivers, mountain passes, and territories — effectively charting what would become Canada."
+      },
+      {
+        event: "French and British traders establish competing fur trade networks, mapping vast territories",
+        options: [
+          "The gun production industry in Canada explodes due to popular demand",
+          "The mapped territories and trade posts become the foundation for Canadian Confederation and westward expansion",
+          "France wins control of the entire fur trade, blocking British access to the interior",
+          "The fur companies evolve into the first North American banks"
+        ],
+        correctIndex: 1,
+        explanation: "When the Hudson's Bay Company sold Rupert's Land to Canada in 1870, it transferred a territory covering nearly 4 million square kilometers — about a third of modern Canada. The trade posts became towns. The canoe routes became railways. A European hat craze had inadvertently mapped and claimed a nation."
+      }
+    ]
+  },
+  {
+    id: 46,
+    title: "The War That Built American Industry",
+    events: [
+      {
+        event: "Early 1800s: Britain is at war with Napoleon and desperately needs sailors. British ships begin stopping American vessels and forcing American sailors into the Royal Navy — a practice called impressment.",
+        options: [
+          "The U.S. agrees to supply sailors in exchange for trade access to British ports",
+          "Outraged Americans demand war, and in 1812 the U.S. declares war on Britain",
+          "American merchants accept the losses as a cost of doing business with Europe",
+          "Britain apologizes and the practice ends peacefully"
+        ],
+        correctIndex: 1,
+        explanation: "Impressment, combined with British trade restrictions, infuriated Americans. 'War hawks' in Congress pushed for action, and in June 1812, the U.S. declared war on Britain — launching invasions into British North America while British ships blockaded American ports."
+      },
+      {
+        event: "Outraged Americans demand war, and in 1812 the U.S. declares war on Britain",
+        options: [
+          "American merchants find alternative trade routes through South America",
+          "The British naval blockade cuts off American access to European manufactured goods",
+          "France comes to America's aid, breaking the British blockade",
+          "American exports to Europe actually increase during the war"
+        ],
+        correctIndex: 1,
+        explanation: "The Royal Navy blockaded American ports, strangling trade. Americans could no longer import the manufactured goods they had relied on from Britain. Suddenly, a young nation that had been happy to buy British-made products found itself completely cut off from foreign supply."
+      },
+      {
+        event: "The British naval blockade cuts off American access to European manufactured goods",
+        options: [
+          "Americans resort to smuggling, creating a vast black market for British goods",
+          "Forced to make their own goods, Americans rapidly build a domestic manufacturing industry",
+          "The U.S. economy collapses, forcing an early surrender",
+          "Britain lifts the blockade after American diplomatic pressure"
+        ],
+        correctIndex: 1,
+        explanation: "Necessity became the mother of invention. By 1816, over 100,000 Americans worked in factories producing $40 million in goods annually. Textile mills, ironworks, and shipyards sprang up across the Northeast. After the war, Congress passed protective tariffs to shield these new industries from British competition — launching America's transformation into an industrial power."
+      }
+    ]
+  },
+  {
+    id: 47,
+    title: "To Tariff or not to Tariff",
+    events: [
+      {
+        event: "1834: The German states are fragmented into dozens of tiny kingdoms and duchies. A merchant shipping goods from one end of Germany to the other must stop and pay tariffs at up to 80 different borders.",
+        options: [
+          "Merchants abandon overland trade in favor of sea routes around Europe",
+          "Prussia convinces the German states to abolish internal tariffs, creating the Zollverein customs union",
+          "Each state builds higher walls to protect its local industries",
+          "Britain invades to force open German markets for its own exports"
+        ],
+        correctIndex: 1,
+        explanation: "Prussia led the creation of the Zollverein — a customs union that eliminated internal tariffs between member states. For the first time, goods could flow freely across German territory. This created a unified market of 26 million people, making large-scale production and investment suddenly viable."
+      },
+      {
+        event: "Prussia convinces the German states to abolish internal tariffs, creating the Zollverein customs union",
+        options: [
+          "Freed from tariffs, German artisans flood Europe with cheap handmade goods",
+          "Investors rush to build railroads connecting the newly unified market",
+          "Austria joins the union and takes control of German economic policy",
+          "Without tariff revenue, German states start going bankrupt"
+        ],
+        correctIndex: 1,
+        explanation: "A unified market only works if you can move goods efficiently. Railroad construction exploded — track length quadrupled between 1850 and 1870. But railroads need rails, locomotives, and wheels. All of which require massive amounts of one thing: steel."
+      },
+      {
+        event: "Investors rush to build railroads connecting the newly unified market",
+        options: [
+          "Germany imports all its steel from Britain, creating a trade imbalance",
+          "Demand for steel fuels the rise of German heavy industry, and by 1893 Germany overtakes Britain in steel production",
+          "Railroad construction bankrupts German banks, causing an economic depression",
+          "The railroads are built with wooden tracks to save on steel costs"
+        ],
+        correctIndex: 1,
+        explanation: "The Krupp family's steel works in Essen became the symbol of German industrial power — their seamless steel railroad wheels revolutionized the industry. By 1893, Germany had surpassed Britain in steel production. By 1913, Germany produced twice as much steel as Britain. A simple decision to abolish internal tariffs had transformed a fragmented backwater into Europe's industrial powerhouse."
+      }
+    ]
+  },
+  {
+    id: 48,
+    title: "The Color of Industry",
+    events: [
+      {
+        event: "1856: A British teenager named William Perkin accidentally creates the first synthetic dye — a vivid purple called mauveine — while trying to synthesize quinine. The discovery launches a new industry.",
+        options: [
+          "British industry invests to build a booming global textile industry",
+          "German companies invest heavily in chemistry research and quickly overtake Britain",
+          "Textile makers reject synthetic dyes as inferior to natural alternatives",
+          "France patents the technology and bans exports to rival nations"
+        ],
+        correctIndex: 1,
+        explanation: "While the British made the discovery, German companies recognized its potential and invested heavily in industrial chemistry research. BASF, Bayer, and Hoechst built world-class research labs and hired university-trained chemists. By 1877, Germany produced half the world's synthetic dyes. By 1914, German companies controlled 90% of the global market."
+      },
+      {
+        event: "German companies invest heavily in chemistry research and quickly overtake Britain",
+        options: [
+          "German chemists become the leading researchers on textiles and dyes",
+          "The same chemical techniques are applied to create pharmaceuticals, fertilizers, and explosives",
+          "Britain retaliates with tariffs that lead to international tension",
+          "Synthetic dyes prove to be a short-lived fad as natural dyes make a comeback"
+        ],
+        correctIndex: 1,
+        explanation: "The expertise German chemists developed manipulating organic molecules didn't stop at dyes. Bayer created aspirin. BASF developed the Haber-Bosch process to synthesize ammonia — the foundation of modern fertilizers that now feed half the world's population. The same process also made explosives, which would prove critical when war came."
+      },
+      {
+        event: "The same chemical techniques are applied to create pharmaceuticals, fertilizers, and explosives",
+        options: [
+          "Germany shares its chemical secrets with Britain and France as part of an international trade union",
+          "When WWI begins, Germany's chemical expertise allows it to produce explosives despite being blockaded",
+          "When WWI begins, the chemical industry shifts to Russia as German scientists are drafted into the army",
+          "Other nations steal German chemical advances via espionage, leveling the playing field"
+        ],
+        correctIndex: 1,
+        explanation: "When the British naval blockade cut off Germany's access to Chilean saltpeter — the natural source of nitrates for explosives — Germany's chemical industry stepped in. The Haber-Bosch process let them synthesize ammonia from air itself. What began as an accident in a British teenager's lab had become the foundation of industrial chemistry, modern agriculture, and the weapons that extended WWI by years."
+      }
+    ]
+  },
+  {
+    id: 49,
+    title: "After the Wall Fell",
+    events: [
+      {
+        event: "1990: The Berlin Wall has fallen and Germany reunifies. But East Germany's economy is built on 8,000+ state-owned enterprises that can't compete in a capitalist market. Something must be done with them.",
+        options: [
+          "East German companies are given subsidies to slowly adapt to market competition",
+          "A government agency is formed to privatize or close thousands of Eastern companies",
+          "West German companies are banned from operating in the East to protect local jobs",
+          "The government nationalizes West German companies to create economic equality"
+        ],
+        correctIndex: 1,
+        explanation: "The Treuhand agency was tasked with privatizing East German industry virtually overnight. By 1994, it had sold or liquidated over 14,000 companies. The result was mass unemployment — millions of Eastern Germans lost their jobs as outdated factories closed. Wages and property values in the East plummeted."
+      },
+      {
+        event: "A government agency is formed to privatize or close thousands of Eastern companies",
+        options: [
+          "Unemployed workers migrate west, leaving Eastern cities abandoned",
+          "Discount retailers like Aldi and Lidl rapidly expand into the East, exploiting cheap labor and real estate",
+          "Eastern Germany returns to being an agricultural economy as industry disappears",
+          "Foreign companies refuse to invest, fearing political instability"
+        ],
+        correctIndex: 1,
+        explanation: "With wages and real estate far cheaper than in the West, discount retailers saw an opportunity. Aldi and Lidl — German chains built on ruthless cost-cutting — expanded aggressively into the former East. They hired low-wage workers, snapped up cheap commercial property, and refined their no-frills model for price-sensitive consumers used to scarcity."
+      },
+      {
+        event: "Discount retailers like Aldi and Lidl rapidly expand into the East, exploiting cheap labor and real estate",
+        options: [
+          "Traditional supermarkets quickly outcompete the discount chains with better selection",
+          "The German discount model proves so efficient that Aldi and Lidl expand across Europe and into the US",
+          "German consumers reject the discount model in favor of premium grocers",
+          "The discount chains remain regional players, unable to scale beyond Germany"
+        ],
+        correctIndex: 1,
+        explanation: "The expansion into Eastern Germany let Aldi and Lidl perfect their ultra-efficient model: tiny product selections, private-label goods, bare-bones stores. They then exported this formula worldwide. Today, Aldi operates over 10,000 stores globally and Lidl over 12,000. The political upheaval of reunification had inadvertently given birth to a retail revolution."
+      }
+    ]
+  },
+  {
+    id: 50,
+    title: "Bread from Air",
+    events: [
+      {
+        event: "1909: German chemist Fritz Haber demonstrates something remarkable — he can combine nitrogen from the air with hydrogen to create ammonia, the key ingredient in fertilizer.",
+        options: [
+          "The process proves too expensive in Germany and remains a laboratory curiosity",
+          "Cheap synthetic fertilizer floods the market, and global crop yields explode",
+          "Farmers reject synthetic fertilizer as unnatural and potentially dangerous",
+          "Other countries try to steal the technology, fearing German agricultural dominance"
+        ],
+        correctIndex: 1,
+        explanation: "Synthetic nitrogen fertilizer transformed agriculture. The air around us is 78% nitrogen — Haber had figured out how to unlock it. Crops that once exhausted the soil could now be grown year after year in the same fields. Yields doubled, then tripled. Food became cheaper and more abundant than at any point in human history."
+      },
+      {
+        event: "Cheap synthetic fertilizer floods the market, and global crop yields explode",
+        options: [
+          "Food abundance leads to falling prices, bankrupting farmers worldwide",
+          "The global population surges — from 1.6 billion in 1900 to over 8 billion today",
+          "Governments stockpile the excess food, creating strategic reserves",
+          "Agricultural nations impose export bans to keep food prices stable"
+        ],
+        correctIndex: 1,
+        explanation: "More food meant more people could survive. The Malthusian catastrophe that scientists had predicted — mass starvation as population outstripped food supply — never arrived. Instead, the global population exploded. Today, about half the nitrogen in your body passed through the Haber-Bosch process."
+      },
+      {
+        event: "The global population surges — from 1.6 billion in 1900 to over 8 billion today",
+        options: [
+          "Rising demand for food drives up land prices, making farmers the new wealthy class",
+          "Efficient farms need fewer workers, and by 2007 more humans live in cities than the countryside for the first time in history",
+          "Industrial agriculture exhausts the soil, forcing a return to traditional farming methods",
+          "Population growth triggers global food shortages, reversing the gains from synthetic fertilizer"
+        ],
+        correctIndex: 1,
+        explanation: "Synthetic fertilizer meant fewer farmers could feed more people. Rural workers, no longer needed on farms, migrated to cities seeking factory jobs. In 2007, for the first time in human history, more people lived in urban areas than rural ones. A chemistry experiment in 1909 had reshaped not just what we eat, but where we live."
+      }
+    ]
   }
 ];
 
@@ -1683,8 +2034,8 @@ export const dateToPSTString = (date: Date): string => {
 const FIXED_ORDERED_IDS = [
   10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
   20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
-  30, 31, 32, 33, 34, 35, 36, 41, 38, 39, 40,
-  1, 2, 3, 4, 5, 6, 7, 8, 9,
+  30, 31, 32, 33, 34, 35, 36, 42, 41, 47, 43, 38, 45, 39, 40,
+  1, 2, 3, 4, 49, 48, 5, 6, 7, 50, 8, 9, 44, 46,
 ];
 
 const buildPuzzleDateMap = (): Map<number, string> => {
