@@ -137,6 +137,28 @@ export default function Admin() {
     { step: 'Completed', count: archivePuzzleCompletions, rate: archivePuzzleClicks > 0 ? Math.round((archivePuzzleCompletions / archivePuzzleClicks) * 100) : 0 },
   ];
 
+  // Popular archive puzzles data
+  const archivePuzzleEvents = events.filter(e => e.event_name === 'archive_puzzle_clicked');
+  const puzzleClickCounts: Record<string, { clicks: number; date: string }> = {};
+  
+  archivePuzzleEvents.forEach(event => {
+    const metadata = event.metadata as { day_number?: number; puzzle_date?: string } | null;
+    const dayNumber = metadata?.day_number;
+    const puzzleDate = metadata?.puzzle_date;
+    if (dayNumber !== undefined) {
+      const key = `Day ${dayNumber}`;
+      if (!puzzleClickCounts[key]) {
+        puzzleClickCounts[key] = { clicks: 0, date: puzzleDate || '' };
+      }
+      puzzleClickCounts[key].clicks++;
+    }
+  });
+
+  const popularPuzzlesData = Object.entries(puzzleClickCounts)
+    .map(([name, data]) => ({ name, clicks: data.clicks, date: data.date }))
+    .sort((a, b) => b.clicks - a.clicks)
+    .slice(0, 10);
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -367,6 +389,41 @@ export default function Admin() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Popular Archive Puzzles */}
+            {popularPuzzlesData.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Archive className="w-5 h-5" />
+                    Most Popular Archive Puzzles (Top 10)
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={popularPuzzlesData}>
+                        <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                        <XAxis dataKey="name" className="text-xs" />
+                        <YAxis className="text-xs" />
+                        <Tooltip 
+                          contentStyle={{ 
+                            backgroundColor: 'hsl(var(--card))', 
+                            border: '1px solid hsl(var(--border))' 
+                          }}
+                          formatter={(value) => [value, 'Clicks']}
+                          labelFormatter={(label, payload) => {
+                            const item = payload?.[0]?.payload;
+                            return item?.date ? `${label} (${item.date})` : label;
+                          }}
+                        />
+                        <Bar dataKey="clicks" fill="hsl(var(--chart-3))" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Daily Trends */}
             <Card>
