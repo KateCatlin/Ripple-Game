@@ -11,6 +11,11 @@ const getSessionId = (): string => {
 };
 
 export type AnalyticsEvent = 
+  | 'page_viewed'
+  | 'tutorial_shown'
+  | 'tutorial_completed'
+  | 'tutorial_dismissed'
+  | 'game_started'
   | 'game_completed'
   | 'question_answered'
   | 'leaderboard_viewed'

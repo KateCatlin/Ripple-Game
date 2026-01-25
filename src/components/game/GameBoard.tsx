@@ -13,6 +13,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { hasSeenTutorial, markTutorialSeen } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Lightbulb } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
 
@@ -46,6 +47,19 @@ export const GameBoard = () => {
     getScore,
   } = useGameState({ puzzleDate: routeDate });
 
+  // Track page view on mount (once per session per puzzle)
+  useEffect(() => {
+    const isReturningUser = hasSeenTutorial();
+    trackEvent('page_viewed', {
+      metadata: {
+        returning_user: isReturningUser,
+        has_completed_today: isComplete,
+        is_archive: isArchive,
+        puzzle_date: puzzleDate,
+      }
+    });
+  }, []); // Only on mount
+
   // Show tutorial on first visit (only for daily puzzle, not archive)
   useEffect(() => {
     if (!hasSeenTutorial() && !isArchive) {
@@ -55,7 +69,30 @@ export const GameBoard = () => {
 
   const handleTutorialComplete = () => {
     markTutorialSeen();
+    // Track game started after tutorial completion
+    trackEvent('game_started', {
+      metadata: {
+        via: 'tutorial_completion',
+        is_archive: isArchive,
+        puzzle_date: puzzleDate,
+      }
+    });
   };
+
+  // Track game started for returning users (who skip tutorial)
+  const hasTrackedGameStart = useRef(false);
+  useEffect(() => {
+    if (hasSeenTutorial() && !isComplete && !hasTrackedGameStart.current) {
+      hasTrackedGameStart.current = true;
+      trackEvent('game_started', {
+        metadata: {
+          via: 'returning_user',
+          is_archive: isArchive,
+          puzzle_date: puzzleDate,
+        }
+      });
+    }
+  }, [isComplete, isArchive, puzzleDate]);
 
   // Show results only on initial mount if game was already complete
   useEffect(() => {
