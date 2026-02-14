@@ -1983,6 +1983,1976 @@ export const puzzles: Puzzle[] = [
         explanation: "Synthetic fertilizer meant fewer farmers could feed more people. Rural workers, no longer needed on farms, migrated to cities seeking factory jobs. In 2007, for the first time in human history, more people lived in urban areas than rural ones. A chemistry experiment in 1909 had reshaped not just what we eat, but where we live."
       }
     ]
+  },
+
+  {
+    id: 51,
+    title: "The Accidental Zap",
+    events: [
+      {
+        event: "1945: Raytheon engineer Percy Spencer notices a chocolate bar melting in his pocket while standing near a magnetron radar tube",
+        options: [
+          "The military classifies the discovery and restricts it to weapons research",
+          "Raytheon patents the 'Radarange' — a 750-pound, $5,000 microwave oven aimed at restaurants and ships",
+          "Scientists dismiss the heating effect as a useless curiosity",
+          "Spencer is fired for damaging lab equipment with food experiments"
+        ],
+        correctIndex: 1,
+        explanation: "Raytheon recognized the commercial potential and built the first microwave oven in 1947 — it was six feet tall, weighed 750 pounds, and cost $5,000. Far too big and expensive for homes, it was marketed to restaurants and ocean liners."
+      },
+      {
+        event: "Raytheon patents the 'Radarange' — a 750-pound, $5,000 microwave oven aimed at restaurants and ships",
+        options: [
+          "Microwaves remain a niche commercial product for decades",
+          "Countertop models arrive in the late 1960s, and frozen convenience food explodes in popularity",
+          "Consumers reject the technology, fearing radiation from their food",
+          "Traditional oven manufacturers successfully lobby to ban microwave sales"
+        ],
+        correctIndex: 1,
+        explanation: "Litton introduced the first countertop model in 1967, and by 1986, 25% of American homes had one. The microwave didn't just reheat leftovers — it created an entire industry of frozen dinners, microwave popcorn, and convenience food that restructured how families eat."
+      },
+      {
+        event: "Countertop models arrive in the late 1960s, and frozen convenience food explodes in popularity",
+        options: [
+          "Families spend more time together now that cooking takes less effort",
+          "Dinner prep drops from an hour to minutes, helping enable the rise of dual-income households",
+          "Home cooking disappears entirely as restaurants take over",
+          "Nutrition improves because microwaves preserve more vitamins than ovens"
+        ],
+        correctIndex: 1,
+        explanation: "When dinner prep shrank from an hour to minutes, it removed one of the biggest daily time burdens that had kept many women at home. Economists including Harvard's Claudia Goldin credit kitchen technology — especially the microwave — as a quiet contributor to the surge of women entering the workforce in the 1970s and '80s."
+      }
+    ]
+  },
+
+  {
+    id: 53,
+    title: "The Pill Changes Everything",
+    events: [
+      {
+        event: "1960: The FDA approves Enovid, the first oral contraceptive pill, giving women reliable control over the timing of pregnancy",
+        options: [
+          "Most women avoid the new drug, fearing side effects",
+          "By 1965, 6.5 million American women are on the Pill — one in four married women under 45",
+          "Birth rates remain unchanged because social norms still favor large families",
+          "Doctors refuse to prescribe it to unmarried women, limiting its impact"
+        ],
+        correctIndex: 1,
+        explanation: "Adoption was staggeringly fast. Within five years, one in four married American women under 45 was using oral contraceptives. For the first time in history, women could reliably separate sex from reproduction — and the downstream effects were enormous."
+      },
+      {
+        event: "By 1965, 6.5 million American women are on the Pill — one in four married women under 45",
+        options: [
+          "Women continue entering the same careers they always have",
+          "Women flood into professional graduate programs — law, medicine, business — because they can plan education around pregnancy",
+          "Women leave the workforce in larger numbers to focus on family planning",
+          "College enrollment for women declines as marriage becomes more appealing"
+        ],
+        correctIndex: 1,
+        explanation: "When unplanned pregnancy no longer threatened to derail a decade of professional training, women invested in longer education. Women as a share of law school graduates jumped from 5% in 1970 to 30% by 1980. Economists Claudia Goldin and Lawrence Katz documented this in their landmark study 'The Power of the Pill.'"
+      },
+      {
+        event: "Women flood into professional graduate programs — law, medicine, business — because they can plan education around pregnancy",
+        options: [
+          "The age of first marriage drops as career women seek stability sooner",
+          "The average age of first marriage rises from 20 to 25, reshaping the American household into the two-income model",
+          "Marriage rates remain steady but divorce rates plummet",
+          "Women's earnings immediately reach parity with men's"
+        ],
+        correctIndex: 1,
+        explanation: "The average age of first marriage rose from 20.3 in 1960 to 25.1 by 1990. Women who could control when they had children invested more years in education and careers first. This delayed marriage and childbearing, contributing to the rise of the dual-income household that now defines the American middle class."
+      }
+    ]
+  },
+
+  {
+    id: 54,
+    title: "The Dead Zone",
+    events: [
+      {
+        event: "April 26, 1986: Reactor No. 4 at the Chernobyl Nuclear Power Plant explodes, releasing 400 times more radiation than the Hiroshima bomb",
+        options: [
+          "The surrounding area is quickly cleaned up and resettled within a decade",
+          "350,000 people are permanently evacuated, and a 30-kilometer exclusion zone — the size of Rhode Island — becomes a ghost landscape",
+          "Radiation levels prove lower than expected, and most residents stay",
+          "The Soviet Union builds a new city nearby to house displaced workers"
+        ],
+        correctIndex: 1,
+        explanation: "The city of Pripyat (population 49,400) was fully evacuated within 36 hours. A 30-km exclusion zone was established, and 350,000 people were permanently relocated. An area the size of a small US state was simply abandoned."
+      },
+      {
+        event: "350,000 people are permanently evacuated, and a 30-kilometer exclusion zone becomes a ghost landscape",
+        options: [
+          "The land remains barren and lifeless due to radiation contamination",
+          "Wildlife — wolves, lynx, bison, wild horses — repopulates the zone within a decade, thriving in the absence of humans",
+          "The abandoned buildings are looted and dismantled for scrap",
+          "Radiation mutates local plants into a completely alien ecosystem"
+        ],
+        correctIndex: 1,
+        explanation: "With humans gone, nature rushed in. Wolves, lynx, Przewalski's horses, and European bison repopulated the zone. A 2015 study in Current Biology confirmed that large mammal populations had rebounded to levels comparable to uncontaminated nature reserves. The forests, fields, and waterways teemed with life."
+      },
+      {
+        event: "Wildlife thrives in the absence of humans, and the exclusion zone becomes one of Europe's most biodiverse areas",
+        options: [
+          "Scientists use the zone to develop radiation-resistant crops",
+          "The zone proves that even nuclear contamination is less damaging to ecosystems than sustained human presence",
+          "Conservationists push to clean up radiation so the area can become a proper nature park",
+          "The wildlife eventually dies off as long-term radiation effects accumulate"
+        ],
+        correctIndex: 1,
+        explanation: "In 2016, the area was designated the Chornobyl Radiation and Ecological Biosphere Reserve. The profoundly counterintuitive lesson: the worst nuclear disaster in history created one of Europe's most important wildlife sanctuaries — because the one thing more destructive to nature than radiation is us."
+      }
+    ]
+  },
+
+  {
+    id: 55,
+    title: "Whitney's Gift",
+    events: [
+      {
+        event: "1794: Eli Whitney patents the cotton gin, a machine that can separate cotton seeds from fiber 50 times faster than human hands",
+        options: [
+          "Cotton prices crash because supply exceeds demand",
+          "Cotton becomes so profitable that plantation owners massively expand cultivation across the South",
+          "Textile factories in the North shut down, unable to process the sudden glut",
+          "Whitney becomes the richest man in America from patent royalties"
+        ],
+        correctIndex: 1,
+        explanation: "Whitney believed his invention would reduce the need for slave labor. Instead, the gin made cotton enormously profitable. Production soared from 750,000 bales in 1830 to 2.85 million by 1850. The South's economy became a cotton monoculture — but there was a devastating catch."
+      },
+      {
+        event: "Cotton becomes so profitable that plantation owners massively expand cultivation across the South",
+        options: [
+          "The booming cotton economy gradually makes slavery economically unnecessary",
+          "The number of enslaved people skyrockets — from 700,000 in 1790 to 3.2 million by 1850",
+          "Plantation owners switch to paid immigrant labor to cut costs",
+          "Northern factories refuse to buy slave-picked cotton on moral grounds"
+        ],
+        correctIndex: 1,
+        explanation: "The gin could clean cotton, but it couldn't pick it — that still required hand labor in brutal conditions. More cotton meant more demand for enslaved workers. The enslaved population rose from roughly 700,000 in 1790 to 3.2 million by 1850, reversing a trend that had been moving toward abolition."
+      },
+      {
+        event: "The number of enslaved people skyrockets, and the South's economy locks into plantation agriculture",
+        options: [
+          "Economic success leads the South to voluntarily phase out slavery over time",
+          "The deepening dependence on slavery makes compromise impossible, and the nation slides toward Civil War",
+          "Northern states adopt the cotton economy and slavery spreads nationwide",
+          "International pressure forces the South to abandon slavery peacefully"
+        ],
+        correctIndex: 1,
+        explanation: "Cotton became 'King' — by 1860 it accounted for 60% of American exports. The South's identity and wealth were inseparable from slavery. A machine invented to make slavery unnecessary had instead made it indispensable, hardening positions until war became inevitable."
+      }
+    ]
+  },
+
+  {
+    id: 56,
+    title: "The Miracle Chemical",
+    events: [
+      {
+        event: "1930: Chemist Thomas Midgley Jr. invents chlorofluorocarbons (CFCs) — hailed as a miracle chemical: non-toxic, non-flammable, perfect for refrigerators and aerosol cans",
+        options: [
+          "CFCs prove too expensive for widespread use",
+          "CFCs become ubiquitous — in every refrigerator, air conditioner, and hairspray can on the planet",
+          "Competing chemicals quickly replace CFCs before they spread",
+          "Environmental concerns halt CFC production within a decade"
+        ],
+        correctIndex: 1,
+        explanation: "CFCs seemed perfect. DuPont marketed Freon as revolutionary, and by the 1970s, CFCs were in hundreds of millions of products worldwide. Peak production reached 82,000 tonnes per year. No one imagined they could pose any danger — they were literally inert."
+      },
+      {
+        event: "CFCs become ubiquitous — in every refrigerator, air conditioner, and hairspray can on the planet",
+        options: [
+          "Scientists confirm CFCs are completely harmless as originally claimed",
+          "In 1985, British scientists discover a massive 'ozone hole' over Antarctica — CFCs are dissolving Earth's protective layer",
+          "CFCs cause a minor local pollution problem that's easily cleaned up",
+          "CFC production naturally declines as companies find cheaper alternatives"
+        ],
+        correctIndex: 1,
+        explanation: "In May 1985, Joseph Farman, Brian Gardiner, and Jonathan Shanklin published their findings in Nature: a massive hole in the ozone layer over Antarctica, caused by CFCs. NASA's vivid satellite images of the growing hole shocked the world — the 'miracle chemical' was literally dissolving the shield that protects life on Earth from ultraviolet radiation."
+      },
+      {
+        event: "British scientists discover a massive 'ozone hole' over Antarctica — CFCs are dissolving Earth's protective layer",
+        options: [
+          "Countries argue for decades and fail to agree on any action",
+          "Just 18 months later, the Montreal Protocol is signed — the first universally ratified treaty in UN history — and the ozone layer begins healing",
+          "Only wealthy nations ban CFCs while developing countries continue using them",
+          "Scientists develop a technological fix that neutralizes CFCs in the atmosphere"
+        ],
+        correctIndex: 1,
+        explanation: "In a rare triumph of global cooperation, the Montreal Protocol was signed in 1987 and eventually ratified by every UN member state — all 198 of them. It phased out 98% of ozone-depleting substances, is expected to prevent 280 million cases of skin cancer, and the ozone layer is on track to recover by 2040. Kofi Annan called it 'perhaps the single most successful international agreement to date.'"
+      }
+    ]
+  },
+
+  {
+    id: 57,
+    title: "Clinton's Folly",
+    events: [
+      {
+        event: "1817: New York Governor DeWitt Clinton pushes to build a 363-mile canal through wilderness to connect the Great Lakes to the Atlantic. Critics call it 'Clinton's Folly'",
+        options: [
+          "The project is abandoned after engineers realize the terrain is impossible",
+          "Amateur engineers — including judges and math teachers — somehow build it in eight years, finishing in 1825",
+          "The federal government takes over the project and relocates it to Pennsylvania",
+          "Private investors refuse to fund it and the canal is never completed"
+        ],
+        correctIndex: 1,
+        explanation: "Thomas Jefferson himself called the idea 'little short of madness.' But Clinton persisted. The Erie Canal was built by amateur engineers — James Geddes, who laid out the route, had only used surveying instruments for a few hours before starting. Against all odds, the 363-mile canal opened on October 26, 1825."
+      },
+      {
+        event: "The Erie Canal opens in 1825, connecting the Great Lakes to the Hudson River and the Atlantic Ocean",
+        options: [
+          "Shipping costs remain high because the canal is too narrow for large boats",
+          "Shipping costs drop 95% — a barrel of flour goes from $3 to 75 cents — and tolls repay the construction debt within one year",
+          "Railroads immediately make the canal obsolete before it can turn a profit",
+          "The canal is mainly used for passenger travel rather than freight"
+        ],
+        correctIndex: 1,
+        explanation: "The canal was an instant economic miracle. Shipping costs plummeted by 95%, and the $7 million construction debt was repaid within a single year from toll revenue. Suddenly the entire American Midwest had a cheap highway to the Atlantic."
+      },
+      {
+        event: "Shipping costs drop 95%, and the entire American Midwest now has a cheap route to the Atlantic",
+        options: [
+          "Philadelphia and Baltimore maintain their positions as America's dominant port cities",
+          "New York City becomes the gateway to the continent, catapulting past Philadelphia and Baltimore to become America's dominant city",
+          "Chicago overtakes all East Coast cities as the nation's commercial capital",
+          "The Midwest develops its own ports and no longer needs East Coast cities"
+        ],
+        correctIndex: 1,
+        explanation: "The canal funneled all Midwest trade through New York's harbor, making it the most important port in the Americas almost overnight. Cities along the route boomed — Buffalo went from 200 settlers to 18,000 in twenty years. New York earned its nickname 'The Empire State' because of one audacious ditch."
+      }
+    ]
+  },
+
+  {
+    id: 58,
+    title: "The Devil's Apples",
+    events: [
+      {
+        event: "1570: Spanish conquistadors bring the potato back from Peru to Europe. Europeans refuse to eat it, calling it 'the devil's apple'",
+        options: [
+          "European farmers immediately adopt the potato as a superior crop",
+          "For 200 years, the potato is fed only to livestock and prisoners — Europeans consider it poisonous and possibly satanic",
+          "The potato is grown purely as an ornamental garden plant",
+          "The Catholic Church bans potato cultivation as unchristian"
+        ],
+        correctIndex: 1,
+        explanation: "Europeans were deeply suspicious. The potato is a nightshade (like deadly belladonna), it grows underground (unlike 'honest' grain), and it wasn't mentioned in the Bible. For two centuries it was regarded as animal feed, prisoner food, and possibly witchcraft."
+      },
+      {
+        event: "For 200 years, Europeans refuse to eat potatoes, feeding them only to livestock and prisoners",
+        options: [
+          "The potato gradually fades from European agriculture entirely",
+          "After catastrophic grain famines in the 1770s, rulers like Frederick the Great mandate potato cultivation, and Marie Antoinette wears potato blossoms in her hair",
+          "A new cooking method makes potatoes taste better and Europeans adopt them voluntarily",
+          "Scientists prove potatoes are nutritious, and public opinion shifts overnight"
+        ],
+        correctIndex: 1,
+        explanation: "It took famine. After the terrible crop failures of the 1770s, Frederick the Great of Prussia issued his 'Kartoffelbefehl' (Potato Order) in 1756 mandating cultivation. Marie Antoinette championed the cause by wearing potato blossoms in her hair. The lowly spud was finally rehabilitated — by royal decree."
+      },
+      {
+        event: "European rulers mandate potato cultivation, and the crop finally catches on across the continent",
+        options: [
+          "The potato becomes a minor supplement to Europe's grain-based diet",
+          "The potato yields 3× more calories per acre than grain, and Europe's population nearly doubles between 1750 and 1850 — fueling the Industrial Revolution",
+          "Overreliance on the potato immediately causes famines across Europe",
+          "The potato displaces grain but provides the same nutritional value"
+        ],
+        correctIndex: 1,
+        explanation: "Potatoes yield three times more calories per acre than grain and grow in poor soil. Europe's population nearly doubled between 1750 and 1850 — Ireland's alone exploded from 2 million to 8 million. The cheap calories fed factory workers and powered industrialization. Friedrich Engels called the potato 'the equal of iron for its historically revolutionary role.'"
+      }
+    ]
+  },
+
+  {
+    id: 59,
+    title: "The Nobel Prize Pesticide",
+    events: [
+      {
+        event: "1939: Swiss chemist Paul Müller discovers DDT's insecticidal powers. It's sprayed on soldiers, children, swimming pools, and farms. Müller wins the Nobel Prize",
+        options: [
+          "DDT proves less effective than traditional pest control methods",
+          "DDT is sprayed so liberally that over 600,000 tonnes are applied in the US alone, with peak production reaching 82,000 tonnes per year",
+          "Health concerns limit DDT to small-scale military use",
+          "Farmers prefer natural pest control and reject DDT"
+        ],
+        correctIndex: 1,
+        explanation: "DDT seemed like a miracle. It killed mosquitoes (fighting malaria), lice (fighting typhus), and crop pests. It was sprayed everywhere with abandon — on beaches, in neighborhoods, directly on people. Production peaked at 82,000 tonnes per year, and over 600,000 tonnes were applied across the US before anyone asked what it was doing to the ecosystem."
+      },
+      {
+        event: "Over 600,000 tonnes of DDT are sprayed across the United States, saturating farms, neighborhoods, and waterways",
+        options: [
+          "DDT breaks down harmlessly in the environment, confirming its safety",
+          "DDT bioaccumulates up the food chain, thinning the eggshells of bald eagles — America's national symbol — driving them to near-extinction",
+          "DDT has no effect on wildlife, only killing target insects",
+          "Birds develop resistance to DDT within a few generations"
+        ],
+        correctIndex: 1,
+        explanation: "Rachel Carson documented the horror in 'Silent Spring' (1962). DDT didn't break down — it accumulated in the food chain, concentrating in top predators. Bald eagles, peregrine falcons, and pelicans laid eggs with shells so thin they cracked under the parents' weight. The bald eagle population crashed to roughly 400 breeding pairs by 1963."
+      },
+      {
+        event: "DDT nearly wipes out the bald eagle, and Rachel Carson's 'Silent Spring' sparks public outrage",
+        options: [
+          "The chemical industry successfully discredits Carson and DDT use continues",
+          "The outcry launches the modern environmental movement — the EPA bans DDT in 1972, and the bald eagle recovers from 400 pairs to over 9,700 by 2006",
+          "Congress bans all pesticides, causing widespread crop failures",
+          "The bald eagle is replaced as the national symbol because recovery seems impossible"
+        ],
+        correctIndex: 1,
+        explanation: "Carson's book ignited a movement. The EPA was created and banned DDT in 1972. The Endangered Species Act followed in 1973. The bald eagle — down to ~400 breeding pairs — recovered to over 9,700 by 2006 and was removed from the endangered species list. A single book about a single chemical may have saved America's national bird."
+      }
+    ]
+  },
+
+  {
+    id: 60,
+    title: "What Hath God Wrought?",
+    events: [
+      {
+        event: "1844: Samuel Morse sends the first telegraph message — 'What hath God wrought?' — from Washington to Baltimore, and telegraph lines spread rapidly alongside railroads",
+        options: [
+          "Telegraph communication standardizes business practices across the country",
+          "Every city keeps its own local solar time, creating chaos — the Northern Pacific Railroad alone uses seven different time zones between St. Paul and Puget Sound",
+          "Railroads adopt a single nationwide time immediately to simplify schedules",
+          "Cities voluntarily agree to synchronize their clocks with Washington, D.C."
+        ],
+        correctIndex: 1,
+        explanation: "The telegraph and railroads created a crisis no one had anticipated. Every town set clocks by the sun, meaning noon in Chicago was 12:31 in Pittsburgh and 12:24 in Cleveland. The Northern Pacific Railroad dealt with seven time zones on a single route. Train schedules were a nightmare — and missed connections could be deadly."
+      },
+      {
+        event: "Railroad time chaos reaches a breaking point, with hundreds of conflicting local times across America",
+        options: [
+          "Congress passes a law mandating a single national time zone for simplicity",
+          "On November 18, 1883 — 'The Day of Two Noons' — railroads simultaneously reset every clock in America to four new time zones, synchronized by telegraph",
+          "Each state is allowed to choose its own time zone, leading to even more confusion",
+          "Railroads give up on standardized time and print separate schedules for each city"
+        ],
+        correctIndex: 1,
+        explanation: "It wasn't the government — it was the railroads. On November 18, 1883, every railroad in America simultaneously reset their clocks to four new standard time zones, synchronized by telegraph signal from the Allegheny Observatory in Pittsburgh. Cities woke up to discover their local time had vanished. Some called it 'The Day of Two Noons' because clocks were reset at midday."
+      },
+      {
+        event: "American railroads create four standard time zones, and cities lose their own local times forever",
+        options: [
+          "The system remains a uniquely American oddity that no other country adopts",
+          "The concept spreads globally at the 1884 International Meridian Conference, establishing the worldwide time zone system we still use today",
+          "European countries reject the American system and keep local solar time",
+          "Scientists propose decimal time (10-hour days) that eventually replaces time zones"
+        ],
+        correctIndex: 1,
+        explanation: "The success of American time zones inspired the 1884 International Meridian Conference in Washington, which established Greenwich as the prime meridian and created the worldwide system of 24 time zones. A telegraph message and some frustrated railroad schedulers had fundamentally changed humanity's relationship with time itself."
+      }
+    ]
+  },
+
+  {
+    id: 61,
+    title: "The Accidental Growth Spurt",
+    events: [
+      {
+        event: "1928: Alexander Fleming discovers penicillin. By WWII, mass production saves millions of soldiers' lives. Antibiotics seem like a miracle with no downside",
+        options: [
+          "Antibiotics are reserved exclusively for treating human illness",
+          "In 1946, researchers accidentally discover that feeding low-dose antibiotics to chickens makes them grow 50% faster on less feed",
+          "Antibiotics prove too expensive to manufacture for any use beyond hospitals",
+          "The agricultural industry shows no interest in medical discoveries"
+        ],
+        correctIndex: 1,
+        explanation: "It was an accidental discovery: chickens fed antibiotic-laced feed grew 50% faster and needed less food. American Cyanamid's 'Aureomycin' became the first FDA-approved antibiotic growth promoter in 1951. The economics were irresistible — farmers could raise more meat, cheaper, faster."
+      },
+      {
+        event: "Farmers discover that antibiotics make livestock grow faster, and antibiotic-laced feed becomes standard practice",
+        options: [
+          "Animals are still raised in traditional pasture-based systems",
+          "It becomes profitable to pack thousands of animals into cramped indoor facilities — factory farming is born — because antibiotics prevent the diseases that density would cause",
+          "Antibiotic-fed animals produce lower-quality meat that consumers reject",
+          "The FDA quickly bans antibiotic use in livestock to protect human health"
+        ],
+        correctIndex: 1,
+        explanation: "Antibiotics were the key that unlocked factory farming. Without them, packing thousands of chickens or pigs into enclosed buildings would cause rampant disease. With low-dose antibiotics in the feed, density became manageable. By 2001, a staggering 70% of all antibiotics sold in the US went to livestock, not humans."
+      },
+      {
+        event: "Factory farming becomes the dominant model, with 70% of all US antibiotics going to livestock rather than humans",
+        options: [
+          "The antibiotics have no effect beyond the farms where they're used",
+          "Decades of sub-therapeutic antibiotic use breeds antibiotic-resistant 'superbugs,' threatening to make our most critical human medicines useless",
+          "Scientists develop new antibiotics fast enough to stay ahead of any resistance",
+          "Livestock antibiotics are chemically different from human antibiotics, so there's no crossover risk"
+        ],
+        correctIndex: 1,
+        explanation: "Bacteria don't respect farm fences. Decades of low-dose antibiotics in animal feed created perfect breeding grounds for resistant bacteria like MRSA. The WHO now calls antimicrobial resistance 'one of the top 10 global public health threats facing humanity.' A miracle drug that saved millions in WWII may be creating the conditions for the next pandemic."
+      }
+    ]
+  },
+
+  {
+    id: 63,
+    title: "The Forgotten Pandemic",
+    events: [
+      {
+        event: "1918: The 'Spanish Flu' pandemic sweeps the globe, ultimately killing an estimated 50–100 million people — more than World War I",
+        options: [
+          "Governments mount effective, coordinated responses that limit the death toll",
+          "The pandemic exposes that governments have almost no public health infrastructure — cities with early quarantines (St. Louis) fare far better than those without (Philadelphia)",
+          "The pandemic ends quickly because of rapid vaccine development",
+          "Most countries are unaffected because the virus remains confined to Europe"
+        ],
+        correctIndex: 1,
+        explanation: "The disparity was stark. St. Louis, which imposed early, aggressive quarantine measures, had a death rate less than half of Philadelphia's, which held a massive parade in the middle of the pandemic. But the core problem was that most governments simply had no infrastructure — no health departments, no disease surveillance, no coordinated response capability."
+      },
+      {
+        event: "The pandemic exposes that no country has adequate public health infrastructure to handle a crisis",
+        options: [
+          "Governments conclude pandemics are unpreventable and do nothing",
+          "Countries race to create Ministries of Health — Russia (1918), Britain (1919) — and the League of Nations establishes a Health Organization in 1923",
+          "Private charities take over public health responsibilities instead of governments",
+          "Countries focus on military preparedness instead, assuming the next threat will be war"
+        ],
+        correctIndex: 1,
+        explanation: "The catastrophe was a wake-up call. Russia created a Ministry of Health in 1918, Britain in 1919, and many others followed. The League of Nations established its Health Organization in 1923 — the direct forerunner of the World Health Organization. For the first time, governments accepted that protecting public health was a core responsibility of the state."
+      },
+      {
+        event: "Countries create Ministries of Health and international health organizations in response to the pandemic",
+        options: [
+          "These new institutions remain small and underfunded for the next century",
+          "These institutions become the backbone of modern public health — disease surveillance, vaccination campaigns, and the WHO — enabling the eradication of smallpox and the fight against COVID-19",
+          "The institutions focus only on pandemic preparedness and ignore other health issues",
+          "National health systems prove ineffective and are mostly disbanded by the 1950s"
+        ],
+        correctIndex: 1,
+        explanation: "The WHO was founded in 1948 as a direct descendant of the League's Health Organization. The public health infrastructure born from the 1918 catastrophe went on to eradicate smallpox, nearly eliminate polio, and provide the disease surveillance systems that (imperfectly) fought COVID-19. The worst pandemic in modern history built the systems that protect us today."
+      }
+    ]
+  },
+
+  {
+    id: 64,
+    title: "Gutenberg's Blind Spot",
+    events: [
+      {
+        event: "1440s: Johannes Gutenberg perfects movable-type printing in Mainz, Germany. Between 1450 and 1500, the number of books in Europe explodes from a few thousand to 20 million",
+        options: [
+          "Most Europeans ignore printed books and continue relying on oral tradition",
+          "Silent, private reading becomes common for the first time, and literacy rates climb dramatically across Europe",
+          "Books remain too expensive for anyone except the wealthy",
+          "The Church confiscates most printed books to maintain its monopoly on knowledge"
+        ],
+        correctIndex: 1,
+        explanation: "Before the press, reading was mostly done aloud, in groups, by the few who could read. Printed books made silent, private reading possible for the first time. Literacy spread rapidly — and for the first time in history, millions of ordinary people were staring at small text for hours every day."
+      },
+      {
+        event: "Millions of Europeans begin reading printed text for hours each day — something human eyes never evolved to do",
+        options: [
+          "Human eyesight adapts quickly to the new demands of reading",
+          "Poor eyesight becomes a mass problem for the first time, and demand for corrective lenses explodes",
+          "People limit their reading to protect their vision",
+          "Printers solve the problem by using larger and larger typefaces"
+        ],
+        correctIndex: 1,
+        explanation: "Spectacles had existed in limited form since about 1286, but they were rare luxury items. Suddenly millions of people needed them. The eyeglasses industry scaled up dramatically, and lens-grinding became one of Europe's most important precision crafts."
+      },
+      {
+        event: "The eyeglasses industry scales up, and lens-grinding becomes a major precision craft across Europe",
+        options: [
+          "Lens-making remains focused on eyeglasses and never expands to other uses",
+          "The lens-grinding expertise leads directly to the invention of the telescope (1608) and microscope (1590) — Galileo's telescope overturns our model of the universe",
+          "Eyeglasses become a fashion accessory rather than a functional tool",
+          "The Church commissions lens makers to build stained glass windows instead"
+        ],
+        correctIndex: 1,
+        explanation: "The telescope and microscope were both invented by Dutch spectacle makers — Hans Lippershey (telescope, 1608) and Zacharias Janssen (microscope, ~1590). Galileo built his own telescope from spectacle-maker technology and used it to overturn the geocentric model of the universe. The chain: printing press → eyeglasses → telescope → scientific revolution."
+      }
+    ]
+  },
+
+  {
+    id: 65,
+    title: "From Mines to Milan",
+    events: [
+      {
+        event: "1873: Levi Strauss and Jacob Davis patent riveted denim work pants, designed as ultra-durable clothing for California gold miners",
+        options: [
+          "The pants are a commercial failure because miners prefer traditional work clothes",
+          "The riveted pants become the standard uniform for cowboys, miners, and laborers across the American West",
+          "The patent is immediately copied by dozens of competitors, undercutting Strauss",
+          "The pants are popular only in California and never spread east"
+        ],
+        correctIndex: 1,
+        explanation: "Levi's 'waist overalls' (they weren't called 'jeans' until the 1950s) were purely functional — tough, cheap, and practically indestructible. For decades they were sold only as workwear, worn by cowboys, farmers, and laborers. Nobody would have called them fashion."
+      },
+      {
+        event: "Denim work pants are standard workwear for decades — until James Dean wears them in 'Rebel Without a Cause' (1955)",
+        options: [
+          "The film has no effect on denim sales, which remain tied to manual labor",
+          "Jeans transform overnight from workwear into a symbol of youth rebellion — schools across America ban them",
+          "James Dean inspires a brief fad that dies out within a year",
+          "Adults adopt jeans as casual weekend wear, but they remain unfashionable"
+        ],
+        correctIndex: 1,
+        explanation: "James Dean in 'Rebel Without a Cause' and Marlon Brando in 'The Wild One' (1953) turned denim into an icon of defiance. Schools across America explicitly banned jeans. Parents hated them. Which, of course, made teenagers want them even more."
+      },
+      {
+        event: "Jeans become a symbol of rebellion and are banned in American schools — which only makes them more desirable",
+        options: [
+          "The rebellion fades and jeans return to being workwear by the 1970s",
+          "Behind the Iron Curtain, Levi's become a black-market symbol of Western freedom worth $200 a pair — and by the 2000s, 'designer jeans' cost hundreds on Milan runways",
+          "Jeans remain an exclusively American product that never catches on globally",
+          "Denim manufacturers pivot to making other types of clothing"
+        ],
+        correctIndex: 1,
+        explanation: "The anti-establishment aura went global. In the Soviet Union, Levi's were a coveted black-market symbol of Western freedom, traded for as much as $200 a pair. By the 2000s, 'designer jeans' from brands like Gucci and Dolce & Gabbana sold for hundreds of dollars on Milan runways. The cheapest workwear in America had become the most expensive fashion in the world."
+      }
+    ]
+  },
+
+  {
+    id: 66,
+    title: "Who Cut the Cord?",
+    events: [
+      {
+        event: "2007: Netflix launches streaming video. Viewers begin abandoning cable TV — a trend called 'cord-cutting' — and cable loses over 50 million subscribers by 2022",
+        options: [
+          "Cable companies adapt by offering cheaper packages and retain most subscribers",
+          "As cable revenue collapses, local news stations — which depend on cable carriage fees and local ads — are hit hardest",
+          "Local news thrives because people turn to it for information about their communities",
+          "Streaming services begin producing local news content to fill the gap"
+        ],
+        correctIndex: 1,
+        explanation: "Cable subscriptions peaked around 100 million in 2012 and then plummeted. National networks and streaming services survived — they had global audiences. But local news stations, which depended on local advertising and cable carriage fees, had nowhere to turn. The economics of covering city hall for a small audience simply collapsed."
+      },
+      {
+        event: "Local news stations slash staff and close. Over 2,500 newspapers shut down between 2005 and 2024",
+        options: [
+          "Online news startups quickly replace traditional local journalism",
+          "Entire communities become 'news deserts' — places with no professional journalists covering local government, schools, or corruption",
+          "Citizen journalists on social media fill the gap with quality reporting",
+          "National news outlets expand their local coverage to compensate"
+        ],
+        correctIndex: 1,
+        explanation: "Northwestern University's Medill School documented the rise of 'news deserts' — communities where no professional journalist covers the local school board, city council, or police department. By 2024, over 2,500 newspapers had closed, and thousands of communities lost their only source of accountability journalism."
+      },
+      {
+        event: "Thousands of communities become 'news deserts' with no professional journalists covering local affairs",
+        options: [
+          "Local government improves because officials are freed from adversarial press coverage",
+          "Without watchdog journalists, municipal corruption rises, borrowing costs increase, voter turnout drops, and residents turn to national hyper-partisan media instead",
+          "Communities self-govern more effectively without media interference",
+          "Local politicians voluntarily increase transparency to compensate for the lack of press"
+        ],
+        correctIndex: 1,
+        explanation: "Studies in the Journal of Financial Economics found that when local news disappears, municipal borrowing costs rise because there's less oversight of corruption. Political Communication research shows voter turnout drops. And without local news, residents turn to national hyper-partisan media — increasing polarization. A streaming revolution accidentally created a crisis for democracy."
+      }
+    ]
+  },
+
+  {
+    id: 67,
+    title: "Three Air Mattresses",
+    events: [
+      {
+        event: "2007: Brian Chesky and Joe Gebbia can't make rent, so they put air mattresses in their San Francisco apartment and rent them to conference-goers. 'AirBed & Breakfast' is born",
+        options: [
+          "The idea fails because travelers prefer the reliability of hotels",
+          "The concept explodes — by 2023, Airbnb has 7 million listings worldwide, more rooms than the top five hotel chains combined",
+          "Hotels successfully lobby to ban the service before it can scale",
+          "Airbnb remains a niche service used only in a few major cities"
+        ],
+        correctIndex: 1,
+        explanation: "Airbnb IPO'd in December 2020 at a $47 billion valuation. By 2023, it offered over 7 million listings worldwide — more rooms than Marriott, Hilton, IHG, Wyndham, and Hyatt combined. Travelers loved the prices and local feel; hosts loved the extra income. It seemed like a pure win."
+      },
+      {
+        event: "Airbnb grows to 7 million listings worldwide, offering travelers cheap alternatives to hotels",
+        options: [
+          "Airbnb listings supplement the existing housing supply without affecting local markets",
+          "Landlords discover they earn 2–3× more from short-term vacation rentals than long-term tenants, and thousands of apartments are converted from housing to de facto hotels",
+          "Hotels lower their prices to compete, benefiting all travelers",
+          "Most Airbnb hosts only rent spare rooms, leaving the housing market unaffected"
+        ],
+        correctIndex: 1,
+        explanation: "In tourist-heavy neighborhoods, the math was simple: why rent an apartment for $1,500/month to a local tenant when you could earn $3,000–5,000/month from tourists? Thousands of apartments in cities like Barcelona, Venice, Amsterdam, and New York were pulled from the long-term rental market and converted to full-time vacation rentals."
+      },
+      {
+        event: "Thousands of apartments are converted from long-term housing to vacation rentals, shrinking the supply of available homes",
+        options: [
+          "Housing costs remain stable because new construction fills the gap",
+          "Rents spike in popular destinations — Barcelona sees 50% rent increases in heavily impacted neighborhoods — and cities scramble to pass bans and restrictions",
+          "Tourists stop using Airbnb because locals become hostile",
+          "Landlords voluntarily return to long-term rentals when they realize the social cost"
+        ],
+        correctIndex: 1,
+        explanation: "In Barcelona, rents rose ~50% in five years in heavily Airbnb-impacted neighborhoods. Venice lost so many residents that it began charging tourists entry fees. Amsterdam, New York, and dozens of other cities enacted restrictions. A tool meant to democratize travel ended up making cities unaffordable for the people who actually live there."
+      }
+    ]
+  },
+
+  {
+    id: 71,
+    title: "Sogō's Gamble",
+    events: [
+      {
+        event: "1959: Japan National Railways president Shinji Sogō champions a radical plan — a 320-mile high-speed rail line connecting Tokyo and Osaka, the world's first 'bullet train.' The government estimates it will cost 200 billion yen. Sogō pushes construction to begin before the 1964 Tokyo Olympics",
+        options: [
+          "The project finishes on time and on budget, becoming a model of fiscal discipline",
+          "Costs nearly double to 380 billion yen, Sogō is forced to resign in disgrace in 1963 — but the Tōkaidō Shinkansen opens on October 1, 1964, just nine days before the Olympics",
+          "The project is cancelled due to spiraling costs and Japan invests in highways instead",
+          "Construction delays push the opening well past the Olympics, diminishing public interest"
+        ],
+        correctIndex: 1,
+        explanation: "The Shinkansen's budget exploded from 200 billion to roughly 380 billion yen. Sogō resigned in 1963 under political pressure, but his vision was vindicated: the line opened October 1, 1964, slashing Tokyo-to-Osaka travel from 6 hours 40 minutes to just 4 hours. It carried 100 million passengers within its first three years."
+      },
+      {
+        event: "The Shinkansen proves wildly popular — 100 million passengers by 1967, with an average delay of just 24 seconds per train and zero passenger fatalities from derailments or collisions. Airlines between Tokyo and Osaka suddenly face an existential threat",
+        options: [
+          "Airlines compete by lowering fares, and the two modes reach a stable equilibrium",
+          "The Shinkansen captures 85% of the Tokyo-Osaka travel market, and airlines withdraw service on several corridors entirely — Tokyo-Nagoya and Tokyo-Sendai air routes are simply cancelled",
+          "The government forces the Shinkansen to limit service to protect the airline industry",
+          "Passengers prefer flying for the speed advantage and airline market share holds steady"
+        ],
+        correctIndex: 1,
+        explanation: "The Shinkansen didn't just compete with airlines — it annihilated them on medium-distance routes. Airlines withdrew Tokyo-Nagoya and Tokyo-Sendai service entirely. When the Hokuriku Shinkansen extension opened in 2015, airline market share on that corridor plummeted from 40% to 10%. Today the bullet train holds roughly 85% of the Tokyo-Osaka market."
+      },
+      {
+        event: "With the Shinkansen connecting cities in under 3 hours, something unexpected happens: instead of decentralizing Japan, the bullet train centralizes it. Workers can now commute enormous distances daily",
+        options: [
+          "Smaller cities along the line boom as people relocate away from Tokyo's high costs",
+          "The Shinkansen enables 'mega-commuting' — workers live 100+ miles away and commute into Tokyo daily, making the capital even more economically dominant while hollowing out regional cities",
+          "The bullet train has no significant effect on where people choose to live",
+          "Companies relocate their headquarters to smaller cities to reduce costs"
+        ],
+        correctIndex: 1,
+        explanation: "A UCLA study found the Shinkansen actually increased Tokyo's dominance. Rather than spreading economic activity outward, it allowed workers to live in distant exurbs while commuting into the capital. Regional cities became bedroom communities. Japan National Railways accumulated ¥28 trillion in debt partly from network expansion and was privatized in 1987. A train meant to connect Japan's cities ended up feeding everything into one."
+      }
+    ]
+  },
+
+  {
+    id: 72,
+    title: "The Rubber Boom",
+    events: [
+      {
+        event: "1887: Scottish veterinarian John Boyd Dunlop invents the inflatable rubber tire for his son's tricycle in Belfast. Within a decade, the bicycle craze and then the automobile revolution send global rubber demand skyrocketing",
+        options: [
+          "Rubber plantations spring up peacefully across Southeast Asia to meet demand",
+          "King Leopold II of Belgium, who personally controls the Congo Free State — a territory 85 times the size of Belgium — realizes he's sitting on the world's largest supply of wild rubber vines and issues decrees in 1891-1892 forcing Congolese people to harvest it",
+          "Synthetic rubber is quickly invented, making natural rubber obsolete",
+          "European nations agree to regulate rubber extraction through international treaties"
+        ],
+        correctIndex: 1,
+        explanation: "Leopold II had gained personal control of the Congo at the 1884-1885 Berlin Conference — 2.35 million square kilometers he ruled from Brussels and never once visited. When rubber demand exploded, he issued three decrees between 1891 and 1892 declaring all 'vacant' land and its products state property, effectively forcing the entire Congolese population into rubber harvesting. State revenue rocketed from 150,000 francs in 1890 to over 18 million francs by 1901."
+      },
+      {
+        event: "Leopold's Force Publique enforces rubber quotas with systematic terror: villages that fail to meet their quota of 3-4 kilos of dried rubber per adult male per fortnight face mass killings. Soldiers are required to bring back severed hands as proof they haven't 'wasted' their bullets",
+        options: [
+          "The international community immediately intervenes to stop the atrocities",
+          "A shipping clerk named E.D. Morel, working at the Liverpool firm Elder Dempster around 1900, notices something impossible: ships sail to Congo carrying only guns and ammunition, but return loaded with rubber and ivory. No trade goods go out — meaning the rubber isn't being traded for, it's being taken by force",
+          "The Belgian parliament investigates and removes Leopold from power within months",
+          "Congolese resistance forces successfully overthrow Leopold's administration"
+        ],
+        correctIndex: 1,
+        explanation: "E.D. Morel's detective work at the Elder Dempster shipping office was extraordinary. By analyzing cargo manifests, he deduced that the Congo's rubber economy wasn't commerce — it was forced labor enforced by violence. Ships left Liverpool carrying guns, chains, and ammunition. They returned with vast quantities of rubber and ivory. No trade goods ever went out. Morel quit his job and became a journalist and activist, exposing the system."
+      },
+      {
+        event: "Morel teams up with Roger Casement, a British consul who writes a devastating 1903 report documenting the atrocities firsthand. Together they found the Congo Reform Association",
+        options: [
+          "Their campaign is ignored and Leopold maintains control of the Congo indefinitely",
+          "Their movement — joined by Arthur Conan Doyle, Mark Twain, and Booker T. Washington — becomes one of history's first international human rights campaigns, forcing Belgium to annex the Congo from Leopold in 1908. Before losing control, Leopold orders all financial and administrative archives burned",
+          "Leopold voluntarily reforms his administration and the abuses gradually stop",
+          "The Congo Reform Association focuses only on British colonial abuses and ignores Leopold"
+        ],
+        correctIndex: 1,
+        explanation: "The Congo Reform Association became one of the first mass international human rights campaigns. Arthur Conan Doyle wrote 'The Crime of the Congo,' Mark Twain published the satirical 'King Leopold's Soliloquy,' and Booker T. Washington lent his voice. Under enormous pressure, Belgium annexed the Congo on November 15, 1908. Before surrendering control, Leopold ordered the destruction of all Congo state archives. He told an aide: 'I will give them my Congo, but they have no right to know what I did there.' A pneumatic tire inflated a rubber boom that inflated a genocide — and then inflated the modern human rights movement."
+      }
+    ]
+  },
+
+  {
+    id: 73,
+    title: "The Missile Scientist's Equation",
+    events: [
+      {
+        event: "1980: Aerospace engineer Song Jian, a missile scientist, reads 'The Limits to Growth' while visiting Europe. He applies military control theory to China's population and concludes the ideal population is 700 million. On September 18, 1980, China formally implements a near-universal one-child policy",
+        options: [
+          "Chinese families accept the policy and the birth rate declines gradually and evenly",
+          "Because of the traditional preference for male heirs — sons carry on the family name and support elderly parents — families use sex-selective abortion to ensure their one permitted child is a boy. The sex ratio at birth skews to 117 boys for every 100 girls, far above the natural 103-107 range",
+          "The policy is loosely enforced and has little effect on birth rates or family composition",
+          "Families have daughters at higher rates since girls are seen as easier to raise"
+        ],
+        correctIndex: 1,
+        explanation: "The collision of an ancient cultural preference with a brutal numerical constraint produced a staggering demographic distortion. By the 2000s, China's sex ratio at birth hit 117:100, with some rural provinces reaching 140:100. An estimated 30-40 million 'missing women' resulted from sex-selective abortion, abandonment, and under-registration of girls. The Chinese Academy of Social Sciences projected 24 million more men than women of marriageable age by 2020 — men called 'bare branches' (guang gun) who would never find wives."
+      },
+      {
+        event: "By 2015, China has a generation of 'Little Emperors' — single children lavished with attention by two parents and four grandparents — and tens of millions of men who cannot find partners. The government abolishes the one-child policy on January 1, 2016, then allows three children in 2021, then removes all limits entirely in July 2021",
+        options: [
+          "Chinese couples eagerly have more children once restrictions are lifted",
+          "Almost nobody wants more children anymore — the government expected 21.9 million births in 2018 but got only 15.2 million, the lowest since 1961. By 2023, births hit a record low of 9.02 million. China's fertility rate falls to approximately 1.0 — less than half the 2.1 needed for a stable population",
+          "Birth rates stabilize at replacement level within a few years of lifting restrictions",
+          "Immigration offsets the declining birth rate and China's population remains stable"
+        ],
+        correctIndex: 1,
+        explanation: "The cruelest irony: the one-child policy worked so well that it changed Chinese culture permanently. Young Chinese, especially women, now see small families or no children as ideal. The cost of housing, education, and child-rearing in modern China is staggering. When the government lifted all restrictions in July 2021, births kept falling — 9.56 million in 2022, 9.02 million in 2023. The policy didn't just reduce births for one generation; it eliminated the desire for children in the next."
+      },
+      {
+        event: "China's population begins shrinking. A country that once feared having too many people now faces the opposite crisis",
+        options: [
+          "China's economy continues growing because automation replaces the missing workers",
+          "A missile scientist's population formula has set China on course to lose 67 million working-age people by 2030 while doubling its elderly. By 2050, one-third of China will be over 60. One study projects China's population will drop from 1.4 billion to 525 million by 2100",
+          "China successfully reverses the trend through financial incentives for having children",
+          "The demographic shift has minimal economic impact due to China's large existing population"
+        ],
+        correctIndex: 1,
+        explanation: "The United Nations projects China will lose 67 million working-age people by 2030 while simultaneously doubling the number of elderly. The Chinese Academy of Social Sciences estimates that by 2050, one-third of the country will be aged 60 or older. A Shanghai Academy of Social Sciences study projects China's population could plummet from 1.4 billion today to just 525 million by 2100. In September 2024, China announced it would raise the retirement age for the first time since the 1950s. A missile scientist's equation, meant to save China from overpopulation, may have instead set it on a path to demographic collapse."
+      }
+    ]
+  },
+
+  {
+    id: 74,
+    title: "Nasser's Dream",
+    events: [
+      {
+        event: "1956: Egyptian President Gamal Abdel Nasser nationalizes the Suez Canal after the US and UK withdraw funding for his dream project — a massive dam across the Nile at Aswan. The Soviet Union steps in with $1.12 billion in loans at just 2% interest, and construction of the Aswan High Dam begins in 1960",
+        options: [
+          "The dam is completed quickly and all its effects are positive for Egypt",
+          "The dam is completed in 1970 and successfully controls flooding, generates 2,100 megawatts of electricity, and reclaims 840,000 hectares of farmland — but it also traps 134 million tons of nutrient-rich sediment per year behind it that used to flow downstream to the Nile Delta and Mediterranean Sea",
+          "The Soviet engineers abandon the project and the dam is never completed",
+          "Egypt builds the dam but it proves too small to control the Nile's flooding"
+        ],
+        correctIndex: 1,
+        explanation: "The Aswan High Dam was an engineering triumph: 3,830 meters long, 111 meters tall, creating Lake Nasser — one of the world's largest reservoirs at 500 kilometers long. It protected Egypt from devastating droughts in 1972-73 and 1983-87 that ravaged the rest of Africa. But the Nile's annual flood had carried 134 million tons of sediment — rich in nitrogen, phosphorus, and potash — that fertilized Egypt's fields and fed the Mediterranean's coastal ecosystem. The dam stopped it all."
+      },
+      {
+        event: "With 134 million tons of annual sediment now trapped behind the dam, the consequences cascade: the nutrient-rich plume that once fed the southeastern Mediterranean ecosystem vanishes",
+        options: [
+          "Egyptian fishermen easily adapt by switching to freshwater fishing in Lake Nasser",
+          "The sardine catch off Egypt's coast collapses from 18,000 tons in 1962 to just 460 tons by 1968 — a 97% drop. Meanwhile, Egypt's farmland, deprived of free natural fertilizer, becomes dependent on chemical fertilizers, and the red-brick industry starts mining arable topsoil, destroying 1,000 square kilometers of farmland by 1984",
+          "Mediterranean fish populations are unaffected because they don't depend on Nile nutrients",
+          "The Egyptian government quickly builds fish farms to replace the lost catch"
+        ],
+        correctIndex: 1,
+        explanation: "The ecological cascade was devastating. Sardines — which depended on the nutrient plume from Nile sediment — virtually disappeared. A 1971 CIA report noted Egypt's Mediterranean catch shrank from 35,000-40,000 tons to under 20,000 tons. Without free sediment fertilizing their fields, farmers needed expensive chemical fertilizers. And the red-brick industry, deprived of Nile mud, began excavating fertile farmland itself — destroying roughly 1,000 square kilometers of arable land by 1984 before the government banned the practice 'with only modest success.'"
+      },
+      {
+        event: "The dam that was supposed to make Egypt's farmland more productive triggers a chain of ecological destruction that extends from the Mediterranean seafloor to the farm fields along the Nile",
+        options: [
+          "Egypt tears down the dam after recognizing the environmental damage",
+          "Egypt is forced to spend $3.1 billion on drainage systems to combat waterlogging and soil salinization caused by year-round irrigation — a dam built to feed Egypt's people ultimately made the country more dependent on imported food and foreign-made fertilizer than it was before",
+          "The environmental effects are minor and easily managed by Egyptian engineers",
+          "The dam's benefits so dramatically outweigh the costs that no remediation is needed"
+        ],
+        correctIndex: 1,
+        explanation: "Without the Nile's seasonal flood cycle, groundwater levels stayed permanently high, pulling salt to the surface through capillary action and poisoning cropland. Egypt spent $3.1 billion from 1973 to 2002 installing subsurface drainage across over 2 million hectares. The sardine fishery eventually partially recovered to 8,590 tons by 1992 — still less than half its pre-dam peak. One observer wrote: 'As a structure it is a success. But in its effect on the ecology of the Nile Basin — most of which could have been predicted — it is a failure.' A Cold War megaproject meant to make Egypt self-sufficient in food instead made it dependent on chemical imports to grow crops on its own ancient soil."
+      }
+    ]
+  },
+
+  {
+    id: 75,
+    title: "A Penny Per Tail",
+    events: [
+      {
+        event: "1897: France completes a grand colonial sewer system beneath Hanoi, French Indochina — 14 kilometers of modern underground tunnels meant to make the city as sanitary as Paris. The sewers are a showcase of colonial engineering and a symbol of France's 'civilizing mission'",
+        options: [
+          "The sewer system works perfectly and Hanoi becomes one of Asia's cleanest cities",
+          "The warm, dark, wet tunnels become a paradise for rats — millions of brown rats colonize the sewers and begin emerging into French homes and businesses, carrying bubonic plague. By 1902, rat sightings in the European quarter trigger panic among colonial officials",
+          "The sewers flood during monsoon season and are quickly abandoned",
+          "Vietnamese residents refuse to connect their homes to the French sewer system"
+        ],
+        correctIndex: 1,
+        explanation: "The French had built a highway system — for rats. The sewers connected every European home and business in Hanoi through a vast underground network of warm, wet tunnels. Brown rats thrived and multiplied into the millions, then started emerging through drains and toilet pipes directly into French colonial homes. When cases of bubonic plague appeared in Hanoi in 1902, the colonial government realized their proudest infrastructure project had created a public health catastrophe."
+      },
+      {
+        event: "1902: In a panic, the French colonial government in Hanoi hires Vietnamese rat-catchers and offers a bounty: one cent per rat tail submitted as proof of kill. At the program's peak, residents turn in over 20,000 tails per day",
+        options: [
+          "The bounty program succeeds and Hanoi's rat population plummets within months",
+          "Colonial officials start noticing rats running around Hanoi without tails — enterprising rat-catchers have been catching rats, cutting off their tails to collect the bounty, then releasing the rats alive so they can breed and produce more valuable tails",
+          "The Vietnamese rat-catchers refuse the work because the pay is too low",
+          "Rat catchers eliminate the rats but the plague continues spreading through other means"
+        ],
+        correctIndex: 1,
+        explanation: "The French had accidentally created a rat-farming incentive. Why kill a rat worth one cent when you can clip its tail, release it, and let it breed more one-cent tails? Colonial officials soon discovered tailless rats scurrying through the streets of Hanoi — living proof that the bounty hunters were running a catch-and-release operation. Even worse, some enterprising Vietnamese began breeding rats in captivity, turning their homes into rat farms to harvest tails for the bounty."
+      },
+      {
+        event: "The rat bounty program is cancelled in disgrace. The French have managed to increase Hanoi's rat population while paying for the privilege",
+        options: [
+          "The French never attempt pest control in Hanoi again",
+          "The debacle becomes a famous case study in 'perverse incentives' — when a reward designed to solve a problem instead makes it worse. Economist Horst Siebert later coins the term 'cobra effect' for such backfiring bounties, and the pattern repeats worldwide: from Fort Benning paying for wild pigs (soldiers imported pigs to collect bounties) to paleontologists paying locals per fossil fragment (locals smashed complete fossils into pieces to maximize payment)",
+          "The French switch to offering bounties for dead rats instead of just tails, which solves the problem",
+          "Hanoi's rat problem resolves on its own when the plague subsides"
+        ],
+        correctIndex: 1,
+        explanation: "Economist Horst Siebert coined the term 'cobra effect' in 2001 for bounty programs that backfire — named after an apocryphal story about cobra breeding in British India, though the Hanoi rat episode is far better documented. The pattern is universal: at Fort Benning, soldiers imported wild pigs to collect bounties; paleontologists who paid locals per bone fragment found them smashing complete skeletons into pieces. A sewer built to civilize Hanoi became a rat superhighway. A bounty meant to kill rats created rat farms. The French colonial government's proudest infrastructure project and its most rational policy combined to produce the exact opposite of their intended effect — a perfect monument to the law of unintended consequences."
+      }
+    ]
+  },
+  {
+    id: 76,
+    title: "The Patriot's Cup",
+    events: [
+      {
+        event: "1773: American colonists dump 342 chests of British East India Company tea into Boston Harbor to protest the Tea Act's taxation without representation",
+        options: [
+          "Tea prices skyrocket and colonists simply pay the higher price",
+          "Colonists boycott tea entirely as a patriotic act — drinking tea becomes seen as treasonous loyalty to the British Crown, and Americans turn to coffee as the 'drink of freedom'",
+          "The British East India Company collapses immediately from the financial loss",
+          "Colonists switch to drinking locally grown herbal teas instead"
+        ],
+        correctIndex: 1,
+        explanation: "Tea had been the colonies' most popular drink, but overnight it became politically toxic. Drinking tea marked you as a Loyalist. Coffee houses — already gathering spots for revolutionary planning — became the patriotic alternative. John Adams himself wrote to his wife Abigail that he had switched to coffee as a matter of duty."
+      },
+      {
+        event: "Coffee replaces tea as America's national drink. Demand for coffee beans explodes as the new nation grows",
+        options: [
+          "Americans begin growing coffee domestically across the southern states",
+          "Massive coffee plantations spread across Latin America — Brazil, Colombia, Guatemala, and Costa Rica reshape their entire economies around feeding America's coffee habit",
+          "Coffee consumption fades within a generation as Americans return to tea",
+          "European traders maintain control of the global coffee supply"
+        ],
+        correctIndex: 1,
+        explanation: "American coffee demand reshaped an entire continent. Brazil cleared vast tracts of Atlantic Forest for coffee plantations and by 1900 produced 75% of the world's coffee. Colombia, Guatemala, and Costa Rica built their economies around the crop. The US consumed more coffee than any other nation, and Latin American agriculture was restructured to serve that appetite."
+      },
+      {
+        event: "By the 20th century, the United States consumes more coffee than any other nation, and Latin American economies depend on coffee exports",
+        options: [
+          "Coffee consumption plateaus and the industry stabilizes",
+          "The infrastructure of coffee culture — roasters, cafés, espresso bars — eventually gives rise to the modern specialty coffee revolution, from Starbucks to third-wave artisan roasters, making coffee shops the defining social space of American life",
+          "Americans switch back to tea once political tensions with Britain cool",
+          "Coffee farming moves to Africa and Asia, ending Latin American dominance"
+        ],
+        correctIndex: 1,
+        explanation: "A political protest against tea taxes created the world's largest coffee-consuming nation. That demand reshaped Latin American agriculture for two centuries and built the infrastructure for America's coffee obsession — from diner coffee to Starbucks to pour-over artisan shops. The café became America's 'third place' between home and work, all because colonists threw tea in a harbor in 1773."
+      }
+    ]
+  },
+  {
+    id: 77,
+    title: "The Taxman's Bricks",
+    events: [
+      {
+        event: "1696: England introduces a Window Tax — property owners are charged based on the number of windows in their buildings, with higher rates for more windows",
+        options: [
+          "Wealthy homeowners proudly pay the tax as a status symbol",
+          "Homeowners across England begin bricking up their windows to reduce their tax bills — landlords seal windows in tenement buildings, and architects design new buildings with fewer, smaller openings",
+          "The tax generates enormous revenue and is quickly adopted across Europe",
+          "Homeowners simply cover windows with curtains to hide them from tax assessors"
+        ],
+        correctIndex: 1,
+        explanation: "The Window Tax created a perverse incentive to eliminate light and air. Across England and Scotland, you can still see bricked-up window frames in Georgian buildings — physical scars of tax avoidance. Landlords sealed windows in tenements housing the poor, and architects designed homes with fewer openings. The phrase 'daylight robbery' likely originates from this period."
+      },
+      {
+        event: "Across England, buildings become darker and more poorly ventilated as windows are sealed. The poorest housing suffers most — landlords brick up windows in cramped tenements",
+        options: [
+          "Residents adapt to the darkness without significant health effects",
+          "Widespread vitamin D deficiency, respiratory illness, and disease outbreaks surge in windowless housing — tuberculosis and rickets become epidemic in dark, unventilated rooms, killing tens of thousands",
+          "The government quickly repeals the tax when it sees the effects",
+          "Wealthy neighborhoods are affected just as badly as poor ones"
+        ],
+        correctIndex: 1,
+        explanation: "Dark, unventilated rooms became breeding grounds for disease. Tuberculosis — which thrives in dark, poorly ventilated spaces — became epidemic in English cities. Rickets from vitamin D deficiency crippled children who never saw direct sunlight. Medical reformers began documenting the direct connection between housing conditions and disease rates."
+      },
+      {
+        event: "Doctors and reformers document the link between dark, windowless housing and epidemic disease, building a case that housing conditions are a public health issue",
+        options: [
+          "The medical establishment dismisses housing as irrelevant to health",
+          "The evidence fuels the public health reform movement — the Window Tax is finally repealed in 1851, and reformers like Edwin Chadwick use the data to push through Britain's first Public Health Acts, establishing the principle that governments must regulate housing conditions to protect citizens' health",
+          "Parliament increases the Window Tax to fund hospitals instead",
+          "Homeowners simply reopen their bricked-up windows on their own"
+        ],
+        correctIndex: 1,
+        explanation: "The Window Tax was repealed in 1851 after 155 years, but its legacy was profound. The epidemic of disease in darkened housing gave reformers like Edwin Chadwick the ammunition to argue that government had a duty to regulate living conditions. The 1848 Public Health Act and subsequent legislation established modern building codes requiring minimum light and ventilation — all because a tax on windows had demonstrated, catastrophically, what happens when you let people live in darkness."
+      }
+    ]
+  },
+  {
+    id: 78,
+    title: "The Helpful Toad",
+    events: [
+      {
+        event: "1935: Australian sugar cane farmers are losing crops to native cane beetles. Scientists import 2,400 cane toads from Hawaii as a biological control agent, releasing them into Queensland's sugar cane fields",
+        options: [
+          "The toads eat the beetles and the sugar cane industry is saved",
+          "The toads completely ignore the cane beetles — the beetles live at the top of cane stalks, and the toads can't climb. Instead, the toads begin eating everything else and breeding explosively in Australia's warm, predator-free environment",
+          "The toads die off quickly because they can't adapt to Australian conditions",
+          "The toads eat the beetles but also destroy the sugar cane plants"
+        ],
+        correctIndex: 1,
+        explanation: "The toads never ate a single cane beetle. The beetles lived on top of tall sugar cane stalks — far out of reach of a ground-dwelling toad. Instead, the toads found Australia to be paradise: warm, wet, and completely lacking the predators that controlled their population in the Americas. They bred explosively and started eating native insects, frogs, and small mammals."
+      },
+      {
+        event: "The cane toad population explodes across northern Australia. By 2020, their numbers exceed 200 million. They spread west at 50 km per year, killing native species — their skin secretes a toxin lethal to any predator that tries to eat them",
+        options: [
+          "Scientists find a natural predator to control the toads",
+          "The cane toad disaster becomes the world's most-cited case study in invasive species management — every biology textbook uses it as the cautionary example of why introducing non-native species is dangerous",
+          "The toads eventually reach population equilibrium and stop spreading",
+          "Australian wildlife quickly evolves resistance to the toad toxin"
+        ],
+        correctIndex: 1,
+        explanation: "No predator could eat them without dying. Quolls, goannas, freshwater crocodiles, and snakes that tried to eat cane toads were poisoned by bufotoxin in the toad's skin. Entire populations of native predators collapsed in the toads' wake. The disaster became so infamous that it fundamentally changed how every country approaches biological pest control."
+      },
+      {
+        event: "The cane toad catastrophe transforms global attitudes toward biological control and species introduction",
+        options: [
+          "Countries continue introducing species without much additional oversight",
+          "Australia's Biosecurity Act and international agreements like the Convention on Biological Diversity now require rigorous risk assessment before any intentional species introduction — the cane toad is the reason every country has invasive species protocols today",
+          "Scientists develop a way to remove cane toads from Australia entirely",
+          "The cane toad problem is eventually solved by a genetically modified virus"
+        ],
+        correctIndex: 1,
+        explanation: "2,400 toads released to solve a beetle problem became 200 million poisonous invaders that reshaped an entire continent's ecosystem. The catastrophe is now the foundational cautionary tale taught in every ecology course worldwide. Australia's strict modern biosecurity laws — among the toughest on Earth — exist because of those 2,400 toads. The lesson: ecosystems are not machines with interchangeable parts."
+      }
+    ]
+  },
+  {
+    id: 79,
+    title: "The Empty Frame",
+    events: [
+      {
+        event: "1911: Vincenzo Peruggia, an Italian handyman who had helped install protective glass at the Louvre, hides inside the museum overnight and walks out the next morning with the Mona Lisa under his coat",
+        options: [
+          "The theft is discovered immediately and Peruggia is caught within hours",
+          "The Louvre doesn't even notice the painting is missing for 28 hours — and when they do, the theft makes front-page news in every major newspaper worldwide. Crowds flock to the Louvre to stare at the empty wall where it hung",
+          "The painting is quietly returned before anyone notices",
+          "Museum security immediately tightens and the story stays out of the press"
+        ],
+        correctIndex: 1,
+        explanation: "The Louvre was so large and poorly organized that a guard assumed the painting had been removed for photography. It wasn't until the next afternoon that anyone raised an alarm. The theft became a global media sensation — the first truly viral art story. Thousands of people lined up at the Louvre specifically to see the empty space on the wall, a surreal spectacle that kept the story in newspapers for over two years."
+      },
+      {
+        event: "The Mona Lisa's disappearance becomes the biggest news story in the world. For two years, it appears on front pages from Paris to Buenos Aires. The painting — previously one of many respected Renaissance works — becomes the most famous artwork on Earth",
+        options: [
+          "Interest fades once the painting is recovered and it returns to its previous status",
+          "The unprecedented global media attention transforms the Mona Lisa from a well-regarded painting into a cultural icon — its fame becomes self-reinforcing, and it remains the world's most recognized artwork for the next century",
+          "Other stolen artworks receive similar levels of fame",
+          "The Louvre's reputation suffers permanently from the security failure"
+        ],
+        correctIndex: 1,
+        explanation: "Before the theft, the Mona Lisa was admired by art scholars but not particularly famous with the public. The two-year media circus — including wild theories involving Picasso and poet Guillaume Apollinaire, who was actually arrested — made it a household name. When Peruggia was caught trying to sell it in Florence in 1913, the recovery was celebrated like a national victory. The painting's fame had become permanent."
+      },
+      {
+        event: "The Mona Lisa's status as the world's most famous painting creates a new phenomenon: art as celebrity. The painting becomes a must-see tourist attraction rather than just an artwork",
+        options: [
+          "Other museums try to replicate the effect by staging their own thefts",
+          "The concept of the 'blockbuster artwork' transforms museums into tourist attractions — the Louvre builds its entire visitor experience around the Mona Lisa, and the model of art-as-spectacle spreads worldwide, creating the modern museum industry where a single famous piece drives millions of visits",
+          "The art world rejects celebrity culture and returns to quiet scholarly appreciation",
+          "The Mona Lisa is moved to a smaller museum to reduce crowds"
+        ],
+        correctIndex: 1,
+        explanation: "Today, 80% of the Louvre's 10 million annual visitors come primarily to see the Mona Lisa. One painting drives a tourism economy worth billions. The 'blockbuster exhibition' model — built around star artworks that draw massive crowds — was born from the Mona Lisa's accidental fame. A petty theft by a disgruntled handyman who wanted to 'return' an Italian painting to Italy created the modern museum-as-tourist-attraction model and made the Mona Lisa priceless."
+      }
+    ]
+  },
+  {
+    id: 80,
+    title: "The Admiral's Black Ships",
+    events: [
+      {
+        event: "1853: US Commodore Matthew Perry sails four steam-powered warships into Edo Bay, Japan, forcing the end of 220 years of isolation under the Tokugawa shogunate",
+        options: [
+          "Japan immediately goes to war with the United States",
+          "The shock of Western military superiority triggers the Meiji Restoration — Japan's government launches a crash modernization program, sending thousands of students abroad to learn every aspect of Western technology, industry, and culture",
+          "Japan closes its borders even more tightly after Perry leaves",
+          "The Tokugawa shogunate successfully negotiates Perry's departure with no concessions"
+        ],
+        correctIndex: 1,
+        explanation: "Perry's 'Black Ships' demonstrated that Japan's 220-year isolation had left it militarily helpless. The shock toppled the Tokugawa shogunate within 15 years and launched the Meiji Restoration. The new government sent students to Germany to learn military science, to Britain to learn naval engineering, to France to learn law, and to America to learn agriculture — an unprecedented national crash course in modernization."
+      },
+      {
+        event: "Japan's Meiji government sends students to every Western country to master their specialties. In 1918, a young chemistry student named Masataka Taketsuru travels to Scotland specifically to learn the art of whisky distilling",
+        options: [
+          "Taketsuru finds Scottish distillers unwilling to share their secrets with a foreigner",
+          "Taketsuru apprentices at multiple Scottish distilleries, masters the craft, marries a Scottish woman named Rita, and returns to Japan to found the country's whisky industry — applying Scottish techniques to Japanese water and climate",
+          "Taketsuru abandons whisky and brings back beer-brewing techniques instead",
+          "The Japanese government recalls Taketsuru before he can complete his studies"
+        ],
+        correctIndex: 1,
+        explanation: "Taketsuru studied at multiple distilleries in Scotland, meticulously recording every detail of the process. He married Jessie Roberta 'Rita' Cowan and returned to Japan, where he first helped establish Suntory's Yamazaki distillery, then founded his own company: Nikka Whisky. He applied Scottish techniques to Japan's pristine mountain water and distinct climate, creating something genuinely new."
+      },
+      {
+        event: "Taketsuru establishes Japanese whisky, blending Scottish tradition with Japanese precision and local ingredients. The industry he founded grows quietly for decades",
+        options: [
+          "Japanese whisky remains a minor domestic curiosity, never exported",
+          "In 2003, Suntory's Yamazaki 12 Year wins a gold medal at the International Spirits Challenge — then Japanese whiskies begin routinely beating the greatest Scotch single malts in blind international competitions, shocking the whisky world and proving that Perry's forced opening of Japan eventually produced the world's finest whisky",
+          "Japanese whisky is exposed as an inferior imitation of Scotch",
+          "The Japanese whisky industry collapses after Taketsuru's death"
+        ],
+        correctIndex: 1,
+        explanation: "American gunboat diplomacy forced Japan open. Japan's crash modernization sent a student to Scotland. That student brought whisky-making back to Japan. A century later, Japanese whisky — Yamazaki, Hakushu, Nikka, Hibiki — regularly wins 'World's Best' over Scotland's finest. In 2015, Jim Murray's Whisky Bible named Yamazaki Sherry Cask the best whisky in the world. Perry's Black Ships eventually produced something the Scots never imagined: a rival that could beat them at their own game."
+      }
+    ]
+  },
+  {
+    id: 81,
+    title: "The Sailor's Remedy",
+    events: [
+      {
+        event: "1747: Scottish naval surgeon James Lind conducts one of history's first controlled clinical trials aboard HMS Salisbury, testing six treatments for scurvy on twelve sick sailors — vinegar, cider, seawater, sulfuric acid, oranges and lemons, or a spice paste",
+        options: [
+          "All six treatments prove equally ineffective against scurvy",
+          "The two sailors given oranges and lemons recover dramatically within days while all others remain sick — proving citrus cures scurvy, though the Navy takes 50 years to act on the finding",
+          "The sailors refuse to participate in the experiment",
+          "The seawater treatment unexpectedly proves most effective"
+        ],
+        correctIndex: 1,
+        explanation: "Lind's trial was elegantly simple: same disease, same ship, six different treatments. The citrus pair recovered so fast that one returned to duty within six days. Despite publishing his results in 1753, the British Admiralty wouldn't mandate citrus rations for another 42 years — bureaucratic delay that killed thousands of additional sailors from a now-preventable disease."
+      },
+      {
+        event: "1795: The Royal Navy finally mandates daily lime or lemon juice for all sailors. British crews become dramatically healthier than their French and Spanish rivals, who continue losing men to scurvy at catastrophic rates",
+        options: [
+          "France and Spain quickly adopt the same citrus policy",
+          "British crews gain a decisive strategic advantage — they can stay at sea for months longer than scurvy-weakened enemy fleets, patrol distant waters, and maintain blockades that French and Spanish ships cannot sustain",
+          "The lime juice proves ineffective at sea because it loses potency",
+          "British sailors mutiny over the taste of the lime juice rations"
+        ],
+        correctIndex: 1,
+        explanation: "The health advantage was staggering. A British fleet could remain on station for months while French and Spanish crews were devastated. During the Napoleonic Wars, Napoleon's navy struggled to keep crews healthy on long voyages while the Royal Navy patrolled the world's oceans with relatively healthy sailors. This asymmetry was not about courage or tactics — it was about citrus."
+      },
+      {
+        event: "British naval superiority — built partly on healthier crews who can operate for longer at sea — proves decisive in the wars against Napoleon",
+        options: [
+          "France eventually matches Britain's naval power through sheer numbers",
+          "Britain's ability to maintain global naval supremacy enables it to build the largest empire in history — controlling a quarter of the world's land and population. A shipboard experiment with lemons gave Britain the maritime health advantage that helped make it the world's superpower for over a century",
+          "Britain immediately disbands most of its navy after defeating Napoleon",
+          "Other nations develop superior naval technology that negates Britain's health advantage"
+        ],
+        correctIndex: 1,
+        explanation: "The connection seems absurd: lemons → empire. But naval power was the foundation of British global dominance, and sustained naval power required healthy crews. The Admiralty's long-delayed adoption of Lind's citrus cure gave Britain a compounding advantage: healthier sailors meant longer deployments, which meant more control of trade routes, which meant more wealth, which meant more ships. A Scottish doctor's experiment with twelve sick sailors helped build an empire that ruled a quarter of the world."
+      }
+    ]
+  },
+  {
+    id: 82,
+    title: "The Falling Ash",
+    events: [
+      {
+        event: "536 AD: A massive volcanic eruption — likely Ilopango in El Salvador — ejects enormous quantities of sulfur and ash into the upper atmosphere, creating a dust veil that dims the sun across the entire Northern Hemisphere",
+        options: [
+          "The volcanic ash settles quickly and has no lasting effect",
+          "An 18-month fog blankets Europe, the Middle East, and Asia — the Byzantine historian Procopius writes that 'the sun gave forth its light without brightness, like the moon' for over a year. Temperatures drop 2.5°C, crops fail across Eurasia, and famine spreads",
+          "Only the Americas are affected since the volcano erupted there",
+          "The eruption triggers a brief but dramatic warming period"
+        ],
+        correctIndex: 1,
+        explanation: "536 AD has been called 'the worst year to be alive.' Tree-ring data from around the world confirms that summer temperatures dropped dramatically. The Byzantine Empire, Scandinavia, China, and Mesoamerica all recorded crop failures. Procopius described the sun looking like the moon for 18 months. Recent ice-core analysis pinpointed the culprit as a massive eruption, likely Ilopango in modern El Salvador."
+      },
+      {
+        event: "The crop failures and cold weaken populations across Eurasia. In 541 AD, the weakened Byzantine Empire is struck by the Plague of Justinian — the first recorded bubonic plague pandemic — which kills 25 to 50 million people, roughly half the empire's population",
+        options: [
+          "The Byzantine Empire recovers quickly and reconquers its lost territories",
+          "The combination of volcanic winter and plague permanently weakens the Byzantine Empire — Emperor Justinian's dream of restoring the Roman Empire collapses, and a massive power vacuum opens across the Eastern Mediterranean and Middle East",
+          "The plague strengthens the Byzantine Empire by eliminating internal dissent",
+          "Western Europe is hit harder than the Byzantine Empire"
+        ],
+        correctIndex: 1,
+        explanation: "Justinian had been on the verge of reassembling the Roman Empire, having reconquered North Africa, Italy, and parts of Spain. The plague shattered those ambitions. Tax revenue collapsed, the army couldn't be maintained, and reconquered territories couldn't be held. The once-dominant Byzantine Empire became a shadow of its former self, creating a power vacuum across a vast region stretching from Egypt to Persia."
+      },
+      {
+        event: "The weakened Byzantine and Persian empires — both devastated by decades of plague and climate disaster — leave a power vacuum across the Middle East and North Africa",
+        options: [
+          "The Byzantine Empire rebuilds and fills the vacuum within a generation",
+          "The Arab conquests of the 7th century sweep through the weakened region with astonishing speed — within 100 years of Muhammad's death in 632, the Islamic caliphate stretches from Spain to Central Asia, reshaping the religious and cultural map of the world in ways that persist to this day",
+          "The Persian Empire fills the vacuum and dominates the region for centuries",
+          "The region remains fragmented with no dominant power emerging"
+        ],
+        correctIndex: 1,
+        explanation: "A volcano in Central America dimmed the sun. The darkness caused famine. Famine weakened empires. Weakened empires were ravaged by plague. Plague created a power vacuum. That vacuum was filled by the fastest-expanding civilization in history. The Arab conquests — militarily impressive on their own — succeeded partly because they advanced into territories whose populations and armies had been shattered by a century of climate disaster and pandemic. A volcano in El Salvador helped redraw the religious map of the world."
+      }
+    ]
+  },
+  {
+    id: 83,
+    title: "The Gambler's Question",
+    events: [
+      {
+        event: "1654: French nobleman Antoine Gombaud, Chevalier de Méré, is frustrated by a gambling puzzle — he keeps losing money on a dice bet that his math says he should win. He asks his friend, mathematician Blaise Pascal, to explain why",
+        options: [
+          "Pascal tells de Méré that gambling is sinful and refuses to help",
+          "Pascal becomes fascinated by the problem and writes to fellow mathematician Pierre de Fermat — their exchange of letters over the summer of 1654 develops the first systematic mathematical theory of probability",
+          "Pascal solves the problem in a few minutes and the matter is forgotten",
+          "De Méré abandons gambling after Pascal shows him the odds are against him"
+        ],
+        correctIndex: 1,
+        explanation: "The Pascal-Fermat correspondence of 1654 is one of the most consequential exchanges of letters in intellectual history. De Méré's question about splitting stakes in an interrupted dice game led Pascal and Fermat to develop concepts like expected value, combinatorial analysis, and the mathematics of chance. They didn't just solve a gambling problem — they invented an entire branch of mathematics."
+      },
+      {
+        event: "Pascal and Fermat's mathematical theory of probability spreads through European intellectual circles. Mathematicians and scientists begin applying probability to problems far beyond gambling",
+        options: [
+          "Probability remains a purely theoretical curiosity with no practical applications",
+          "In 1693, astronomer Edmond Halley uses probability theory to create the first actuarial life table — calculating the statistical likelihood of death at every age, which allows risk to be quantified and priced for the first time",
+          "Governments ban the use of probability theory because it encourages gambling",
+          "Probability theory is rejected by the scientific community as unreliable"
+        ],
+        correctIndex: 1,
+        explanation: "Halley — yes, the comet guy — realized that probability could quantify the previously unquantifiable: the risk of death. His Breslau life table analyzed birth and death records from the Silesian city to calculate mortality rates at every age. For the first time in history, someone could put a number on the question 'How likely am I to die this year?' — and that number could be used to price a bet on survival."
+      },
+      {
+        event: "Halley's life table makes it possible to calculate the mathematical cost of risk. Businesses realize they can sell protection against uncertain future events at a predictable profit",
+        options: [
+          "The life table is used only for academic research",
+          "The modern insurance industry is born — Lloyd's of London, life insurance companies, and eventually health, property, and casualty insurers all build their business models on pricing risk using probability theory. A gambler's frustration with dice created the mathematical foundation of a multi-trillion-dollar global industry",
+          "Governments nationalize all risk management and ban private insurance",
+          "The life table proves too inaccurate for commercial use"
+        ],
+        correctIndex: 1,
+        explanation: "One nobleman's bad luck at dice → a mathematical theory of probability → the ability to quantify risk → the entire global insurance industry. Today, insurance is a $6 trillion global industry, and every policy — life, health, auto, home, commercial — is priced using descendants of the probability theory that Pascal and Fermat invented to answer a gambler's question about why he kept losing money on a dice game in 1654."
+      }
+    ]
+  },
+  {
+    id: 84,
+    title: "The Mountain of Silver",
+    events: [
+      {
+        event: "1545: Spanish conquistadors discover Cerro Rico — the 'Rich Mountain' — in Potosí, modern-day Bolivia. It is the largest silver deposit ever found, containing enough silver to reshape the world economy",
+        options: [
+          "Spain hoards the silver and becomes permanently wealthy",
+          "Spain extracts staggering quantities of silver using forced indigenous labor — an estimated 8 million indigenous and African slaves die in the mines over three centuries. The silver floods into Europe and then onward to China, which demands silver for its economy",
+          "The silver deposit turns out to be too difficult to mine profitably",
+          "Indigenous people successfully defend the mountain from Spanish mining"
+        ],
+        correctIndex: 1,
+        explanation: "Potosí became one of the largest cities in the world by 1600 — larger than London or Paris — built on unimaginable human suffering. The Spanish mita system forced indigenous people into the mines under lethal conditions. The silver flowed in enormous quantities to Spain, then largely onward to China, which had adopted a silver standard and whose massive economy acted as a vacuum for the world's silver supply."
+      },
+      {
+        event: "Massive quantities of Potosí silver flow into Europe over 150 years. The sudden abundance of precious metal increases the money supply far faster than the economy can grow",
+        options: [
+          "The influx of silver makes all Europeans proportionally wealthier",
+          "Europe experiences its first sustained inflation crisis — the 'Price Revolution' sees prices rise 400-600% over 150 years, devastating anyone on fixed incomes, especially feudal landlords whose rents were set by custom and couldn't adjust",
+          "The silver has no effect on European prices because trade absorbs it",
+          "European nations agree to limit silver imports to prevent economic disruption"
+        ],
+        correctIndex: 1,
+        explanation: "The Price Revolution is one of history's most dramatic economic disruptions. When you suddenly multiply the money supply without multiplying the goods available to buy, prices rise. Across Europe, the cost of bread, grain, and basic goods rose 400-600% between 1500 and 1650. Feudal lords — whose income came from fixed rents set generations earlier — were devastated. Workers whose wages lagged behind prices suffered enormously."
+      },
+      {
+        event: "The 150-year Price Revolution destroys Europe's feudal economic system, where landlords depended on fixed rents that couldn't keep pace with inflation",
+        options: [
+          "Feudal lords simply raise rents to match inflation",
+          "The collapse of fixed-rent feudal economics forces the development of flexible market-based systems — modern capitalism, commercial banking, and market pricing emerge partly because the old feudal model was inflated into irrelevance by a mountain of silver from Bolivia",
+          "Feudal lords maintain their power by switching to gold-based rents",
+          "The inflation reverses and the feudal system recovers"
+        ],
+        correctIndex: 1,
+        explanation: "A mountain of silver in Bolivia → massive extraction using slave labor → flood of silver into Europe → 150-year inflation crisis → destruction of the feudal fixed-rent economy → emergence of modern market capitalism. The Price Revolution didn't single-handedly create capitalism, but it fatally wounded the feudal economic system and forced Europeans to develop flexible market mechanisms, commercial banking, and modern pricing. The bones of millions of miners in Potosí are part of the foundation of the modern economic system."
+      }
+    ]
+  },
+  {
+    id: 85,
+    title: "The Dying Vines",
+    events: [
+      {
+        event: "1863: A tiny aphid-like insect called Phylloxera arrives in France on imported American grapevine specimens. It attacks the roots of European grape varieties, which have no natural resistance",
+        options: [
+          "French winemakers quickly find a chemical treatment to kill the insect",
+          "Within 20 years, Phylloxera destroys nearly every vineyard in France — and then spreads across Europe, devastating wine production in Italy, Spain, Germany, and Portugal. France's wine output drops by 75%",
+          "The insect only affects a few vineyards in southern France",
+          "French grape varieties evolve resistance to the insect within a few years"
+        ],
+        correctIndex: 1,
+        explanation: "The Phylloxera epidemic was an extinction-level event for European wine. The insect fed on vine roots, killing the plant within three years. By the 1880s, it had destroyed approximately 70% of all European vineyards. France alone lost 2.5 million hectares of vines. The wine industry — the economic backbone of entire regions — collapsed. It was the greatest agricultural disaster in European history."
+      },
+      {
+        event: "French winemakers desperately seek solutions. They discover that while European vine roots are defenseless against Phylloxera, American rootstock — which evolved alongside the insect — is naturally resistant",
+        options: [
+          "French winemakers refuse to use American roots out of national pride",
+          "Every European vine is grafted onto American rootstock — French, Italian, and Spanish grape varieties are physically attached to American root systems. Nearly all European wine today technically grows on American roots",
+          "French winemakers find a synthetic chemical alternative that eliminates the need for grafting",
+          "Only a few experimental vineyards attempt the grafting technique"
+        ],
+        correctIndex: 1,
+        explanation: "The solution was humbling for proud French vignerons: graft their precious European varieties onto the roots of 'inferior' American wild grapes. Nearly every vine in Europe today — Bordeaux, Burgundy, Barolo, Rioja — grows on American rootstock. The irony is complete: American vines brought the plague, and American vines provided the cure. Virtually no pre-Phylloxera European-rooted vines survive."
+      },
+      {
+        event: "While rebuilding their devastated vineyards, desperate French winemakers also flee France — bringing their expertise, grape varieties, and techniques to new lands",
+        options: [
+          "The French winemakers who leave all return once their vineyards are replanted",
+          "French vignerons establish vineyards in Napa Valley, Argentina's Mendoza region, Chile, South Africa, and Australia — accidentally creating the global wine industry. Regions that had never produced fine wine become world-class wine regions because Phylloxera scattered French expertise across the globe",
+          "The winemakers who leave France abandon wine-making entirely",
+          "Only South America receives any significant migration of French winemakers"
+        ],
+        correctIndex: 1,
+        explanation: "A microscopic bug rewrote the world wine map. Before Phylloxera, fine wine was almost exclusively French. After the disaster, French expertise scattered to every continent. Argentina's Malbec, Chile's Carménère, California's Cabernet, Australia's Shiraz — all trace their lineage to French winemakers displaced by Phylloxera. The insect that nearly destroyed French wine accidentally created its global competition."
+      }
+    ]
+  },
+  {
+    id: 86,
+    title: "The Great Stench",
+    events: [
+      {
+        event: "1858: A historic heat wave bakes London during an unusually hot summer. The River Thames — which serves as the city's open sewer, receiving the untreated waste of 3 million people — begins to produce an overwhelming, nauseating smell",
+        options: [
+          "Londoners are accustomed to the smell and barely notice",
+          "The stench becomes so overpowering that it invades the Houses of Parliament, which sit directly on the riverbank — MPs gag during debates, and sheets soaked in chloride of lime are hung in windows in a futile attempt to block the smell",
+          "The government temporarily relocates Parliament to another city",
+          "The smell dissipates after a few days of rain"
+        ],
+        correctIndex: 1,
+        explanation: "The 'Great Stink' of 1858 literally brought Parliament to its knees. The Thames was an open sewer flowing past the windows of the most powerful legislative body in the world. MPs tried soaking curtains in chloride of lime, but nothing could mask the stench of 3 million people's waste baking in record heat. Committees couldn't meet. Debates were cut short. The smell was democracy's most effective lobbyist."
+      },
+      {
+        event: "MPs who had debated sewage reform for years without action suddenly cannot work in their own building. The smell makes the problem literally impossible to ignore",
+        options: [
+          "Parliament forms yet another committee to study the problem",
+          "Parliament fast-tracks funding for engineer Joseph Bazalgette's massive sewer system in just 18 days — a project that had been stalled for years is approved in record time because politicians physically cannot tolerate their working conditions",
+          "Parliament votes to move to a new building further from the river",
+          "The government waits for winter, when the cold will reduce the smell"
+        ],
+        correctIndex: 1,
+        explanation: "Eighteen days. A project that had been debated, delayed, and deprioritized for years was funded in less than three weeks — because the men who controlled the purse strings couldn't breathe. Benjamin Disraeli himself fled a committee room overlooking the Thames. The Great Stink accomplished what years of public health advocacy, cholera epidemics, and reformer campaigns could not: it made the problem personal for the people with power."
+      },
+      {
+        event: "Bazalgette builds 1,100 miles of underground sewers beneath London, redirecting waste downstream and away from the city's water supply. Cholera and typhoid rates plummet",
+        options: [
+          "Other cities ignore London's example and continue dumping waste in rivers",
+          "Bazalgette's system becomes the global blueprint for urban sanitation — cities worldwide copy his engineering principles. The project that was only funded because politicians couldn't stand the smell saves millions of lives and establishes the modern expectation that cities must manage their waste",
+          "The sewer system fails within a decade and must be completely rebuilt",
+          "London's improved sanitation has no measurable effect on disease rates"
+        ],
+        correctIndex: 1,
+        explanation: "Bazalgette's sewers were an engineering marvel — many are still in use today, over 160 years later. The project didn't just fix London; it became the template for every modern city's sanitation system. Paris, Berlin, New York, and eventually every major city built sewer systems inspired by Bazalgette's design. The irony is exquisite: one of the greatest public health achievements in human history happened not because of moral arguments or scientific evidence, but because a smell made politicians physically uncomfortable."
+      }
+    ]
+  },
+  {
+    id: 87,
+    title: "The Shaking Earth",
+    events: [
+      {
+        event: "1755: On November 1st — All Saints' Day — a massive earthquake strikes Lisbon, Portugal, followed by a tsunami and firestorms. An estimated 30,000 to 50,000 people are killed, many crushed inside churches packed for the holy day's services",
+        options: [
+          "Portugal quickly rebuilds and the disaster is forgotten within a year",
+          "The destruction of churches full of faithful worshippers on one of Christianity's holiest days triggers a continent-wide theological crisis — philosophers and theologians across Europe ask: why would God destroy His own devoted followers in His own houses of worship?",
+          "The disaster strengthens religious faith as people interpret it as divine punishment",
+          "The earthquake affects only a small part of Lisbon"
+        ],
+        correctIndex: 1,
+        explanation: "The timing was devastating to theodicy — the theological justification of God's goodness in the face of suffering. The earthquake struck during morning Mass on All Saints' Day, when churches were packed. The most pious people, in the most sacred spaces, on one of the holiest days, were crushed and burned. If God targeted the faithful in His own houses on His own holy day, what did that say about divine justice?"
+      },
+      {
+        event: "The theological crisis spreads across Europe. The greatest minds of the age — Voltaire, Rousseau, and Kant — all write major philosophical responses grappling with the meaning of the disaster",
+        options: [
+          "All three philosophers conclude that the earthquake was God's punishment for Lisbon's sins",
+          "Voltaire savagely attacks religious optimism in 'Candide,' Rousseau argues that human choices (building dense cities) caused the deaths, and Kant writes three scientific essays seeking natural explanations for earthquakes — together they accelerate Enlightenment secularism and birth modern seismology",
+          "The philosophical responses have little impact on public opinion",
+          "Religious authorities successfully suppress the philosophers' writings"
+        ],
+        correctIndex: 1,
+        explanation: "Voltaire's 'Poem on the Lisbon Disaster' and later 'Candide' demolished Leibniz's 'best of all possible worlds' optimism. Rousseau countered that nature wasn't cruel — humans were foolish to build dense cities in earthquake zones (an argument eerily modern). Kant, then a young professor, wrote three separate treatises attempting to explain earthquakes through natural causes rather than divine will — laying groundwork for modern seismology."
+      },
+      {
+        event: "The intellectual response to Lisbon reshapes European thought — pushing philosophy toward secular, scientific explanations for natural disasters rather than theological ones",
+        options: [
+          "Religion quickly reasserts its explanatory dominance over natural disasters",
+          "The Lisbon earthquake becomes a turning point in Western intellectual history — it accelerates the Enlightenment's shift away from providential explanations, helps establish seismology as a science, and directly inspires Portugal's Marquis de Pombal to build one of Europe's first earthquake-resistant cities using rational urban planning",
+          "European nations simply avoid building in earthquake-prone areas",
+          "The scientific study of earthquakes doesn't develop for another century"
+        ],
+        correctIndex: 1,
+        explanation: "An earthquake killed worshippers in churches on a holy day and the intellectual world shattered along with the buildings. The Lisbon disaster is now considered a pivotal moment in the transition from religious to secular explanations of natural events. It birthed seismology, inspired Voltaire's greatest satire, and prompted Pombal to rebuild Lisbon with the world's first earthquake-resistant building codes — the Pombaline cage system. When the earth shook, so did the foundations of European thought."
+      }
+    ]
+  },
+  {
+    id: 88,
+    title: "The Painted Sky",
+    events: [
+      {
+        event: "1883: Krakatoa erupts in Indonesia — one of the most powerful volcanic explosions in recorded history, equivalent to 13,000 Hiroshima bombs. The eruption ejects 25 cubic kilometers of rock and ash into the upper atmosphere",
+        options: [
+          "The ash settles within a few weeks and has only local effects",
+          "Volcanic aerosols circle the globe for years, scattering sunlight and producing vivid blood-red and fiery orange sunsets visible from London to New York — sunsets so spectacular and unusual that they're reported in newspapers worldwide and artists rush to capture them",
+          "The eruption creates a brief period of complete darkness across Southeast Asia but has no global effects",
+          "The ash cloud only affects the Southern Hemisphere"
+        ],
+        correctIndex: 1,
+        explanation: "Krakatoa injected massive quantities of sulfur dioxide into the stratosphere, where it formed a global aerosol layer. For years afterward, sunsets around the world turned extraordinary shades of blood red and vivid orange. In New York, fire departments received calls from people who thought the western sky was ablaze. British artist William Ashcroft painted over 500 watercolors documenting the unusual twilight effects from Chelsea, London."
+      },
+      {
+        event: "Artists worldwide paint the extraordinary blood-red skies. In Norway, a young artist named Edvard Munch witnesses the apocalyptic sunsets over the Oslo Fjord",
+        options: [
+          "Munch paints conventional landscape studies of the unusual skies",
+          "In 1893, Munch paints 'The Scream' — featuring a swirling orange-red sky that researchers later confirm matches the atmospheric effects of Krakatoa's eruption over Scandinavia. The volcano's ash didn't just color the sky — it created one of the most iconic images in art history",
+          "Munch doesn't notice the unusual sunsets at all",
+          "The unusual skies inspire a brief artistic trend that is quickly forgotten"
+        ],
+        correctIndex: 1,
+        explanation: "Munch wrote in his diary: 'I was walking along the road with two friends — the sun was setting — suddenly the sky turned blood red.' For decades, art historians assumed the sky in 'The Scream' was purely symbolic. Then in 2004, researchers at Texas State University analyzed the specific colors and atmospheric optics in the painting, along with Munch's diary entries and the viewing angle from the road in Oslo, and concluded the sky is a literal depiction of Krakatoa's atmospheric effects."
+      },
+      {
+        event: "Krakatoa's atmospheric effects, painted by Munch and hundreds of other artists, are eventually recognized by scientists as a vast unintentional record of volcanic atmospheric science",
+        options: [
+          "Scientists dismiss the paintings as too subjective to be scientifically useful",
+          "Atmospheric researchers discover that 19th-century paintings of sunsets — including works by Turner, Munch, and Ashcroft — serve as accurate records of volcanic aerosol loading. An Indonesian volcano's ash created some of Western art's most iconic images AND provided climate scientists with historical atmospheric data encoded in oil paint",
+          "Art historians reject the volcanic connection as coincidence",
+          "Krakatoa's atmospheric effects are fully explained by modern instruments, making the paintings irrelevant"
+        ],
+        correctIndex: 1,
+        explanation: "In 2014, researchers from the National Observatory of Athens analyzed the red-to-green color ratios in over 500 sunset paintings from 1500 to 2000. They found that paintings produced after major volcanic eruptions consistently showed redder sunsets — and the redness matched measured aerosol levels. An Indonesian volcano turned the world's sky into a canvas, and artists unknowingly recorded atmospheric data in pigment. Krakatoa's eruption produced 'The Scream,' hundreds of fiery sunset paintings, and a century of climate data — all from the same cloud of ash."
+      }
+    ]
+  },
+  {
+    id: 89,
+    title: "The Glowing Girls",
+    events: [
+      {
+        event: "1917: Young women are hired at the US Radium Corporation factory in Orange, New Jersey, to paint radium-laced luminous paint onto watch dials. They are told the paint is harmless and instructed to lick their brushes to get a fine point — a technique called 'lip-pointing'",
+        options: [
+          "The radium paint proves to be harmless as the company claims",
+          "The workers begin developing horrifying symptoms — their jawbones crumble, their teeth fall out, they develop severe anemia and bone cancer. The radium they ingested is destroying them from the inside, replacing calcium in their bones with radioactive material",
+          "The women refuse to lip-point their brushes after noticing a strange taste",
+          "The factory closes before any workers show symptoms"
+        ],
+        correctIndex: 1,
+        explanation: "The 'Radium Girls' were literally painting themselves with radioactive poison, brush stroke by brush stroke. Radium mimics calcium chemically, so when ingested it was absorbed directly into their bones, where it emitted radiation continuously. Their jaws literally disintegrated — a condition called 'radium jaw.' Some women's bones were so saturated with radium that their remains could expose photographic film decades after death."
+      },
+      {
+        event: "Five Radium Girls — Grace Fryer, Edna Hussman, Katherine Schaub, Quinta McDonald, and Albina Larice — sue US Radium Corporation in 1927, despite the company's aggressive efforts to suppress medical evidence and discredit the women",
+        options: [
+          "The court dismisses the case because the company's doctors testify the paint is safe",
+          "Their case becomes a national sensation — the women win a settlement, and the trial exposes systematic corporate cover-ups, establishing for the first time in American law that employers can be held responsible for workplace health hazards",
+          "The women lose the case and the issue is forgotten",
+          "US Radium Corporation settles quietly and the case receives no public attention"
+        ],
+        correctIndex: 1,
+        explanation: "The Radium Girls' case was a David vs. Goliath battle. US Radium Corporation hired experts to blame the women's symptoms on syphilis. Company doctors falsified medical records. But the women persisted, and their case — covered extensively in the press — established the crucial legal precedent that employers are liable for the health effects of workplace conditions, even when the danger wasn't known at the time of exposure."
+      },
+      {
+        event: "The Radium Girls' legal victory establishes that employers bear responsibility for occupational health hazards — a precedent that had never existed before in American law",
+        options: [
+          "The precedent applies only to radium exposure and has limited broader impact",
+          "Their case becomes the legal foundation for all modern workplace safety regulation — it directly influences the creation of OSHA in 1970 and establishes the principle that workers have a right to a safe workplace. Women painting watch dials with radioactive paint created the legal framework that protects every American worker today",
+          "Congress ignores the case and workplace safety remains unregulated",
+          "The precedent is overturned by a higher court within a few years"
+        ],
+        correctIndex: 1,
+        explanation: "The Radium Girls didn't just win compensation — they changed the law. Their case established that workers could sue employers for occupational diseases, that corporations had a duty to disclose known workplace hazards, and that the 'assumption of risk' defense couldn't shield companies that hid dangers from employees. These principles became the bedrock of OSHA and the Occupational Safety and Health Act of 1970. Every hard hat, safety railing, and hazmat protocol in America traces its legal ancestry to women who were told to lick radioactive paintbrushes."
+      }
+    ]
+  },
+  {
+    id: 90,
+    title: "The Pope's Line",
+    events: [
+      {
+        event: "1494: Pope Alexander VI mediates a dispute between Spain and Portugal over who controls newly discovered lands. He draws a line on a map — the Treaty of Tordesillas — dividing the entire non-Christian world between the two powers",
+        options: [
+          "Both Spain and Portugal ignore the Pope's arbitrary line",
+          "The line places most of the Americas in Spain's zone — but a large bulge of South American coastline, not yet fully explored, falls on Portugal's side. Portugal claims this territory, which turns out to be Brazil, the largest country in South America",
+          "The line gives Portugal all of the Americas and Spain all of Africa",
+          "Other European powers immediately challenge the treaty and it is never enforced"
+        ],
+        correctIndex: 1,
+        explanation: "The Pope drew a line at roughly 46°37' West longitude. He couldn't have known exactly what land fell on which side — South America's full shape was still unmapped. But the easternmost bulge of Brazil jutted past the line into Portugal's hemisphere. When Pedro Álvares Cabral landed in Brazil in 1500, Portugal claimed it under the Treaty of Tordesillas. A line drawn in Rome based on incomplete geography determined the fate of a continent."
+      },
+      {
+        event: "Portugal colonizes Brazil while Spain colonizes the rest of South America. For over 300 years, Brazil develops as a Portuguese colony — separate language, separate culture, separate legal system — while every neighboring territory is Spanish",
+        options: [
+          "Brazil and Spanish America develop identical cultures despite different colonial rulers",
+          "Portuguese becomes the dominant language of Brazil while Spanish takes root everywhere else — creating a profound cultural and linguistic divide across South America that persists for centuries after independence",
+          "Brazil switches to Spanish after gaining independence to match its neighbors",
+          "Portugal abandons Brazil and Spain takes over the colony"
+        ],
+        correctIndex: 1,
+        explanation: "Three centuries of Portuguese rule embedded the language, legal traditions, and cultural institutions so deeply that they survived independence entirely intact. Brazil declared independence in 1822 with Portuguese as its national language, Roman-Dutch-influenced legal codes, and cultural ties to Lisbon rather than Madrid. The linguistic divide between Brazil and its neighbors was already centuries old and completely irreversible."
+      },
+      {
+        event: "Brazil gains independence in 1822 as a Portuguese-speaking nation surrounded by Spanish-speaking countries",
+        options: [
+          "Brazil gradually adopts Spanish to better integrate with its neighbors",
+          "Today, 215 million Brazilians speak Portuguese — the largest Portuguese-speaking population on Earth — while every country that surrounds them speaks Spanish. An arbitrary line drawn by a Pope in Rome in 1494, based on an inaccurate map, is the reason South America's largest country speaks a different language from all its neighbors",
+          "Portuguese dies out in Brazil within a few generations of independence",
+          "Brazil's language has no significant effect on its relationship with neighbors"
+        ],
+        correctIndex: 1,
+        explanation: "A Pope in Rome drew a line on an inaccurate map in 1494. That line happened to place the bulge of Brazil on Portugal's side. Five centuries later, 215 million people speak Portuguese in a continent where 400 million speak Spanish — the largest linguistic boundary in the world, determined by an arbitrary papal decision based on a map that didn't even show the continent's true shape."
+      }
+    ]
+  },
+  {
+    id: 91,
+    title: "The Khan's Forest",
+    events: [
+      {
+        event: "1206: Genghis Khan unites the Mongol tribes and begins conquests that will span four decades. By the time his grandsons finish, the Mongol Empire stretches from Korea to Hungary, and an estimated 40 million people — roughly 10% of the world's population — have been killed",
+        options: [
+          "The conquered lands are immediately repopulated by Mongol settlers",
+          "Massive depopulation causes farmland across Central Asia, China, Persia, and Eastern Europe to be abandoned — without farmers to maintain fields, cultivated land reverts to forest, scrubland, and grassland across millions of square kilometers",
+          "The Mongols convert conquered farmland into even more intensive agriculture",
+          "The conquered populations recover their numbers within a generation"
+        ],
+        correctIndex: 1,
+        explanation: "The scale of killing was so vast that entire agricultural regions were emptied. Cities like Merv, Nishapur, and Baghdad saw populations of hundreds of thousands reduced to almost nothing. The irrigation systems that sustained agriculture across Persia and Central Asia were deliberately destroyed. Without human maintenance, nature reclaimed the land — forests grew where farms had been, grasslands expanded where cities had stood."
+      },
+      {
+        event: "Across Eurasia, abandoned farmland reverts to forest and scrubland at an enormous scale. Millions of square kilometers of cultivated land return to nature over decades",
+        options: [
+          "The regrowing vegetation has no measurable effect on the atmosphere",
+          "The regrowing forests absorb approximately 700 million tons of carbon dioxide from the atmosphere — enough to measurably reduce global CO₂ levels. The Mongol conquests inadvertently created history's largest carbon offset event before the modern era",
+          "The abandoned land turns to desert rather than forest",
+          "New farmers immediately move in and re-clear the regrowing forests"
+        ],
+        correctIndex: 1,
+        explanation: "A 2011 study by Julia Pongratz at the Carnegie Institution's Department of Global Ecology calculated that the Mongol invasions removed enough farmland from cultivation to sequester approximately 700 million tons of atmospheric carbon. Trees and vegetation absorb CO₂ as they grow, and the sheer scale of reforestation across the Mongol-depopulated regions was sufficient to produce a detectable dip in atmospheric carbon levels."
+      },
+      {
+        event: "A 2011 Carnegie Institution study confirms that the Mongol conquests measurably reduced atmospheric CO₂ through reforestation of depopulated farmland",
+        options: [
+          "The finding is dismissed as statistically insignificant",
+          "Researchers identify the Mongol Empire as the only human activity in pre-industrial history that significantly reduced global carbon emissions — history's most destructive conqueror accidentally became history's most effective carbon sequestration program",
+          "Other historical events are found to have had much larger carbon effects",
+          "The study's methodology is immediately debunked by other researchers"
+        ],
+        correctIndex: 1,
+        explanation: "The irony is staggering: the most destructive human force in pre-industrial history produced the only significant human-caused reduction in atmospheric carbon before the modern era. Genghis Khan killed 10% of humanity and the forests that grew on the emptied land cooled the climate. It is, as the researchers noted, the only known case of a human-driven event reducing global CO₂ before industrialization — achieved through the worst possible means."
+      }
+    ]
+  },
+  {
+    id: 92,
+    title: "The Luminous Poison",
+    events: [
+      {
+        event: "1956: In the fishing town of Minamata, Japan, cats begin behaving erratically — convulsing, staggering, and throwing themselves into the sea. Locals call it 'dancing cat disease.' Soon, residents develop similar symptoms: numbness, slurred speech, loss of motor control, and madness",
+        options: [
+          "A local virus is identified as the cause and quickly contained",
+          "Investigators trace the illness to Chisso Corporation's chemical factory, which has been dumping methylmercury waste directly into Minamata Bay for decades — the mercury concentrates up the food chain through fish and shellfish that locals eat daily",
+          "The symptoms are caused by contaminated drinking water from a nearby mine",
+          "A rare genetic condition affecting the local population is identified as the cause"
+        ],
+        correctIndex: 1,
+        explanation: "Chisso Corporation had been releasing methylmercury — a potent neurotoxin — into Minamata Bay since 1932. The mercury settled in sediments, was absorbed by microorganisms, concentrated in fish and shellfish through bioaccumulation, and reached devastating concentrations in the humans and animals that ate them. By the time the source was identified, thousands of people had been poisoned. Chisso knew about the contamination but continued dumping for years."
+      },
+      {
+        event: "Chisso Corporation denies responsibility for years despite mounting evidence. Victims — many of them desperately poor fishing families — fight a decades-long legal battle for recognition and compensation",
+        options: [
+          "Chisso successfully avoids all legal responsibility",
+          "Photographer W. Eugene Smith documents the victims' suffering in devastating images that shock the world — the Minamata victims' decades-long fight becomes a global cause célèbre, demonstrating the human cost of industrial pollution and inspiring environmental movements worldwide",
+          "The Japanese government sides with Chisso and suppresses the victims' movement",
+          "International attention fades quickly and the victims are forgotten"
+        ],
+        correctIndex: 1,
+        explanation: "W. Eugene Smith's photo of Tomoko Uemura being bathed by her mother — a child born with severe mercury poisoning — became one of the most powerful photographs ever taken. Smith himself was beaten by Chisso-hired thugs and partially lost his vision. The images galvanized global outrage and turned Minamata into a worldwide symbol of the consequences of industrial pollution and corporate negligence."
+      },
+      {
+        event: "The Minamata disaster becomes the defining case study of industrial mercury poisoning and the catalyst for global mercury regulation",
+        options: [
+          "Mercury regulations remain a national issue handled only within Japan",
+          "In 2013, 128 countries sign the Minamata Convention on Mercury — a binding UN treaty named after the town, banning or restricting mercury in products from thermometers to cosmetics to dental fillings. Cats going mad in a Japanese fishing village led to a global treaty that changed how the world uses mercury",
+          "The convention is proposed but fails to gain enough signatories to take effect",
+          "Japan bans mercury but no international agreement is reached"
+        ],
+        correctIndex: 1,
+        explanation: "The UN chose to name its global mercury treaty after Minamata — an acknowledgment that the suffering of a small fishing town changed the world. The convention phases out mercury in batteries, switches, thermometers, cosmetics, and many other products. It was signed in the city of Kumamoto, near Minamata, with survivors present at the ceremony. Dancing cats in a Japanese fishing village in 1956 → the identification of methylmercury bioaccumulation → a global treaty that governs mercury use in 128 countries."
+      }
+    ]
+  },
+  {
+    id: 93,
+    title: "The Shrinking Sea",
+    events: [
+      {
+        event: "1960: Soviet central planners divert the Amu Darya and Syr Darya rivers — which feed the Aral Sea — to irrigate cotton fields across Uzbekistan and Turkmenistan. The USSR wants to become the world's largest cotton exporter",
+        options: [
+          "The irrigation project fails because the desert soil can't sustain cotton",
+          "Without river inflow, the Aral Sea — once the world's fourth-largest lake, roughly the size of Ireland — begins to shrink. Within 40 years, it loses 90% of its volume, splitting into small remnant pools surrounded by a vast toxic desert",
+          "The Aral Sea is replenished by underground springs and remains stable",
+          "The cotton project is abandoned before it significantly affects the sea"
+        ],
+        correctIndex: 1,
+        explanation: "The Soviet planners knew the sea would shrink — they simply decided cotton was worth more than a lake. The rivers that had sustained the Aral Sea for millennia were redirected into 20,000 miles of irrigation canals, many of them poorly constructed and leaking. The sea began retreating almost immediately. By 2000, it had lost 90% of its water. Fishing boats sat rusting in desert sand, 150 kilometers from the nearest water."
+      },
+      {
+        event: "As the Aral Sea shrinks, the exposed lakebed — contaminated with decades of agricultural runoff — becomes a vast toxic desert. The fishing industry that sustained 60,000 jobs collapses entirely",
+        options: [
+          "The exposed lakebed is reclaimed for productive farmland",
+          "Wind picks up pesticide-laden salt and dust from the dry lakebed, creating toxic dust storms that blow across the region — cancer rates in surrounding communities double, respiratory illness becomes epidemic, and infant mortality in the region is among the highest in the world",
+          "The environmental damage stays localized to the immediate lakebed area",
+          "The fishing industry successfully transitions to the cotton industry"
+        ],
+        correctIndex: 1,
+        explanation: "The lakebed had accumulated decades of pesticide and herbicide runoff from cotton farming. When the water evaporated, it left a toxic crust of salt, dried pesticides, and heavy metals. Wind turned this into poisonous dust storms that blew across Karakalpakstan and neighboring regions. Throat cancer rates near the former sea increased 30-fold. Tuberculosis became epidemic. The Aral region became one of the worst public health disaster zones on Earth."
+      },
+      {
+        event: "The destruction of the Aral Sea — visible from space as the lake literally disappears over decades — becomes one of the most dramatic environmental catastrophes in human history",
+        options: [
+          "The Aral Sea disaster receives little international attention",
+          "Satellite images of the vanishing sea become the defining visual of environmental destruction — the disaster directly inspires international water-rights frameworks, the modern concept of 'ecocide,' and Central Asian nations' post-Soviet environmental movements. A plan to grow cotton erased one of the world's great lakes",
+          "The Soviet Union successfully reverses the damage before its collapse",
+          "The Aral Sea naturally refills once the rivers are no longer diverted"
+        ],
+        correctIndex: 1,
+        explanation: "NASA's time-lapse satellite images of the Aral Sea's disappearance became some of the most widely circulated environmental images in history. The before-and-after comparison — a great blue lake shrinking to a few toxic puddles — communicated the scale of environmental destruction more powerfully than any report. The Aral Sea's death inspired the concept of 'ecocide' as a crime against nature. A Soviet plan to grow cotton in the desert erased a lake that had existed for 5.5 million years."
+      }
+    ]
+  },
+  {
+    id: 94,
+    title: "The Tulip's Crash",
+    events: [
+      {
+        event: "1636: Tulips imported from the Ottoman Empire become wildly fashionable in the Dutch Republic — the most desirable varieties, with flame-like streaks caused by a virus, sell for extraordinary prices. Speculation in tulip bulb futures reaches a fever pitch",
+        options: [
+          "The Dutch government steps in to regulate tulip trading before prices become extreme",
+          "At the peak in February 1637, a single bulb of the 'Semper Augustus' variety sells for 10,000 guilders — more than a skilled craftsman earns in a lifetime and more than the price of a grand canal house in Amsterdam. Tulip bulbs become the most expensive objects in the world",
+          "Tulip prices rise modestly and then stabilize at reasonable levels",
+          "Only wealthy nobles participate in tulip trading"
+        ],
+        correctIndex: 1,
+        explanation: "Tulipmania was a genuine frenzy. Futures contracts for tulip bulbs were traded in taverns across Holland by everyone from merchants to chimney sweeps. The 'Semper Augustus' — a red-and-white striped tulip whose coloring was actually caused by a mosaic virus — was the most valuable, but even ordinary varieties commanded astonishing prices. People mortgaged houses to buy bulbs they'd never physically seen, betting on paper contracts for flowers still in the ground."
+      },
+      {
+        event: "In February 1637, the tulip market collapses virtually overnight. Buyers simply stop showing up at auctions in Haarlem. Bulbs that were worth a house yesterday are worth less than an onion today",
+        options: [
+          "The crash is contained to the tulip market and has no broader effects",
+          "The sudden collapse is studied, debated, and written about for centuries — in 1841, Charles Mackay immortalizes it in 'Extraordinary Popular Delusions and the Madness of Crowds,' and the Dutch tulip crash becomes the foundational example of a speculative bubble in economics",
+          "The Dutch economy collapses completely as a result of the crash",
+          "Tulip prices recover within a few months and the crash is forgotten"
+        ],
+        correctIndex: 1,
+        explanation: "The Dutch economy actually weathered the crash relatively well — most contracts were voided by courts. But the cultural impact was permanent. The image of rational people paying a fortune for flower bulbs became the archetypal example of speculative madness. Every financial bubble since — from the South Sea Bubble to dot-com stocks — has been compared to tulipmania. Mackay's 1841 book turned it into the founding myth of behavioral economics."
+      },
+      {
+        event: "The tulip crash becomes the universal metaphor for speculative excess, referenced in every subsequent financial crisis for nearly 400 years",
+        options: [
+          "Modern economists dismiss tulipmania as irrelevant to modern markets",
+          "The tulip crash gives humanity its conceptual vocabulary for understanding financial bubbles — terms like 'bubble,' 'mania,' and 'speculative fever' are applied to the South Sea Bubble, railway manias, 1929, dot-com stocks, crypto, and every crash in between. A flower fad in 1637 Holland gave us the template for understanding every financial panic since",
+          "Each new financial crisis is understood on its own terms without historical comparison",
+          "Tulipmania is debunked as a myth and economists stop referencing it"
+        ],
+        correctIndex: 1,
+        explanation: "From the South Sea Bubble (1720) to the 2008 housing crisis to cryptocurrency speculation, every financial mania has been measured against the template of tulipmania. The pattern — speculative frenzy → detachment from underlying value → sudden collapse → 'how could people be so foolish?' — was first observed and documented in a 17th-century Dutch flower market. A virus-streaked tulip bulb in 1637 gave humanity the vocabulary and conceptual framework to recognize, analyze, and (theoretically) prevent speculative panics for the next four centuries."
+      }
+    ]
+  },
+  {
+    id: 95,
+    title: "The Bark That Conquered",
+    events: [
+      {
+        event: "1631: Jesuit missionaries in Peru learn from indigenous Quechua people that the bark of the Cinchona tree cures the deadly fevers of malaria. They bring the bark back to Europe, where it becomes known as 'Jesuit's bark'",
+        options: [
+          "European doctors reject the bark as indigenous superstition",
+          "Quinine extracted from the bark proves genuinely effective against malaria — for the first time, Europeans have a treatment for the disease that had killed more humans than any other in history. Demand for Cinchona bark explodes across the colonial world",
+          "The bark works only as a placebo and malaria continues unchecked",
+          "The Jesuit missionaries keep the cure secret within the Catholic Church"
+        ],
+        correctIndex: 1,
+        explanation: "Quinine was a genuine medical miracle — the first effective treatment for malaria in human history. Malaria had killed pharaohs, emperors, and popes; it had halted armies and depopulated entire regions. Cinchona bark didn't just treat the disease — it transformed the geopolitics of tropical regions by making them survivable for Europeans for the first time."
+      },
+      {
+        event: "Armed with quinine prophylaxis, European soldiers, administrators, and settlers can survive in tropical regions where malaria had previously killed them within months",
+        options: [
+          "Quinine has no effect on European colonial ambitions",
+          "The 'Scramble for Africa' in the 1880s becomes possible — European powers penetrate the African interior for the first time, carving the continent into colonies. Before quinine, Africa's interior was called 'the White Man's Grave' because malaria killed most Europeans who ventured past the coast",
+          "European powers decide to avoid tropical colonies entirely despite having quinine",
+          "African nations use quinine to defend themselves against European invasion"
+        ],
+        correctIndex: 1,
+        explanation: "Before quinine, European death rates in tropical Africa were catastrophic. The British Army's mortality rate in West Africa was 50-70% per year in the early 1800s — not from combat, but from malaria. Quinine prophylaxis reduced that dramatically. The Berlin Conference of 1884, which carved Africa into European colonies, was only possible because quinine had transformed the continent from a death sentence into a conquerable territory."
+      },
+      {
+        event: "Quinine enables the colonization of tropical Africa, Southeast Asia, and the Pacific — regions that had been largely impenetrable to European settlement due to malaria",
+        options: [
+          "Colonization would have happened at the same pace without quinine",
+          "A Peruvian tree bark becomes one of the most consequential botanical discoveries in history — indigenous Quechua knowledge, transmitted through Jesuit missionaries, gave European empires the chemical tool that enabled the colonization of the tropics and the subjugation of hundreds of millions of people across two continents",
+          "Quinine's role in colonization is minimal compared to military technology",
+          "Colonized peoples quickly gain access to quinine and use it to resist European armies"
+        ],
+        correctIndex: 1,
+        explanation: "The causal chain is darkly ironic: indigenous people in South America shared their medical knowledge with Jesuit missionaries → that knowledge became the chemical prerequisite for the colonization of an entirely different continent. Without quinine, the interior of Africa and much of Southeast Asia would have remained inaccessible to Europeans for decades or centuries longer. A tree bark from the Andes enabled the subjugation of Africa."
+      }
+    ]
+  },
+  {
+    id: 96,
+    title: "The Milkmaid's Hands",
+    events: [
+      {
+        event: "1796: English country doctor Edward Jenner notices something curious — milkmaids in Gloucestershire who catch cowpox from their cows develop mild hand sores but never get smallpox, the deadliest disease of the era",
+        options: [
+          "Jenner dismisses the observation as folklore",
+          "Jenner hypothesizes that cowpox exposure protects against smallpox — he tests this by inoculating an 8-year-old boy, James Phipps, with pus from a cowpox sore on milkmaid Sarah Nelmes' hand, then deliberately exposing the boy to smallpox. The boy is immune",
+          "Jenner reports his observation but no one takes it seriously for decades",
+          "Other doctors had already developed smallpox vaccines before Jenner's observation"
+        ],
+        correctIndex: 1,
+        explanation: "The experiment would be unthinkable today, but it worked. Jenner scratched cowpox material into 8-year-old James Phipps's arm. The boy developed a mild fever. Six weeks later, Jenner inoculated him with actual smallpox — the boy showed no symptoms. Jenner repeated the exposure multiple times over years. Phipps remained immune. Jenner coined the term 'vaccination' from 'vacca,' the Latin word for cow."
+      },
+      {
+        event: "Jenner's 'vaccination' technique spreads globally despite fierce opposition from religious leaders who call it ungodly and doctors who distrust it. Governments begin mandating vaccination against smallpox",
+        options: [
+          "Vaccination remains controversial and is never widely adopted",
+          "Over the next two centuries, vaccination campaigns progressively eradicate smallpox — the World Health Organization's intensified program, launched in 1967, hunts down the last cases. In 1980, the WHO declares smallpox officially eradicated, the first and still only human disease ever completely eliminated",
+          "Smallpox mutates to resist the vaccine and continues killing millions",
+          "Vaccination works but smallpox is replaced by an even deadlier disease"
+        ],
+        correctIndex: 1,
+        explanation: "Smallpox had killed an estimated 300 million people in the 20th century alone before eradication. The WHO's campaign was an extraordinary logistical achievement — tracking every last case across war zones, remote villages, and refugee camps. The last natural case occurred in Somalia in 1977. On May 8, 1980, the WHO officially declared: 'The world and its peoples have won freedom from smallpox.' All because of a doctor who noticed that milkmaids had smooth hands."
+      },
+      {
+        event: "Smallpox eradication saves an estimated 200 million lives and proves that vaccination can eliminate a disease from the planet entirely",
+        options: [
+          "The success of smallpox eradication has little effect on other disease-fighting efforts",
+          "The principle of vaccination — first observed in milkmaids' hands — is applied to polio, measles, tetanus, and dozens of other diseases, saving billions of lives. The word 'vaccine' itself comes from 'vacca,' Latin for cow — every vaccination on Earth carries the etymological ghost of Jenner's cowpox-immune milkmaids",
+          "Vaccination technology cannot be adapted for other diseases",
+          "Governments stop funding vaccination programs after smallpox is eliminated"
+        ],
+        correctIndex: 1,
+        explanation: "A country doctor noticed that milkmaids had smooth hands. He realized cowpox exposure protected against smallpox. He tested it on a child. Two centuries later, the deadliest disease in human history was wiped from the Earth. The word we use for the technology — 'vaccine' — literally means 'from the cow.' Every polio shot, every measles jab, every COVID vaccine carries in its name a tribute to the cowpox-immune milkmaids of 18th-century Gloucestershire."
+      }
+    ]
+  },
+  {
+    id: 97,
+    title: "Ford's Jungle",
+    events: [
+      {
+        event: "1928: Henry Ford, frustrated by British monopoly on Asian rubber, buys 2.5 million acres of Amazon rainforest in Brazil. He plans to build 'Fordlândia' — a rubber plantation town complete with American-style houses, a hospital, a golf course, and a ban on alcohol",
+        options: [
+          "The rubber plantation succeeds and Ford breaks the British rubber monopoly",
+          "Ford plants rubber trees in neat rows like a Michigan factory — ignoring botanists who warn that rubber trees only survive in the wild when dispersed. Leaf blight, which can't spread between widely scattered wild trees, devastates the plantation's densely packed rows",
+          "The Amazon climate proves too cold for rubber trees",
+          "Brazilian workers enthusiastically adopt American culture and Fordlândia thrives"
+        ],
+        correctIndex: 1,
+        explanation: "Ford applied factory logic to a rainforest — and the rainforest fought back. In the wild, rubber trees grow widely spaced, which limits the spread of South American leaf blight (Microcyclus ulei). Ford's plantations packed them in uniform rows, creating a paradise for the fungus. Leaves blackened and dropped in waves. Replanting failed. The trees that survived produced almost no usable latex."
+      },
+      {
+        event: "Meanwhile, Ford imposes Midwestern American culture on his Brazilian workers — mandatory square dancing, American food (hamburgers and canned spinach), no alcohol, and suburban-style housing in the jungle heat",
+        options: [
+          "Brazilian workers embrace American culture and the community flourishes",
+          "Workers revolt against the forced cultural impositions — riots break out in 1930 when workers smash the cafeteria and destroy company equipment. Brazilian workers refuse to eat American food, dodge the mandatory square dances, and set up bars and brothels just outside the town's borders",
+          "Workers quietly accept the cultural rules without any resistance",
+          "Ford adapts the town to Brazilian customs and the social experiment succeeds"
+        ],
+        correctIndex: 1,
+        explanation: "Ford's attempt to transplant middle America into the Amazon was cultural imperialism at its most absurd. Workers who were accustomed to rice and beans were served hamburgers. People who danced samba were forced to square dance. The December 1930 riot was sparked by a combination of terrible food, unbearable working conditions, and the prohibition of alcohol. Workers smashed the cafeteria, destroyed company trucks, and chased American managers into the jungle."
+      },
+      {
+        event: "Fordlândia fails as both a rubber plantation and a social experiment. Ford abandons the project in 1945, having spent $20 million (over $200 million today) for virtually zero usable rubber",
+        options: [
+          "Ford's failure is quickly forgotten and has no lasting impact",
+          "Fordlândia becomes a legendary case study in the limits of industrial thinking — the failure demonstrates that you cannot apply assembly-line logic to living ecosystems or impose one culture on another. It's now studied in ecology, business, and postcolonial studies as the definitive cautionary tale of industrial hubris versus nature",
+          "Ford builds a second, more successful plantation to replace Fordlândia",
+          "Synthetic rubber makes the entire project irrelevant before it fails"
+        ],
+        correctIndex: 1,
+        explanation: "Henry Ford — the man who perfected the assembly line and revolutionized industry — met his match in a rainforest. You can standardize car parts; you can't standardize an ecosystem. Fordlândia's ruins still stand in the Amazon, overgrown with the jungle that defeated them — a monument to the idea that not everything can be engineered. Greg Grandin's 2009 book turned the forgotten project into a parable for our era: the lesson that nature and culture are not raw materials to be processed."
+      }
+    ]
+  },
+  {
+    id: 98,
+    title: "The Sleeping Pill's Children",
+    events: [
+      {
+        event: "1957: German pharmaceutical company Grünenthal markets thalidomide as a safe sedative and morning-sickness remedy, sold over the counter across Europe, Canada, Australia, and Japan. It is not approved in the United States",
+        options: [
+          "Thalidomide proves to be a safe and effective medication as marketed",
+          "Over 10,000 children are born worldwide with severe limb deformities — missing arms, shortened legs, malformed hands — because thalidomide crosses the placenta and disrupts fetal development during a critical window of early pregnancy",
+          "Minor side effects are reported but no serious harm occurs",
+          "The drug is recalled before any significant number of people take it"
+        ],
+        correctIndex: 1,
+        explanation: "The thalidomide disaster was one of the worst drug catastrophes in history. Taken between the 20th and 36th day of pregnancy, the drug interfered with blood vessel formation in developing limbs. The resulting birth defects — phocomelia, where hands or feet grow directly from the torso without arms or legs — were devastating. An estimated 10,000 to 20,000 children were affected across 46 countries."
+      },
+      {
+        event: "The disaster reveals a terrifying gap in drug regulation: no country required companies to prove that drugs were safe for pregnant women — or to conduct rigorous clinical trials — before selling them to the public",
+        options: [
+          "Pharmaceutical companies argue successfully that the tragedy was unforeseeable",
+          "The United States — where FDA reviewer Frances Kelsey had blocked thalidomide's approval by demanding more safety data — becomes the model for reform. Kelsey's stubbornness saved thousands of American children and proved that rigorous review could prevent disasters",
+          "The pharmaceutical industry self-regulates without government intervention",
+          "Drug regulation remains unchanged because the disaster is seen as a one-time anomaly"
+        ],
+        correctIndex: 1,
+        explanation: "Frances Kelsey was a new FDA reviewer who refused to approve thalidomide despite intense pressure from the manufacturer. She kept requesting more data, delaying approval month after month. When the disaster broke worldwide, her caution was vindicated spectacularly — she had single-handedly prevented the catastrophe in America. President Kennedy awarded her the President's Award for Distinguished Federal Civilian Service."
+      },
+      {
+        event: "Frances Kelsey's example proves that rigorous drug review saves lives. The US Congress acts to ensure no drug can reach the market without thorough safety testing",
+        options: [
+          "The new regulations are mild and largely cosmetic",
+          "The 1962 Kefauver-Harris Amendment transforms drug regulation worldwide — it requires rigorous clinical trials proving safety AND efficacy before any drug can be sold, mandatory reporting of side effects, and informed consent from clinical trial participants. Thalidomide's children created the entire modern system of drug safety that protects patients globally",
+          "Congress delays action and the reforms don't pass until the 1980s",
+          "The reforms apply only to sedatives and morning-sickness drugs"
+        ],
+        correctIndex: 1,
+        explanation: "One drug's horrific birth defects created the modern pharmaceutical safety framework. The Kefauver-Harris Amendment required, for the first time, that drugs be proven both safe AND effective through controlled clinical trials before approval. Every drug you take today — every antibiotic, painkiller, vaccine, and chemotherapy — goes through a safety review process that exists because of thalidomide. The tragedy of 10,000 children created the system that protects billions."
+      }
+    ]
+  },
+  {
+    id: 99,
+    title: "The Opium Trader's Port",
+    events: [
+      {
+        event: "1839: Chinese Imperial Commissioner Lin Zexu, on orders to end the opium trade devastating Chinese society, seizes and publicly destroys 1,400 tons of British-owned opium in Canton — worth an enormous fortune",
+        options: [
+          "Britain accepts the loss and withdraws from the opium trade",
+          "Britain declares war on China — the First Opium War — to protect its immensely profitable drug trade. British naval superiority overwhelms China's defenses, and China is forced to sign the humiliating Treaty of Nanking in 1842",
+          "Lin Zexu's action successfully ends the opium trade in China",
+          "Britain and China negotiate a diplomatic compromise over the destroyed opium"
+        ],
+        correctIndex: 1,
+        explanation: "Britain went to war to defend its right to sell narcotics. The opium trade generated enormous profits for British merchants and funded Britain's purchase of Chinese tea, silk, and porcelain. When Lin Zexu destroyed the opium, Britain treated it as an attack on property rights and free trade. The Royal Navy's steam-powered warships destroyed Chinese junks effortlessly. The Treaty of Nanking imposed massive indemnities on China and opened five ports to British trade."
+      },
+      {
+        event: "The Treaty of Nanking forces China to cede a small, rocky island that the British describe as a 'barren rock' — Hong Kong — to Britain 'in perpetuity'",
+        options: [
+          "Hong Kong remains a minor military outpost of no economic importance",
+          "Under British rule, Hong Kong transforms from a fishing village into one of the world's most important trading ports and financial centers — its position at the mouth of the Pearl River and its status as a free port attract merchants from across Asia",
+          "Britain returns Hong Kong to China within a few decades",
+          "The Chinese population refuses to live under British rule and Hong Kong remains empty"
+        ],
+        correctIndex: 1,
+        explanation: "Lord Palmerston reportedly dismissed Hong Kong as 'a barren island with hardly a house upon it.' He was spectacularly wrong. Hong Kong's deep natural harbor, strategic location, and British free-trade policies transformed it into one of the world's great trading hubs. By the 20th century, it was the gateway between China and the global economy — a financial center to rival London and New York."
+      },
+      {
+        event: "Hong Kong becomes one of the world's leading financial centers under British rule. In 1997, Britain hands Hong Kong back to China under a 'one country, two systems' arrangement",
+        options: [
+          "Hong Kong seamlessly integrates back into mainland China's system",
+          "The 1997 handover becomes one of the most consequential geopolitical arrangements of the modern era — a global financial capital with its own legal system, currency, and civil liberties exists inside an authoritarian state. China destroying a drug shipment in 1839 is the reason one of the world's richest cities exists where it does",
+          "Hong Kong's economy collapses after the handover",
+          "Britain refuses to return Hong Kong and maintains colonial control"
+        ],
+        correctIndex: 1,
+        explanation: "A Chinese official destroyed British drugs → Britain went to war → China was forced to give up a 'barren rock' → that rock became a global financial capital → its return to China 155 years later created one of the most complex and consequential political arrangements on Earth. The 'one country, two systems' framework — designed to preserve Hong Kong's capitalism inside communist China — was a direct consequence of an opium seizure in Canton in 1839."
+      }
+    ]
+  },
+  {
+    id: 100,
+    title: "The Prisoner's Stone",
+    events: [
+      {
+        event: "1799: French soldiers digging fortifications in the Egyptian town of Rosetta (Rashid) discover a dark granodiorite slab inscribed with the same official decree in three scripts: ancient hieroglyphics, Demotic (everyday Egyptian script), and ancient Greek",
+        options: [
+          "The soldiers discard the stone as ordinary building material",
+          "Officers recognize the stone's potential significance — a text in three scripts, one of which (Greek) is already understood, could be the key to decoding the other two. The stone is sent to scholars in Cairo and news of the discovery electrifies the European intellectual world",
+          "The stone is immediately sent to France and hidden in a private collection",
+          "The stone contains only a mundane tax record and generates little interest"
+        ],
+        correctIndex: 1,
+        explanation: "The soldiers were building defenses at Fort Julien near the Nile Delta when they unearthed the slab. Officer Pierre-François Bouchard immediately recognized its importance: the Greek text could potentially serve as a 'crib' to decode the mysterious hieroglyphics that had baffled scholars for centuries. The stone was indeed a mundane priestly decree from 196 BC — but its trilingual nature made it invaluable."
+      },
+      {
+        event: "After Napoleon's defeat in Egypt, the Rosetta Stone passes to the British (it's still in the British Museum today). A decryption race begins between British polymath Thomas Young and French linguist Jean-François Champollion",
+        options: [
+          "The stone proves insufficient to decode hieroglyphics and the scripts remain unreadable",
+          "Champollion cracks the hieroglyphic code in 1822 — using the Greek text as a key, he realizes hieroglyphics are not just pictures but a complex system combining phonetic sounds and symbolic meanings. For the first time in over 1,400 years, humans can read ancient Egyptian writing",
+          "Thomas Young solves the code first and publishes before Champollion",
+          "The decryption takes over a century and isn't completed until the 1900s"
+        ],
+        correctIndex: 1,
+        explanation: "Champollion's breakthrough came when he realized that hieroglyphics were not purely symbolic — they included phonetic elements representing sounds. Using cartouches (oval name-rings) containing the names 'Ptolemy' and 'Cleopatra' in both Greek and hieroglyphics, he matched sounds to symbols. On September 14, 1822, he reportedly ran to his brother's office shouting 'Je tiens l'affaire!' ('I've got it!') before fainting from excitement."
+      },
+      {
+        event: "Champollion's decipherment of hieroglyphics means that 3,000 years of ancient Egyptian writing — on temple walls, papyrus scrolls, tomb inscriptions, and monuments — can suddenly be read for the first time since the Roman era",
+        options: [
+          "The decoded texts prove to contain mostly mundane records of little historical interest",
+          "An entire civilization is unlocked — the Book of the Dead, royal histories, love poems, medical texts, and diplomatic correspondence become readable. The discipline of Egyptology is born, and scholars discover that ancient Egypt was far more complex, literate, and sophisticated than anyone had imagined. Soldiers digging a wall accidentally gave humanity the key to read 3,000 years of lost history",
+          "The decoded texts largely confirm what historians already knew about Egypt",
+          "Only a handful of texts can be decoded using Champollion's method"
+        ],
+        correctIndex: 1,
+        explanation: "Before Champollion, ancient Egypt was essentially mute — a civilization of magnificent monuments covered in beautiful, unreadable writing. After 1822, the entire written record of one of humanity's greatest civilizations suddenly spoke. The Edwin Smith Papyrus revealed sophisticated surgical knowledge. The Amarna Letters showed pharaohs negotiating with Mesopotamian kings. Love poetry, legal contracts, and student homework assignments from 3,000 years ago became readable. All because soldiers building a fort hit a stone."
+      }
+    ]
+  },
+  {
+    id: 101,
+    title: "The Missing Days",
+    events: [
+      {
+        event: "1582: Pope Gregory XIII issues a papal bull announcing a corrected calendar — the old Julian calendar has drifted 10 days out of alignment with the actual solar year. Catholic countries must skip from October 4 directly to October 15",
+        options: [
+          "All of Europe immediately adopts the corrected calendar",
+          "Catholic countries comply, but Protestant countries refuse on principle — they would rather be wrong about the date than agree with the Pope. The continent splits into two incompatible calendar systems running 10 days apart",
+          "The Pope's proposal is ignored by all countries as impractical",
+          "Protestants adopt the calendar but rename it to avoid crediting the Pope"
+        ],
+        correctIndex: 1,
+        explanation: "Religious pride trumped mathematical accuracy. Protestant leaders explicitly rejected the 'Popish calendar' even though the astronomy was objectively correct. The result was absurd: crossing from Catholic France into Protestant Germany could jump you forward or backward 10 days. Letters between countries carried two dates. Trade contracts required specifying which calendar applied. Europe literally couldn't agree on what day it was."
+      },
+      {
+        event: "Protestant countries gradually adopt the Gregorian calendar over the next 170 years — Britain finally switches in 1752, by which point 11 days must be skipped. Riots reportedly break out with crowds shouting 'Give us our eleven days!'",
+        options: [
+          "All remaining countries adopt the Gregorian calendar shortly after Britain",
+          "Russia holds out until 1918 and the Orthodox Church never fully switches — which means that Russia's 'October Revolution' of 1917 actually took place in November by the Western calendar, and Orthodox Christmas falls on January 7th rather than December 25th",
+          "Russia adopts the calendar at the same time as Britain in 1752",
+          "The calendar difference has no practical effect on historical events"
+        ],
+        correctIndex: 1,
+        explanation: "Russia didn't adopt the Gregorian calendar until the Bolsheviks took power in 1918 — by which point the drift had grown to 13 days. This means the 'October Revolution' took place on October 25th in Russia's Julian calendar but November 7th in the Western Gregorian calendar. Orthodox churches that still follow the Julian calendar celebrate Christmas 13 days after the Western date. A papal calendar reform from 1582 is still creating confusion in 2026."
+      },
+      {
+        event: "Nearly 450 years later, the consequences of religious resistance to a pope's calendar are still visible in global culture",
+        options: [
+          "The calendar differences have been completely resolved worldwide",
+          "Religious spite over a pope's math created centuries of date chaos — the reason Russia's October Revolution is in November, Orthodox Christmas is on January 7th, and George Washington has two different birthdays (February 11 Old Style, February 22 New Style). A 16th-century religious grudge against a pope still shapes global calendars today",
+          "Only historians are aware of the calendar differences",
+          "A universal calendar replaces both the Julian and Gregorian systems"
+        ],
+        correctIndex: 1,
+        explanation: "The Gregorian calendar reform was a simple fix for a real astronomical problem: the Julian calendar gained roughly 3 days every 400 years. But Protestant refusal to accept a Catholic pope's correction — purely out of religious spite — created centuries of chaos. George Washington was born on February 11 under the Julian calendar but we celebrate his birthday on February 22 (Gregorian). Russia's most famous revolution is named after the wrong month. And 200 million Orthodox Christians still celebrate Christmas on what the rest of the world calls January 7th. All because Protestants in 1582 decided they'd rather have the wrong date than agree with the Pope."
+      }
+    ]
+  },
+  {
+    id: 102,
+    title: "The Mosquito's Canal",
+    events: [
+      {
+        event: "1881: Cuban doctor Carlos Finlay presents a paper to the Havana Academy of Sciences proposing that yellow fever is transmitted by mosquitoes — not by 'bad air' or contaminated objects, as the medical establishment believes. His colleagues mock the idea",
+        options: [
+          "Finlay's theory is quickly accepted and yellow fever is controlled",
+          "Finlay spends 19 years defending his mosquito theory against ridicule — until 1900, when US Army surgeon Walter Reed conducts experiments in Cuba that prove Finlay was right all along. Mosquitoes, specifically Aedes aegypti, transmit yellow fever",
+          "Finlay abandons his theory after failing to prove it experimentally",
+          "Another scientist independently discovers the mosquito connection before Reed's experiments"
+        ],
+        correctIndex: 1,
+        explanation: "Finlay was right for 19 years while the medical world laughed. He even identified the correct species of mosquito — Aedes aegypti. Reed's experiments in Cuba (using controversial human volunteers, some of whom died) definitively proved the mosquito transmission theory. Reed himself credited Finlay, writing that the Cuban doctor had been 'the first to state and uphold this theory.'"
+      },
+      {
+        event: "With the mosquito identified as the vector, the US Army's William Gorgas launches an aggressive campaign in Cuba and then Panama: draining standing water, screening buildings, and fumigating mosquito breeding sites. Yellow fever rates plummet",
+        options: [
+          "The mosquito control campaign proves too expensive to sustain",
+          "The success in controlling yellow fever solves the problem that had defeated the French canal project — France had abandoned the Panama Canal in 1889 after yellow fever and malaria killed an estimated 22,000 workers. With the mosquito conquered, the impossible becomes possible",
+          "The canal project was abandoned for engineering reasons, not disease",
+          "Yellow fever continues killing workers despite the mosquito control efforts"
+        ],
+        correctIndex: 1,
+        explanation: "The French effort to build the Panama Canal was one of history's greatest engineering disasters — and the primary killer wasn't engineering, it was disease. Yellow fever and malaria devastated the workforce. Ferdinand de Lesseps, who had built the Suez Canal, couldn't conquer a mosquito. When the US took over the project, Gorgas's mosquito control program was as important as any engineering advance. He drained swamps, oiled standing water, and screened every building."
+      },
+      {
+        event: "With yellow fever controlled through mosquito eradication, the United States completes the Panama Canal in 1914 — a project the French had been forced to abandon after losing 22,000 workers to mosquito-borne disease",
+        options: [
+          "The Panama Canal has only moderate impact on global trade",
+          "The Panama Canal reshapes global maritime commerce — ships no longer need to round Cape Horn, cutting the New York-to-San Francisco voyage from 14,000 miles to 6,000 miles. A mocked Cuban doctor's mosquito theory is the reason one of the world's most important waterways exists",
+          "The canal is completed but rarely used because shipping routes don't change",
+          "Another canal is built across Nicaragua instead, making Panama's irrelevant"
+        ],
+        correctIndex: 1,
+        explanation: "A Cuban doctor was laughed at for 19 years → an American Army surgeon proved him right → a public health officer used the knowledge to defeat yellow fever in Panama → the United States built a canal the French couldn't → that canal transformed global trade forever. The Panama Canal handles about 5% of world trade today. Every ship that passes through it owes a debt to Carlos Finlay, the doctor whose colleagues called him crazy for blaming a mosquito."
+      }
+    ]
+  },
+  {
+    id: 103,
+    title: "The King's Jaw",
+    events: [
+      {
+        event: "1661: Charles II of Spain is born — the product of generations of Habsburg intermarriage so extreme that his family tree doesn't branch. His parents were uncle and niece, his grandparents were uncle and niece, and he was genetically more inbred than the child of a brother and sister",
+        options: [
+          "Charles II is a healthy, vigorous ruler who strengthens the Spanish Empire",
+          "Charles is physically and mentally disabled — he can barely chew food due to his severely deformed 'Habsburg jaw,' doesn't speak until age four, can barely walk, and is widely regarded as unable to govern. Most critically, he cannot produce an heir",
+          "Charles overcomes his disabilities through excellent medical care",
+          "The Spanish court successfully conceals Charles's health problems"
+        ],
+        correctIndex: 1,
+        explanation: "The Habsburg jaw — prognathism so severe that Charles's lower jaw protruded far beyond his upper, making it nearly impossible to chew — was the most visible symptom. He also suffered from numerous other genetic disorders: he was partially deaf, epileptic, and had an oversized tongue that made his speech nearly unintelligible. Nicknamed 'El Hechizado' (The Bewitched), he was king of the world's largest empire but could barely feed himself."
+      },
+      {
+        event: "Charles II dies in 1700 with no heir — the last of the Spanish Habsburgs. His will names Philip, Duke of Anjou (a French Bourbon prince), as his successor, but other European powers refuse to accept a Bourbon on the Spanish throne",
+        options: [
+          "The succession dispute is resolved diplomatically without conflict",
+          "The War of the Spanish Succession erupts in 1701 — every major European power is drawn in. Britain, Austria, the Dutch Republic, and others fight France and Spain for 13 years in one of the largest and most consequential wars in European history",
+          "Philip of Anjou peacefully assumes the throne and the matter is settled",
+          "The Spanish Empire is divided equally among claimants without war"
+        ],
+        correctIndex: 1,
+        explanation: "One king's inability to produce an heir triggered a war that engulfed a continent. The War of the Spanish Succession (1701-1714) was fought across Europe, North America, and the seas. The stakes were enormous: if a French Bourbon controlled both France AND the Spanish Empire (including its vast colonies), the balance of power in Europe and the world would be permanently altered."
+      },
+      {
+        event: "The War of the Spanish Succession ends with the Treaty of Utrecht in 1713, which redraws the map of Europe and the colonial world",
+        options: [
+          "The treaty restores the pre-war status quo",
+          "Britain emerges as the biggest winner — gaining Gibraltar, Minorca, Newfoundland, Nova Scotia, and the Asiento (monopoly on the Atlantic slave trade). One inbred king's inability to chew his food or produce an heir redrew the colonial map and gave Britain strategic assets it holds to this day",
+          "France gains the most territory from the treaty",
+          "Spain retains all its territorial possessions after the war"
+        ],
+        correctIndex: 1,
+        explanation: "Because one royal family couldn't stop marrying its cousins, one king was born who couldn't produce an heir, one succession dispute triggered a continental war, and one peace treaty gave Britain Gibraltar (which it still holds), control of key Atlantic territories, and the monopoly on the slave trade that would generate enormous wealth. The Habsburg jaw — a genetic deformity caused by centuries of inbreeding — quite literally reshaped the world map."
+      }
+    ]
+  },
+  {
+    id: 104,
+    title: "The Conqueror's Comet",
+    events: [
+      {
+        event: "1066: A blazing comet appears in the skies over England — visible for weeks, its brilliant tail stretching across the heavens. Anglo-Saxon King Harold II and his court view it as an omen of disaster",
+        options: [
+          "Harold dismisses the comet as a natural phenomenon with no significance",
+          "Across the English Channel, William of Normandy seizes on the comet as divine propaganda — he declares that God has sent a sign endorsing his planned invasion of England. The comet emboldens his followers and is later immortalized in the Bayeux Tapestry",
+          "Both Harold and William ignore the comet entirely",
+          "The comet delays William's invasion plans due to superstitious fear"
+        ],
+        correctIndex: 1,
+        explanation: "The comet — later identified as Halley's Comet on one of its periodic returns — appeared in April 1066, just months before the most consequential invasion in English history. William brilliantly used it as propaganda: the heavens themselves blessed his claim to the English throne. The Bayeux Tapestry depicts the comet with courtiers pointing at the sky in awe, and the Latin inscription translates to 'They marvel at the star.'"
+      },
+      {
+        event: "William invades England and defeats Harold at the Battle of Hastings on October 14, 1066. French-speaking Norman nobles take control of England, ruling over an Anglo-Saxon population that speaks Old English",
+        options: [
+          "The Norman rulers quickly adopt Old English and abandon French",
+          "For centuries, French is the language of the English court, law, and aristocracy while the Anglo-Saxon common people continue speaking Old English — the two languages slowly merge, creating Middle English and eventually Modern English",
+          "Old English dies out completely and is replaced entirely by French",
+          "The two language communities remain completely separate for centuries"
+        ],
+        correctIndex: 1,
+        explanation: "The linguistic fusion took centuries. French-speaking Norman lords governed English-speaking peasants. French became the language of law ('plaintiff,' 'defendant,' 'jury'), government ('parliament,' 'sovereign,' 'nation'), cuisine ('beef,' 'pork,' 'venison'), and high culture ('art,' 'music,' 'romance'). Anglo-Saxon persisted as the language of everyday life ('house,' 'bread,' 'water,' 'love'). The two streams gradually merged into something entirely new."
+      },
+      {
+        event: "The fusion of Norman French and Anglo-Saxon English creates Modern English — a language with an extraordinarily large vocabulary because it has two words for almost everything",
+        options: [
+          "English develops a vocabulary similar in size to other European languages",
+          "English ends up with roughly twice the vocabulary of most European languages — the Anglo-Saxon farmer raised a 'cow' or 'pig' or 'sheep,' but the French-speaking lord ate 'beef' or 'pork' or 'mutton.' A comet convinced a duke he had divine backing, and the resulting conquest is why English has more words than almost any other language",
+          "The French vocabulary is eventually purged from English during a nationalist movement",
+          "Only legal and governmental French words survive in modern English"
+        ],
+        correctIndex: 1,
+        explanation: "A comet appeared in the sky → a duke used it as propaganda → he invaded England → French-speaking conquerors ruled English-speaking commoners → two languages slowly fused → English developed an enormous dual vocabulary. The cow/beef split is the most famous example: Anglo-Saxon farmers tended 'cows,' 'sheep,' and 'pigs' (Germanic words), while Norman lords dined on 'beef,' 'mutton,' and 'pork' (French words). Halley's Comet, returning every 75 years in perfect ignorance, helped create the language you're reading right now."
+      }
+    ]
+  },
+  {
+    id: 105,
+    title: "The Mapmaker's Mistake",
+    events: [
+      {
+        event: "1507: German cartographer Martin Waldseemüller publishes a massive printed world map — 12 woodcut panels assembled into a 4.5-by-8-foot wall map. He names the newly discovered western landmass 'America' after Italian explorer Amerigo Vespucci, who described it as a 'New World'",
+        options: [
+          "The map is largely ignored and the name doesn't catch on",
+          "The map is a sensation — 1,000 copies are printed and distributed across Europe. The name 'America' spreads rapidly through universities, mapmaking workshops, and libraries across the continent",
+          "Columbus immediately objects and the name is changed to 'Columbia'",
+          "Only the southern continent is named 'America' while the north is called something else"
+        ],
+        correctIndex: 1,
+        explanation: "Waldseemüller's 1507 map was the first to apply the name 'America' to the new western landmass and the first to show it as a separate continent from Asia. It was a bestseller by 16th-century standards — a thousand copies circulated through the intellectual networks of Renaissance Europe. The map was so influential that its name stuck even though the reasoning behind it was questionable."
+      },
+      {
+        event: "Waldseemüller later realizes his error — Vespucci didn't discover the continent; Columbus did. He removes the name 'America' from his 1513 updated map, replacing it with 'Terra Incognita' (Unknown Land)",
+        options: [
+          "The correction works and the name 'America' fades from use",
+          "It's too late — the original 1,000 copies have already spread across Europe, and other mapmakers have adopted the name. 'America' has entered the vocabulary of geographers, scholars, and publishers. Waldseemüller's correction is simply ignored",
+          "Both names — 'America' and 'Terra Incognita' — are used equally for centuries",
+          "The name changes to 'Columbia' in honor of Columbus as Waldseemüller intended"
+        ],
+        correctIndex: 1,
+        explanation: "The genie was out of the bottle. Waldseemüller tried to undo his naming decision, but 1,000 copies of the original map were already circulating. Other cartographers — including Gerardus Mercator, whose influential 1538 map extended 'America' to both continents — had adopted the name. Waldseemüller's retraction came too late. The printing press, which he had used to spread the name, made it impossible to recall."
+      },
+      {
+        event: "Other mapmakers adopt and extend the name. By the mid-1500s, 'America' is applied to both the northern and southern continents, permanently naming them after Amerigo Vespucci",
+        options: [
+          "Historians eventually rename the continents after Columbus",
+          "Two entire continents end up permanently named after a Florentine navigator who merely described someone else's discovery — because a German mapmaker made a 1,000-copy print run with a factual error that he couldn't take back. One of the most consequential naming mistakes in history was made permanent by the printing press",
+          "The name 'America' is eventually replaced by an indigenous name",
+          "Only North America keeps the name while South America gets a different one"
+        ],
+        correctIndex: 1,
+        explanation: "Amerigo Vespucci never commanded a voyage of discovery — he was, at most, a navigator on other people's expeditions. But he was a gifted writer whose vivid descriptions of the 'New World' captured the European imagination. Waldseemüller, working from Vespucci's published letters, assumed Vespucci deserved naming rights. By the time he realized his mistake, 1,000 printed copies had seeded the name across Europe. A single print run of a map with a factual error permanently named two continents and 1 billion people."
+      }
+    ]
   }
 ];
 
@@ -2036,6 +4006,11 @@ const FIXED_ORDERED_IDS = [
   20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
   30, 31, 32, 33, 34, 35, 36, 42, 41, 47, 43, 38, 45, 39, 40,
   1, 2, 3, 4, 49, 48, 5, 6, 7, 50, 8, 9, 44, 46,
+  55, 54, 71, 58, 51, 64, 53, 65, 60, 72,
+  61, 56, 59, 73, 57, 67, 63, 74, 66, 75,
+  76, 84, 82, 90, 78, 95, 86, 91, 80, 98,
+  85, 94, 88, 99, 83, 101, 87, 92, 77, 103,
+  89, 96, 93, 100, 79, 104, 81, 97, 102, 105,
 ];
 
 const buildPuzzleDateMap = (): Map<number, string> => {
