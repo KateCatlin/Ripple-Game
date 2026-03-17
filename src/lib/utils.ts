@@ -6,6 +6,38 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
+ * Get a date formatted in HST (Hawaii Standard Time) as YYYY-MM-DD.
+ *
+ * The game's daily puzzle resets at midnight HST, so all date comparisons
+ * for streaks, last-played checks, etc. must use HST to stay consistent
+ * with the puzzle schedule.
+ *
+ * HST is UTC-10 with no daylight saving time.
+ */
+export function getDateInHST(date: Date = new Date()): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Pacific/Honolulu',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date);
+}
+
+/**
+ * Get yesterday's date in HST as YYYY-MM-DD.
+ *
+ * Computes the HST "today" first, then subtracts one calendar day,
+ * so the result is always correct regardless of the caller's local timezone.
+ */
+export function getYesterdayInHST(): string {
+  const todayStr = getDateInHST();
+  // Parse at noon to avoid any edge-case timezone shifts
+  const d = new Date(todayStr + 'T12:00:00');
+  d.setDate(d.getDate() - 1);
+  return getDateInHST(d);
+}
+
+/**
  * Shuffles an array using Fisher-Yates algorithm.
  * Returns a new array with shuffled elements and a mapping of new index → original index.
  */

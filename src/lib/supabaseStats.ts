@@ -1,5 +1,6 @@
 import { supabase } from '@/integrations/supabase/client';
 import { getStats, getGameState, GameStats, GameState } from './storage';
+import { getDateInHST, getYesterdayInHST } from './utils';
 
 export interface SupabaseUserStats {
   user_id: string;
@@ -344,22 +345,21 @@ export const saveArchiveGameResult = async (
 
 // Update user stats after game
 export const updateUserStats = async (userId: string, answers: boolean[], points: number): Promise<void> => {
-  const today = new Date().toISOString().split('T')[0];
+  // Use HST dates to match the game's daily reset at midnight HST
+  const today = getDateInHST();
   const correctCount = answers.filter(Boolean).length;
   
   // Get existing stats
   const existingStats = await fetchUserStats(userId);
   
   if (existingStats) {
-    // Check if already counted today
+    // Check if already counted today (in HST)
     if (existingStats.last_played_date === today) {
       return;
     }
     
-    // Calculate streak
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split('T')[0];
+    // Calculate streak using HST dates
+    const yesterdayStr = getYesterdayInHST();
     
     let newStreak = 1;
     if (existingStats.last_played_date === yesterdayStr) {
@@ -435,7 +435,7 @@ export const migrateLocalStorageToSupabase = async (userId: string): Promise<boo
       total_correct: localStats.totalCorrect,
       total_events: localStats.totalEvents,
       total_points: estimatedPoints,
-      last_played_date: localStats.lastPlayedDate ? new Date(localStats.lastPlayedDate).toISOString().split('T')[0] : null,
+      last_played_date: localStats.lastPlayedDate ? getDateInHST(new Date(localStats.lastPlayedDate)) : null,
     });
   
   if (statsError) {
