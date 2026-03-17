@@ -106,7 +106,7 @@ export const getGameStateForDate = (puzzleDate: string): GameState | null => {
  * Save game state for a specific puzzle date.
  */
 export const saveGameStateForDate = (puzzleDate: string, state: GameState): void => {
-  const today = getTodayInHST();
+  const today = getDateInHST();
   const storageKey = puzzleDate === today ? GAME_STATE_KEY : `${GAME_STATE_KEY}-${puzzleDate}`;
   
   try {
