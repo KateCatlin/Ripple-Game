@@ -1,3 +1,5 @@
+import { getTodayInHST } from '@/lib/dateUtils';
+
 const STORAGE_KEY = 'ripple-game-stats';
 const GAME_STATE_KEY = 'ripple-game-state';
 
@@ -86,7 +88,7 @@ export const getGameState = (): GameState => {
  * This ensures each puzzle can only be played once per user.
  */
 export const getGameStateForDate = (puzzleDate: string): GameState | null => {
-  const today = new Date().toISOString().split('T')[0];
+  const today = getTodayInHST();
   const storageKey = puzzleDate === today ? GAME_STATE_KEY : `${GAME_STATE_KEY}-${puzzleDate}`;
   
   try {
@@ -104,7 +106,7 @@ export const getGameStateForDate = (puzzleDate: string): GameState | null => {
  * Save game state for a specific puzzle date.
  */
 export const saveGameStateForDate = (puzzleDate: string, state: GameState): void => {
-  const today = new Date().toISOString().split('T')[0];
+  const today = getTodayInHST();
   const storageKey = puzzleDate === today ? GAME_STATE_KEY : `${GAME_STATE_KEY}-${puzzleDate}`;
   
   try {
@@ -132,7 +134,7 @@ export const saveGameState = (state: GameState): void => {
  */
 export const updateStatsAfterGame = (answers: boolean[]): void => {
   const stats = getStats();
-  const today = new Date().toDateString();
+  const today = getTodayInHST();
   
   // Check if already played today
   if (stats.lastPlayedDate === today) {
@@ -147,10 +149,17 @@ export const updateStatsAfterGame = (answers: boolean[]): void => {
   stats.totalEvents += answers.length;
   
   // Update streak - ONLY for daily puzzles
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
+  // Calculate yesterday in HST by subtracting one day from today's HST date
+  const yesterdayDate = new Date(today + 'T12:00:00-10:00');
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  const yesterday = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Pacific/Honolulu',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).format(yesterdayDate);
   
-  if (stats.lastPlayedDate === yesterday.toDateString()) {
+  if (stats.lastPlayedDate === yesterday) {
     stats.currentStreak += 1;
   } else if (stats.lastPlayedDate !== today) {
     stats.currentStreak = 1;

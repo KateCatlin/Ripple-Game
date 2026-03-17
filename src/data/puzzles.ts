@@ -1,3 +1,5 @@
+import { getTodayInHST, dateToHSTString } from '@/lib/dateUtils';
+
 export interface PuzzleEvent {
   event: string;
   options: string[];
@@ -3977,15 +3979,7 @@ const LAUNCH_DATE = '2025-12-30'; // App launch date - archive starts here
  * HST = UTC-10, no daylight saving time.
  */
 export const getTodayInPST = (): string => {
-  const now = new Date();
-  // Format date in HST timezone (using Pacific/Honolulu)
-  const hstDate = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Pacific/Honolulu',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  }).format(now);
-  return hstDate; // Returns YYYY-MM-DD format
+  return getTodayInHST();
 };
 
 /**
@@ -3993,12 +3987,7 @@ export const getTodayInPST = (): string => {
  * Note: Function name kept as dateToPSTString for backwards compatibility.
  */
 export const dateToPSTString = (date: Date): string => {
-  return new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Pacific/Honolulu',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  }).format(date);
+  return dateToHSTString(date);
 };
 
 const FIXED_ORDERED_IDS = [
@@ -4066,8 +4055,11 @@ export const getPuzzleForDay = (date: Date = new Date()): Puzzle => {
     return puzzle;
   }
   
-  // Fallback: return the most recently scheduled puzzle if date is beyond range
-  return puzzles[puzzles.length - 1];
+  // Fallback: if today is beyond the scheduled range, cycle through puzzles
+  // This prevents the game from being stuck on a single puzzle indefinitely
+  const dayNum = getDayNumber(date);
+  const cycledIndex = ((dayNum - 1) % puzzles.length);
+  return puzzles[cycledIndex];
 };
 
 /**
