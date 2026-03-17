@@ -88,7 +88,7 @@ export const getGameState = (): GameState => {
  * This ensures each puzzle can only be played once per user.
  */
 export const getGameStateForDate = (puzzleDate: string): GameState | null => {
-  const today = new Date().toISOString().split('T')[0];
+  const today = getTodayInHST();
   const storageKey = puzzleDate === today ? GAME_STATE_KEY : `${GAME_STATE_KEY}-${puzzleDate}`;
   
   try {
@@ -106,7 +106,7 @@ export const getGameStateForDate = (puzzleDate: string): GameState | null => {
  * Save game state for a specific puzzle date.
  */
 export const saveGameStateForDate = (puzzleDate: string, state: GameState): void => {
-  const today = new Date().toISOString().split('T')[0];
+  const today = getTodayInHST();
   const storageKey = puzzleDate === today ? GAME_STATE_KEY : `${GAME_STATE_KEY}-${puzzleDate}`;
   
   try {

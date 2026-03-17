@@ -61,12 +61,10 @@ export const useGameState = (options: UseGameStateOptions = {}): UseGameStateRet
     }
     // Default to today's puzzle
     const todayPuzzle = getPuzzleForDay();
-    const today = new Date();
-    const todayStr = today.toISOString().split('T')[0];
     return {
       puzzle: todayPuzzle,
       dayNumber: getDayNumber(),
-      puzzleDate: todayStr,
+      puzzleDate: getTodayInPST(),
       isArchive: false,
     };
   }, [options.puzzleDate]);
