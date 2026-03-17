@@ -1,4 +1,4 @@
-import { getTodayInHST } from '@/lib/dateUtils';
+import { getTodayInHST, dateToHSTString } from '@/lib/dateUtils';
 
 const STORAGE_KEY = 'ripple-game-stats';
 const GAME_STATE_KEY = 'ripple-game-state';
@@ -149,15 +149,10 @@ export const updateStatsAfterGame = (answers: boolean[]): void => {
   stats.totalEvents += answers.length;
   
   // Update streak - ONLY for daily puzzles
-  // Calculate yesterday in HST by subtracting one day from today's HST date
-  const yesterdayDate = new Date(today + 'T12:00:00-10:00');
-  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
-  const yesterday = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Pacific/Honolulu',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  }).format(yesterdayDate);
+  // Calculate yesterday in HST
+  const todayDate = new Date();
+  todayDate.setTime(todayDate.getTime() - 24 * 60 * 60 * 1000);
+  const yesterday = dateToHSTString(todayDate);
   
   if (stats.lastPlayedDate === yesterday) {
     stats.currentStreak += 1;
