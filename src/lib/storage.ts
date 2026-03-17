@@ -138,7 +138,8 @@ export const updateStatsAfterGame = (answers: boolean[]): void => {
   const today = getDateInHST();
   
   // Check if already played today (handle both new HST format and legacy toDateString format)
-  if (stats.lastPlayedDate === today || stats.lastPlayedDate === new Date().toDateString()) {
+  const todayLegacy = new Date().toDateString();
+  if (stats.lastPlayedDate === today || stats.lastPlayedDate === todayLegacy) {
     return;
   }
   
@@ -152,7 +153,9 @@ export const updateStatsAfterGame = (answers: boolean[]): void => {
   // Update streak - ONLY for daily puzzles
   // Check both HST format and legacy toDateString format for backward compatibility
   const yesterdayStr = getYesterdayInHST();
-  const yesterdayLegacy = new Date(new Date().setDate(new Date().getDate() - 1)).toDateString();
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayLegacy = yesterday.toDateString();
   
   if (stats.lastPlayedDate === yesterdayStr || stats.lastPlayedDate === yesterdayLegacy) {
     stats.currentStreak += 1;

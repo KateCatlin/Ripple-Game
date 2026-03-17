@@ -34,7 +34,7 @@ export function getYesterdayInHST(): string {
   // Parse at noon to avoid any edge-case timezone shifts
   const d = new Date(todayStr + 'T12:00:00');
   d.setDate(d.getDate() - 1);
-  return d.toISOString().split('T')[0];
+  return getDateInHST(d);
 }
 
 /**
