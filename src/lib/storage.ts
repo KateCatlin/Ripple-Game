@@ -1,4 +1,4 @@
-import { getTodayInHST, dateToHSTString } from '@/lib/dateUtils';
+import { getDateInHST, getYesterdayInHST } from './utils';
 
 const STORAGE_KEY = 'ripple-game-stats';
 const GAME_STATE_KEY = 'ripple-game-state';
@@ -134,10 +134,12 @@ export const saveGameState = (state: GameState): void => {
  */
 export const updateStatsAfterGame = (answers: boolean[]): void => {
   const stats = getStats();
-  const today = getTodayInHST();
+  // Use HST dates to match the game's daily reset at midnight HST
+  const today = getDateInHST();
   
-  // Check if already played today
-  if (stats.lastPlayedDate === today) {
+  // Check if already played today (handle both new HST format and legacy toDateString format)
+  const todayLegacy = new Date().toDateString();
+  if (stats.lastPlayedDate === today || stats.lastPlayedDate === todayLegacy) {
     return;
   }
   
@@ -149,19 +151,20 @@ export const updateStatsAfterGame = (answers: boolean[]): void => {
   stats.totalEvents += answers.length;
   
   // Update streak - ONLY for daily puzzles
-  // Calculate yesterday in HST
-  const todayDate = new Date();
-  todayDate.setTime(todayDate.getTime() - 24 * 60 * 60 * 1000);
-  const yesterday = dateToHSTString(todayDate);
+  // Check both HST format and legacy toDateString format for backward compatibility
+  const yesterdayStr = getYesterdayInHST();
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayLegacy = yesterday.toDateString();
   
-  if (stats.lastPlayedDate === yesterday) {
+  if (stats.lastPlayedDate === yesterdayStr || stats.lastPlayedDate === yesterdayLegacy) {
     stats.currentStreak += 1;
   } else if (stats.lastPlayedDate !== today) {
     stats.currentStreak = 1;
   }
   
   stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
-  stats.lastPlayedDate = today;
+  stats.lastPlayedDate = today; // Store in HST YYYY-MM-DD format going forward
   
   // Update per-event success rate (track totals for calculation)
   answers.forEach((correct, index) => {
