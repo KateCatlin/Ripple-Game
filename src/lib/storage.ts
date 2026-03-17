@@ -88,7 +88,7 @@ export const getGameState = (): GameState => {
  * This ensures each puzzle can only be played once per user.
  */
 export const getGameStateForDate = (puzzleDate: string): GameState | null => {
-  const today = getTodayInHST();
+  const today = getDateInHST();
   const storageKey = puzzleDate === today ? GAME_STATE_KEY : `${GAME_STATE_KEY}-${puzzleDate}`;
   
   try {
