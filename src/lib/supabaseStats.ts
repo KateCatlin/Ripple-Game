@@ -1,6 +1,6 @@
 import { supabase } from '@/integrations/supabase/client';
 import { getStats, getGameState, GameStats, GameState } from './storage';
-import { getDateInHST, getYesterdayInHST } from './utils';
+import { getDateInHST } from './utils';
 
 export interface SupabaseUserStats {
   user_id: string;
@@ -76,11 +76,11 @@ export const getPercentileMessage = (percentile: number, hintUsed: boolean, poin
   if (points === 300) {
     return "🎯 Perfect score! No hints needed!";
   }
-  
+
   if (hintUsed && percentile >= 70) {
     return `Top ${100 - Math.floor(percentile)}% even with a lifeline — nice!`;
   }
-  
+
   if (percentile >= 90) {
     return "🌟 Outstanding! You're in the top 10% today!";
   }
@@ -103,12 +103,12 @@ export const fetchUserStats = async (userId: string): Promise<SupabaseUserStats 
     .select('*')
     .eq('user_id', userId)
     .maybeSingle();
-  
+
   if (error) {
     console.error('Error fetching user stats:', error);
     return null;
   }
-  
+
   return data;
 };
 
@@ -123,12 +123,12 @@ export const hasPlayedPuzzle = async (userId: string, dayNumber: number): Promis
     .eq('user_id', userId)
     .eq('day_number', dayNumber)
     .maybeSingle();
-  
+
   if (error) {
     console.error('Error checking if played puzzle:', error);
     return false;
   }
-  
+
   return !!data;
 };
 
@@ -270,11 +270,12 @@ export const saveGameResult = async (
   dayNumber: number,
   answers: boolean[],
   hintUsed: boolean,
-  hintUsedOnEvent: number | null
+  hintUsedOnEvent: number | null,
+  playedDate: string = getDateInHST()
 ): Promise<boolean> => {
   const score = answers.filter(Boolean).length;
   const points = calculatePoints(answers, hintUsedOnEvent);
-  
+
   const { error } = await supabase
     .from('game_results')
     .upsert({
@@ -288,15 +289,15 @@ export const saveGameResult = async (
     }, {
       onConflict: 'user_id,day_number',
     });
-  
+
   if (error) {
     console.error('Error saving game result:', error);
     return false;
   }
-  
+
   // Update user stats (affects streaks for daily puzzles)
-  await updateUserStats(userId, answers, points);
-  
+  await updateUserStats(userId, answers, points, playedDate);
+
   return true;
 };
 
@@ -317,7 +318,7 @@ export const saveArchiveGameResult = async (
 ): Promise<boolean> => {
   const score = answers.filter(Boolean).length;
   const points = calculatePoints(answers, hintUsedOnEvent);
-  
+
   const { error } = await supabase
     .from('game_results')
     .upsert({
@@ -331,41 +332,47 @@ export const saveArchiveGameResult = async (
     }, {
       onConflict: 'user_id,day_number',
     });
-  
+
   if (error) {
     console.error('Error saving archive game result:', error);
     return false;
   }
-  
+
   // NOTE: We intentionally DO NOT call updateUserStats here
   // because archive plays should not affect streaks or daily stats
-  
+
   return true;
 };
 
 // Update user stats after game
-export const updateUserStats = async (userId: string, answers: boolean[], points: number): Promise<void> => {
-  // Use HST dates to match the game's daily reset at midnight HST
-  const today = getDateInHST();
+export const updateUserStats = async (
+  userId: string,
+  answers: boolean[],
+  points: number,
+  playedDate: string = getDateInHST()
+): Promise<void> => {
+  const today = playedDate;
   const correctCount = answers.filter(Boolean).length;
-  
+
   // Get existing stats
   const existingStats = await fetchUserStats(userId);
-  
+
   if (existingStats) {
     // Check if already counted today (in HST)
     if (existingStats.last_played_date === today) {
       return;
     }
-    
-    // Calculate streak using HST dates
-    const yesterdayStr = getYesterdayInHST();
-    
+
+    // Derive "yesterday" from the same played date to avoid midnight race conditions.
+    const d = new Date(`${today}T12:00:00`);
+    d.setDate(d.getDate() - 1);
+    const yesterdayStr = getDateInHST(d);
+
     let newStreak = 1;
     if (existingStats.last_played_date === yesterdayStr) {
       newStreak = existingStats.current_streak + 1;
     }
-    
+
     const { error } = await supabase
       .from('user_stats')
       .update({
@@ -378,7 +385,7 @@ export const updateUserStats = async (userId: string, answers: boolean[], points
         last_played_date: today,
       })
       .eq('user_id', userId);
-    
+
     if (error) {
       console.error('Error updating user stats:', error);
     }
@@ -396,7 +403,7 @@ export const updateUserStats = async (userId: string, answers: boolean[], points
         total_points: points,
         last_played_date: today,
       });
-    
+
     if (error) {
       console.error('Error creating user stats:', error);
     }
@@ -407,15 +414,15 @@ export const updateUserStats = async (userId: string, answers: boolean[], points
 export const migrateLocalStorageToSupabase = async (userId: string): Promise<boolean> => {
   const localStats = getStats();
   const localGameState = getGameState();
-  
+
   // Check if user already has stats in Supabase
   const existingStats = await fetchUserStats(userId);
-  
+
   if (existingStats && existingStats.games_played > 0) {
     // User already has data in Supabase, don't overwrite
     return false;
   }
-  
+
   // Only migrate if there's local data
   if (localStats.gamesPlayed === 0) {
     return false;
@@ -423,7 +430,7 @@ export const migrateLocalStorageToSupabase = async (userId: string): Promise<boo
 
   // Estimate total points from local data (approximate)
   const estimatedPoints = localStats.totalCorrect * 100;
-  
+
   // Create user stats from local data
   const { error: statsError } = await supabase
     .from('user_stats')
@@ -435,14 +442,15 @@ export const migrateLocalStorageToSupabase = async (userId: string): Promise<boo
       total_correct: localStats.totalCorrect,
       total_events: localStats.totalEvents,
       total_points: estimatedPoints,
-      last_played_date: localStats.lastPlayedDate ? getDateInHST(new Date(localStats.lastPlayedDate)) : null,
+      // Local stats already store HST YYYY-MM-DD. Re-parsing shifts the date in some timezones.
+      last_played_date: localStats.lastPlayedDate || null,
     });
-  
+
   if (statsError) {
     console.error('Error migrating stats:', statsError);
     return false;
   }
-  
+
   // If current game is complete, save that result too
   if (localGameState.isComplete && localGameState.answers.length > 0) {
     const answers = localGameState.answers.filter((a): a is boolean => a !== null);
@@ -454,16 +462,16 @@ export const migrateLocalStorageToSupabase = async (userId: string): Promise<boo
       localGameState.hintUsedOnEvent
     );
   }
-  
+
   return true;
 };
 
 // Convert Supabase stats to local GameStats format for UI compatibility
 export const convertToGameStats = (stats: SupabaseUserStats): GameStats => {
-  const successRate = stats.total_events > 0 
-    ? Math.round((stats.total_correct / stats.total_events) * 100) 
+  const successRate = stats.total_events > 0
+    ? Math.round((stats.total_correct / stats.total_events) * 100)
     : 0;
-  
+
   return {
     gamesPlayed: stats.games_played,
     currentStreak: stats.current_streak,
